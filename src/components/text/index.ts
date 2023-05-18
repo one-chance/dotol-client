@@ -1,4 +1,2 @@
-import Heading from './Heading';
-import Label from './Label';
-
-export { Heading, Label };
+export { default as Heading } from './Heading';
+export { default as Label } from './Label';

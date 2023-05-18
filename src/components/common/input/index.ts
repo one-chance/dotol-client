@@ -1,4 +1,3 @@
-import Checkbox from './Checkbox';
-import Input, { InputProps } from './Input';
-
-export { Input, type InputProps, Checkbox };
+export { default as Checkbox } from './Checkbox';
+export { default as Input } from './Input';
+export type { InputProps } from './Input';

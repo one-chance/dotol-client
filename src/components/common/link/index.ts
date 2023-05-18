@@ -1,5 +1,3 @@
-import Anchor from './Anchor';
-import Link from './Link';
-import NavLink from './NavLink';
-
-export { Anchor, Link, NavLink };
+export { default as Anchor } from './Anchor';
+export { default as Link } from './Link';
+export { default as NavLink } from './NavLink';
