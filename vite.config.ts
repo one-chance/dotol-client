@@ -29,6 +29,10 @@ export default defineConfig({
         replacement: path.resolve(rootDir, `components`),
       },
       {
+        find: `@data`,
+        replacement: path.resolve(rootDir, `data`),
+      },
+      {
         find: `@locales`,
         replacement: path.resolve(rootDir, `locales`),
       },

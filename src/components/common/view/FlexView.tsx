@@ -3,6 +3,7 @@ import { forwardRef, HTMLAttributes } from 'react';
 import { CSSObject, jsx } from '@emotion/react';
 
 export type FlexViewProps = HTMLAttributes<HTMLDivElement> & {
+  fit?: boolean;
   fill?: boolean;
   row?: boolean;
   center?: boolean;
@@ -38,6 +39,7 @@ const fixedCSS: CSSObject = {
 export default forwardRef<HTMLDivElement, FlexViewProps>(
   (
     {
+      fit,
       fill,
       row,
       content,
@@ -52,6 +54,7 @@ export default forwardRef<HTMLDivElement, FlexViewProps>(
   ) => {
     const css: CSSObject = {
       display: `flex`,
+      ...(fit && { width: `fit-content` }),
       ...(fill && { flex: 1 }),
       ...((row && { flexDirection: `row` }) || { flexDirection: `column` }),
       ...(center && { justifyContent: `center`, alignItems: `center` }),
