@@ -23,7 +23,11 @@ export default () => {
       <Avatar character="협가검@하자" src={avatar} />
 
       <FlexView
-        css={{ border: `1px solid lightgray`, padding: `20px` }}
+        css={{
+          border: `1px solid lightgray`,
+          padding: `20px`,
+          maxWidth: `720px`,
+        }}
         gap={24}
       >
         <Text bold center xLarge>

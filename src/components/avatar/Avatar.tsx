@@ -36,13 +36,16 @@ export default ({ src, character }: AvatarProps) => {
         onClick={changeDirection}
       />
 
-      <FlexView css={{ backgroundColor: `#E6E5E5` }} center fit>
-        <Image css={{ width: `180px`, height: `158px` }} src={avatar} />
+      <FlexView
+        css={{ backgroundColor: `#E6E5E5`, width: `180px`, height: `158px` }}
+        center
+      >
+        <Image src={avatar} />
       </FlexView>
 
       <Text semiBold>{character}</Text>
 
-      <FlexView gap={24} row>
+      <FlexView gap={16} row>
         <Button
           css={{
             width: `60px`,
