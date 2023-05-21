@@ -21,6 +21,7 @@
       "@apis/*": ["apis/*"],
       "@assets/*": ["assets/*"],
       "@components/*": ["components/*"],
+      "@constants/*": ["constants/*"],
       "@data/*": ["data/*"],
       "@locales/*": ["locales/*"],
       "@models/*": ["models/*"],

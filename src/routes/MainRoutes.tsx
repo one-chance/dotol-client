@@ -10,7 +10,8 @@ import {
 } from '@pages/db';
 import Home from '@pages/Home';
 import NoMatch from '@pages/NoMatch';
-import { MyInfo } from '@pages/user';
+import { Auction, TradeBoard } from '@pages/trade';
+import { MyInfo, SignUp } from '@pages/user';
 
 /* 게시판 메뉴 */
 export const FreeBoardPage = {
@@ -101,10 +102,26 @@ export const PetEquipPage = {
   element: <PetEquip />,
 };
 
+/* 거래소 메뉴 */
+export const AuctionPage = {
+  path: `/trade/auction`,
+  element: <Auction />,
+};
+
+export const TradeBoardPage = {
+  path: `/trade/board`,
+  element: <TradeBoard />,
+};
+
 /* 사용자 메뉴 */
 export const MyInfoPage = {
   path: `/user/myinfo`,
   element: <MyInfo />,
+};
+
+export const SignUpPage = {
+  path: `/user/signup`,
+  element: <SignUp />,
 };
 
 /* 기본 페이지 */

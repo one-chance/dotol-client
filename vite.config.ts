@@ -25,6 +25,10 @@ export default defineConfig({
         replacement: path.resolve(rootDir, `assets`),
       },
       {
+        find: `@constants`,
+        replacement: path.resolve(rootDir, `constants`),
+      },
+      {
         find: `@components`,
         replacement: path.resolve(rootDir, `components`),
       },
