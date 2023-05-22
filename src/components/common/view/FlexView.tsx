@@ -12,6 +12,7 @@ export type FlexViewProps = HTMLAttributes<HTMLDivElement> & {
   gap?: number;
   content?: 'start' | 'end' | 'center' | 'between' | 'around';
   items?: 'start' | 'end' | 'center';
+  color?: string;
 };
 
 const justifyContents = {
@@ -48,6 +49,7 @@ export default forwardRef<HTMLDivElement, FlexViewProps>(
       fixed,
       wrap,
       gap,
+      color,
       ...props
     }: FlexViewProps,
     ref,
@@ -63,6 +65,7 @@ export default forwardRef<HTMLDivElement, FlexViewProps>(
       ...(fixed && fixedCSS),
       ...(wrap && { flexWrap: `wrap` }),
       ...(gap && { gap: `${gap}px` }),
+      ...(color && { backgroundColor: color }),
     };
 
     return jsx(`div`, { css, ref, ...props });

@@ -11,7 +11,14 @@ import {
 import Home from '@pages/Home';
 import NoMatch from '@pages/NoMatch';
 import { Auction, TradeBoard } from '@pages/trade';
-import { MyInfo, SignUp, PrivacyPolicy, TermsOfService } from '@pages/user';
+import {
+  Profile,
+  SignUp,
+  PrivacyPolicy,
+  TermsOfService,
+  Secession,
+  ChangePassword,
+} from '@pages/user';
 
 /* 게시판 메뉴 */
 export const FreeBoardPage = {
@@ -115,13 +122,23 @@ export const TradeBoardPage = {
 
 /* 사용자 메뉴 */
 export const MyInfoPage = {
-  path: `/user/myinfo`,
-  element: <MyInfo />,
+  path: `/user/profile`,
+  element: <Profile />,
 };
 
 export const SignUpPage = {
   path: `/user/signup`,
   element: <SignUp />,
+};
+
+export const SecessionPage = {
+  path: `/user/secession`,
+  element: <Secession />,
+};
+
+export const ChangePasswordPage = {
+  path: `/user/change-password`,
+  element: <ChangePassword />,
 };
 
 export const PrivacyPolicyPage = {

@@ -37,7 +37,8 @@ export default ({ src, character }: AvatarProps) => {
       />
 
       <FlexView
-        css={{ backgroundColor: `#E6E5E5`, width: `180px`, height: `158px` }}
+        color="#E6E5E5"
+        css={{ width: `180px`, height: `158px` }}
         center
       >
         <Image src={avatar} />
@@ -47,24 +48,24 @@ export default ({ src, character }: AvatarProps) => {
 
       <FlexView gap={16} row>
         <Button
+          color={naked === `Y` ? `blue` : `transparent`}
           css={{
             width: `60px`,
             height: `40px`,
             border: `1px solid blue`,
             borderRadius: `4px`,
-            backgroundColor: naked === `Y` ? `blue` : `transparent`,
           }}
           onClick={() => setNaked(`Y`)}
         >
           <Text color={naked === `Y` ? Colors.white : `blue`}>벗기</Text>
         </Button>
         <Button
+          color={naked === `N` ? `blue` : `transparent`}
           css={{
             width: `60px`,
             height: `40px`,
             border: `1px solid blue`,
             borderRadius: `4px`,
-            backgroundColor: naked === `N` ? `blue` : `transparent`,
           }}
           onClick={() => setNaked(`N`)}
         >
