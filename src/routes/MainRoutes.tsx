@@ -11,7 +11,7 @@ import {
 import Home from '@pages/Home';
 import NoMatch from '@pages/NoMatch';
 import { Auction, TradeBoard } from '@pages/trade';
-import { MyInfo, SignUp } from '@pages/user';
+import { MyInfo, SignUp, PrivacyPolicy, TermsOfService } from '@pages/user';
 
 /* 게시판 메뉴 */
 export const FreeBoardPage = {
@@ -122,6 +122,16 @@ export const MyInfoPage = {
 export const SignUpPage = {
   path: `/user/signup`,
   element: <SignUp />,
+};
+
+export const PrivacyPolicyPage = {
+  path: `/user/privacy-policy`,
+  element: <PrivacyPolicy />,
+};
+
+export const TermsOfServicePage = {
+  path: `/user/terms-of-service`,
+  element: <TermsOfService />,
 };
 
 /* 기본 페이지 */
