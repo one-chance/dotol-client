@@ -6,43 +6,55 @@ import { CSSObject } from '@emotion/react';
 import { Colors } from '@styles/system';
 import { useTranslation } from 'react-i18next';
 
-import { TotalMenu } from './menu';
+import { AlarmMenu, TotalMenu, UserMenu } from './menu';
 
 const btnCSS: CSSObject = {
   width: `80px`,
   height: `42px`,
 };
 
-const linkCSS: CSSObject = {
-  lineHeight: `40px`,
-  padding: `0 20px`,
-  ':hover': { backgroundColor: `lightgray` },
-};
-
 export default () => {
   const [t] = useTranslation(`header`);
 
-  const divRef = useRef<HTMLDivElement>(null);
+  const alarmMenuRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLButtonElement>(null);
   const alarmRef = useRef<HTMLButtonElement>(null);
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [openMenu, setOpenMenu] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState(-1);
   const [openUserMenu, setOpenUserMenu] = useState(false);
+  const [openAlarmMenu, setOpenAlarmMenu] = useState(false);
+  const [openTotalMenu, setOpenTotalMenu] = useState(false);
 
-  const signout = () => {
+  const hoveerTotalMenu = (index: number) => {
+    setSelectedMenu(index);
+  };
+
+  const closeUserMenu = () => {
     setOpenUserMenu(false);
   };
 
   const hideTotalMenu = () => {
-    setOpenMenu(false);
+    setOpenTotalMenu(false);
   };
 
   useEffect(() => {
     const closeModal = (e: any) => {
-      if (infoRef.current?.contains(e.target)) return;
+      if (alarmRef.current?.contains(e.target)) return;
+      if (openAlarmMenu && !alarmMenuRef.current?.contains(e.target))
+        setOpenAlarmMenu(false);
+    };
 
-      if (openUserMenu && !divRef.current?.contains(e.target))
+    window.addEventListener(`mousedown`, closeModal);
+
+    return () => window.removeEventListener(`mousedown`, closeModal);
+  }, [openAlarmMenu]);
+
+  useEffect(() => {
+    const closeModal = (e: any) => {
+      if (infoRef.current?.contains(e.target)) return;
+      if (openUserMenu && !userMenuRef.current?.contains(e.target))
         setOpenUserMenu(false);
     };
 
@@ -67,7 +79,7 @@ export default () => {
         css={{ padding: `28px 66px`, borderBottom: `1px solid #D5D5D5` }}
         items="start"
         row
-        onMouseLeave={() => setOpenMenu(false)}
+        onMouseLeave={() => setOpenTotalMenu(false)}
       >
         <Link to="/">
           <Text>{t(`title`)}</Text>
@@ -76,12 +88,18 @@ export default () => {
         <FlexView gap={10}>
           <FlexView content="between" gap={40} items="center" row>
             <FlexView gap={32} items="center" row>
-              {MAIN_MENU.map(menu => (
+              {MAIN_MENU.map((menu, index) => (
                 <FlexView
                   key={menu}
-                  css={{ width: `88px`, height: `42px`, cursor: `default` }}
+                  css={{
+                    width: `88px`,
+                    height: `42px`,
+                    cursor: `default`,
+                    borderBottom:
+                      selectedMenu === index ? `1px solid black` : `none`,
+                  }}
                   center
-                  onMouseEnter={() => setOpenMenu(true)}
+                  onMouseEnter={() => setOpenTotalMenu(true)}
                 >
                   <Text css={{ fontSize: `18px` }} medium>
                     {menu}
@@ -100,6 +118,7 @@ export default () => {
                     borderTopLeftRadius: `4px`,
                     borderBottomLeftRadius: `4px`,
                   }}
+                  onClick={() => setOpenAlarmMenu(!openAlarmMenu)}
                 >
                   <Text color="#486284">
                     {isLoggedIn ? `알림` : `회원가입`}
@@ -121,63 +140,18 @@ export default () => {
                 </Button>
               </FlexView>
 
+              {openAlarmMenu && (
+                <AlarmMenu ref={alarmMenuRef} close={closeUserMenu} />
+              )}
               {openUserMenu && (
-                <FlexView
-                  ref={divRef}
-                  color={Colors.white}
-                  css={{
-                    position: `absolute`,
-                    width: `160px`,
-                    marginTop: `50px`,
-                    borderRadius: `4px`,
-                    boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
-                  }}
-                >
-                  <Link
-                    css={{
-                      borderTopLeftRadius: `4px`,
-                      borderTopRightRadius: `4px`,
-                      ...linkCSS,
-                    }}
-                    to="/user/profile"
-                    onClick={() => setOpenUserMenu(false)}
-                  >
-                    프로필
-                  </Link>
-
-                  <Link
-                    css={linkCSS}
-                    to="/user/change-password"
-                    onClick={() => setOpenUserMenu(false)}
-                  >
-                    비밀번호 변경
-                  </Link>
-                  <Link
-                    css={linkCSS}
-                    to="/"
-                    onClick={() => setOpenUserMenu(false)}
-                  >
-                    대표 캐릭터
-                  </Link>
-                  <Button
-                    css={{
-                      height: `40px`,
-                      borderBottomLeftRadius: `4px`,
-                      borderBottomRightRadius: `4px`,
-                      ...linkCSS,
-                    }}
-                    onClick={signout}
-                  >
-                    <Text fill start>
-                      로그아웃
-                    </Text>
-                  </Button>
-                </FlexView>
+                <UserMenu ref={userMenuRef} close={closeUserMenu} />
               )}
             </FlexView>
           </FlexView>
 
-          {openMenu && <TotalMenu onSelect={hideTotalMenu} />}
+          {openTotalMenu && (
+            <TotalMenu onHover={hoveerTotalMenu} onSelect={hideTotalMenu} />
+          )}
         </FlexView>
       </FlexView>
     </header>

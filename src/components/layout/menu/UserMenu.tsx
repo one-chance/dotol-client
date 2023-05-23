@@ -6,8 +6,7 @@ import { Colors } from '@styles/system';
 
 const linkCSS: CSSObject = {
   lineHeight: `40px`,
-  fontSize: `12px`,
-
+  padding: `0 20px`,
   ':hover': { backgroundColor: `lightgray` },
 };
 
@@ -17,7 +16,9 @@ type MenuProps = {
 
 export default forwardRef<HTMLDivElement, MenuProps>(
   ({ close }: MenuProps, ref) => {
-    const a = 1;
+    const signout = () => {
+      // 로그아웃
+    };
 
     return (
       <FlexView
@@ -31,35 +32,17 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
       >
-        <FlexView
-          content="between"
+        <Link
           css={{
-            minHeight: `40px`,
-            padding: `0 16px`,
-            borderBottom: `1px solid lightgray`,
+            borderTopLeftRadius: `4px`,
+            borderTopRightRadius: `4px`,
+            ...linkCSS,
           }}
-          items="center"
-          row
+          to="/user/profile"
+          onClick={close}
         >
-          <Link
-            css={{
-              borderTopLeftRadius: `4px`,
-              borderTopRightRadius: `4px`,
-              fontSize: `12px`,
-              ':hover': {
-                textDecoration: `underline`,
-              },
-            }}
-            to="/user/profile"
-            onClick={close}
-          >
-            댓글이 달렸습니다.
-          </Link>
-
-          <Button>
-            <Text>x</Text>
-          </Button>
-        </FlexView>
+          프로필
+        </Link>
 
         <Link css={linkCSS} to="/user/change-password" onClick={close}>
           비밀번호 변경
@@ -67,6 +50,19 @@ export default forwardRef<HTMLDivElement, MenuProps>(
         <Link css={linkCSS} to="/" onClick={close}>
           대표 캐릭터
         </Link>
+        <Button
+          css={{
+            height: `40px`,
+            borderBottomLeftRadius: `4px`,
+            borderBottomRightRadius: `4px`,
+            ...linkCSS,
+          }}
+          onClick={signout}
+        >
+          <Text fill start>
+            로그아웃
+          </Text>
+        </Button>
       </FlexView>
     );
   },
