@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
+import { useWindowSize } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
 
 export default () => {
   const navigate = useNavigate();
+  const { width } = useWindowSize();
   const [editMode, setEditMode] = useState(false);
+  const [isMobile, setIsMobile] = useState(width < 400);
 
   const INFO_LIST = [
     `아이디`,
@@ -23,17 +26,32 @@ export default () => {
   };
 
   useEffect(() => {
-    // 정보 가져와서 조건이 되면 서명 추가
-  }, []);
+    if (width < 400) {
+      setIsMobile(true);
+    } else setIsMobile(false);
+  }, [width]);
 
   return (
-    <FlexView css={{ maxWidth: `980px`, width: `100%`, margin: `20px auto` }}>
-      <FlexView gap={40}>
-        <Text bold xLarge>
+    <FlexView
+      css={{
+        maxWidth: `600px`,
+        width: `100%`,
+        margin: isMobile ? `0` : `auto`,
+      }}
+    >
+      <FlexView
+        css={{
+          border: isMobile ? `none` : `1px solid lightgray`,
+          borderRadius: `4px`,
+          padding: `40px`,
+        }}
+        gap={40}
+      >
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
           프로필
         </Text>
 
-        <FlexView content="end" gap={16} items="center" row>
+        <FlexView content="end" gap={16} row>
           <Button
             onClick={() => (editMode ? saveProfile() : setEditMode(true))}
           >
@@ -49,27 +67,30 @@ export default () => {
 
         <FlexView gap={16}>
           {INFO_LIST.map((info: string, index: number) => (
-            <FlexView css={{ height: `40px` }} items="center" row>
-              <Text css={{ minWidth: `120px` }} semiBold>
+            <FlexView key={info} css={{ height: `40px` }} items="center" row>
+              <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
                 {info}
               </Text>
+
               {index > 4 && editMode ? (
                 <Input
                   css={{
                     border: `1px solid lightgray`,
                     borderRadius: `4px`,
-                    width: `240px`,
+                    width: `100%`,
                     height: `40px`,
                   }}
                 />
               ) : (
-                <Text>123</Text>
+                <Text css={{ flex: 1 }} small={isMobile}>
+                  123
+                </Text>
               )}
             </FlexView>
           ))}
 
           <FlexView
-            css={{ height: `40px` }}
+            css={{ minHeight: `40px` }}
             items={editMode ? `center` : `start`}
             row
           >
@@ -83,7 +104,7 @@ export default () => {
                   css={{
                     border: `1px solid lightgray`,
                     borderRadius: `4px`,
-                    width: `240px`,
+                    width: `100%`,
                     height: `40px`,
                   }}
                   readOnly
@@ -94,20 +115,23 @@ export default () => {
                 </Button>
               </FlexView>
             ) : (
-              <Image />
+              <Text>123</Text>
+              // <Image />
             )}
           </FlexView>
         </FlexView>
 
-        <Button
-          color={Colors.red}
-          css={{ width: `160px`, height: `40px`, borderRadius: `4px` }}
-          onClick={() => navigate(`/user/secession`)}
-        >
-          <Text color={Colors.white} medium>
-            회원 탈퇴
-          </Text>
-        </Button>
+        <FlexView css={{ marginTop: `20px` }}>
+          <Button
+            color={Colors.red}
+            css={{ width: `100px`, height: `40px`, borderRadius: `4px` }}
+            onClick={() => navigate(`/user/secession`)}
+          >
+            <Text color={Colors.white} medium>
+              회원 탈퇴
+            </Text>
+          </Button>
+        </FlexView>
       </FlexView>
     </FlexView>
   );

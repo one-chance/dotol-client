@@ -20,15 +20,18 @@ export default () => {
   }, [width]);
 
   return (
-    <FlexView css={{ margin: isMobile ? `0` : `auto` }}>
+    <FlexView
+      css={{
+        maxWidth: `600px`,
+        width: `100%`,
+        margin: isMobile ? `0` : `auto`,
+      }}
+    >
       <FlexView
         css={{
-          maxWidth: `360px`,
-          width: `100%`,
-          minWidth: `360px`,
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `4px`,
-          padding: `20px`,
+          padding: `40px 20px`,
         }}
         gap={40}
       >
@@ -69,15 +72,17 @@ export default () => {
             />
           </FlexView>
 
-          <Button
-            color={Colors.red}
-            css={{ height: `40px`, borderRadius: `4px` }}
-            disabled={password.length < 8}
-          >
-            <Text color={Colors.white} small={isMobile}>
-              변경하기
-            </Text>
-          </Button>
+          <FlexView content="end" row>
+            <Button
+              color={Colors.red}
+              css={{ width: `160px`, height: `40px`, borderRadius: `4px` }}
+              disabled={password.length < 8}
+            >
+              <Text color={Colors.white} small={isMobile} medium>
+                변경하기
+              </Text>
+            </Button>
+          </FlexView>
         </FlexView>
       </FlexView>
     </FlexView>

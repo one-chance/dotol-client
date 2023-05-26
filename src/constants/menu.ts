@@ -13,12 +13,12 @@ export const TOTAL_MENU = [
   {
     menu: `도감`,
     sub: [
-      { name: `일반 장비`, url: `/db/normal-equip` },
-      { name: `환수 장비`, url: `/db/pet-equip` },
-      { name: `신수 유물`, url: `/db/antiquity-equip` },
+      { name: `일반 장비`, url: `/db/equip/normal` },
+      { name: `환수 장비`, url: `/db/equip/pet` },
+      { name: `신수 유물`, url: `/db/equip/antiquity` },
       { name: `업적`, url: `/db/achievement` },
-      { name: `탐험일지`, url: `/db/exploration` },
-      { name: `고고학`, url: `/db/archaeology` },
+      { name: `탐험일지`, url: `/db/adventure` },
+      { name: `고고학`, url: `/db/archeology` },
     ],
   },
   {

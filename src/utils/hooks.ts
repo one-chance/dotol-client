@@ -20,7 +20,6 @@ export const useWindowSize = (): Size => {
     };
 
     window.addEventListener(`resize`, handleResize);
-
     handleResize();
 
     return () => {
@@ -29,4 +28,10 @@ export const useWindowSize = (): Size => {
   }, []);
 
   return windowSize;
+};
+
+export const useMobileDetect = (): boolean => {
+  const { width } = useWindowSize();
+
+  return width <= 400;
 };

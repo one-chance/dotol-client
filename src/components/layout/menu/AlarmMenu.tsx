@@ -35,7 +35,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           content="between"
           css={{
             minHeight: `40px`,
-            padding: `0 16px`,
+            padding: `0 8px`,
             borderBottom: `1px solid lightgray`,
           }}
           items="center"
