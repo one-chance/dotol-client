@@ -27,7 +27,7 @@ export default () => {
   const [openAlarmMenu, setOpenAlarmMenu] = useState(false);
   const [openTotalMenu, setOpenTotalMenu] = useState(false);
 
-  const hoveerTotalMenu = (index: number) => {
+  const hoverTotalMenu = (index: number) => {
     setSelectedMenu(index);
   };
 
@@ -150,7 +150,7 @@ export default () => {
           </FlexView>
 
           {openTotalMenu && (
-            <TotalMenu onHover={hoveerTotalMenu} onSelect={hideTotalMenu} />
+            <TotalMenu onHover={hoverTotalMenu} onSelect={hideTotalMenu} />
           )}
         </FlexView>
       </FlexView>

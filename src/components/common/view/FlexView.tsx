@@ -10,7 +10,7 @@ export type FlexViewProps = HTMLAttributes<HTMLDivElement> & {
   wrap?: boolean;
   fixed?: boolean;
   gap?: number;
-  content?: 'start' | 'end' | 'center' | 'between' | 'around';
+  content?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
   items?: 'start' | 'end' | 'center';
   color?: string;
 };
@@ -21,6 +21,7 @@ const justifyContents = {
   center: `center`,
   between: `space-between`,
   around: `space-around`,
+  evenly: `space-evenly`,
 };
 
 const alignItems = {

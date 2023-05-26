@@ -5,6 +5,7 @@ import {
   Achievement,
   Adventure,
   AntiquityEquip,
+  Archeology,
   NormalEquip,
   PetEquip,
 } from '@pages/db';
@@ -94,18 +95,23 @@ export const AdventurePage = {
   element: <Adventure />,
 };
 
+export const ArcheologyPage = {
+  path: `/db/archeology`,
+  element: <Archeology />,
+};
+
 export const AntiquityEquipPage = {
-  path: `/db/antiquity-equip`,
+  path: `/db/equip/antiquity`,
   element: <AntiquityEquip />,
 };
 
 export const NormalEquipPage = {
-  path: `/db/normal-equip`,
+  path: `/db/equip/normal`,
   element: <NormalEquip />,
 };
 
 export const PetEquipPage = {
-  path: `/db/pet-equip`,
+  path: `/db/equip/pet`,
   element: <PetEquip />,
 };
 
