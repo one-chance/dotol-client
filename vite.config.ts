@@ -37,6 +37,10 @@ export default defineConfig({
         replacement: path.resolve(rootDir, `data`),
       },
       {
+        find: `@interfaces`,
+        replacement: path.resolve(rootDir, `interfaces`),
+      },
+      {
         find: `@locales`,
         replacement: path.resolve(rootDir, `locales`),
       },
