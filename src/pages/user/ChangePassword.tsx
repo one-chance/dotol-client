@@ -46,10 +46,7 @@ export default () => {
             </Text>
             <Input
               css={{
-                flex: 1,
                 height: `40px`,
-                border: `1px solid lightgray`,
-                borderRadius: `4px`,
               }}
               type="password"
               onChange={inputPassword}
@@ -62,10 +59,7 @@ export default () => {
             </Text>
             <Input
               css={{
-                width: `100%`,
                 height: `40px`,
-                border: `1px solid lightgray`,
-                borderRadius: `4px`,
               }}
               type="password"
               onChange={inputPassword}

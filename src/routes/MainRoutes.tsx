@@ -1,5 +1,5 @@
 import { FreeBoard, ServerBoard, TipBoard, VideoBoard } from '@pages/board';
-import { Ability, Calendar, Exp, Power, Production } from '@pages/calculator';
+import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { CostumeList, Lookbook, Tanning } from '@pages/costume';
 import {
   Achievement,
@@ -51,11 +51,6 @@ export const AbilityPage = {
 export const CalendarPage = {
   path: `/calculator/calendar`,
   element: <Calendar />,
-};
-
-export const ExpPage = {
-  path: `/calculator/exp`,
-  element: <Exp />,
 };
 
 export const PowerPage = {

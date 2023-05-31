@@ -75,9 +75,6 @@ export default () => {
               {index > 4 && editMode ? (
                 <Input
                   css={{
-                    border: `1px solid lightgray`,
-                    borderRadius: `4px`,
-                    width: `100%`,
                     height: `40px`,
                   }}
                 />
@@ -102,9 +99,6 @@ export default () => {
               <FlexView gap={8} items="center" row>
                 <Input
                   css={{
-                    border: `1px solid lightgray`,
-                    borderRadius: `4px`,
-                    width: `100%`,
                     height: `40px`,
                   }}
                   readOnly

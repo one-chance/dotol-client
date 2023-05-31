@@ -52,10 +52,7 @@ export default () => {
           <FlexView gap={8} items="center" row>
             <Input
               css={{
-                width: `100%`,
                 height: `40px`,
-                border: `1px solid lightgray`,
-                borderRadius: `4px`,
               }}
               type="password"
               onChange={inputPassword}

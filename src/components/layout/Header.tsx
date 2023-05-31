@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, MouseEvent } from 'react';
 
 import { Button, FlexView, Text, Link } from '@components/common';
 import { MAIN_MENU } from '@constants/menu';
@@ -40,27 +40,29 @@ export default () => {
   };
 
   useEffect(() => {
-    const closeModal = (e: any) => {
-      if (alarmRef.current?.contains(e.target)) return;
-      if (openAlarmMenu && !alarmMenuRef.current?.contains(e.target))
+    const closeModal = (e: CustomEvent<MouseEvent>) => {
+      if (alarmRef.current?.contains(e.target as Node)) return;
+      if (openAlarmMenu && !alarmMenuRef.current?.contains(e.target as Node))
         setOpenAlarmMenu(false);
     };
 
-    window.addEventListener(`mousedown`, closeModal);
+    window.addEventListener(`mousedown`, closeModal as EventListener);
 
-    return () => window.removeEventListener(`mousedown`, closeModal);
+    return () =>
+      window.removeEventListener(`mousedown`, closeModal as EventListener);
   }, [openAlarmMenu]);
 
   useEffect(() => {
-    const closeModal = (e: any) => {
-      if (infoRef.current?.contains(e.target)) return;
-      if (openUserMenu && !userMenuRef.current?.contains(e.target))
+    const closeModal = (e: CustomEvent<MouseEvent>) => {
+      if (infoRef.current?.contains(e.target as Node)) return;
+      if (openUserMenu && !userMenuRef.current?.contains(e.target as Node))
         setOpenUserMenu(false);
     };
 
-    window.addEventListener(`mousedown`, closeModal);
+    window.addEventListener(`mousedown`, closeModal as EventListener);
 
-    return () => window.removeEventListener(`mousedown`, closeModal);
+    return () =>
+      window.removeEventListener(`mousedown`, closeModal as EventListener);
   }, [openUserMenu]);
 
   return (

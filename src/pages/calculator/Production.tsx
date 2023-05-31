@@ -1,7 +1,8 @@
+import { Production } from '@components/calculator';
 import { FlexView, Text } from '@components/common';
 
 export default () => (
   <FlexView>
-    <Text>123</Text>
+    <Production type="채집" />
   </FlexView>
 );
