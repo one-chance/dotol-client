@@ -29,6 +29,7 @@
       "@pages/*": ["pages/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
+      "@states/*": ["states/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]
     }

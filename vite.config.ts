@@ -61,6 +61,10 @@ export default defineConfig({
         replacement: path.resolve(rootDir, `services`),
       },
       {
+        find: `@states`,
+        replacement: path.resolve(rootDir, `states`),
+      },
+      {
         find: `@styles`,
         replacement: path.resolve(rootDir, `styles`),
       },
