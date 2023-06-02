@@ -3,16 +3,15 @@ import { useEffect, useState } from 'react';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import DATA from '@data/production-item.json';
+import { itemState } from '@states/production';
+import { Colors } from '@styles/system';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 
-type ProductionProps = {
-  type: '채집' | '제작' | '상태이상';
-};
-
-export default ({ type }: ProductionProps) => {
+export default () => {
   const SKILLS = [
     `종류`,
     `직조술`,
-    `발목슬`,
+    `벌목술`,
     `채광술`,
     `조제술`,
     `재봉술`,
@@ -40,7 +39,9 @@ export default ({ type }: ProductionProps) => {
   const [selectedSkill, setSelectedSkill] = useState(0);
   const [selectedGrade, setSelectedGrade] = useState(0);
   const [selectedItem, setSelectedItem] = useState(`품목`);
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(0);
+
+  const setRecipe = useSetRecoilState(itemState);
 
   const selectSkill = (idx: number) => {
     setSelectedSkill(idx);
@@ -52,16 +53,20 @@ export default ({ type }: ProductionProps) => {
 
   const selectItem = (idx: number) => {
     setSelectedItem(DATA[selectedSkill][selectedGrade][idx]);
-    // 아이템 저장
   };
 
   const inputQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const temp = Number(e.target.value.replace(/[^0-9]/g, ``));
+    if (e.target.value === ``) {
+      setQuantity(0);
+      return;
+    }
 
-    if (temp < 1) setQuantity(1);
-    else if (temp < 101) setQuantity(temp);
-    // 100 이상은 입력 못하게
-    // 1 고정이라 1의 자리수가 안되는 버그 수정
+    const temp = Number(e.target.value.replace(/[^0-9]/g, ``));
+    if (temp < 101) setQuantity(temp);
+  };
+
+  const changeRecipe = () => {
+    setRecipe({ name: selectedItem, amount: quantity });
   };
 
   useEffect(() => {
@@ -71,10 +76,20 @@ export default ({ type }: ProductionProps) => {
 
   useEffect(() => {
     setSelectedItem(`품목`);
+    setRecipe({ name: ``, amount: 0 });
+    setQuantity(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedGrade]);
 
+  useEffect(() => {
+    if (selectedItem !== `품목`) {
+      setQuantity(1);
+      setRecipe({ name: selectedItem, amount: 1 });
+    }
+  }, [selectedItem]);
+
   return (
-    <FlexView>
+    <FlexView gap={40} items="center" row>
       <FlexView gap={16} items="center" row>
         <Select name={SKILLS[selectedSkill]} width={90}>
           <Option
@@ -96,7 +111,7 @@ export default ({ type }: ProductionProps) => {
           />
         </Select>
 
-        <Select disabled={selectedGrade === 0} name={selectedItem} width={170}>
+        <Select disabled={selectedGrade === 0} name={selectedItem} width={185}>
           <Option
             selected={selectedItem}
             values={ITEM_LIST[selectedSkill][selectedGrade]}
@@ -105,9 +120,24 @@ export default ({ type }: ProductionProps) => {
         </Select>
       </FlexView>
 
-      <FlexView items="center" row>
-        <Text>수량</Text>
-        <Input value={quantity} width={40} center onChange={inputQuantity} />
+      <FlexView gap={4} items="center" row>
+        <Input
+          css={{ height: `40px` }}
+          placeholder="수량"
+          value={quantity || ``}
+          width={60}
+          center
+          onChange={inputQuantity}
+        />
+
+        <Button
+          color="blue"
+          css={{ width: `60px`, height: `40px`, borderRadius: `4px` }}
+          disabled={quantity === 0}
+          onClick={changeRecipe}
+        >
+          <Text color={Colors.white}>변경</Text>
+        </Button>
       </FlexView>
     </FlexView>
   );
