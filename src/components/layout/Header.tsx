@@ -23,53 +23,53 @@ export default () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedMenu, setSelectedMenu] = useState(-1);
-  const [openUserMenu, setOpenUserMenu] = useState(false);
-  const [openAlarmMenu, setOpenAlarmMenu] = useState(false);
-  const [openTotalMenu, setOpenTotalMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showAlarmMenu, setShowAlarmMenu] = useState(false);
+  const [showTotalMenu, setShowTotalMenu] = useState(false);
 
   const hoverTotalMenu = (index: number) => {
     setSelectedMenu(index);
   };
 
   const closeUserMenu = () => {
-    setOpenUserMenu(false);
+    setShowUserMenu(false);
   };
 
   const hideTotalMenu = () => {
-    setOpenTotalMenu(false);
+    setShowTotalMenu(false);
   };
 
   useEffect(() => {
     const closeModal = (e: CustomEvent<MouseEvent>) => {
       if (alarmRef.current?.contains(e.target as Node)) return;
-      if (openAlarmMenu && !alarmMenuRef.current?.contains(e.target as Node))
-        setOpenAlarmMenu(false);
+      if (showAlarmMenu && !alarmMenuRef.current?.contains(e.target as Node))
+        setShowAlarmMenu(false);
     };
 
     window.addEventListener(`mousedown`, closeModal as EventListener);
 
     return () =>
       window.removeEventListener(`mousedown`, closeModal as EventListener);
-  }, [openAlarmMenu]);
+  }, [showAlarmMenu]);
 
   useEffect(() => {
     const closeModal = (e: CustomEvent<MouseEvent>) => {
       if (infoRef.current?.contains(e.target as Node)) return;
-      if (openUserMenu && !userMenuRef.current?.contains(e.target as Node))
-        setOpenUserMenu(false);
+      if (showUserMenu && !userMenuRef.current?.contains(e.target as Node))
+        setShowUserMenu(false);
     };
 
     window.addEventListener(`mousedown`, closeModal as EventListener);
 
     return () =>
       window.removeEventListener(`mousedown`, closeModal as EventListener);
-  }, [openUserMenu]);
+  }, [showUserMenu]);
 
   return (
     <header
       style={{
         position: `fixed`,
-        zIndex: 1000,
+        zIndex: 999,
         top: 0,
         left: 0,
         right: 0,
@@ -78,10 +78,13 @@ export default () => {
       <FlexView
         color={Colors.white}
         content="between"
-        css={{ padding: `28px 66px`, borderBottom: `1px solid #D5D5D5` }}
+        css={{
+          padding: `28px 66px`,
+          boxShadow: `0 2px 4px rgba(0, 0, 0, 0.2)`,
+        }}
         items="start"
         row
-        onMouseLeave={() => setOpenTotalMenu(false)}
+        onMouseLeave={() => setShowTotalMenu(false)}
       >
         <Link to="/">
           <Text>{t(`title`)}</Text>
@@ -101,7 +104,7 @@ export default () => {
                       selectedMenu === index ? `1px solid black` : `none`,
                   }}
                   center
-                  onMouseEnter={() => setOpenTotalMenu(true)}
+                  onMouseEnter={() => setShowTotalMenu(true)}
                 >
                   <Text css={{ fontSize: `18px` }} medium>
                     {menu}
@@ -120,7 +123,7 @@ export default () => {
                     borderTopLeftRadius: `4px`,
                     borderBottomLeftRadius: `4px`,
                   }}
-                  onClick={() => setOpenAlarmMenu(!openAlarmMenu)}
+                  onClick={() => setShowAlarmMenu(!showAlarmMenu)}
                 >
                   <Text color="#486284">
                     {isLoggedIn ? `알림` : `회원가입`}
@@ -134,7 +137,7 @@ export default () => {
                     borderTopRightRadius: `4px`,
                     borderBottomRightRadius: `4px`,
                   }}
-                  onClick={() => setOpenUserMenu(!openUserMenu)}
+                  onClick={() => setShowUserMenu(!showUserMenu)}
                 >
                   <Text color={Colors.white}>
                     {isLoggedIn ? `내 정보` : `로그인`}
@@ -142,16 +145,16 @@ export default () => {
                 </Button>
               </FlexView>
 
-              {openAlarmMenu && (
+              {showAlarmMenu && (
                 <AlarmMenu ref={alarmMenuRef} close={closeUserMenu} />
               )}
-              {openUserMenu && (
+              {showUserMenu && (
                 <UserMenu ref={userMenuRef} close={closeUserMenu} />
               )}
             </FlexView>
           </FlexView>
 
-          {openTotalMenu && (
+          {showTotalMenu && (
             <TotalMenu onHover={hoverTotalMenu} onSelect={hideTotalMenu} />
           )}
         </FlexView>

@@ -8,7 +8,11 @@ export default () => {
 
   return (
     <main
-      style={{ display: `flex`, marginTop: width > 600 ? `100px` : `62px` }}
+      style={{
+        display: `flex`,
+        marginTop: width > 1080 ? `100px` : `60px`,
+        minHeight: width > 1080 ? `calc(100vh - 148px)` : `calc(100vh - 108px)`,
+      }}
     >
       <Routes>
         {Object.entries(MainRoutes).map(([key, value]) => (

@@ -7,22 +7,22 @@ export default () => (
       color="#22252C"
       css={{
         height: `3rem`,
-        padding: `0 10%`,
+        padding: `0 10px`,
       }}
-      gap={8}
+      gap={4}
       items="center"
       row
     >
-      <Link css={{ lineHeight: `15px` }} to="/user/terms-of-service">
-        <Text color={Colors.white} small>
+      <Link css={{ lineHeight: `12.5px` }} to="/user/terms-of-service">
+        <Text color={Colors.white} xSmall>
           이용 약관
         </Text>
       </Link>
-      <Text color={Colors.white} noDrag>
+      <Text color={Colors.white} noDrag xSmall>
         /
       </Text>
-      <Link css={{ lineHeight: `15px` }} to="/user/privacy-policy">
-        <Text color={Colors.white} small>
+      <Link css={{ lineHeight: `12.5px` }} to="/user/privacy-policy">
+        <Text color={Colors.white} xSmall>
           개인정보 처리방침
         </Text>
       </Link>
