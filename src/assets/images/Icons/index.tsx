@@ -38,3 +38,25 @@ export const arrowUp = (color: string) => (
     />
   </Svg>
 );
+
+export const menu = (color: string) => (
+  <Svg height={24} width={24}>
+    <path
+      clipRule="evenodd"
+      d="M3 4.5a.5.5 0 01.5-.5h17a.5.5 0 010 1h-17a.5.5 0 01-.5-.5zM3 12a.5.5 0 01.5-.5h17a.5.5 0 010 1h-17A.5.5 0 013 12zM3 19.5a.5.5 0 01.5-.5h17a.5.5 0 010 1h-17a.5.5 0 01-.5-.5z"
+      fill={color}
+      fillRule="evenodd"
+    />
+  </Svg>
+);
+
+export const clsoe = (color: string) => (
+  <Svg height={24} width={24}>
+    <path
+      clipRule="evenodd"
+      d="M19.354 5.354a.5.5 0 00-.707-.708L12 11.293 5.354 4.646a.5.5 0 10-.708.708L11.293 12l-6.647 6.646a.5.5 0 10.708.708L12 12.707l6.646 6.647a.5.5 0 00.708-.707L12.707 12l6.647-6.646z"
+      fill={color}
+      fillRule="evenodd"
+    />
+  </Svg>
+);

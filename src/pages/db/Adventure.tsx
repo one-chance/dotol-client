@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Button, FlexView, Text } from '@components/common';
-import { AdventureList } from '@components/db';
+import { AdventureList } from '@components/db-pages';
 import { TAB } from '@interfaces/adventure';
 
 export default () => {
