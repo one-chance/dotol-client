@@ -1,13 +1,14 @@
 /* eslint-disable react/no-array-index-key */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Button, FlexView, Text } from '@components/common';
+import { Select, Option } from '@components/select';
 import DATA from '@data/achievement.json';
-import { useMobileDetect, useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const { width } = useWindowSize();
-  const [isMobile, setIsMobile] = useState(width < 400);
+  const myData = DATA;
+  const isMobile = useResponsive(400);
 
   const [selectedTab, setSelectedTab] = useState(0);
   const TAB_LIST = [
@@ -30,28 +31,35 @@ export default () => {
     setSelectedTab(idx);
   };
 
-  useEffect(() => {
-    if (width <= 400) setIsMobile(true);
-    else setIsMobile(false);
-  }, [width]);
-
   return (
-    <FlexView css={{ margin: `40px auto` }} gap={40} items="center">
+    <FlexView css={{ margin: `20px auto` }} gap={40} items="center">
       <FlexView css={{ margin: `0 10px` }} gap={8} items="center" row wrap>
-        {TAB_LIST.map((tab, index) => (
-          <Button
-            key={tab}
-            color={selectedTab === index ? `#F2F5F8` : `#486284`}
-            css={{
-              width: isMobile ? `80px` : `100px`,
-              height: `36px`,
-              borderRadius: `4px`,
-            }}
-            onClick={() => selectTab(index)}
-          >
-            <Text small={isMobile}>{tab}</Text>
-          </Button>
-        ))}
+        {isMobile ? (
+          <FlexView>
+            <Select name={TAB_LIST[selectedTab]} width={320}>
+              <Option
+                selected={TAB_LIST[selectedTab]}
+                values={TAB_LIST}
+                onSelect={selectTab}
+              />
+            </Select>
+          </FlexView>
+        ) : (
+          TAB_LIST.map((tab, index) => (
+            <Button
+              key={tab}
+              color={selectedTab === index ? `#F2F5F8` : `#486284`}
+              css={{
+                width: isMobile ? `80px` : `100px`,
+                height: `36px`,
+                borderRadius: `4px`,
+              }}
+              onClick={() => selectTab(index)}
+            >
+              <Text small={isMobile}>{tab}</Text>
+            </Button>
+          ))
+        )}
       </FlexView>
 
       {selectedTab !== 0 && (
@@ -81,7 +89,7 @@ export default () => {
           </FlexView>
 
           <FlexView css={{ border: `1px solid lightgray` }}>
-            {DATA[selectedTab - 1].mission.map(mission => (
+            {myData[selectedTab - 1].mission.map(mission => (
               <FlexView
                 key={mission.name}
                 css={{ minHeight: `36px`, borderBottom: `1px solid lightgray` }}

@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Button, FlexView, Input, Text } from '@components/common';
 import Data from '@data/archeology.json';
 import { Colors } from '@styles/system';
-import { useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const { width } = useWindowSize();
-  const [isMobile, setIsMobile] = useState(width < 400);
+  const isMobile = useResponsive(400);
 
   const [searchKeyword, setSearchKeyword] = useState(``);
   const TITLES = [`아이템`, `지역`, `사용 방법`, `수량`, `보상`];
@@ -15,11 +14,6 @@ export default () => {
   const searchItem = () => {
     // 아이템 검색
   };
-
-  useEffect(() => {
-    if (width < 400) setIsMobile(true);
-    else setIsMobile(false);
-  }, [width]);
 
   return (
     <FlexView

@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
-import { useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
 
 export default () => {
   const navigate = useNavigate();
-  const { width } = useWindowSize();
+  const isMobile = useResponsive(400);
   const [editMode, setEditMode] = useState(false);
-  const [isMobile, setIsMobile] = useState(width < 400);
 
   const INFO_LIST = [
     `아이디`,
@@ -24,12 +23,6 @@ export default () => {
     // TODO: save profile
     setEditMode(false);
   };
-
-  useEffect(() => {
-    if (width < 400) {
-      setIsMobile(true);
-    } else setIsMobile(false);
-  }, [width]);
 
   return (
     <FlexView

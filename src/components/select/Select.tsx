@@ -48,7 +48,6 @@ export default ({
     position: `absolute`,
     zIndex: 1111,
     marginTop: height || `40px`,
-    maxWidth: `300px`,
     cursor: `pointer`,
     backgroundColor: `#FFF`,
     borderRadius: `4px`,

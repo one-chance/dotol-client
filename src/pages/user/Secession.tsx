@@ -1,23 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
-import { useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const { width } = useWindowSize();
+  const isMobile = useResponsive(400);
   const [password, setPassword] = useState(``);
-  const [isMobile, setIsMobile] = useState(width < 400);
 
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-
-  useEffect(() => {
-    if (width < 400) {
-      setIsMobile(true);
-    } else setIsMobile(false);
-  }, [width]);
 
   return (
     <FlexView css={{ margin: isMobile ? `0` : `auto` }}>
