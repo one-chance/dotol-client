@@ -3,8 +3,11 @@ import { useState, useEffect, useRef, MouseEvent } from 'react';
 import { Button, FlexView, Text, Link } from '@components/common';
 import { MAIN_MENU } from '@constants/menu';
 import { CSSObject } from '@emotion/react';
+import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 import { AlarmMenu, TotalMenu, UserMenu } from './menu';
 
@@ -15,13 +18,14 @@ const btnCSS: CSSObject = {
 
 export default () => {
   const [t] = useTranslation(`header`);
+  const navigate = useNavigate();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const alarmMenuRef = useRef<HTMLDivElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLButtonElement>(null);
   const alarmRef = useRef<HTMLButtonElement>(null);
 
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [selectedMenu, setSelectedMenu] = useState(-1);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showAlarmMenu, setShowAlarmMenu] = useState(false);
@@ -115,20 +119,35 @@ export default () => {
 
             <FlexView>
               <FlexView content="center" row>
-                <Button
-                  ref={alarmRef}
-                  color="#F2F5F8"
-                  css={{
-                    ...btnCSS,
-                    borderTopLeftRadius: `4px`,
-                    borderBottomLeftRadius: `4px`,
-                  }}
-                  onClick={() => setShowAlarmMenu(!showAlarmMenu)}
-                >
-                  <Text color="#486284">
-                    {isLoggedIn ? `알림` : `회원가입`}
-                  </Text>
-                </Button>
+                {isLoggedIn ? (
+                  <Button
+                    ref={alarmRef}
+                    color="#F2F5F8"
+                    css={{
+                      ...btnCSS,
+                      borderTopLeftRadius: `4px`,
+                      borderBottomLeftRadius: `4px`,
+                    }}
+                    onClick={() => setShowAlarmMenu(!showAlarmMenu)}
+                  >
+                    <Text color="#486284">
+                      {isLoggedIn ? `알림` : `회원가입`}
+                    </Text>
+                  </Button>
+                ) : (
+                  <Link
+                    css={{
+                      ...btnCSS,
+                      display: `flex`,
+                      backgroundColor: `#F2F5F8`,
+                      justifyContent: `center`,
+                      alignItems: `center`,
+                    }}
+                    to="/user/signup"
+                  >
+                    <Text color="##486284">회원가입</Text>
+                  </Link>
+                )}
                 <Button
                   ref={infoRef}
                   color="#486284"
@@ -137,7 +156,11 @@ export default () => {
                     borderTopRightRadius: `4px`,
                     borderBottomRightRadius: `4px`,
                   }}
-                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  onClick={() =>
+                    isLoggedIn
+                      ? setShowUserMenu(!showUserMenu)
+                      : navigate(`/user/signin`)
+                  }
                 >
                   <Text color={Colors.white}>
                     {isLoggedIn ? `내 정보` : `로그인`}

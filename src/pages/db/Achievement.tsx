@@ -63,7 +63,7 @@ export default () => {
       </FlexView>
 
       {selectedTab !== 0 && (
-        <FlexView css={{ padding: `0 20px`, maxWidth: `800px`, width: `100%` }}>
+        <FlexView css={{ padding: `0 10px`, maxWidth: `800px`, width: `100%` }}>
           <FlexView
             color="lightgray"
             content={isMobile ? `between` : `center`}

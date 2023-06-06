@@ -58,8 +58,14 @@ a {
   color: unset;
 }
 
-input[type='password'] {
+
+input[type='password']:not(:placeholder-shown) {
   font-family: Verdana;
   font-size: 1.25rem;
   letter-spacing: 0.25em;
+}
+
+input::placeholder {
+  font-family: Noto Sans KR;
+  font-size: 1rem;
 }

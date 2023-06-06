@@ -13,12 +13,14 @@ import Home from '@pages/Home';
 import NoMatch from '@pages/NoMatch';
 import { Auction, TradeBoard } from '@pages/trade';
 import {
-  Profile,
-  SignUp,
-  PrivacyPolicy,
-  TermsOfService,
-  Secession,
   ChangePassword,
+  FindAccount,
+  Profile,
+  PrivacyPolicy,
+  Secession,
+  SignIn,
+  SignUp,
+  TermsOfService,
 } from '@pages/user';
 
 /* 게시판 메뉴 */
@@ -122,9 +124,19 @@ export const TradeBoardPage = {
 };
 
 /* 사용자 메뉴 */
-export const MyInfoPage = {
+export const ProfilePage = {
   path: `/user/profile`,
   element: <Profile />,
+};
+
+export const FindAccountPage = {
+  path: `/user/find-account`,
+  element: <FindAccount />,
+};
+
+export const SignInPage = {
+  path: `/user/signin`,
+  element: <SignIn />,
 };
 
 export const SignUpPage = {

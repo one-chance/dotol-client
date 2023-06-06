@@ -12,6 +12,11 @@ export default () => {
     setPassword(e.target.value);
   };
 
+  const secesseUser = () => {
+    // 비밀번호 일치 확인
+    // TODO: 회원탈퇴 API 연동
+  };
+
   return (
     <FlexView css={{ margin: isMobile ? `0` : `auto` }}>
       <FlexView
@@ -54,6 +59,7 @@ export default () => {
               color={Colors.red}
               css={{ width: `60px`, height: `40px`, borderRadius: `4px` }}
               disabled={password.length < 8}
+              onClick={secesseUser}
             >
               <Text color={Colors.white}>탈퇴</Text>
             </Button>

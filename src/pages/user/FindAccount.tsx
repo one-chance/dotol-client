@@ -22,7 +22,7 @@ export default () => {
       css={{
         maxWidth: `600px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `auto`,
+        margin: `20px auto`,
       }}
     >
       <FlexView

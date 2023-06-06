@@ -21,7 +21,7 @@ export default () => {
       gap={20}
     >
       <FlexView items="center" row>
-        <Input />
+        <Input width={240} />
         <Button onClick={searchItem}>
           <Text>검색</Text>
         </Button>
