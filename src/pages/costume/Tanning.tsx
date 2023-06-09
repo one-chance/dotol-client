@@ -26,7 +26,7 @@ export default () => {
   }, [basic, skinNumber]);
 
   return (
-    <FlexView css={{ maxWidth: `1040px`, width: `100%`, margin: `20px auto` }}>
+    <FlexView css={{ maxWidth: `1040px`, width: `100%`, margin: `auto` }}>
       <FlexView gap={32} row>
         <Avatar character="협가검@하자" src={avatar} />
 

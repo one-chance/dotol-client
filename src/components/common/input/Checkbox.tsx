@@ -3,9 +3,10 @@ import { Colors } from '@styles/system';
 
 interface CheckboxProps {
   size?: number;
+  disabled?: boolean;
 }
 
-export default ({ size, ...props }: CheckboxProps) => {
+export default ({ size, disabled, ...props }: CheckboxProps) => {
   const css: CSSObject = {
     backgroundColor: Colors.gray,
     borderRadius: `5px`,
@@ -22,5 +23,5 @@ export default ({ size, ...props }: CheckboxProps) => {
     },
   };
 
-  return jsx(`input`, { type: `checkbox`, css, ...props });
+  return jsx(`input`, { type: `checkbox`, css, disabled, ...props });
 };

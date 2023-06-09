@@ -40,6 +40,7 @@ export default () => {
   };
 
   const hideTotalMenu = () => {
+    setSelectedMenu(-1);
     setShowTotalMenu(false);
   };
 

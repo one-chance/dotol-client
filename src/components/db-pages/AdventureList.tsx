@@ -40,28 +40,33 @@ export default ({ location, tab }: ListProps) => {
       </FlexView>
 
       {tab === `보상` ? (
-        // <RewardList data={selectedData as REWARD} />
-        <FlexView css={{ maxHeight: `600px`, overflowY: `auto` }}>
+        <FlexView>
           <FlexView items="start" row>
             <FlexView center fill>
               {(selectedData as REWARD).weapon.map(weapon => (
-                <Text key={weapon}>{weapon}</Text>
+                <Text key={weapon} css={{ lineHeight: `28px` }}>
+                  {weapon}
+                </Text>
               ))}
             </FlexView>
 
-            <FlexView center fill>
+            <FlexView css={{ minHeight: `36px` }} center fill>
               {(selectedData as REWARD).clothes.map(clothes => (
-                <Text key={clothes}>{clothes}</Text>
+                <Text key={clothes} css={{ lineHeight: `28px` }}>
+                  {clothes}
+                </Text>
               ))}
             </FlexView>
 
-            <FlexView center fill>
-              <Text>{(selectedData as REWARD).title}</Text>
+            <FlexView css={{ minHeight: `36px` }} center fill>
+              <Text css={{ lineHeight: `28px` }}>
+                {(selectedData as REWARD).title}
+              </Text>
             </FlexView>
           </FlexView>
         </FlexView>
       ) : (
-        <FlexView css={{ maxHeight: `600px`, overflowY: `auto` }}>
+        <FlexView>
           {(selectedData as DETAIL[]).map(item => (
             <FlexView key={item.name} css={{ minHeight: `28px` }} center row>
               <Text center fill>

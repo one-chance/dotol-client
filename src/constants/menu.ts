@@ -36,7 +36,7 @@ export const TOTAL_MENU = [
       { name: `팁 게시판`, url: `/board/tip` },
       {
         name: `자유 게시판`,
-        url: `/board/freee`,
+        url: `/board/free`,
       },
       {
         name: `영상 게시판`,
