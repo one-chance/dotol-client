@@ -33,10 +33,10 @@ export const useWindowSize = (): Size => {
 export const useResponsive = (breakpoin: number): boolean => {
   const { width } = useWindowSize();
 
-  const [isMobile, setIsMobile] = useState<boolean>(width < breakpoin);
+  const [isMobile, setIsMobile] = useState<boolean>(width <= breakpoin);
 
   useEffect(() => {
-    setIsMobile(width < breakpoin);
+    setIsMobile(width <= breakpoin);
   }, [width, breakpoin]);
 
   return isMobile;

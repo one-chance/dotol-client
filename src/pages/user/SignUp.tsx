@@ -91,7 +91,7 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: `20px auto` }}>
+    <FlexView css={{ margin: `auto` }}>
       <FlexView
         css={{
           border: isMobile ? undefined : `1px solid lightgray`,
