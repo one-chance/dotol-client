@@ -1,74 +1,52 @@
-import { FlexView, Text } from '@components/common';
+import { AchievementAccordion } from '@components/accordion';
+import { Checkbox, FlexView, Text } from '@components/common';
 import DATA from '@data/achievement.json';
 import { useResponsive } from '@utils/hooks';
 
 type ListProps = {
   tab: number;
+  editMode: boolean;
 };
 
-export default ({ tab }: ListProps) => {
+export default ({ tab, editMode }: ListProps) => {
   const selectedData = DATA[tab - 1];
-  const isMobile = useResponsive(400);
+  const isMobile = useResponsive(480);
 
   return (
-    <FlexView css={{ padding: `0 10px`, maxWidth: `800px`, width: `100%` }}>
+    <FlexView css={{ border: `1px solid lightgray` }}>
       <FlexView
         color="lightgray"
-        content={isMobile ? `between` : `center`}
         css={{ minHeight: `40px` }}
         items="center"
         row
       >
-        <Text
-          center={isMobile}
-          css={{
-            minWidth: isMobile ? `60px` : `320px`,
-            paddingLeft: `8px`,
-          }}
-          bold
-        >
+        <Text css={{ minWidth: isMobile ? `40px` : `80px` }} bold center>
+          달성
+        </Text>
+        <Text bold center fill>
           업적
         </Text>
-        <Text css={{ minWidth: `60px` }} bold>
-          점수
-        </Text>
-        {!isMobile && (
-          <Text bold fill>
-            비고
-          </Text>
-        )}
       </FlexView>
 
-      <FlexView css={{ border: `1px solid lightgray` }}>
+      <FlexView>
         {selectedData.mission.map(mission => (
           <FlexView
             key={mission.name}
-            css={{ minHeight: `36px`, borderBottom: `1px solid lightgray` }}
+            css={{ borderTop: `1px solid lightgray` }}
             items="center"
             row
-            wrap
           >
-            <Text
-              css={{
-                minWidth: `320px`,
-                paddingLeft: `8px`,
-                ...(isMobile && { minWidth: `fit-content`, flex: 1 }),
-              }}
-              small={isMobile}
+            <FlexView css={{ minWidth: isMobile ? `40px` : `80px` }} center>
+              <Checkbox disabled={!editMode} />
+            </FlexView>
+
+            <AchievementAccordion
+              title={mission.name}
+              titleCSS={{ width: isMobile ? `300px` : `400px`, border: `none` }}
             >
-              {mission.name}
-            </Text>
-            <Text
-              css={{ minWidth: isMobile ? `40px` : `60px` }}
-              small={isMobile}
-            >
-              {mission.score}
-            </Text>
-            {!isMobile && (
-              <Text small={isMobile} fill>
-                {mission.condition}
-              </Text>
-            )}
+              <Text small={isMobile}>점수: {mission.score}</Text>
+              <Text small={isMobile}>조건: {mission.condition}</Text>
+            </AchievementAccordion>
           </FlexView>
         ))}
       </FlexView>

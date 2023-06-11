@@ -1,7 +1,17 @@
 import { FlexView, Text } from '@components/common';
+import { PetEquipAccuracy, PetEquipList } from '@components/db-pages';
+import { useResponsive } from '@utils/hooks';
 
-export default () => (
-  <FlexView>
-    <Text>123</Text>
-  </FlexView>
-);
+export default () => {
+  const isMobile = useResponsive(800);
+
+  return (
+    <FlexView css={{ margin: `40px auto`, padding: `0 10px` }}>
+      <FlexView gap={40} row={!isMobile}>
+        <PetEquipAccuracy isMobile={isMobile} />
+
+        <PetEquipList />
+      </FlexView>
+    </FlexView>
+  );
+};

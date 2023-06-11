@@ -11,6 +11,7 @@ type SelectProps = HTMLAttributes<HTMLDivElement> & {
   disabled?: boolean;
   error?: boolean;
   max?: number;
+  isMobile?: boolean;
 };
 
 export default ({
@@ -21,6 +22,7 @@ export default ({
   disabled,
   error,
   max,
+  isMobile,
   ...props
 }: SelectProps) => {
   const selectRef = useRef<HTMLDivElement>(null);
@@ -46,7 +48,7 @@ export default ({
 
   const optionListCSS: CSSObject = {
     position: `absolute`,
-    zIndex: 1111,
+    zIndex: 1000,
     marginTop: height || `40px`,
     cursor: `pointer`,
     backgroundColor: `#FFF`,
@@ -84,7 +86,7 @@ export default ({
       {...props}
     >
       <FlexView content="between" css={selectCSS} items="center" row>
-        <Text>{name}</Text>
+        <Text small={isMobile}>{name}</Text>
         <Icon name={showOption ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 

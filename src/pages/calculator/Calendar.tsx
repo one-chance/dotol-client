@@ -1,13 +1,6 @@
-import { useEffect, useState } from 'react';
-
 import { FlexView, Text } from '@components/common';
 import DATA from '@data/calendar.json';
 import { useResponsive } from '@utils/hooks';
-
-type DATES = {
-  start: string;
-  end: string;
-};
 
 export default () => {
   const myData = DATA;
@@ -27,6 +20,8 @@ export default () => {
     { start: `11월 01일`, end: `11월 29일` },
     { start: `12월 21일`, end: `12월 29일` },
   ];
+
+  // myData[11].end가 지나면 다음 년도로 교체해야 함
 
   return (
     <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}>

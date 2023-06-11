@@ -5,37 +5,39 @@ import { Select, Option } from '@components/select';
 import DATA from '@data/production-item.json';
 import { itemState } from '@states/production';
 import { Colors } from '@styles/system';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useResponsive } from '@utils/hooks';
+import { useSetRecoilState } from 'recoil';
+
+const SKILLS = [
+  `종류`,
+  `직조술`,
+  `벌목술`,
+  `채광술`,
+  `조제술`,
+  `재봉술`,
+  `목공술`,
+  `대장술`,
+  `강화술`,
+];
+
+const GRADES = [
+  `단계`,
+  `왕초보`,
+  `초보`,
+  `견습`,
+  `도제`,
+  `숙련`,
+  `전문`,
+  `장인`,
+  `명장인`,
+  `대장인`,
+  `절대장인`,
+  `전설장인`,
+];
 
 export default () => {
-  const SKILLS = [
-    `종류`,
-    `직조술`,
-    `벌목술`,
-    `채광술`,
-    `조제술`,
-    `재봉술`,
-    `목공술`,
-    `대장술`,
-    `강화술`,
-  ];
-
-  const GRADES = [
-    `단계`,
-    `왕초보`,
-    `초보`,
-    `견습`,
-    `도제`,
-    `숙련`,
-    `전문`,
-    `장인`,
-    `명장인`,
-    `대장인`,
-    `절대장인`,
-    `전설장인`,
-  ];
-
   const ITEM_LIST = DATA;
+  const isMobile = useResponsive(600);
   const [selectedSkill, setSelectedSkill] = useState(0);
   const [selectedGrade, setSelectedGrade] = useState(0);
   const [selectedItem, setSelectedItem] = useState(`품목`);
@@ -90,9 +92,13 @@ export default () => {
   }, [selectedItem]);
 
   return (
-    <FlexView gap={40} items="center" row>
-      <FlexView gap={16} items="center" row>
-        <Select name={SKILLS[selectedSkill]} width={90}>
+    <FlexView gap={16} items="center" row wrap>
+      <FlexView gap={isMobile ? 8 : 16} items="center" row>
+        <Select
+          isMobile={isMobile}
+          name={SKILLS[selectedSkill]}
+          width={isMobile ? 80 : 90}
+        >
           <Option
             selected={SKILLS[selectedSkill]}
             values={SKILLS}
@@ -102,8 +108,9 @@ export default () => {
 
         <Select
           disabled={selectedSkill === 0}
+          isMobile={isMobile}
           name={GRADES[selectedGrade]}
-          width={100}
+          width={isMobile ? 90 : 100}
         >
           <Option
             selected={GRADES[selectedGrade]}
@@ -112,7 +119,12 @@ export default () => {
           />
         </Select>
 
-        <Select disabled={selectedGrade === 0} name={selectedItem} width={185}>
+        <Select
+          disabled={selectedGrade === 0}
+          isMobile={isMobile}
+          name={selectedItem}
+          width={isMobile ? 155 : 185}
+        >
           <Option
             selected={selectedItem}
             values={ITEM_LIST[selectedSkill][selectedGrade]}
@@ -121,9 +133,9 @@ export default () => {
         </Select>
       </FlexView>
 
-      <FlexView gap={4} items="center" row>
+      <FlexView items="center" row>
         <Input
-          css={{ height: `40px` }}
+          css={{ height: `40px`, borderRadius: `4px 0 0  4px`, borderRight: 0 }}
           placeholder="수량"
           value={quantity || ``}
           width={60}
@@ -133,7 +145,11 @@ export default () => {
 
         <Button
           color="blue"
-          css={{ width: `60px`, height: `40px`, borderRadius: `4px` }}
+          css={{
+            width: `60px`,
+            height: `40px`,
+            borderRadius: `0 4px 4px 0`,
+          }}
           disabled={quantity === 0}
           onClick={changeRecipe}
         >

@@ -5,14 +5,13 @@ import Data from '@data/archeology.json';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
+const TITLES = [`아이템`, `위치`, `사용 방법`, `수량`, `보상`];
+const WIDTHS = [160, 100, 400, 40, 260];
+
 export default () => {
   const isMobile = useResponsive(960);
   const itemRef = useRef<HTMLDivElement[]>([]);
-
   const [searchKeyword, setSearchKeyword] = useState(``);
-
-  const TITLES = [`아이템`, `위치`, `사용 방법`, `수량`, `보상`];
-  const WIDTHS = [160, 100, 400, 40, 260];
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -42,11 +41,12 @@ export default () => {
 
   return (
     <FlexView
-      css={{ maxWidth: `1080px`, width: `100%`, margin: `20px auto` }}
+      css={{ margin: `20px auto`, padding: isMobile ? `0 10px` : 0 }}
       gap={20}
     >
-      <FlexView css={{ padding: `0 10px` }} gap={4} items="center" row>
+      <FlexView items="center" row>
         <Input
+          css={{ borderRadius: `4px 0 0 4px`, borderRight: 0 }}
           placeholder="아이템, 지역, NPC, 보상"
           width={200}
           onChange={inputSearchKeyword}
@@ -57,7 +57,7 @@ export default () => {
 
         <Button
           color="blue"
-          css={{ width: `60px`, height: `36px`, borderRadius: `4px` }}
+          css={{ width: `60px`, height: `36px`, borderRadius: `0 4px 4px 0` }}
           onClick={searchItem}
         >
           <Text color={Colors.white}>검색</Text>
@@ -71,7 +71,7 @@ export default () => {
               key={title}
               color={Colors.white}
               css={{
-                minWidth: `${WIDTHS[index]}px`,
+                width: `${WIDTHS[index]}px`,
                 paddingLeft: index === 0 ? `8px` : 0,
               }}
               bold

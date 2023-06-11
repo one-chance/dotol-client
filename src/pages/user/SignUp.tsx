@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 import {
   Button,
@@ -19,6 +19,8 @@ const btnCSS: CSSObject = {
 };
 
 export default () => {
+  const passwordRef = useRef<HTMLInputElement>(null);
+
   const isMobile = useResponsive(600);
   const INPUT_WIDTH = isMobile ? 180 : 240;
   const [userId, setUserId] = useState(``);
@@ -45,19 +47,25 @@ export default () => {
   };
 
   const inputUserId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserId(e.target.value);
+    setUserId(e.target.value.replace(/[^a-zA-Z0-9]/g, ``));
   };
 
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).*$/;
+
     setPassword(e.target.value);
   };
 
   const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(e.target.value)) setIsEmailForm(true);
+    else setIsEmailForm(false);
+
     setEmail(e.target.value);
   };
 
   const inputOTP = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOTP(e.target.value);
+    setOTP(e.target.value.replace(/[^0-9]/g, ``));
   };
 
   const checkUniqueId = () => {
@@ -122,9 +130,21 @@ export default () => {
             <Input
               css={inputCSS}
               placeholder="영문, 숫자 (6자리 이상)"
+              readOnly={isUniqueId}
+              value={userId || ``}
               width={INPUT_WIDTH}
+              onChange={inputUserId}
+              onKeyDown={e => {
+                if (e.key === `Enter`) checkUniqueId();
+              }}
             />
-            <Button color="red" css={btnCSS} disabled={isUniqueId}>
+
+            <Button
+              color="red"
+              css={btnCSS}
+              disabled={userId.length < 6}
+              onClick={checkUniqueId}
+            >
               <Text color={Colors.white} small={isMobile}>
                 중복 확인
               </Text>
@@ -168,9 +188,16 @@ export default () => {
             <Input
               css={inputCSS}
               placeholder="이메일 주소"
+              value={email || ``}
               width={INPUT_WIDTH}
+              onChange={inputEmail}
             />
-            <Button color="red" css={btnCSS}>
+            <Button
+              color="red"
+              css={btnCSS}
+              disabled={!isEmailForm}
+              onClick={sendOTP}
+            >
               <Text color={Colors.white} small={isMobile}>
                 OTP 전송
               </Text>
@@ -188,9 +215,11 @@ export default () => {
             <Input
               css={inputCSS}
               placeholder="숫자 6자리"
+              value={otp || ``}
               width={INPUT_WIDTH}
+              onChange={inputOTP}
             />
-            <Button color="red" css={btnCSS}>
+            <Button color="red" css={btnCSS} disabled={otp.length < 6}>
               <Text color={Colors.white} small={isMobile}>
                 인증
               </Text>
