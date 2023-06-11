@@ -30,16 +30,15 @@ const SUB_TAB: Record<TAB, string[]> = {
 
 const messages: Record<TAB, string[]> = {
   괴수: [
-    `괴수 탐험도는 5단계로 나누어져 있으며 각 단계마다 탐험도를 획득합니다.`,
-    `ex. 1N = 발견(1점), 도전(2점), 미숙(3점), 숙련(4점), 정복(5점)`,
+    `괴수 탐험도는 5단계로 나누어 각 단계마다 탐험도를 획득합니다.`,
+    `1N = 발견(1점), 도전(2점), 미숙(3점), 숙련(4점), 정복(5점)`,
   ],
   물품: [`인벤토리에서 해당하는 아이템을 사용하면 탐험도를 획득합니다.`],
   임무: [`임무를 완료하면 탐험도를 획득합니다.`],
   탐방: [`해당 지역에 방문하여 거닐다보면 탐험도를 획득합니다.`],
   보상: [
-    `탐험도를 60% 달성하면 무기, 100% 달성하면 의상과 칭호를 얻습니다.`,
-    `부여/국내 주막의 탐험일지연구가를 통해 100만전에 교환할 수 있습니다.`,
-    `단, 교환된 장비는 전속 상태로 지급됩니다.`,
+    `부여/국내성 주막의 탐험일지연구가가 원하는 장비로 교환해줍니다.`,
+    `교환시 100만전이 필요하고, 장비는 전속 상태로 지급됩니다.`,
   ],
 };
 
@@ -48,15 +47,21 @@ export default ({ location, tab, isMobile }: ListProps) => {
 
   return (
     <FlexView gap={10}>
-      <FlexView css={{ padding: `0 5px` }} gap={4}>
-        {messages[tab].map((message, index) => (
-          <Text key={message} color="blue" small>
+      <FlexView css={{ padding: `0 5px` }} gap={4} wrap>
+        {messages[tab].map(message => (
+          <Text key={message} color="blue" small={!isMobile} xSmall={isMobile}>
             {message}
           </Text>
         ))}
       </FlexView>
 
-      <FlexView css={{ maxWidth: `542px`, border: `1px solid lightgray` }}>
+      <FlexView
+        css={{
+          maxWidth: isMobile ? `360px` : `540px`,
+          border: `1px solid lightgray`,
+          margin: `0 auto`,
+        }}
+      >
         {tab === `보상` ? (
           <FlexView
             color="lightgray"
@@ -65,30 +70,12 @@ export default ({ location, tab, isMobile }: ListProps) => {
             row
           >
             <Text
-              css={{ width: isMobile ? `120px` : `180px`, paddingLeft: `8px` }}
+              css={{ paddingLeft: isMobile ? `4px` : `8px` }}
               small={isMobile}
+              fill
               semiBold
             >
-              {SUB_TAB[tab][0]}
-            </Text>
-
-            <Text
-              css={{
-                width: isMobile ? `120px` : `180px`,
-                paddingLeft: `8px`,
-              }}
-              small={isMobile}
-              semiBold
-            >
-              {SUB_TAB[tab][1]}
-            </Text>
-
-            <Text
-              css={{ width: isMobile ? `120px` : `180px`, paddingLeft: `8px` }}
-              small={isMobile}
-              semiBold
-            >
-              {SUB_TAB[tab][2]}
+              {SUB_TAB[tab][0]} (탐험도 60%)
             </Text>
           </FlexView>
         ) : (
@@ -121,7 +108,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
             </Text>
 
             <Text
-              css={{ width: isMobile ? `40px` : `140px`, paddingLeft: `4px` }}
+              css={{ width: isMobile ? `48px` : `140px`, paddingLeft: `4px` }}
               small={isMobile}
               semiBold
             >
@@ -131,70 +118,77 @@ export default ({ location, tab, isMobile }: ListProps) => {
         )}
 
         {tab === `보상` ? (
-          <FlexView row>
-            <FlexView>
+          <FlexView>
+            <FlexView gap={4} row wrap>
               {(selectedData as REWARD).weapon.map(weapon => (
-                <FlexView
-                  content="center"
+                <Text
+                  key={weapon}
                   css={{
-                    width: isMobile ? `120px` : `180px`,
-                    minHeight: `32px`,
+                    paddingLeft: isMobile ? `4px` : `8px`,
+                    lineHeight: `28px`,
                   }}
+                  small={isMobile}
                 >
-                  <Text
-                    key={weapon}
-                    css={{
-                      paddingLeft: isMobile ? `4px` : `8px`,
-                    }}
-                    small={isMobile}
-                  >
-                    {weapon}
-                  </Text>
-                </FlexView>
+                  {weapon}
+                </Text>
               ))}
             </FlexView>
 
             <FlexView
-              css={{
-                borderLeft: `1px solid lightgray`,
-                borderRight: `1px solid lightgray`,
-              }}
+              color="lightgray"
+              css={{ minHeight: `36px` }}
+              items="center"
+              row
             >
+              <Text
+                css={{ paddingLeft: isMobile ? `4px` : `8px` }}
+                small={isMobile}
+                semiBold
+              >
+                탐험일지의상 (탐험도 100%)
+              </Text>
+            </FlexView>
+
+            <FlexView gap={4} row wrap>
               {(selectedData as REWARD).clothes.map(clothes => (
-                <FlexView
-                  content="center"
+                <Text
+                  key={clothes}
                   css={{
-                    width: isMobile ? `120px` : `180px`,
-                    minHeight: `32px`,
+                    paddingLeft: isMobile ? `4px` : `8px`,
+                    lineHeight: `28px`,
                   }}
+                  small={isMobile}
                 >
-                  <Text
-                    key={clothes}
-                    css={{
-                      paddingLeft: isMobile ? `4px` : `8px`,
-                    }}
-                    small={isMobile}
-                  >
-                    {clothes}
-                  </Text>
-                </FlexView>
+                  {clothes}
+                </Text>
               ))}
             </FlexView>
 
             <FlexView>
               <FlexView
-                content="center"
-                css={{ width: isMobile ? `120px` : `180px`, minHeight: `32px` }}
+                color="lightgray"
+                css={{ minHeight: `36px` }}
+                items="center"
+                row
               >
                 <Text
-                  css={{
-                    paddingLeft: isMobile ? `4px` : `8px`,
-                  }}
+                  css={{ paddingLeft: isMobile ? `4px` : `8px` }}
                   small={isMobile}
+                  semiBold
                 >
-                  {(selectedData as REWARD).title}
+                  칭호 (탐험도 100%)
                 </Text>
               </FlexView>
+
+              <Text
+                css={{
+                  paddingLeft: isMobile ? `4px` : `8px`,
+                  lineHeight: `28px`,
+                }}
+                small={isMobile}
+              >
+                {(selectedData as REWARD).title}
+              </Text>
             </FlexView>
           </FlexView>
         ) : (
@@ -228,7 +222,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
 
                 <Text
                   css={{
-                    width: isMobile ? `40px` : `140px`,
+                    width: isMobile ? `48px` : `140px`,
                     paddingLeft: isMobile ? `4px` : `8px`,
                   }}
                   small={isMobile}

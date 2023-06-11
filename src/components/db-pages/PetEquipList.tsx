@@ -33,7 +33,7 @@ export default () => {
   const myData = DATA[selectedType];
 
   const cellCSS: CSSObject = {
-    width: isMobile ? `54px` : `64px`,
+    width: isMobile ? `60px` : `70px`,
     textAlign: `center`,
     fontSize: isMobile ? `14px` : `16px`,
   };
@@ -61,16 +61,22 @@ export default () => {
       <FlexView
         css={{
           border: `1px solid lightgray`,
-          minWidth: `500px`,
+          //   maxWidth: `560px`,
           overflowX: `auto`,
         }}
+        wrap
       >
         <FlexView items="center" row>
           {EQUIP_PARTS.map((part, index) => (
             <FlexView
               key={part}
               color="lightgray"
-              css={{ width: index === 0 ? `80px` : `64px`, height: `36px` }}
+              css={{
+                width: isMobile ? `60px` : `70px`,
+                height: `36px`,
+                ...(index === 0 && { width: `92px` }),
+                ...(index === 1 && { width: `48px` }),
+              }}
               center
             >
               <Text semiBold>{part}</Text>
@@ -78,7 +84,7 @@ export default () => {
           ))}
         </FlexView>
 
-        <FlexView>
+        <FlexView css={{ overflowX: `auto` }}>
           {myData.map((data, index) => (
             <FlexView
               key={data.장비}
@@ -87,8 +93,8 @@ export default () => {
               items="center"
               row
             >
-              <Text css={{ ...cellCSS, width: `80px` }}>{data.장비}</Text>
-              <Text css={cellCSS}>{data.방어}</Text>
+              <Text css={{ ...cellCSS, width: `90px` }}>{data.장비}</Text>
+              <Text css={{ ...cellCSS, width: `48px` }}>{data.방어}</Text>
               <Text css={cellCSS}>{data.명중}</Text>
               <Text css={cellCSS}>{data.명회}</Text>
               <Text css={cellCSS}>{data.방관}</Text>
@@ -99,6 +105,10 @@ export default () => {
           ))}
         </FlexView>
       </FlexView>
+
+      <Text color="blue" small={isMobile}>
+        * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
+      </Text>
     </FlexView>
   );
 };

@@ -32,7 +32,10 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={40}>
+    <FlexView
+      css={{ margin: isMobile ? `20px auto` : `40px auto` }}
+      gap={isMobile ? 20 : 40}
+    >
       <FlexView gap={20} center row>
         <FlexView gap={8} items="center" row>
           <Text small={isMobile} medium>

@@ -7,8 +7,8 @@ export default () => {
 
   return (
     <FlexView css={{ margin: `40px auto`, padding: `0 10px` }}>
-      <FlexView gap={40} row={!isMobile}>
-        <PetEquipAccuracy isMobile={isMobile} />
+      <FlexView gap={40}>
+        {/* <PetEquipAccuracy isMobile={isMobile} /> */}
 
         <PetEquipList />
       </FlexView>

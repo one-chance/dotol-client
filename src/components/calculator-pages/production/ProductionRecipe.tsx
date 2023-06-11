@@ -13,9 +13,9 @@ type INGREDIENT = {
   amount: number;
 };
 
-export default ({ item }: RecipeProps) => {
-  const myData: { [key: string]: INGREDIENT[] } = DATA;
+const myData: { [key: string]: INGREDIENT[] } = DATA;
 
+export default ({ item }: RecipeProps) => {
   const [ingredients, setIngredients] = useState(new Map());
 
   const addInGradient = (name: string, amount: number) => {
@@ -49,7 +49,7 @@ export default ({ item }: RecipeProps) => {
             ),
       ),
     );
-  }, [item, myData]);
+  }, [item]);
 
   return (
     <FlexView
