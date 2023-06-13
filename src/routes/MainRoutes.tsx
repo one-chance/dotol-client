@@ -1,4 +1,10 @@
-import { FreeBoard, ServerBoard, TipBoard, VideoBoard } from '@pages/board';
+import {
+  FreeBoard,
+  FreeBoardPost,
+  ServerBoard,
+  TipBoard,
+  VideoBoard,
+} from '@pages/board';
 import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { CostumeList, Lookbook, Tanning } from '@pages/costume';
 import {
@@ -27,6 +33,11 @@ import {
 export const FreeBoardPage = {
   path: `/board/free`,
   element: <FreeBoard />,
+};
+
+export const FreeBoardPostPage = {
+  path: `/board/free/post/:seq`,
+  element: <FreeBoardPost />,
 };
 
 export const ServerBoardPage = {

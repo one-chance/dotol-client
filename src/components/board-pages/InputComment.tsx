@@ -1,0 +1,48 @@
+import { FormEventHandler, useState } from 'react';
+
+import { Button, FlexView, Text, TextArea } from '@components/common';
+import { Colors } from '@styles/system';
+
+type CommentProps = {
+  color?: string;
+  onSubmit: (e: string) => void;
+};
+
+export default ({ color, onSubmit }: CommentProps) => {
+  const [value, setValue] = useState(``);
+
+  const inputValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  };
+
+  const submitValue = () => {
+    onSubmit(value);
+  };
+
+  return (
+    <FlexView
+      css={{ padding: `10px`, backgroundColor: color || undefined }}
+      gap={4}
+      items="center"
+      row
+    >
+      <FlexView fill>
+        <TextArea
+          css={{ minHeight: `80px` }}
+          placeholder="욕설, 비방, 분란은 조장하는 댓글은 제재될 수 있습니다."
+          onChange={inputValue}
+        />
+      </FlexView>
+
+      <Button
+        color="blue"
+        css={{ width: `60px`, height: `100%`, borderRadius: `4px` }}
+        onClick={submitValue}
+      >
+        <Text color={Colors.white} semiBold small>
+          등록
+        </Text>
+      </Button>
+    </FlexView>
+  );
+};
