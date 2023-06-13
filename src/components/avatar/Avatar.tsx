@@ -8,9 +8,10 @@ import RotateButtons from './RotateButtons';
 interface AvatarProps {
   src: string;
   character: string;
+  count: number;
 }
 
-export default ({ src, character }: AvatarProps) => {
+export default ({ src, character, count }: AvatarProps) => {
   const [direction, setDirecrtion] = useState(2);
   const [naked, setNaked] = useState<'N' | 'Y'>(`N`);
   const [avatar, setAvatar] = useState(src);
@@ -25,11 +26,14 @@ export default ({ src, character }: AvatarProps) => {
 
   return (
     <FlexView
-      css={{ border: `1px solid lightgray`, padding: `20px` }}
+      css={{ border: `1px solid lightgray`, padding: `20px`, width: `240px` }}
       gap={16}
       items="center"
-      fit
     >
+      <Text color="blue" large semiBold>
+        잔여: {count}
+      </Text>
+
       <RotateButtons
         color="blue"
         selected={direction}

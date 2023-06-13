@@ -14,6 +14,7 @@ export default ({ onClose }: MenuProps) => (
     css={{ position: `fixed`, top: 0, left: 0, right: 0, bottom: 0 }}
   >
     <FlexView
+      color="lightgray"
       content="between"
       css={{ padding: `20px 24px 16px 24px` }}
       items="center"

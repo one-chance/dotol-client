@@ -11,6 +11,7 @@ type SelectProps = HTMLAttributes<HTMLDivElement> & {
   disabled?: boolean;
   error?: boolean;
   max?: number;
+  square?: boolean;
   isMobile?: boolean;
 };
 
@@ -22,6 +23,7 @@ export default ({
   disabled,
   error,
   max,
+  square,
   isMobile,
   ...props
 }: SelectProps) => {
@@ -37,13 +39,14 @@ export default ({
   const selectCSS: CSSObject = {
     minHeight: height || `40px`,
     cursor: `pointer`,
-    padding: `0 8px`,
+    padding: isMobile ? `0 4px` : `0 8px`,
     backgroundColor: `#FFF`,
     border: `1px solid #DCDEEA`,
     borderRadius: `4px`,
     ...(showOption && { border: `1px solid #358CFE` }),
     ...(error && { border: `1px solid red` }),
     ...(disabled && { filter: `opacity(50%)`, pointerEvents: `none` }),
+    ...(square && { borderRadius: 0 }),
   };
 
   const optionListCSS: CSSObject = {

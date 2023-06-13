@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 
+import { ArcheologyAccordion } from '@components/accordion';
 import { Button, FlexView, Input, Text } from '@components/common';
 import Data from '@data/archeology.json';
 import { Colors } from '@styles/system';
@@ -65,6 +66,13 @@ export default () => {
       </FlexView>
 
       <FlexView css={{ minWidth: `960px`, overflowX: `auto` }}>
+        <FlexView css={{ borderTop: `1px solid lightgray` }}>
+          <ArcheologyAccordion title="아이템 이름" titleCSS={{ width: `100%` }}>
+            <Text>123</Text>
+            <Text>123</Text>
+          </ArcheologyAccordion>
+        </FlexView>
+
         <FlexView color="purple" css={{ minHeight: `40px` }} items="center" row>
           {TITLES.map((title, index) => (
             <Text
