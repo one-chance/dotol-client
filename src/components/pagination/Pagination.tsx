@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import ArrowLeft from '@assets/images/arrowLeft.png';
-import ArrowRight from '@assets/images/arrowRight.png';
 import { FlexView, Button, Icon, Image, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -77,7 +75,7 @@ export default ({ count, unit }: PaginationProps) => {
     <FlexView css={{ height: `36px` }} gap={10} center row>
       {selectedPage > 5 && maxPage >= selectedPage && (
         <Button css={buttonCSS} onClick={() => movePageList(-1)}>
-          <Image height={16} src={ArrowLeft} width={16} />
+          <Image height={16} src="/arrowLeft.png" width={16} />
           {/* <Icon color="#242424" name="arrowLeft" size={16} /> */}
         </Button>
       )}
@@ -102,7 +100,7 @@ export default ({ count, unit }: PaginationProps) => {
 
       {pageList[4] < maxPage && (
         <Button css={buttonCSS} onClick={() => movePageList(1)}>
-          <Image height={16} src={ArrowRight} width={16} />
+          <Image height={16} src="/arrowRight.png" width={16} />
           {/* <Icon color="#242424" name="arrowRight" size={16} /> */}
         </Button>
       )}

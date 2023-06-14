@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import User from '@assets/images/user.png';
 import { Button, FlexView, Icon, Image, Text, Link } from '@components/common';
 import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -59,11 +58,11 @@ export default () => {
         <FlexView gap={8} items="center" row>
           {isLoggedIn ? (
             <Button onClick={openUserMenu}>
-              <Image height={24} src={User} width={24} />
+              <Image height={24} src="/user.png" width={24} />
             </Button>
           ) : (
             <Link css={{ height: `24px` }} to="/user/signin">
-              <Image height={24} src={User} width={24} />
+              <Image height={24} src="/user.png" width={24} />
             </Link>
           )}
 

@@ -1,6 +1,6 @@
 import { FlexView, Text } from '@components/common';
 import DATA from '@data/adventure.json';
-import { TAB } from '@interfaces/adventure';
+import { AdventureTab } from '@interfaces/adventure';
 
 type DETAIL = {
   name: string;
@@ -16,11 +16,11 @@ type REWARD = {
 
 type ListProps = {
   location: number;
-  tab: TAB;
+  tab: AdventureTab;
   isMobile?: boolean;
 };
 
-const SUB_TAB: Record<TAB, string[]> = {
+const SUB_TAB: Record<AdventureTab, string[]> = {
   괴수: [`괴수`, `탐험도`, `주요위치`],
   물품: [`물품`, `탐험도`, `획득방법`],
   임무: [`임무`, `탐험도`, `시작 NPC`],
@@ -28,7 +28,7 @@ const SUB_TAB: Record<TAB, string[]> = {
   보상: [`탐험일지무기`, `탐험일지의상`, `칭호`],
 };
 
-const messages: Record<TAB, string[]> = {
+const messages: Record<AdventureTab, string[]> = {
   괴수: [
     `괴수 탐험도는 5단계로 나누어 각 단계마다 탐험도를 획득합니다.`,
     `1N = 발견(1점), 도전(2점), 미숙(3점), 숙련(4점), 정복(5점)`,

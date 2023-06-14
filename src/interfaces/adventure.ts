@@ -1,1 +1,1 @@
-export type TAB = '괴수' | '물품' | '임무' | '탐방' | '보상';
+export type AdventureTab = '괴수' | '물품' | '임무' | '탐방' | '보상';

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import Empty from '@assets/images/empty.png';
 import { Chip } from '@components/chip';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
@@ -264,7 +263,7 @@ export default () => {
               <Text color={slotItems.one === `` ? `blue` : `red`}>슬롯1</Text>
             </Button>
 
-            {slotItems.one !== `` && <Image src={Empty} />}
+            {slotItems.one !== `` && <Image src="/empty.png" />}
           </FlexView>
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
@@ -282,7 +281,7 @@ export default () => {
               <Text color={slotItems.two === `` ? `blue` : `red`}>슬롯2</Text>
             </Button>
 
-            {slotItems.two !== `` && <Image src={Empty} />}
+            {slotItems.two !== `` && <Image src="/empty.png" />}
           </FlexView>
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
@@ -300,7 +299,7 @@ export default () => {
               <Text color={slotItems.three === `` ? `blue` : `red`}>슬롯3</Text>
             </Button>
 
-            {slotItems.three !== `` && <Image src={Empty} />}
+            {slotItems.three !== `` && <Image src="/empty.png" />}
           </FlexView>
         </FlexView>
       </FlexView>

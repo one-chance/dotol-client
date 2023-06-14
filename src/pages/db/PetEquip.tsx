@@ -1,9 +1,9 @@
-import { FlexView, Text } from '@components/common';
+import { FlexView } from '@components/common';
 import {
   PetEquipAccuracy,
   PetEquipList,
   PetEquipRecipe,
-} from '@components/db-pages';
+} from '@components/db-pages/petEquip';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
@@ -12,11 +12,11 @@ export default () => {
   return (
     <FlexView css={{ margin: `40px auto` }}>
       <FlexView gap={40}>
-        {/* <PetEquipAccuracy isMobile={isMobile} /> */}
+        <PetEquipAccuracy isMobile={isMobile} />
 
         <PetEquipList />
 
-        {/* <PetEquipRecipe /> */}
+        <PetEquipRecipe />
       </FlexView>
     </FlexView>
   );
