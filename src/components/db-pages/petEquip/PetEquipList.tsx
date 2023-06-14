@@ -51,7 +51,7 @@ export default () => {
         row
       >
         <Text xLarge={isMobile} xxLarge={!isMobile} semiBold>
-          환수 장비 도감
+          환수장비 도감
         </Text>
 
         <Select name={EQUIP_TYPES[selectedType]} width={isMobile ? 120 : 160}>

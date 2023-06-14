@@ -10,7 +10,7 @@ export default () => {
   return (
     <FlexView gap={20}>
       <Text semiBold xxLarge>
-        환수 장비 강화재료
+        환수장비 강화재료
       </Text>
 
       <FlexView css={{ border: `1px solid lightgray` }}>
