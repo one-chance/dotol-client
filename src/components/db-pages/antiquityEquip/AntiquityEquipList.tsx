@@ -172,7 +172,7 @@ export default () => {
 
             {holyEquipData?.map((item: { [key: string]: string }) => (
               <FlexView
-                key={item.피해흡수무시}
+                key={item.등급}
                 css={{ minHeight: `30px`, borderBottom: `1px solid lightgray` }}
                 items="center"
                 row

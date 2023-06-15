@@ -1,21 +1,67 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { FlexView, Text } from '@components/common';
+import { Button, FlexView, Input, Text } from '@components/common';
+import { AntiquityEquipModal } from '@components/modal';
 import { Option, Select } from '@components/select';
 import DATA from '@data/antiquity-recipe.json';
 import { useResponsive } from '@utils/hooks';
 
 const EQUIP_PARTS = [`무기`, `투구`, `갑옷`, `명경`, `장갑`, `보주`];
 const TITLES = [`장비`, `필요레벨`, `재료`, `금전`, `기본확률`];
+const PERCENTAGES = [
+  `기본확률`,
+  `100%`,
+  `90%`,
+  `60%`,
+  `30%`,
+  `15%`,
+  `8%`,
+  `4%`,
+  `2%`,
+];
+const PERCENTAGE_VALUES = [0, 100, 90, 60, 30, 15, 8, 4, 2];
 
 export default () => {
   const isMobile = useResponsive(620);
   const [selectedPart, setSelectedPart] = useState(EQUIP_PARTS[0]);
   const myData = DATA[EQUIP_PARTS.indexOf(selectedPart)];
+  const [defaultPercentage, setDefaultPercentage] = useState(PERCENTAGES[0]);
+
+  const [extraPercentage, setExtraPercentage] = useState(``);
+  const [totalPercentage, setTotalPercentage] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   const selectPart = (id: number) => {
     setSelectedPart(EQUIP_PARTS[id]);
   };
+
+  const selectPercentage = (id: number) => {
+    setDefaultPercentage(PERCENTAGES[id]);
+  };
+
+  const inputExtraPercentage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const regex = /^(\d{0,3}(\.\d{0,3})?)?$/;
+
+    if (regex.test(value)) setExtraPercentage(value);
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  useEffect(() => {
+    const defaultValue =
+      PERCENTAGE_VALUES[PERCENTAGES.indexOf(defaultPercentage)];
+    const totalValue =
+      defaultValue + (defaultValue * Number(extraPercentage)) / 100;
+
+    setTotalPercentage(Math.round(totalValue * 1000) / 1000);
+  }, [defaultPercentage, extraPercentage]);
 
   return (
     <FlexView gap={20}>
@@ -31,6 +77,43 @@ export default () => {
             onSelect={selectPart}
           />
         </Select>
+      </FlexView>
+
+      <FlexView content="between" gap={16} items="center" row wrap>
+        <FlexView items="center" row>
+          <Select
+            height={36}
+            isMobile={isMobile}
+            name={defaultPercentage}
+            width={isMobile ? 80 : 100}
+          >
+            <Option
+              selected={defaultPercentage}
+              values={PERCENTAGES}
+              onSelect={selectPercentage}
+            />
+          </Select>
+
+          <Text small={isMobile}>&nbsp;+&nbsp;</Text>
+          <Input
+            css={{ '::placeholder': { fontSize: isMobile ? `14px` : `16px` } }}
+            placeholder="제작확률 증가(%)"
+            value={extraPercentage || ``}
+            width={isMobile ? 95 : 140}
+            center
+            onChange={inputExtraPercentage}
+          />
+
+          <Text small={isMobile} medium>
+            &nbsp;= 최종 성공률: {totalPercentage}%
+          </Text>
+        </FlexView>
+
+        <Button onClick={openModal}>
+          <Text color="blue" small>
+            제작확률 증가?
+          </Text>
+        </Button>
       </FlexView>
 
       <FlexView>
@@ -76,6 +159,8 @@ export default () => {
           </FlexView>
         ))}
       </FlexView>
+
+      {showModal && <AntiquityEquipModal close={closeModal} />}
     </FlexView>
   );
 };

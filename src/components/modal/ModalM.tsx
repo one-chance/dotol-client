@@ -17,14 +17,14 @@ export default ({ children, closePortal, color, close }: ModalProps) => {
   const container = document.getElementById(`root-modal`);
 
   const contentCSS: CSSObject = {
-    padding: `18px 16px`,
-    backgroundColor: color || Colors.black,
+    padding: `16px 10px`,
+    backgroundColor: color || Colors.white,
     position: `fixed`,
     top: 0,
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: 10000,
+    zIndex: 1111,
   };
 
   useEffect(() => {
