@@ -20,7 +20,7 @@ export default ({ onClose }: MenuProps) => (
       <Text>헤더</Text>
 
       <Button onClick={onClose}>
-        <Icon name="clsoe" size={24} />
+        <Icon name="close" size={24} />
       </Button>
     </FlexView>
   </FlexView>

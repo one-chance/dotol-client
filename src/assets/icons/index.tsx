@@ -50,7 +50,7 @@ export const menu = (color: string) => (
   </Svg>
 );
 
-export const clsoe = (color: string) => (
+export const close = (color: string) => (
   <Svg height={24} width={24}>
     <path
       clipRule="evenodd"

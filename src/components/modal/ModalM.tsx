@@ -41,7 +41,7 @@ export default ({ children, closePortal, color, close }: ModalProps) => {
           {close && (
             <FlexView content="end" row>
               <Button aria-label="close" onClick={closePortal}>
-                <Icon color={Colors.secondary} name="close" size={24} />
+                <Icon color={Colors.black} name="close" size={24} />
               </Button>
             </FlexView>
           )}

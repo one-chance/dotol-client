@@ -51,14 +51,14 @@ export default ({
     maxWidth: `calc(100% - 80px)`,
     width: `${width}px`,
     height: `${height}px`,
-    padding: `40px`,
+    // padding: `40px`,
     backgroundColor: `#FFFFFF`,
     borderRadius: `4px`,
     // border: `1px solid ${Colors.secondary10}`,
     zIndex: 1001,
-    overflowY: `auto`,
-    scrollbarWidth: `none`,
-    '::-webkit-scrollbar': { display: `none` },
+    // overflowY: `auto`,
+    // scrollbarWidth: `none`,
+    // '::-webkit-scrollbar': { display: `none` },
   };
 
   useEffect(() => {
@@ -80,9 +80,9 @@ export default ({
 
           <FlexView css={contentCSS}>
             {close && (
-              <FlexView items="end">
+              <FlexView css={{ margin: `16px 16px 0 0` }} items="end">
                 <Button aria-label="close" onClick={closePortal}>
-                  <Icon color={Colors.secondary} name="close" size={32} />
+                  <Icon color={Colors.black} name="close" size={24} />
                 </Button>
               </FlexView>
             )}

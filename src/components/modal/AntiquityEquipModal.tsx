@@ -9,8 +9,16 @@ type ModalProps = {
 };
 
 const desktopModal = (close: () => void) => (
-  <Modal closePortal={close} height={460} width={600}>
-    <FlexView gap={40}>
+  <Modal closePortal={close} height={440} width={620} close>
+    <FlexView
+      css={{
+        padding: `20px 40px`,
+        overflowY: `auto`,
+        scrollbarWidth: `none`,
+        '::-webkit-scrollbar': { display: `none` },
+      }}
+      gap={24}
+    >
       <FlexView gap={4} items="center" row>
         <Text color="blue" bold large>
           제작확률 증가(%)
@@ -86,7 +94,7 @@ const desktopModal = (close: () => void) => (
 );
 
 const mobileModal = (close: () => void) => (
-  <ModalM closePortal={close}>
+  <ModalM closePortal={close} close>
     <FlexView gap={40}>
       <FlexView gap={4} items="center" row wrap>
         <Text color="blue" bold>
@@ -173,7 +181,7 @@ const mobileModal = (close: () => void) => (
 );
 
 export default ({ close }: ModalProps) => {
-  const isMobile = useResponsive(620);
+  const isMobile = useResponsive(720);
 
   return isMobile ? mobileModal(close) : desktopModal(close);
 };

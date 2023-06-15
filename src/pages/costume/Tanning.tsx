@@ -1,18 +1,14 @@
 import { useState, useEffect } from 'react';
 
 import { Avatar } from '@components/avatar';
+import { Chip } from '@components/chip';
 import { Button, FlexView, Text } from '@components/common';
 import skinList from '@data/tanning.json';
-import { CSSObject } from '@emotion/react';
 import { Colors } from '@styles/system';
-
-const btnCSS: CSSObject = {
-  // border: `1px solid blue`,
-  borderRadius: `4px`,
-  padding: `4px`,
-};
+import { useResponsive } from '@utils/hooks';
 
 export default () => {
+  const isMobile = useResponsive(1000);
   const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=협가검@하자&is=1`;
   const [skinNumber, setSkinNumber] = useState(-1);
   const [avatar, setAvatar] = useState(basic);
@@ -26,8 +22,12 @@ export default () => {
   }, [basic, skinNumber]);
 
   return (
-    <FlexView css={{ maxWidth: `1040px`, width: `100%`, margin: `40px auto` }}>
-      <FlexView gap={32} row>
+    <FlexView css={{ margin: `40px auto` }}>
+      <FlexView
+        gap={32}
+        items={isMobile ? `center` : undefined}
+        row={!isMobile}
+      >
         <Avatar character="협가검@하자" count={40} src={avatar} />
 
         <FlexView
@@ -38,26 +38,29 @@ export default () => {
           }}
           gap={24}
         >
-          <Text bold center xLarge>
+          <Text large={isMobile} xLarge={!isMobile} bold center>
             태닝 목록
           </Text>
 
           <FlexView gap={8} row wrap>
             <Button
-              color="red"
-              css={{ borderRadius: `4px`, padding: `4px 8px` }}
+              css={{
+                border: `1px solid red`,
+                borderRadius: `4px`,
+                padding: `4px 8px`,
+              }}
               onClick={() => setSkinNumber(-1)}
             >
-              <Text color={Colors.white}>초기화</Text>
+              <Text color={Colors.red}>초기화</Text>
             </Button>
             {skinList.map(skin => (
-              <Button
+              <Chip
                 key={skin.name}
-                css={btnCSS}
+                radius={4}
+                text={skin.name}
+                clickable
                 onClick={() => changeSkin(skin.number)}
-              >
-                <Text>{skin.name}</Text>
-              </Button>
+              />
             ))}
           </FlexView>
         </FlexView>

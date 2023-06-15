@@ -28,8 +28,8 @@ export default ({
         css={{
           cursor: !clickable ? `default` : `pointer`,
           border: `1px solid lightgray`,
-          borderColor: clickable ? `blue` : `lightgray`,
-          borderRadius: radius ? `${radius}px` : `10px`,
+          borderColor: clickable ? `blue` : `gray`,
+          borderRadius: radius ? `${radius}px` : `8px`,
           padding: `0 8px`,
           height: `30px`,
         }}
@@ -38,7 +38,7 @@ export default ({
         row
         onClick={onClick}
       >
-        <Text color={textColor || `#000000`}>{text}</Text>
+        <Text color={clickable ? `blue` : `gray`}>{text}</Text>
 
         {onDelete && (
           <Button
