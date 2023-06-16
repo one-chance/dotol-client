@@ -12,7 +12,6 @@ export default () => {
         width: `100%`,
         margin: isMobile ? `20px auto` : `40px auto`,
       }}
-      gap={20}
     >
       {isMobile ? <BoardMobile category="free" /> : <Board category="free" />}
     </FlexView>

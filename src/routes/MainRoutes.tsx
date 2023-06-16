@@ -1,9 +1,11 @@
 import {
   FreeBoard,
-  FreeBoardPost,
   ServerBoard,
   TipBoard,
   VideoBoard,
+  Post,
+  WritePost,
+  EditPost,
 } from '@pages/board';
 import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { CostumeList, Lookbook, Tanning } from '@pages/costume';
@@ -14,6 +16,7 @@ import {
   Archeology,
   NormalEquip,
   PetEquip,
+  SkillAbility,
 } from '@pages/db';
 import Home from '@pages/Home';
 import NoMatch from '@pages/NoMatch';
@@ -35,11 +38,6 @@ export const FreeBoardPage = {
   element: <FreeBoard />,
 };
 
-export const FreeBoardPostPage = {
-  path: `/board/free/post/:seq`,
-  element: <FreeBoardPost />,
-};
-
 export const ServerBoardPage = {
   path: `/board/server`,
   element: <ServerBoard />,
@@ -53,6 +51,26 @@ export const TipBoardPage = {
 export const VideoBoardPage = {
   path: `/board/video`,
   element: <VideoBoard />,
+};
+
+export const TradeBoardPage = {
+  path: `/board/trade`,
+  element: <TradeBoard />,
+};
+
+export const PostPage = {
+  path: `/board/:category/post/:seq`,
+  element: <Post />,
+};
+
+export const WritePostPage = {
+  path: `/board/:cateogry/write`,
+  element: <WritePost />,
+};
+
+export const EditPostPage = {
+  path: `/board/:cateogry/edit/:seq`,
+  element: <EditPost />,
 };
 
 /* 계산기 메뉴 */
@@ -123,15 +141,15 @@ export const PetEquipPage = {
   element: <PetEquip />,
 };
 
+export const SkillAbilityPage = {
+  path: `/db/skill-ability`,
+  element: <SkillAbility />,
+};
+
 /* 거래소 메뉴 */
 export const AuctionPage = {
   path: `/trade/auction`,
   element: <Auction />,
-};
-
-export const TradeBoardPage = {
-  path: `/trade/board`,
-  element: <TradeBoard />,
 };
 
 /* 사용자 메뉴 */

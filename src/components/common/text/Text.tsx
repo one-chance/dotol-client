@@ -52,7 +52,6 @@ export default ({
   ...props
 }: TextProps) => {
   const css: CSSObject = {
-    fontFamily: `Noto Sans KR`,
     backgroundColor: `unset`,
     color: color || `black`,
     lineHeight: 1.25,

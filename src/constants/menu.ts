@@ -33,23 +33,21 @@ export const TOTAL_MENU = [
   {
     menu: `게시판`,
     sub: [
-      { name: `팁 게시판`, url: `/board/tip` },
+      { name: `팁 게시판`, url: `/board/tip?page=1` },
       {
         name: `자유 게시판`,
-        url: `/board/free`,
+        url: `/board/free?page=1`,
       },
       {
         name: `영상 게시판`,
-        url: `/board/video`,
+        url: `/board/video?page=1`,
       },
-      { name: `서버 게시판`, url: `/board/server` },
+      { name: `서버 게시판`, url: `/board/server?page=1` },
+      { name: `거래 게시판`, url: `/board/trade?page=1` },
     ],
   },
   {
     menu: `거래소`,
-    sub: [
-      { name: `거래소`, url: `/trade/auction` },
-      { name: `거래 게시판`, url: `/trade/board` },
-    ],
+    sub: [{ name: `거래소`, url: `/trade/auction` }],
   },
 ];

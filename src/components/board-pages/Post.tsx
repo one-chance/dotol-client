@@ -9,7 +9,9 @@ import {
 import { Button, FlexView, Text } from '@components/common';
 import { CATEGORES } from '@constants/board';
 import { Category } from '@interfaces/board';
+import { userInfoState } from '@states/login';
 import { useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 type PostProps = {
   category: Category;
@@ -21,6 +23,7 @@ const basicUrl = `https://dotols.com`;
 
 export default ({ category, title, content }: PostProps) => {
   const location = useLocation();
+  const { userId } = useRecoilValue(userInfoState);
   const postId = location.pathname.split(`post/`)[1];
 
   const copyUrl = () => {
@@ -92,14 +95,17 @@ export default ({ category, title, content }: PostProps) => {
             {basicUrl + location.pathname}
           </Text>
         </FlexView>
-        <FlexView gap={16} items="center" row>
-          <Button onClick={editPost}>
-            <Text small>수정</Text>
-          </Button>
-          <Button onClick={deletePost}>
-            <Text small>삭제</Text>
-          </Button>
-        </FlexView>
+
+        {userId === `협가검@하자` && (
+          <FlexView gap={16} items="center" row>
+            <Button onClick={editPost}>
+              <Text small>수정</Text>
+            </Button>
+            <Button onClick={deletePost}>
+              <Text small>삭제</Text>
+            </Button>
+          </FlexView>
+        )}
       </FlexView>
 
       <FlexView

@@ -1,9 +1,12 @@
 import { useState } from 'react';
 
 import { Button, FlexView, Text } from '@components/common';
+import { LoginModal } from '@components/modal';
 import { Category } from '@interfaces/board';
+import { userInfoState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 
 type BoardButtonProps = {
   category: Category;
@@ -22,10 +25,20 @@ export default ({
   recommendList,
   write,
 }: BoardButtonProps) => {
+  const { grade } = useRecoilValue(userInfoState);
   const navigate = useNavigate();
   const [isRecommended, setIsRecommended] = useState(
     recommendList?.includes(`내 아이디`),
   );
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   const goRecentPage = () => {
     navigate(`/board/${category}?page=1`);
@@ -41,6 +54,12 @@ export default ({
   };
 
   const writeNewArticle = () => {
+    if (grade === 0) {
+      openModal();
+      return;
+    }
+    if (grade < 2) console.log(`레벨 2부터 게시물을 작성할 수 있습니다.`);
+
     navigate(`/board/${category}/write`);
   };
 
@@ -96,6 +115,8 @@ export default ({
           </Text>
         </Button>
       )}
+
+      {showModal && <LoginModal close={closeModal} />}
     </FlexView>
   );
 };

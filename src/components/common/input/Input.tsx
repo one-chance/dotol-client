@@ -6,16 +6,17 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   noBorder?: boolean;
   center?: boolean;
   width?: number;
+  height?: number;
 };
 
 export default forwardRef<HTMLInputElement, InputProps>(
-  ({ noBorder, center, width, ...props }: InputProps, ref) => {
+  ({ noBorder, center, width, height, ...props }: InputProps, ref) => {
     const inputCSS: CSSObject = {
       border: `1px solid lightgray`,
       borderRadius: `4px`,
       outline: `none`,
       background: `none`,
-      minHeight: `36px`,
+      minHeight: height || `36px`,
       minWidth: 0,
       padding: `0 8px`,
       //   color: 'currentColor',
