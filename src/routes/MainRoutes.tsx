@@ -18,18 +18,15 @@ import {
   PetEquip,
   SkillAbility,
 } from '@pages/db';
-import Home from '@pages/Home';
-import NoMatch from '@pages/NoMatch';
+import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
 import {
   ChangePassword,
   FindAccount,
   Profile,
-  PrivacyPolicy,
   Secession,
   SignIn,
   SignUp,
-  TermsOfService,
 } from '@pages/user';
 
 /* 게시판 메뉴 */
@@ -183,20 +180,20 @@ export const ChangePasswordPage = {
   element: <ChangePassword />,
 };
 
-export const PrivacyPolicyPage = {
-  path: `/user/privacy-policy`,
-  element: <PrivacyPolicy />,
-};
-
-export const TermsOfServicePage = {
-  path: `/user/terms-of-service`,
-  element: <TermsOfService />,
-};
-
 /* 기본 페이지 */
 export const HomePge = {
   path: `/`,
   element: <Home />,
+};
+
+export const PrivacyPolicyPage = {
+  path: `/privacy-policy`,
+  element: <PrivacyPolicy />,
+};
+
+export const TermsOfServicePage = {
+  path: `/terms-of-service`,
+  element: <TermsOfService />,
 };
 
 export const NoMatchPage = {

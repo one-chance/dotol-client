@@ -4,3 +4,4 @@ export { default as AntiquityEquip } from './AntiquityEquip';
 export { default as Archeology } from './Archeology';
 export { default as NormalEquip } from './NormalEquip';
 export { default as PetEquip } from './PetEquip';
+export { default as SkillAbility } from './SkillAbility';
