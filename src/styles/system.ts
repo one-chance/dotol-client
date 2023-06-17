@@ -55,12 +55,15 @@ export const BreakPoints = {
 };
 
 export const Colors = {
-  primary: `#1DCEC9`,
-  secondary: `#F4F4F4`,
-  point: `#FE9000`,
-  black: `#141414`,
-  white: `#FFFFFF`,
-  green: `#79cb20`,
+  primary: `#223A54`,
+  primary50: `#99223A54`,
+  primary10: `#10223A54`,
+  secondary: `#E9E2D1`,
+  background: `#F2F5F8`,
   red: `#FB4E4E`,
-  gray: `#BEBFC0`,
+  black: `#000000`,
+  white: `#FFFFFF`,
+  whiteGrey: `#EEEEEE`,
+  grey: `#808496`,
+  lightGrey: `#B4B6BC`,
 };

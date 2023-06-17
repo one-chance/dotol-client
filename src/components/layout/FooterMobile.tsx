@@ -4,7 +4,7 @@ import { Colors } from '@styles/system';
 export default () => (
   <footer>
     <FlexView
-      color="#22252C"
+      color={Colors.primary}
       css={{
         height: `3rem`,
         padding: `0 10px`,
@@ -13,7 +13,7 @@ export default () => (
       items="center"
       row
     >
-      <Link css={{ lineHeight: `12.5px` }} to="/user/terms-of-service">
+      <Link css={{ lineHeight: `12.5px` }} to="/terms-of-service">
         <Text color={Colors.white} xSmall>
           이용 약관
         </Text>
@@ -21,7 +21,7 @@ export default () => (
       <Text color={Colors.white} noDrag xSmall>
         /
       </Text>
-      <Link css={{ lineHeight: `12.5px` }} to="/user/privacy-policy">
+      <Link css={{ lineHeight: `12.5px` }} to="/privacy-policy">
         <Text color={Colors.white} xSmall>
           개인정보 처리방침
         </Text>

@@ -48,11 +48,11 @@ export default () => {
           padding: `20px 24px 16px 24px`,
           boxShadow: `0 2px 4px rgba(0, 0, 0, 0.2)`,
         }}
-        items="start"
+        items="center"
         row
       >
-        <Link to="/">
-          <Text>{t(`title`)}</Text>
+        <Link css={{ height: `17px` }} to="/">
+          <Text>dotol</Text>
         </Link>
 
         <FlexView gap={8} items="center" row>

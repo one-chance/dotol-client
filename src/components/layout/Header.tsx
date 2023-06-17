@@ -123,7 +123,7 @@ export default () => {
                 {isLoggedIn ? (
                   <Button
                     ref={alarmRef}
-                    color="#F2F5F8"
+                    color={Colors.background}
                     css={{
                       ...btnCSS,
                       borderTopLeftRadius: `4px`,
@@ -131,7 +131,7 @@ export default () => {
                     }}
                     onClick={() => setShowAlarmMenu(!showAlarmMenu)}
                   >
-                    <Text color="#486284">
+                    <Text color={Colors.primary}>
                       {isLoggedIn ? `알림` : `회원가입`}
                     </Text>
                   </Button>
@@ -140,18 +140,18 @@ export default () => {
                     css={{
                       ...btnCSS,
                       display: `flex`,
-                      backgroundColor: `#F2F5F8`,
+                      backgroundColor: Colors.background,
                       justifyContent: `center`,
                       alignItems: `center`,
                     }}
                     to="/user/signup"
                   >
-                    <Text color="##486284">회원가입</Text>
+                    <Text color={Colors.primary}>회원가입</Text>
                   </Link>
                 )}
                 <Button
                   ref={infoRef}
-                  color="#486284"
+                  color={Colors.primary}
                   css={{
                     ...btnCSS,
                     borderTopRightRadius: `4px`,
@@ -163,7 +163,7 @@ export default () => {
                       : navigate(`/user/signin`)
                   }
                 >
-                  <Text color={Colors.white}>
+                  <Text color={Colors.background}>
                     {isLoggedIn ? `내 정보` : `로그인`}
                   </Text>
                 </Button>
