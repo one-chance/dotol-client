@@ -59,7 +59,11 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={16}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
+      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        장비/치장 룩북
+      </Text>
+
       <FlexView
         css={{ margin: `0 4px` }}
         gap={40}
@@ -69,17 +73,14 @@ export default () => {
         <Avatar character="협가검@하자" count={40} src={imgSrc} />
 
         <FlexView
+          content="between"
           css={{
             maxWidth: `720px`,
             border: `1px solid lightgray`,
-            padding: `20px`,
+            padding: `40px`,
           }}
-          gap={40}
+          gap={20}
         >
-          <Text bold center xLarge>
-            바람의나라 룩북
-          </Text>
-
           <FlexView content="between" gap={20} row wrap>
             {EQUIP_PARTS.map((part, index) => (
               <FlexView key={part} items="center" row>

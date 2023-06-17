@@ -37,7 +37,7 @@ const messages: Record<AdventureTab, string[]> = {
   임무: [`임무를 완료하면 탐험도를 획득합니다.`],
   탐방: [`해당 지역에 방문하여 거닐다보면 탐험도를 획득합니다.`],
   보상: [
-    `부여/국내성 주막의 탐험일지연구가가 원하는 장비로 교환해줍니다.`,
+    `부여/국내 주막의 탐험일지연구가가 원하는 장비로 교환해줍니다.`,
     `교환시 100만전이 필요하고, 장비는 전속 상태로 지급됩니다.`,
   ],
 };
@@ -47,14 +47,6 @@ export default ({ location, tab, isMobile }: ListProps) => {
 
   return (
     <FlexView gap={10}>
-      <FlexView css={{ padding: `0 5px` }} gap={4} wrap>
-        {messages[tab].map(message => (
-          <Text key={message} color="blue" small={!isMobile} xSmall={isMobile}>
-            {message}
-          </Text>
-        ))}
-      </FlexView>
-
       <FlexView
         css={{
           maxWidth: isMobile ? `360px` : `540px`,
@@ -196,7 +188,11 @@ export default ({ location, tab, isMobile }: ListProps) => {
             {(selectedData as DETAIL[]).map(item => (
               <FlexView
                 key={item.name}
-                css={{ minHeight: `32px`, borderTop: `1px solid lightgray` }}
+                css={{
+                  minHeight: `32px`,
+                  borderTop: `1px solid lightgray`,
+                  padding: `4px 0`,
+                }}
                 items="center"
                 row
               >
@@ -233,6 +229,14 @@ export default ({ location, tab, isMobile }: ListProps) => {
             ))}
           </FlexView>
         )}
+      </FlexView>
+
+      <FlexView css={{ padding: `0 5px` }} gap={4} wrap>
+        {messages[tab].map(message => (
+          <Text key={message} color="blue" small={!isMobile} xSmall={isMobile}>
+            * {message}
+          </Text>
+        ))}
       </FlexView>
     </FlexView>
   );

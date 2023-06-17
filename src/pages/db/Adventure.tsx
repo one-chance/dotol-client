@@ -32,16 +32,20 @@ export default () => {
   };
 
   return (
-    <FlexView
-      css={{ margin: isMobile ? `20px auto` : `40px auto` }}
-      gap={isMobile ? 20 : 40}
-    >
-      <FlexView gap={20} center row>
-        <FlexView gap={8} items="center" row>
-          <Text small={isMobile} medium>
-            탐험 지역
-          </Text>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
+      <FlexView
+        content="between"
+        css={{ padding: isMobile ? `0 4px` : undefined }}
+        gap={20}
+        items="center"
+        row
+        wrap
+      >
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+          탐험일지 정보
+        </Text>
 
+        <FlexView gap={8} row>
           <Select
             isMobile={isMobile}
             name={LOCATIONS[selectedLocation]}
@@ -53,14 +57,8 @@ export default () => {
               onSelect={selectLocation}
             />
           </Select>
-        </FlexView>
 
-        <FlexView gap={8} items="center" row>
-          <Text small={isMobile} medium>
-            세부 정보
-          </Text>
-
-          <Select isMobile={isMobile} name={selectedTab} width={100}>
+          <Select isMobile={isMobile} name={selectedTab} width={80}>
             <Option selected={selectedTab} values={TABS} onSelect={selectTab} />
           </Select>
         </FlexView>

@@ -117,7 +117,13 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}>
+    <FlexView
+      css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}
+      gap={40}
+    >
+      <Text bold center xxLarge>
+        장비 도감
+      </Text>
       <FlexView gap={20}>
         <FlexView gap={20}>
           <FlexView
