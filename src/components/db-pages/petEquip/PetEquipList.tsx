@@ -46,7 +46,7 @@ export default () => {
     <FlexView gap={20}>
       <FlexView
         content="between"
-        css={{ padding: isMobile ? `0 10px` : 0 }}
+        css={{ padding: isMobile ? `0 10px` : undefined }}
         items="center"
         row
       >
@@ -114,9 +114,11 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <Text color="blue" css={{ letterSpacing: -0.5 }} small={isMobile}>
-        * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
-      </Text>
+      <FlexView css={{ padding: isMobile ? `0 10px` : undefined }}>
+        <Text color="blue" css={{ letterSpacing: -0.5 }} small={isMobile}>
+          * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
+        </Text>
+      </FlexView>
     </FlexView>
   );
 };

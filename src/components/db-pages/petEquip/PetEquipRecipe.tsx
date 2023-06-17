@@ -9,7 +9,7 @@ export default () => {
 
   return (
     <FlexView gap={20}>
-      <Text semiBold xxLarge>
+      <Text css={{ padding: isMobile ? `0 10px` : undefined }} semiBold xxLarge>
         환수장비 강화재료
       </Text>
 

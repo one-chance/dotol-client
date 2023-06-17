@@ -59,9 +59,9 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={16}>
       <FlexView
-        css={{ margin: `0 10px` }}
+        css={{ margin: `0 4px` }}
         gap={40}
         items={isMobile ? `center` : undefined}
         row={!isMobile}
@@ -117,6 +117,11 @@ export default () => {
           </FlexView>
         </FlexView>
       </FlexView>
+
+      <Text color="red" css={{ margin: `0 4px` }} small={isMobile} medium>
+        * 게임 내에서 세트옷 부위 장비를 노출한 캐릭터는 룩북이 적용되지
+        않습니다.
+      </Text>
     </FlexView>
   );
 };

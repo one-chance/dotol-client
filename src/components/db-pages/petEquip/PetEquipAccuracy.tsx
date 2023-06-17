@@ -179,8 +179,13 @@ export default ({ isMobile }: AccuracyProps) => {
   }, [names, extra]);
 
   return (
-    <FlexView gap={8}>
-      <Text xLarge={isMobile} xxLarge={!isMobile} semiBold>
+    <FlexView gap={20}>
+      <Text
+        css={{ padding: isMobile ? `0 10px` : undefined }}
+        xLarge={isMobile}
+        xxLarge={!isMobile}
+        semiBold
+      >
         환수 명중률 계산기
       </Text>
 
@@ -281,10 +286,14 @@ export default ({ isMobile }: AccuracyProps) => {
         </FlexView>
       </FlexView>
 
-      <Text small={isMobile}>- 사신수는 등급별 시동 명중률이 포함됩니다.</Text>
-      <Text small={isMobile}>
-        - 모든 장비는 강화석이 최대로 적용된 수치입니다.
-      </Text>
+      <FlexView css={{ padding: isMobile ? `0 10px` : undefined }}>
+        <Text small={isMobile}>
+          * 사신수는 등급별 시동 명중률이 포함됩니다.
+        </Text>
+        <Text small={isMobile}>
+          * 모든 장비는 강화석이 최대로 적용된 수치입니다.
+        </Text>
+      </FlexView>
     </FlexView>
   );
 };
