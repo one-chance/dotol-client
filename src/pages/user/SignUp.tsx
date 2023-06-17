@@ -8,6 +8,7 @@ import {
   Input,
   Text,
 } from '@components/common';
+import { TermsModal } from '@components/modal';
 import { CSSObject } from '@emotion/react';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -99,7 +100,7 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: `auto` }}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }}>
       <FlexView
         css={{
           border: isMobile ? undefined : `1px solid lightgray`,
@@ -237,14 +238,14 @@ export default () => {
           <FlexView content="center" gap={isMobile ? 20 : 40} row>
             <FlexView gap={4} items="center" row>
               <Checkbox />
-              <Button>
+              <Button onClick={openTerms}>
                 <Text small={isMobile}>서비스 이용약관</Text>
               </Button>
             </FlexView>
 
             <FlexView gap={4} items="center" row>
               <Checkbox />
-              <Button>
+              <Button onClick={openPrivacy}>
                 <Text small={isMobile}>개인정보 처리방침</Text>
               </Button>
             </FlexView>
@@ -265,6 +266,9 @@ export default () => {
           </Button>
         </FlexView>
       </FlexView>
+
+      {showTerms && <TermsModal close={closeTerms} type="terms" />}
+      {showPrivacy && <TermsModal close={closePrivacy} type="privacy" />}
     </FlexView>
   );
 };
