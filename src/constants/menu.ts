@@ -1,4 +1,4 @@
-export const MAIN_MENU = [`코디`, `도감`, `계산기`, `게시판`, `거래소`];
+export const MAIN_MENU = [`코디`, `도감`, `콘텐츠`, `계산기`, `게시판`];
 
 export const TOTAL_MENU = [
   {
@@ -16,6 +16,12 @@ export const TOTAL_MENU = [
       { name: `일반 장비`, url: `/db/normal-equip` },
       { name: `환수 장비`, url: `/db/pet-equip` },
       { name: `신수 유물`, url: `/db/antiquity-equip` },
+      { name: `기술 능력`, url: `/db/skill-ability` },
+    ],
+  },
+  {
+    menu: `콘첸츠`,
+    sub: [
       { name: `업적`, url: `/db/achievement` },
       { name: `탐험일지`, url: `/db/adventure` },
       { name: `고고학`, url: `/db/archeology` },
@@ -46,8 +52,8 @@ export const TOTAL_MENU = [
       { name: `거래 게시판`, url: `/board/trade?page=1` },
     ],
   },
-  {
-    menu: `거래소`,
-    sub: [{ name: `거래소`, url: `/trade/auction` }],
-  },
+  // {
+  //   menu: `거래소`,
+  //   sub: [{ name: `거래소`, url: `/trade/auction` }],
+  // },
 ];

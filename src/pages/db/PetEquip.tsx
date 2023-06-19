@@ -12,7 +12,7 @@ import { useResponsive } from '@utils/hooks';
 const TABS = [`환수장비 도감`, `명중률 계산기`, `강화 재료`];
 
 export default () => {
-  const isMobile = useResponsive(600);
+  const isMobile = useResponsive(580);
   const [selectedTab, setSelectedTab] = useState(TABS[0]);
 
   const Components: { [key: string]: JSX.Element } = {
@@ -23,18 +23,20 @@ export default () => {
 
   return (
     <FlexView
-      css={{ margin: isMobile ? `0 auto 20px auto` : `40px auto` }}
+      css={{
+        width: isMobile ? `100%` : undefined,
+        margin: isMobile ? 0 : `40px auto`,
+      }}
       gap={40}
     >
       <FlexView
         color={Colors.primary}
         css={{
-          width: isMobile ? `360px` : undefined,
           height: `48px`,
           borderRadius: isMobile ? 0 : `4px`,
           padding: isMobile ? `4px 10px` : `4px 20px`,
         }}
-        gap={32}
+        gap={isMobile ? 24 : 32}
         items="center"
         row
       >
@@ -60,7 +62,8 @@ export default () => {
         ))}
       </FlexView>
 
-      {Components[selectedTab]}
+      {/* {Components[selectedTab]} */}
+      <FlexView css={{ margin: `0 auto` }}>{Components[selectedTab]}</FlexView>
 
       {/* <FlexView gap={40} fit>
         <PetEquipList />
