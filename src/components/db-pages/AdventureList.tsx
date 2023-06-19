@@ -30,7 +30,7 @@ const SUB_TAB: Record<AdventureTab, string[]> = {
 
 const messages: Record<AdventureTab, string[]> = {
   괴수: [
-    `괴수 탐험도는 5단계로 나누어 각 단계마다 탐험도를 획득합니다.`,
+    `괴수 탐험도는 5단계로 나뉘어 단계마다 탐험도를 획득합니다.`,
     `1N = 발견(1점), 도전(2점), 미숙(3점), 숙련(4점), 정복(5점)`,
   ],
   물품: [`인벤토리에서 해당하는 아이템을 사용하면 탐험도를 획득합니다.`],
@@ -100,7 +100,10 @@ export default ({ location, tab, isMobile }: ListProps) => {
             </Text>
 
             <Text
-              css={{ width: isMobile ? `48px` : `140px`, paddingLeft: `4px` }}
+              css={{
+                width: isMobile ? `44px` : `140px`,
+                paddingLeft: isMobile ? 0 : `4px`,
+              }}
               small={isMobile}
               semiBold
             >
@@ -218,7 +221,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
 
                 <Text
                   css={{
-                    width: isMobile ? `48px` : `140px`,
+                    width: isMobile ? `44px` : `140px`,
                     paddingLeft: isMobile ? `4px` : `8px`,
                   }}
                   small={isMobile}

@@ -4,6 +4,7 @@ import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import EQUIP_DATA from '@data/pet-equip.json';
 import { CSSObject } from '@emotion/react';
+import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
 const EQUIP_TYPES = [
@@ -54,7 +55,7 @@ export default () => {
           환수장비 도감
         </Text>
 
-        <Select name={EQUIP_TYPES[selectedType]} width={isMobile ? 120 : 160}>
+        <Select name={EQUIP_TYPES[selectedType]} width={isMobile ? 120 : 140}>
           <Option
             selected={EQUIP_TYPES[selectedType]}
             values={EQUIP_TYPES}
@@ -63,7 +64,14 @@ export default () => {
         </Select>
       </FlexView>
 
-      <FlexView css={{ border: `1px solid lightgray` }} wrap>
+      <FlexView
+        css={{
+          borderLeft: `1px solid lightgray`,
+          borderRight: `1px solid lightgray`,
+          margin: `0 auto`,
+        }}
+        wrap
+      >
         <FlexView items="center" row>
           {EQUIP_PARTS.map((part, index) => (
             <FlexView
@@ -72,8 +80,8 @@ export default () => {
               css={{
                 width: isMobile ? `44px` : `70px`,
                 height: `36px`,
-                ...(index === 0 && { width: isMobile ? `68px` : `90px` }),
-                ...(index === 1 && { width: isMobile ? `28px` : `48px` }),
+                ...(index === 0 && { width: isMobile ? `60px` : `90px` }),
+                ...(index === 1 && { width: isMobile ? `28px` : `50px` }),
               }}
               center
             >
@@ -97,10 +105,10 @@ export default () => {
               items="center"
               row
             >
-              <Text css={{ ...cellCSS, width: isMobile ? `68px` : `90px` }}>
+              <Text css={{ ...cellCSS, width: isMobile ? `60px` : `90px` }}>
                 {data.장비}
               </Text>
-              <Text css={{ ...cellCSS, width: isMobile ? `28px` : `48px` }}>
+              <Text css={{ ...cellCSS, width: isMobile ? `28px` : `50px` }}>
                 {data.방어}
               </Text>
               <Text css={cellCSS}>{data.명중}</Text>
@@ -115,7 +123,7 @@ export default () => {
       </FlexView>
 
       <FlexView css={{ padding: isMobile ? `0 10px` : undefined }}>
-        <Text color="blue" css={{ letterSpacing: -0.5 }} small={isMobile}>
+        <Text color={Colors.red} css={{ letterSpacing: -0.5 }} small={isMobile}>
           * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
         </Text>
       </FlexView>

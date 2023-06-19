@@ -124,17 +124,17 @@ export const ArcheologyPage = {
 };
 
 export const AntiquityEquipPage = {
-  path: `/db/equip/antiquity`,
+  path: `/db/antiquity-equip`,
   element: <AntiquityEquip />,
 };
 
 export const NormalEquipPage = {
-  path: `/db/equip/normal`,
+  path: `/db/normal-equip`,
   element: <NormalEquip />,
 };
 
 export const PetEquipPage = {
-  path: `/db/equip/pet`,
+  path: `/db/pet-equip`,
   element: <PetEquip />,
 };
 

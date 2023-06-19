@@ -13,7 +13,7 @@ export default () => {
         환수장비 강화재료
       </Text>
 
-      <FlexView css={{ border: `1px solid lightgray` }}>
+      <FlexView css={{ border: `1px solid lightgray`, margin: `0 auto` }}>
         <FlexView
           color="lightgray"
           css={{ minHeight: `36px` }}
@@ -26,7 +26,7 @@ export default () => {
           <Text css={{ width: isMobile ? `60px` : `80px` }} center semiBold>
             성공률
           </Text>
-          <Text css={{ width: isMobile ? `150px` : `320px` }} center semiBold>
+          <Text css={{ width: isMobile ? `160px` : `320px` }} center semiBold>
             재료
           </Text>
         </FlexView>
@@ -60,7 +60,7 @@ export default () => {
               {data.성공률}
             </Text>
 
-            <FlexView css={{ maxWidth: `320px` }} fill row wrap>
+            <FlexView css={{ width: isMobile ? `160px` : `320px` }} row wrap>
               {data.재료.map(item => (
                 <Text
                   key={item}

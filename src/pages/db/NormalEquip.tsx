@@ -122,7 +122,7 @@ export default () => {
       gap={40}
     >
       <Text bold center xxLarge>
-        장비 도감
+        일반장비 도감
       </Text>
       <FlexView gap={20}>
         <FlexView gap={20}>

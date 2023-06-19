@@ -38,24 +38,40 @@ export default () => {
         >
           <FlexView gap={8} row wrap>
             <Button
+              color={Colors.red}
               css={{
-                border: `1px solid red`,
                 borderRadius: `4px`,
                 padding: `4px 8px`,
               }}
               onClick={() => changeSkin(-1)}
             >
-              <Text color={Colors.red}>초기화</Text>
+              <Text color={Colors.white} medium>
+                초기화
+              </Text>
             </Button>
 
             {skinList.map(skin => (
-              <Chip
+              <Button
                 key={skin.name}
-                radius={4}
-                text={skin.name}
-                clickable
+                color={
+                  skin.number === skinNumber ? Colors.primary : Colors.white
+                }
+                css={{
+                  height: `28px`,
+                  border: `1px solid ${Colors.primary}`,
+                  borderRadius: `4px`,
+                  padding: `0 8px`,
+                }}
                 onClick={() => changeSkin(skin.number)}
-              />
+              >
+                <Text
+                  color={
+                    skin.number === skinNumber ? Colors.white : Colors.primary
+                  }
+                >
+                  {skin.name}
+                </Text>
+              </Button>
             ))}
           </FlexView>
         </FlexView>

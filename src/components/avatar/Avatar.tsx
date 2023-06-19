@@ -6,17 +6,21 @@ import { Colors } from '@styles/system';
 import RotateButtons from './RotateButtons';
 
 interface AvatarProps {
-  character: string;
+  character: string | undefined;
   count: number;
   skin?: number;
   equip?: string;
 }
 
+type Naked = 'n' | 'y';
+
 export default ({ character, count, skin, equip }: AvatarProps) => {
-  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${character}&is=1`;
+  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${encodeURI(
+    character ?? ``,
+  )}&is=1`;
 
   const [direction, setDirecrtion] = useState(2);
-  const [naked, setNaked] = useState<'N' | 'Y'>(`N`);
+  const [isNaked, setIsNaked] = useState<Naked>(`n`);
   const [avatar, setAvatar] = useState(basic);
 
   const skinColor = skin ? `&sc=${skin}` : ``;
@@ -28,9 +32,9 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
 
   useEffect(() => {
     setAvatar(
-      `${basic}&changeDir=${direction}&ed=${naked}${skinColor}${equipList}`,
+      `${basic}&changeDir=${direction}&ed=${isNaked}${skinColor}${equipList}`,
     );
-  }, [basic, direction, naked, skinColor, equipList]);
+  }, [basic, direction, isNaked, skinColor, equipList]);
 
   return (
     <FlexView
@@ -53,35 +57,37 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
         css={{ width: `180px`, height: `158px` }}
         center
       >
-        <Image css={{ backgroundColor: `#EBE7E2` }} src={avatar} />
+        {character && (
+          <Image css={{ backgroundColor: `#EBE7E2` }} src={avatar} />
+        )}
       </FlexView>
 
-      <Text semiBold>{character}</Text>
+      <Text semiBold>{character || `아이디@서버`}</Text>
 
       <FlexView gap={16} row>
         <Button
-          color={naked === `Y` ? `blue` : `transparent`}
+          color={isNaked === `y` ? `blue` : `transparent`}
           css={{
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
             borderRadius: `4px`,
           }}
-          onClick={() => setNaked(`Y`)}
+          onClick={() => setIsNaked(`y`)}
         >
-          <Text color={naked === `Y` ? Colors.white : `blue`}>벗기</Text>
+          <Text color={isNaked === `y` ? Colors.white : `blue`}>벗기</Text>
         </Button>
         <Button
-          color={naked === `N` ? `blue` : `transparent`}
+          color={isNaked === `n` ? `blue` : `transparent`}
           css={{
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
             borderRadius: `4px`,
           }}
-          onClick={() => setNaked(`N`)}
+          onClick={() => setIsNaked(`n`)}
         >
-          <Text color={naked === `N` ? Colors.white : `blue`}>입기</Text>
+          <Text color={isNaked === `n` ? Colors.white : `blue`}>입기</Text>
         </Button>
       </FlexView>
     </FlexView>

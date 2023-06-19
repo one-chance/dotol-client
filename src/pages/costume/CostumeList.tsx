@@ -55,7 +55,7 @@ export default () => {
   return (
     <FlexView css={{ margin: `40px auto` }} gap={20}>
       <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-        치장 목록
+        치장 미리보기
       </Text>
 
       <FlexView css={{ margin: `0 4px` }} gap={40} row wrap>
