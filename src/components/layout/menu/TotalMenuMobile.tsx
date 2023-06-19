@@ -19,7 +19,6 @@ const MENU_NAME: { [key: string]: string } = {
 
 export default ({ onClose }: MenuProps) => {
   const location = useLocation();
-  const menuName = MENU_NAME[location.pathname.split(`/`)[1]];
 
   return (
     <FlexView
@@ -44,7 +43,7 @@ export default ({ onClose }: MenuProps) => {
 
       <FlexView css={{ padding: `0 28px` }} gap={40}>
         {MAIN_MENU.map((menu, index) => {
-          const [showSubMenu, setShowSubMenu] = useState(menuName === menu);
+          const [showSubMenu, setShowSubMenu] = useState(false);
 
           return (
             <FlexView

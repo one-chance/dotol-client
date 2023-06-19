@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { Avatar } from '@components/avatar';
 import { Chip } from '@components/chip';
@@ -9,39 +9,33 @@ import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(1000);
-  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=협가검@하자&is=1`;
   const [skinNumber, setSkinNumber] = useState(-1);
-  const [avatar, setAvatar] = useState(basic);
 
   const changeSkin = (_skin: number) => {
     setSkinNumber(_skin);
   };
 
-  useEffect(() => {
-    setAvatar(`${basic}&sc=${skinNumber}`);
-  }, [basic, skinNumber]);
-
   return (
-    <FlexView css={{ margin: `40px auto` }}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
+      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        태닝 미리보기
+      </Text>
+
       <FlexView
         gap={32}
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar character="협가검@하자" count={40} src={avatar} />
+        <Avatar character="협가검@하자" count={40} skin={skinNumber} />
 
         <FlexView
+          content="center"
           css={{
             border: `1px solid lightgray`,
             padding: `20px`,
             maxWidth: `720px`,
           }}
-          gap={24}
         >
-          <Text large={isMobile} xLarge={!isMobile} bold center>
-            태닝 목록
-          </Text>
-
           <FlexView gap={8} row wrap>
             <Button
               css={{
@@ -49,10 +43,11 @@ export default () => {
                 borderRadius: `4px`,
                 padding: `4px 8px`,
               }}
-              onClick={() => setSkinNumber(-1)}
+              onClick={() => changeSkin(-1)}
             >
               <Text color={Colors.red}>초기화</Text>
             </Button>
+
             {skinList.map(skin => (
               <Chip
                 key={skin.name}
@@ -65,6 +60,10 @@ export default () => {
           </FlexView>
         </FlexView>
       </FlexView>
+
+      <Text color="red" css={{ margin: `0 4px` }} small={isMobile} medium>
+        * 착용 중인 장비를 벗은 상태로 확인해보세요.
+      </Text>
     </FlexView>
   );
 };

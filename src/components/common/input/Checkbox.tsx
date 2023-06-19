@@ -8,7 +8,7 @@ interface CheckboxProps {
 
 export default ({ size, disabled, ...props }: CheckboxProps) => {
   const css: CSSObject = {
-    backgroundColor: Colors.gray,
+    backgroundColor: Colors.grey,
     borderRadius: `5px`,
     width: `${size || 20}px`,
     height: `${size || 20}px`,

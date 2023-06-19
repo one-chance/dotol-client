@@ -45,6 +45,10 @@ export default () => {
       css={{ margin: `20px auto`, padding: isMobile ? `0 10px` : 0 }}
       gap={20}
     >
+      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        고고학 도감
+      </Text>
+
       <FlexView items="center" row>
         <Input
           css={{ borderRadius: `4px 0 0 4px`, borderRight: 0 }}
@@ -66,12 +70,12 @@ export default () => {
       </FlexView>
 
       <FlexView css={{ minWidth: `960px`, overflowX: `auto` }}>
-        <FlexView css={{ borderTop: `1px solid lightgray` }}>
+        {/* <FlexView css={{ borderTop: `1px solid lightgray` }}>
           <ArcheologyAccordion title="아이템 이름" titleCSS={{ width: `100%` }}>
             <Text>123</Text>
             <Text>123</Text>
           </ArcheologyAccordion>
-        </FlexView>
+        </FlexView> */}
 
         <FlexView color="purple" css={{ minHeight: `40px` }} items="center" row>
           {TITLES.map((title, index) => (

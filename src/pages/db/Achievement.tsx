@@ -43,24 +43,30 @@ export default () => {
   }, [selectedTab]);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }}>
-      <FlexView
-        css={{
-          padding: isMobile ? `10px` : `20px`,
-          border: isMobile ? `none` : `1px solid lightgray`,
-          borderRadius: `8px`,
-        }}
-        gap={20}
-      >
-        <FlexView content="between" gap={8} items="center" row>
-          <Select isMobile={isMobile} name={TAB_LIST[selectedTab]} width={200}>
+    <FlexView
+      css={{ margin: isMobile ? `20px auto` : `40px auto`, padding: `0 10px` }}
+      gap={20}
+    >
+      <FlexView gap={8}>
+        <FlexView content="between" gap={20} items="center" row wrap>
+          <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+            업적 정보
+          </Text>
+
+          <Select
+            isMobile={isMobile}
+            name={TAB_LIST[selectedTab]}
+            width={isMobile ? 100 : 140}
+          >
             <Option
               selected={TAB_LIST[selectedTab]}
               values={TAB_LIST}
               onSelect={selectTab}
             />
           </Select>
+        </FlexView>
 
+        <FlexView content="end" row>
           {editMode ? (
             <FlexView css={{ width: `70px` }} gap={8} items="center" row>
               <Button
@@ -74,19 +80,20 @@ export default () => {
               </Button>
             </FlexView>
           ) : (
-            selectedTab !== 0 && (
-              <Button
-                css={{ height: `36px` }}
-                onClick={() => setEditMode(true)}
-              >
-                <Text color="blue" medium>
-                  업적 관리
-                </Text>
-              </Button>
-            )
+            <Button
+              css={{ height: `36px` }}
+              disabled={selectedTab === 0}
+              onClick={() => setEditMode(true)}
+            >
+              <Text color="blue" medium>
+                업적 등록
+              </Text>
+            </Button>
           )}
         </FlexView>
+      </FlexView>
 
+      <FlexView gap={20}>
         {selectedTab !== 0 && (
           <AchievementList editMode={editMode} tab={selectedTab} />
         )}
@@ -130,6 +137,10 @@ export default () => {
           </FlexView>
         )}
       </FlexView>
+
+      <Text color="blue" small={isMobile}>
+        * 업적 등록 버튼을 통해 내가 달성한 업적을 저장할 수 있습니다.
+      </Text>
     </FlexView>
   );
 };

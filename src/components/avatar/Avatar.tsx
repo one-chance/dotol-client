@@ -6,27 +6,35 @@ import { Colors } from '@styles/system';
 import RotateButtons from './RotateButtons';
 
 interface AvatarProps {
-  src: string;
   character: string;
   count: number;
+  skin?: number;
+  equip?: string;
 }
 
-export default ({ src, character, count }: AvatarProps) => {
+export default ({ character, count, skin, equip }: AvatarProps) => {
+  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${character}&is=1`;
+
   const [direction, setDirecrtion] = useState(2);
   const [naked, setNaked] = useState<'N' | 'Y'>(`N`);
-  const [avatar, setAvatar] = useState(src);
+  const [avatar, setAvatar] = useState(basic);
+
+  const skinColor = skin ? `&sc=${skin}` : ``;
+  const equipList = equip ? `&previewEquip=${equip}` : ``;
 
   const changeDirection = (_dir: number) => {
     setDirecrtion(_dir);
   };
 
   useEffect(() => {
-    setAvatar(`${src}&changeDir=${direction}&ed=${naked}`);
-  }, [src, direction, naked]);
+    setAvatar(
+      `${basic}&changeDir=${direction}&ed=${naked}${skinColor}${equipList}`,
+    );
+  }, [basic, direction, naked, skinColor, equipList]);
 
   return (
     <FlexView
-      css={{ border: `1px solid lightgray`, padding: `20px`, width: `240px` }}
+      css={{ border: `1px solid lightgray`, padding: `19px` }}
       gap={16}
       items="center"
     >
@@ -41,11 +49,11 @@ export default ({ src, character, count }: AvatarProps) => {
       />
 
       <FlexView
-        color="#E6E5E5"
+        color="#EBE7E2"
         css={{ width: `180px`, height: `158px` }}
         center
       >
-        <Image src={avatar} />
+        <Image css={{ backgroundColor: `#EBE7E2` }} src={avatar} />
       </FlexView>
 
       <Text semiBold>{character}</Text>
@@ -55,7 +63,7 @@ export default ({ src, character, count }: AvatarProps) => {
           color={naked === `Y` ? `blue` : `transparent`}
           css={{
             width: `60px`,
-            height: `40px`,
+            height: `36px`,
             border: `1px solid blue`,
             borderRadius: `4px`,
           }}
@@ -67,7 +75,7 @@ export default ({ src, character, count }: AvatarProps) => {
           color={naked === `N` ? `blue` : `transparent`}
           css={{
             width: `60px`,
-            height: `40px`,
+            height: `36px`,
             border: `1px solid blue`,
             borderRadius: `4px`,
           }}

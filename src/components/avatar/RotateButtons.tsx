@@ -36,27 +36,24 @@ export default ({ selected, color, onClick }: RotateButtonProps) => {
   };
 
   return (
-    <FlexView
-      css={{
-        border: `1px solid ${color}`,
-        borderRadius: `4px`,
-      }}
-      fit
-      row
-    >
+    <FlexView fit row>
       {directions.map((direction, index) => (
         <Button
           key={direction.name}
           css={{
-            width: `48px`,
-            height: `40px`,
-            borderRight: `1px solid ${color}`,
+            width: `45px`,
+            height: `36px`,
+            border: `1px solid ${color}`,
+            borderWidth: `1px 0.5px 1px 0.5px`,
             backgroundColor:
               selectedButton === direction.value ? color : `white`,
-            ...(index === 0 && { borderRadius: `4px 0 0 4px` }),
+            ...(index === 0 && {
+              borderRadius: `4px 0 0 4px`,
+              borderLeftWidth: `1px`,
+            }),
             ...(index === directions.length - 1 && {
-              borderRight: `none`,
               borderRadius: `0 4px 4px 0`,
+              borderRightWidth: `1px`,
             }),
           }}
           onClick={() => {

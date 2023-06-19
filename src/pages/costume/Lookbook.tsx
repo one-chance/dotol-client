@@ -7,7 +7,7 @@ import { useResponsive } from '@utils/hooks';
 
 const EQUIP_PARTS = [
   `목/어깨장식`,
-  `투구/모자`,
+  `투구`,
   `얼굴장식`,
   `무기`,
   `갑옷/겉옷`,
@@ -22,9 +22,8 @@ const INPUT_WIDTH = 180;
 
 export default () => {
   const isMobile = useResponsive(1080);
-  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=협가검@하자&is=1`;
-  const [imgSrc, setImgSrc] = useState(basic);
-  const [equipList, setEquipList] = useState<string[]>([
+  const [equipList, setEquipList] = useState(``);
+  const [itemList, setItemList] = useState<string[]>([
     ``,
     ``,
     ``,
@@ -41,21 +40,21 @@ export default () => {
     e: React.ChangeEvent<HTMLInputElement>,
     id: number,
   ) => {
-    equipList[id] = e.target.value;
-    setEquipList([...equipList]);
+    itemList[id] = e.target.value;
+    setItemList([...itemList]);
   };
 
-  const initEquipList = () => {
-    setEquipList([``, ``, ``, ``, ``, ``, ``, ``, ``, ``]);
+  const initItemList = () => {
+    setItemList([``, ``, ``, ``, ``, ``, ``, ``, ``, ``]);
   };
 
-  const loadPreview = () => {
-    let list = `&previewEquip=`;
-    equipList.forEach(equip => {
-      if (equip !== ``) list += `${encodeURI(equip)}|`;
-    });
+  const applyPreview = () => {
+    const list = itemList
+      .filter(equip => equip !== ``)
+      .map(encodeURI)
+      .join(`|`);
 
-    setImgSrc(basic + list);
+    setEquipList(list);
   };
 
   return (
@@ -70,14 +69,14 @@ export default () => {
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar character="협가검@하자" count={40} src={imgSrc} />
+        <Avatar character="협가검@하자" count={40} equip={equipList} />
 
         <FlexView
           content="between"
           css={{
             maxWidth: `720px`,
             border: `1px solid lightgray`,
-            padding: `40px`,
+            padding: isMobile ? `20px` : `20px 40px`,
           }}
           gap={20}
         >
@@ -99,7 +98,7 @@ export default () => {
             <Button
               color="red"
               css={{ width: `140px`, height: `36px`, borderRadius: `4px` }}
-              onClick={initEquipList}
+              onClick={initItemList}
             >
               <Text color={Colors.white} medium>
                 초기화
@@ -109,7 +108,7 @@ export default () => {
             <Button
               color="blue"
               css={{ width: `140px`, height: `36px`, borderRadius: `4px` }}
-              onClick={loadPreview}
+              onClick={applyPreview}
             >
               <Text color={Colors.white} medium>
                 적용
@@ -119,10 +118,15 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <Text color="red" css={{ margin: `0 4px` }} small={isMobile} medium>
-        * 게임 내에서 세트옷 부위 장비를 노출한 캐릭터는 룩북이 적용되지
-        않습니다.
-      </Text>
+      <FlexView css={{ margin: `0 4px` }}>
+        <Text color="red" small={isMobile} medium>
+          * 게임 내에서 세트옷 부위 장비를 노출한 캐릭터는 룩북이 적용되지
+          않습니다.
+        </Text>
+        <Text color="red" small={isMobile} medium>
+          * 벗은 상태에서는 투구 부위에 아이템을 착용할 수 없는 버그가 있습니다.
+        </Text>
+      </FlexView>
     </FlexView>
   );
 };

@@ -25,7 +25,7 @@ const desktopModal = (close: () => void) => (
         </Text>
 
         <Text color="blue">
-          = 장비 수치 x 치장 효과 + 가문 특성 + 한벌 효과
+          = (장비 수치 + 한벌 효과) x 치장 효과 + 가문 특성
         </Text>
       </FlexView>
 

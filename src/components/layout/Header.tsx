@@ -5,7 +5,6 @@ import { MAIN_MENU } from '@constants/menu';
 import { CSSObject } from '@emotion/react';
 import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
-import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
@@ -17,7 +16,6 @@ const btnCSS: CSSObject = {
 };
 
 export default () => {
-  const [t] = useTranslation(`header`);
   const navigate = useNavigate();
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
@@ -91,9 +89,13 @@ export default () => {
         row
         onMouseLeave={() => setShowTotalMenu(false)}
       >
-        <Link to="/">
-          <Text>{t(`title`)}</Text>
-        </Link>
+        <FlexView css={{ height: `42px` }} center>
+          <Link to="/">
+            <Text bold xLarge>
+              dotol
+            </Text>
+          </Link>
+        </FlexView>
 
         <FlexView gap={10}>
           <FlexView content="between" gap={40} items="center" row>
