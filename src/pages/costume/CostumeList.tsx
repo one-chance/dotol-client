@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import { Mannequin } from '@components/avatar';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { LuxuryList } from '@components/costume-pages';
+import { MenuTab } from '@components/layout';
 import { Select, Option } from '@components/select';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -33,8 +35,12 @@ const testList = [
   `GM아기백기린`,
 ];
 
+const TABS = [`치장 미리보기`, `명품의 시리즈`];
+
 export default () => {
   const isMobile = useResponsive(1080);
+  const [selectedTab, setSelectedTab] = useState(TABS[0]);
+
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [selectedPart, setSelectedPart] = useState(CLOTHES_PARTS[0]);
   const [selectedItem, setSelectedItem] = useState(``);
@@ -52,8 +58,17 @@ export default () => {
     setSelectedItem(_item);
   };
 
+  const selectTab = (tab: string) => {
+    setSelectedTab(tab);
+  };
+
   return (
-    <FlexView css={{ margin: `40px auto` }} gap={20}>
+    <FlexView
+      css={{ margin: isMobile ? `0 auto 20px auto` : `40px auto` }}
+      gap={20}
+    >
+      <MenuTab isMobile={isMobile} menus={TABS} onClick={selectTab} />
+
       <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
         치장 미리보기
       </Text>
@@ -163,6 +178,8 @@ export default () => {
       <Text color={Colors.red} small>
         # 아이템 이름을 클릭하면 마네킹에 착용됩니다.
       </Text>
+
+      <LuxuryList />
     </FlexView>
   );
 };

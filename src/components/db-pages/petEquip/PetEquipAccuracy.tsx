@@ -180,7 +180,7 @@ export default ({ isMobile }: AccuracyProps) => {
   }, [names, extra]);
 
   return (
-    <FlexView gap={20}>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
       <Text
         css={{ padding: isMobile ? `0 10px` : undefined }}
         xLarge={isMobile}
@@ -304,7 +304,7 @@ export default ({ isMobile }: AccuracyProps) => {
           * 사신수는 등급별 시동 명중률이 포함됩니다.
         </Text>
         <Text color={Colors.red} small={isMobile}>
-          * 모든 장비는 강화석이 최대로 적용된 수치입니다.
+          * 모든 장비는 강화석이 최대로 적용된 수치로 계산됩니다.
         </Text>
       </FlexView>
     </FlexView>

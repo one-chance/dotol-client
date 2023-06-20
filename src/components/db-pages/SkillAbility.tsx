@@ -73,7 +73,13 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <FlexView css={{ margin: `0 4px` }}>
+      <FlexView
+        css={{
+          margin: `0 4px`,
+          borderRight: `1px solid lightgray`,
+          borderLeft: `1px solid lightgray`,
+        }}
+      >
         <FlexView color="lightgray" css={{ minHeight: `40px` }} center row>
           {TITLES.map((title, index) => (
             <Text
@@ -110,14 +116,14 @@ export default () => {
                 {skill.기술능력}
               </Text>
               <Text
-                css={{ width: isMobile ? `86px` : `120px` }}
+                css={{ width: isMobile ? `85px` : `120px` }}
                 small={isMobile}
                 center
               >
                 {skill.전설}
               </Text>
               <Text
-                css={{ width: isMobile ? `86px` : `120px` }}
+                css={{ width: isMobile ? `85px` : `120px` }}
                 small={isMobile}
                 center
               >

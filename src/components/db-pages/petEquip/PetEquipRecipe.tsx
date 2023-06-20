@@ -8,7 +8,7 @@ export default () => {
   const isMobile = useResponsive(580);
 
   return (
-    <FlexView gap={20}>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
       <Text css={{ padding: isMobile ? `0 10px` : undefined }} semiBold xxLarge>
         환수장비 강화재료
       </Text>

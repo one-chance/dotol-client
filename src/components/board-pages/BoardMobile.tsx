@@ -39,17 +39,15 @@ export default ({ category }: BoardProps) => {
 
   return (
     <FlexView gap={20}>
-      <FlexView>
-        <FlexView color="lightgray" css={{ minHeight: `40px` }} center>
-          <Text bold large>
-            {CATEGORES[category]} 게시판
-          </Text>
-        </FlexView>
+      <FlexView gap={10}>
+        <Text bold center xLarge>
+          {CATEGORES[category]} 게시판
+        </Text>
 
-        <FlexView>
+        <FlexView css={{ borderTop: `1px solid lightgray` }}>
           <FlexView
             content="between"
-            css={{ padding: `4px 8px`, borderBottom: `1px solid lightgray` }}
+            css={{ padding: `8px`, borderBottom: `1px solid lightgray` }}
             row
           >
             <FlexView gap={4} fill>
@@ -75,11 +73,11 @@ export default ({ category }: BoardProps) => {
 
               <FlexView gap={8} items="center" row>
                 <Button>
-                  <Text small>관찰완료@연</Text>
+                  <Text xSmall>관찰완료@연</Text>
                 </Button>
-                <Text small>조회10</Text>
-                <Text small>추천1</Text>
-                <Text small>06.23</Text>
+                <Text xSmall>조회10</Text>
+                <Text xSmall>추천1</Text>
+                <Text xSmall>06.23</Text>
               </FlexView>
             </FlexView>
 

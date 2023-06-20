@@ -10,6 +10,6 @@ export const userInfoState = atom({
   default: {
     userId: ``,
     grade: 0,
-    titleAccount: ``,
+    mainCharacter: ``,
   },
 });

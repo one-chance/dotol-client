@@ -41,7 +41,15 @@ export default ({ onClose }: MenuProps) => {
         </Button>
       </FlexView>
 
-      <FlexView css={{ padding: `0 28px` }} gap={40}>
+      <FlexView
+        css={{
+          padding: `0 28px`,
+          overflowY: `auto`,
+          scrollbarWidth: `none`,
+          '::-webkit-scrollbar': { display: `none` },
+        }}
+        gap={40}
+      >
         {MAIN_MENU.map((menu, index) => {
           const [showSubMenu, setShowSubMenu] = useState(false);
 

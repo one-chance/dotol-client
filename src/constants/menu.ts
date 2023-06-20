@@ -22,9 +22,9 @@ export const TOTAL_MENU = [
   {
     menu: `콘첸츠`,
     sub: [
-      { name: `업적`, url: `/db/achievement` },
-      { name: `탐험일지`, url: `/db/adventure` },
-      { name: `고고학`, url: `/db/archeology` },
+      { name: `업적`, url: `/content/achievement` },
+      { name: `탐험일지`, url: `/content/adventure` },
+      { name: `고고학`, url: `/content/archeology` },
     ],
   },
   {

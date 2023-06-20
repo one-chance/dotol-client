@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 
 import { Button, FlexView, Text } from '@components/common';
-import { AchievementList } from '@components/db-pages';
+import { AchievementList } from '@components/content-pages';
 import { Select, Option } from '@components/select';
 import { useResponsive } from '@utils/hooks';
 

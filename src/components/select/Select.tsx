@@ -60,7 +60,12 @@ export default ({
     backgroundColor: `#FFF`,
     borderRadius: `4px`,
     boxShadow: `0 0 2px rgba(0, 0, 0, 0.3)`,
-    ...(max && { maxHeight: `${max}px`, overflowY: `scroll` }),
+    ...(max && {
+      maxHeight: `${max}px`,
+      overflowY: `scroll`,
+      scrollbarWidth: `none`,
+      '::-webkit-scrollbar': { display: `none` },
+    }),
     ...(width ? { width: `${width}px` } : { flex: 1 }),
   };
 

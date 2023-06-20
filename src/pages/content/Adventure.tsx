@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { FlexView, Text } from '@components/common';
-import { AdventureList } from '@components/db-pages';
+import { AdventureList } from '@components/content-pages';
 import { Select, Option } from '@components/select';
 import { AdventureTab } from '@interfaces/adventure';
 import { useResponsive } from '@utils/hooks';

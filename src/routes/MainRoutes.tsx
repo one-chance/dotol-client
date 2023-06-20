@@ -8,16 +8,9 @@ import {
   EditPost,
 } from '@pages/board';
 import { Ability, Calendar, Power, Production } from '@pages/calculator';
+import { Achievement, Adventure, Archeology } from '@pages/content';
 import { CostumeList, Lookbook, Tanning } from '@pages/costume';
-import {
-  Achievement,
-  Adventure,
-  AntiquityEquip,
-  Archeology,
-  NormalEquip,
-  PetEquip,
-  SkillAbility,
-} from '@pages/db';
+import { AntiquityEquip, NormalEquip, PetEquip, SkillAbility } from '@pages/db';
 import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
 import {
@@ -108,21 +101,6 @@ export const TanningPage = {
 };
 
 /* 도감 메뉴 */
-export const AchievementPage = {
-  path: `/db/achievement`,
-  element: <Achievement />,
-};
-
-export const AdventurePage = {
-  path: `/db/adventure`,
-  element: <Adventure />,
-};
-
-export const ArcheologyPage = {
-  path: `/db/archeology`,
-  element: <Archeology />,
-};
-
 export const AntiquityEquipPage = {
   path: `/db/antiquity-equip`,
   element: <AntiquityEquip />,
@@ -141,6 +119,22 @@ export const PetEquipPage = {
 export const SkillAbilityPage = {
   path: `/db/skill-ability`,
   element: <SkillAbility />,
+};
+
+/* 컨텐츠 메뉴 */
+export const AchievementPage = {
+  path: `/content/achievement`,
+  element: <Achievement />,
+};
+
+export const AdventurePage = {
+  path: `/content/adventure`,
+  element: <Adventure />,
+};
+
+export const ArcheologyPage = {
+  path: `/content/archeology`,
+  element: <Archeology />,
 };
 
 /* 거래소 메뉴 */
