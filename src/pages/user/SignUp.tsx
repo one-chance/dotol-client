@@ -257,8 +257,9 @@ export default () => {
         <FlexView items="center">
           <Button
             color="blue"
-            css={{ borderRadius: `4px`, width: `240px`, minHeight: `40px` }}
+            css={{ width: `240px`, minHeight: `40px` }}
             disabled={!isCertified || !agreeTerms || !agreePrivacy}
+            radius={4}
           >
             <Text color={Colors.white} semiBold>
               가입하기

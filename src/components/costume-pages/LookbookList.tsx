@@ -85,12 +85,12 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
 
       <FlexView content="end" gap={20} items="center" row>
         <Button
+          border={Colors.red}
           css={{
             width: `120px`,
             height: `36px`,
-            border: `1px solid ${Colors.red}`,
-            borderRadius: `4px`,
           }}
+          radius={4}
           onClick={initItemList}
         >
           <Text color={Colors.red} medium>
@@ -99,12 +99,13 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
         </Button>
 
         <Button
+          border={Colors.primary}
           css={{
             width: `120px`,
             height: `36px`,
             border: `1px solid ${Colors.primary}`,
-            borderRadius: `4px`,
           }}
+          radius={4}
           onClick={applyLookbook}
         >
           <Text color={Colors.primary} medium>

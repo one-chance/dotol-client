@@ -256,14 +256,14 @@ export default () => {
         >
           <FlexView css={{ minWidth: `310px` }} gap={10} items="center">
             <Button
+              border={slotItems.one === `` ? `blue` : `red`}
               css={{
                 border: `1px solid`,
-                borderColor: slotItems.one === `` ? `blue` : `red`,
-                borderRadius: `4px`,
                 width: `60px`,
                 height: `36px`,
               }}
               disabled={slotItems.one === ``}
+              radius={4}
               onClick={() => removeFromSlot(`one`)}
             >
               <Text color={slotItems.one === `` ? `blue` : `red`}>슬롯1</Text>
@@ -277,11 +277,11 @@ export default () => {
               css={{
                 border: `1px solid`,
                 borderColor: slotItems.two === `` ? `blue` : `red`,
-                borderRadius: `4px`,
                 width: `60px`,
                 height: `36px`,
               }}
               disabled={slotItems.two === ``}
+              radius={4}
               onClick={() => removeFromSlot(`two`)}
             >
               <Text color={slotItems.two === `` ? `blue` : `red`}>슬롯2</Text>
@@ -292,14 +292,14 @@ export default () => {
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
             <Button
+              border={slotItems.three === `` ? `blue` : `red`}
               css={{
                 border: `1px solid`,
-                borderColor: slotItems.three === `` ? `blue` : `red`,
-                borderRadius: `4px`,
                 width: `60px`,
                 height: `36px`,
               }}
               disabled={slotItems.three === ``}
+              radius={4}
               onClick={() => removeFromSlot(`three`)}
             >
               <Text color={slotItems.three === `` ? `blue` : `red`}>슬롯3</Text>

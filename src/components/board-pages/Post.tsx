@@ -81,12 +81,12 @@ export default ({ category, title, content }: PostProps) => {
       >
         <FlexView gap={8} items="center" row>
           <Button
+            border="lightgray"
             css={{
               height: `24px`,
-              border: `1px solid lightgray`,
-              borderRadius: `4px`,
               padding: `0 8px`,
             }}
+            radius={4}
             onClick={copyUrl}
           >
             <Text small>복사</Text>

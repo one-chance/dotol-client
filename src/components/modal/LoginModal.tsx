@@ -1,4 +1,5 @@
 import { Button, FlexView, Text } from '@components/common';
+import { Colors } from '@styles/system';
 import { useNavigate } from 'react-router-dom';
 
 import Modal from './Modal';
@@ -25,23 +26,23 @@ export default ({ close }: ModalProps) => {
 
         <FlexView content="end" gap={8} row>
           <Button
+            border={Colors.red}
             css={{
-              border: `1px solid red`,
-              borderRadius: `4px`,
               width: `80px`,
               height: `36px`,
             }}
+            radius={4}
             onClick={close}
           >
             <Text color="red">취소</Text>
           </Button>
           <Button
+            border={Colors.primary}
             css={{
-              border: `1px solid blue`,
-              borderRadius: `4px`,
               width: `80px`,
               height: `36px`,
             }}
+            radius={4}
             onClick={moveToLogin}
           >
             <Text color="blue">로그인</Text>

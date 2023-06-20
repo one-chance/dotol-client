@@ -6,14 +6,17 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   type?: 'button' | 'submit' | 'reset';
   fit?: boolean;
   color?: string;
+  border?: string;
+  radius?: number;
 };
 
 export default forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, fit, color, ...props }: ButtonProps, ref) => {
+  ({ type, fit, color, border, radius, ...props }: ButtonProps, ref) => {
     const css: CSSObject = {
       alignItems: `center`,
       backgroundColor: `unset`,
-      border: `none`,
+      border: border ? `1px solid ${border}` : `none`,
+      borderRadius: radius || 0,
       color: `unset`,
       display: `inline-flex`,
       justifyContent: `center`,

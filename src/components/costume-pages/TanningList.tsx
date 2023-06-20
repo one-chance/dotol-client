@@ -27,10 +27,8 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
       <FlexView gap={8} row wrap>
         <Button
           color={Colors.red}
-          css={{
-            borderRadius: `4px`,
-            padding: `4px 8px`,
-          }}
+          css={{ padding: `4px 8px` }}
+          radius={4}
           onClick={() => changeSkin(-1)}
         >
           <Text color={Colors.white} medium>

@@ -68,7 +68,8 @@ export default ({
       {recent && (
         <Button
           color="blue"
-          css={{ width: `80px`, height: `36px`, borderRadius: `4px` }}
+          css={{ width: `80px`, height: `36px` }}
+          radius={4}
           onClick={goRecentPage}
         >
           <Text color={Colors.white} semiBold>
@@ -80,7 +81,8 @@ export default ({
       {page && (
         <Button
           color="blue"
-          css={{ width: `80px`, height: `36px`, borderRadius: `4px` }}
+          css={{ width: `80px`, height: `36px` }}
+          radius={4}
           onClick={backToList}
         >
           <Text color={Colors.white} semiBold>
@@ -107,7 +109,8 @@ export default ({
       {write && (
         <Button
           color="red"
-          css={{ width: `80px`, height: `36px`, borderRadius: `4px` }}
+          css={{ width: `80px`, height: `36px` }}
+          radius={4}
           onClick={writeNewArticle}
         >
           <Text color={Colors.white} semiBold>

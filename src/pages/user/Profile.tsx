@@ -111,7 +111,8 @@ export default () => {
         <FlexView css={{ marginTop: `20px` }}>
           <Button
             color={Colors.red}
-            css={{ width: `100px`, height: `40px`, borderRadius: `4px` }}
+            css={{ width: `100px`, height: `40px` }}
+            radius={4}
             onClick={() => navigate(`/user/secession`)}
           >
             <Text color={Colors.white} medium>

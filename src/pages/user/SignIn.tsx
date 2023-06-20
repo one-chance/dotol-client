@@ -95,8 +95,9 @@ export default () => {
         <FlexView gap={16}>
           <Button
             color="blue"
-            css={{ borderRadius: `4px`, minHeight: `40px` }}
+            css={{ minHeight: `40px` }}
             disabled={userId.length < 6 || password.length < 8}
+            radius={20}
             onClick={signinUser}
           >
             <Text color={Colors.white} semiBold>

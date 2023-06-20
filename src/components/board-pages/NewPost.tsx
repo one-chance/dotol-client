@@ -1,6 +1,7 @@
 import { Button, FlexView, Input, Text } from '@components/common';
 import { CATEGORES } from '@constants/board';
 import { Category } from '@interfaces/board';
+import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
 type NewPostProps = {
@@ -33,22 +34,16 @@ export default ({ category }: NewPostProps) => {
 
       <FlexView content="end" gap={8} items="center" row>
         <Button
-          css={{
-            border: `1px solid red`,
-            borderRadius: `4px`,
-            width: `80px`,
-            height: `40px`,
-          }}
+          border={Colors.red}
+          css={{ width: `80px`, height: `40px` }}
+          radius={4}
         >
           <Text color="red">취소</Text>
         </Button>
         <Button
-          css={{
-            border: `1px solid blue`,
-            borderRadius: `4px`,
-            width: `80px`,
-            height: `40px`,
-          }}
+          border={Colors.primary}
+          css={{ width: `80px`, height: `40px` }}
+          radius={4}
         >
           <Text color="blue">등록</Text>
         </Button>

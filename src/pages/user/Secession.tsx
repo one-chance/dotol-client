@@ -57,8 +57,9 @@ export default () => {
             />
             <Button
               color={Colors.red}
-              css={{ width: `60px`, height: `40px`, borderRadius: `4px` }}
+              css={{ width: `60px`, height: `40px` }}
               disabled={password.length < 8}
+              radius={4}
               onClick={secesseUser}
             >
               <Text color={Colors.white}>탈퇴</Text>

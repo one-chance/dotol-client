@@ -64,8 +64,9 @@ export default () => {
 
       <Button
         color="blue"
-        css={{ borderRadius: `4px`, minHeight: `40px` }}
+        css={{ minHeight: `40px` }}
         disabled={!isEmailFormat}
+        radius={4}
         onClick={findUserId}
       >
         <Text color={Colors.white} small={isMobile} medium>

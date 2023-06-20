@@ -67,8 +67,9 @@ export default () => {
           <FlexView content="end" row>
             <Button
               color={Colors.red}
-              css={{ width: `160px`, height: `40px`, borderRadius: `4px` }}
+              css={{ width: `160px`, height: `40px` }}
               disabled={password.length < 8}
+              radius={4}
               onClick={changePassword}
             >
               <Text color={Colors.white} small={isMobile} medium>
