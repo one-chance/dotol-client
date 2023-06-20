@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 
 import { ArcheologyAccordion } from '@components/accordion';
 import { Button, FlexView, Input, Text } from '@components/common';
-import Data from '@data/archeology.json';
+import DATA from '@data/archeology.json';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
@@ -10,6 +10,7 @@ const TITLES = [`아이템`, `위치`, `사용 방법`, `수량`, `보상`];
 const WIDTHS = [160, 100, 400, 40, 260];
 
 export default () => {
+  const myData = DATA;
   const isMobile = useResponsive(960);
   const itemRef = useRef<HTMLDivElement[]>([]);
   const [searchKeyword, setSearchKeyword] = useState(``);
@@ -28,7 +29,7 @@ export default () => {
 
     itemRef.current.forEach(item => {
       if (item.innerText.includes(searchKeyword)) {
-        item.style.setProperty(`background-color`, `red`);
+        item.style.setProperty(`background-color`, Colors.secondary);
 
         item.scrollIntoView({
           behavior: `smooth`,
@@ -45,98 +46,134 @@ export default () => {
       css={{ margin: `20px auto`, padding: isMobile ? `0 10px` : 0 }}
       gap={20}
     >
-      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-        고고학 도감
-      </Text>
+      <FlexView content="between" gap={20} items="center" row>
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+          고고학 유물
+        </Text>
 
-      <FlexView items="center" row>
-        <Input
-          css={{ borderRadius: `4px 0 0 4px`, borderRight: 0 }}
-          placeholder="아이템, 지역, NPC, 보상"
-          width={200}
-          onChange={inputSearchKeyword}
-          onKeyDown={e => {
-            if (e.key === `Enter`) searchItem();
-          }}
-        />
+        <FlexView items="center" row>
+          <Input
+            css={{
+              borderRadius: `4px 0 0 4px`,
+              borderRight: 0,
+              '::placeholder': {
+                fontSize: isMobile ? `14px` : `16px`,
+              },
+            }}
+            placeholder={isMobile ? `아이템, 지역` : `아이템, 지역, NPC, 보상`}
+            width={isMobile ? 120 : 180}
+            onChange={inputSearchKeyword}
+            onKeyDown={e => {
+              if (e.key === `Enter`) searchItem();
+            }}
+          />
 
-        <Button
-          color="blue"
-          css={{ width: `60px`, height: `36px`, borderRadius: `0 4px 4px 0` }}
-          onClick={searchItem}
-        >
-          <Text color={Colors.white}>검색</Text>
-        </Button>
+          <Button
+            color="blue"
+            css={{ width: `60px`, height: `36px`, borderRadius: `0 4px 4px 0` }}
+            onClick={searchItem}
+          >
+            <Text color={Colors.white}>검색</Text>
+          </Button>
+        </FlexView>
       </FlexView>
 
-      <FlexView css={{ minWidth: `960px`, overflowX: `auto` }}>
-        {/* <FlexView css={{ borderTop: `1px solid lightgray` }}>
-          <ArcheologyAccordion title="아이템 이름" titleCSS={{ width: `100%` }}>
-            <Text>123</Text>
-            <Text>123</Text>
-          </ArcheologyAccordion>
-        </FlexView> */}
-
-        <FlexView color="purple" css={{ minHeight: `40px` }} items="center" row>
-          {TITLES.map((title, index) => (
-            <Text
-              key={title}
-              color={Colors.white}
-              css={{
-                width: `${WIDTHS[index]}px`,
-                paddingLeft: index === 0 ? `8px` : 0,
-              }}
-              bold
-              noDrag
-              small
-            >
-              {title}
-            </Text>
-          ))}
-        </FlexView>
-
-        <FlexView>
-          {Data.map((item, index) => (
-            <FlexView
+      {isMobile ? (
+        <FlexView css={{ border: `1px solid lightgray` }}>
+          {myData.map(item => (
+            <ArcheologyAccordion
               key={item.item}
-              ref={el => (itemRef.current[index] = el as HTMLDivElement)}
-              css={{ minHeight: `40px`, borderBottom: `1px solid lightgray` }}
-              items="center"
-              row
+              subTitle={item.location}
+              title={item.item}
+              titleCSS={{ width: `340px` }}
             >
-              <Text css={{ minWidth: `160px`, paddingLeft: `8px` }} small>
-                {item.item}
-              </Text>
-
-              <Text css={{ minWidth: `100px` }} small>
-                {item.location}
-              </Text>
-
-              <Text css={{ minWidth: `400px` }} small>
-                {item.use}
-              </Text>
-
-              <FlexView>
-                {item.rewardList.map(reward => (
-                  <FlexView
-                    key={reward.name}
-                    css={{ minHeight: `40px` }}
-                    items="center"
-                    row
-                  >
-                    <Text css={{ minWidth: `40px` }} small>
-                      {reward.count}
-                    </Text>
-                    <Text css={{ minWidth: `260px` }} small>
-                      {reward.name}
-                    </Text>
+              <FlexView gap={8}>
+                <Text small>사용방법: &nbsp;{item.use}</Text>
+                <FlexView row wrap>
+                  <Text small>보상: &nbsp;</Text>
+                  <FlexView gap={8}>
+                    {item.rewardList.map(reward => (
+                      <FlexView key={reward.name} items="center" row>
+                        <Text css={{ minWidth: `32px` }} small>
+                          {reward.count}개 /&nbsp;
+                        </Text>
+                        <Text small>{reward.name}</Text>
+                      </FlexView>
+                    ))}
                   </FlexView>
-                ))}
+                </FlexView>
               </FlexView>
-            </FlexView>
+            </ArcheologyAccordion>
           ))}
         </FlexView>
-      </FlexView>
+      ) : (
+        <FlexView css={{ minWidth: `960px`, overflowX: `auto` }}>
+          <FlexView
+            color="purple"
+            css={{ minHeight: `40px` }}
+            items="center"
+            row
+          >
+            {TITLES.map((title, index) => (
+              <Text
+                key={title}
+                color={Colors.white}
+                css={{
+                  width: `${WIDTHS[index]}px`,
+                  paddingLeft: index === 0 ? `8px` : 0,
+                }}
+                bold
+                noDrag
+                small
+              >
+                {title}
+              </Text>
+            ))}
+          </FlexView>
+
+          <FlexView>
+            {myData.map((item, index) => (
+              <FlexView
+                key={item.item}
+                ref={el => (itemRef.current[index] = el as HTMLDivElement)}
+                css={{ minHeight: `40px`, borderBottom: `1px solid lightgray` }}
+                items="center"
+                row
+              >
+                <Text css={{ minWidth: `160px`, paddingLeft: `8px` }} small>
+                  {item.item}
+                </Text>
+
+                <Text css={{ minWidth: `100px` }} small>
+                  {item.location}
+                </Text>
+
+                <Text css={{ minWidth: `400px` }} small>
+                  {item.use}
+                </Text>
+
+                <FlexView>
+                  {item.rewardList.map(reward => (
+                    <FlexView
+                      key={reward.name}
+                      css={{ minHeight: `40px` }}
+                      items="center"
+                      row
+                    >
+                      <Text css={{ minWidth: `40px` }} small>
+                        {reward.count}
+                      </Text>
+                      <Text css={{ minWidth: `260px` }} small>
+                        {reward.name}
+                      </Text>
+                    </FlexView>
+                  ))}
+                </FlexView>
+              </FlexView>
+            ))}
+          </FlexView>
+        </FlexView>
+      )}
     </FlexView>
   );
 };

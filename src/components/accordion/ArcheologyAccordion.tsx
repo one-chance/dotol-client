@@ -7,11 +7,18 @@ import { useResponsive } from '@utils/hooks';
 type AccordionProps = {
   title: string;
   titleCSS?: CSSObject;
+  subTitle: string;
   divider?: boolean;
   children: ReactNode;
 };
 
-export default ({ title, titleCSS, divider, children }: AccordionProps) => {
+export default ({
+  title,
+  titleCSS,
+  subTitle,
+  divider,
+  children,
+}: AccordionProps) => {
   const isMobile = useResponsive(480);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,11 +43,11 @@ export default ({ title, titleCSS, divider, children }: AccordionProps) => {
         row
         onClick={() => setIsOpen(!isOpen)}
       >
-        <FlexView items="center" row>
+        <FlexView content="between" items="center" fill row>
           <Text small={isMobile} medium>
             {title}
           </Text>
-          <Text>지역이 어디냐</Text>
+          <Text>{subTitle}</Text>
         </FlexView>
 
         <Icon name={isOpen ? `arrowUp` : `arrowDown`} size={16} />
