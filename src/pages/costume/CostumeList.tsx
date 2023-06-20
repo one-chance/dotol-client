@@ -86,7 +86,6 @@ export default () => {
             maxWidth: `900px`,
             width: `100%`,
             border: `1px solid lightgray`,
-            // borderRadius: `4px`,
             padding: `20px`,
           }}
           gap={20}

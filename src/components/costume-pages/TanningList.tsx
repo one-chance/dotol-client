@@ -21,7 +21,6 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
         border: `1px solid lightgray`,
         padding: `20px`,
         maxWidth: `720px`,
-        margin: `0 4px`,
       }}
     >
       <FlexView gap={8} row wrap>

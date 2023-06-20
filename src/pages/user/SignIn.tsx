@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
-import { Button, FlexView, Input, Link, Text } from '@components/common';
+import {
+  Button,
+  Checkbox,
+  FlexView,
+  Input,
+  Link,
+  Text,
+} from '@components/common';
 import { CSSObject } from '@emotion/react';
 import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -48,10 +55,10 @@ export default () => {
           borderRadius: `8px`,
           padding: isMobile ? `10px` : `20px`,
         }}
-        gap={40}
+        gap={20}
       >
         <Text xLarge={isMobile} bold center xxLarge>
-          로그인
+          dotol
         </Text>
 
         <FlexView gap={notFoundError ? 12 : 0}>
@@ -90,6 +97,11 @@ export default () => {
               {passwordError ? `비밀번호가 일치하지 않습니다.` : ``}
             </Text>
           </FlexView>
+        </FlexView>
+
+        <FlexView gap={4} items="center" row>
+          <Checkbox />
+          <Text small>로그인 상태 유지</Text>
         </FlexView>
 
         <FlexView gap={16}>

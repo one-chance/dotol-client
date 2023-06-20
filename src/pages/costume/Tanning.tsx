@@ -7,7 +7,7 @@ import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const isMobile = useResponsive(1000);
+  const isMobile = useResponsive(980);
   const [skinNumber, setSkinNumber] = useState(-1);
 
   const changeSkin = (_skin: number) => {
@@ -21,7 +21,8 @@ export default () => {
       </Text>
 
       <FlexView
-        gap={32}
+        css={{ margin: isMobile ? `0 4px` : `0 auto` }}
+        gap={20}
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >

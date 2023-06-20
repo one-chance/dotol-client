@@ -259,7 +259,7 @@ export default () => {
             color="blue"
             css={{ width: `240px`, minHeight: `40px` }}
             disabled={!isCertified || !agreeTerms || !agreePrivacy}
-            radius={4}
+            radius={20}
           >
             <Text color={Colors.white} semiBold>
               가입하기

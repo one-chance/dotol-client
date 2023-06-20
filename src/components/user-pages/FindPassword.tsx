@@ -64,9 +64,9 @@ export default () => {
 
       <Button
         color={Colors.primary}
-        css={{ minHeight: `36px` }}
+        css={{ minHeight: `40px` }}
         disabled={!isEmailFormat || userId.length < 6}
-        radius={4}
+        radius={20}
         onClick={findPassword}
       >
         <Text color={Colors.white} small={isMobile} medium>
