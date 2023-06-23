@@ -6,7 +6,6 @@ import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
 import { CATEGORES } from '@constants/board';
 import { Category } from '@interfaces/board';
-import { Colors } from '@styles/system';
 import { useNavigate } from 'react-router-dom';
 
 type BoardProps = {

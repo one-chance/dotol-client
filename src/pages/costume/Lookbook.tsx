@@ -1,17 +1,27 @@
 import { useState } from 'react';
 
+import { getLookbookCount } from '@apis/costumes';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { LookbookList } from '@components/costume-pages';
+import { LookbookCount } from '@interfaces/costumes';
 import { Colors } from '@styles/system';
+import { useQuery } from '@tanstack/react-query';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(980);
-  const [equipList, setEquipList] = useState(``);
+  const userId = `quwieo`;
 
-  const equipItem = (_items: string) => {
+  const [equipList, setEquipList] = useState(``);
+  const { data: lookbookCount } = useQuery<number>(
+    [`lookbookCount`, userId],
+    () => getLookbookCount(userId),
+  );
+
+  const equipItem = async (_items: string) => {
     setEquipList(_items);
+    // 잔여 횟수 1 감소
   };
 
   return (
@@ -25,7 +35,11 @@ export default () => {
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar character="협가검@하자" count={40} equip={equipList} />
+        <Avatar
+          character="협가검@하자"
+          count={lookbookCount}
+          equip={equipList}
+        />
 
         <LookbookList applyPreview={equipItem} isMobile={isMobile} />
       </FlexView>

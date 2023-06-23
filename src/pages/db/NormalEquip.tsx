@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
+import { getEquipByName, getEquipByOption } from '@apis/equip';
 import { Chip } from '@components/chip';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
+import { IEquip } from '@interfaces/equip';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
@@ -58,11 +60,12 @@ const JOBS = [
 
 export default () => {
   const isMobile = useResponsive(960);
+  const basicUrl = `https://image.dotols.com/equip/`;
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [searchOption, setSearchOption] = useState({
-    type: ITEM_TYPES[0],
-    parts: ITEM_PARTS[0],
-    job: JOBS[0],
+    type: 0,
+    part: 0,
+    job: 0,
   });
 
   const [items, setItems] = useState([]);
@@ -77,32 +80,36 @@ export default () => {
   };
 
   const selectItemType = (id: number) => {
-    setSearchOption({ ...searchOption, type: ITEM_TYPES[id] });
+    setSearchOption({ ...searchOption, type: id });
   };
 
   const selectItemPart = (id: number) => {
-    setSearchOption({ ...searchOption, parts: ITEM_PARTS[id] });
+    setSearchOption({ ...searchOption, part: id });
   };
 
   const selectJob = (id: number) => {
-    setSearchOption({ ...searchOption, job: JOBS[id] });
+    setSearchOption({ ...searchOption, job: id });
   };
 
   const searchItemByName = () => {
     // 장비 검색
-    setSearchOption({
-      type: ITEM_TYPES[0],
-      parts: ITEM_PARTS[0],
-      job: JOBS[0],
+    getEquipByName(searchKeyword).then(res => {
+      setItems(res.result);
     });
+
+    setSearchOption({ type: 0, part: 0, job: 0 });
   };
 
   const searchItemByOption = () => {
-    if (ITEM_TYPES.indexOf(searchOption.type) - 1 < 0) return;
     setSearchKeyword(``);
 
-    // console.log(ITEM_TYPES.indexOf(searchOption.type) - 1);
-    // 장비 옵션 검색
+    getEquipByOption({
+      type: searchOption.type,
+      part: searchOption.part,
+      job: searchOption.job,
+    }).then(res => {
+      setItems(res.result);
+    });
   };
 
   const saveToSlot = (name: string) => {
@@ -162,11 +169,11 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={searchOption.type}
+                name={ITEM_TYPES[searchOption.type]}
                 width={isMobile ? 112 : 130}
               >
                 <Option
-                  selected={searchOption.type}
+                  selected={ITEM_TYPES[searchOption.type]}
                   values={ITEM_TYPES}
                   onSelect={selectItemType}
                 />
@@ -175,11 +182,11 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={searchOption.parts}
+                name={ITEM_PARTS[searchOption.part]}
                 width={isMobile ? 112 : 130}
               >
                 <Option
-                  selected={searchOption.parts}
+                  selected={ITEM_PARTS[searchOption.part]}
                   values={ITEM_PARTS}
                   onSelect={selectItemPart}
                 />
@@ -188,11 +195,11 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={searchOption.job}
+                name={JOBS[searchOption.job]}
                 width={isMobile ? 66 : 80}
               >
                 <Option
-                  selected={searchOption.job}
+                  selected={JOBS[searchOption.job]}
                   values={JOBS}
                   onSelect={selectJob}
                 />
@@ -221,7 +228,7 @@ export default () => {
             row
             wrap
           >
-            {items.length < 1 && (
+            {items?.length < 1 && (
               <FlexView css={{ width: `100%` }} center>
                 <Text color="gray" small={isMobile}>
                   아이템을 선택하면 빈 슬롯에 자동으로 추가됩니다.
@@ -232,13 +239,13 @@ export default () => {
               </FlexView>
             )}
 
-            {items?.map(item => (
+            {items?.map((item: IEquip) => (
               <Chip
-                key={item}
+                key={item.name}
                 radius={8}
-                text={item}
+                text={item.name}
                 clickable
-                onClick={() => saveToSlot(item)}
+                onClick={() => saveToSlot(item.index.toString())}
               />
             ))}
           </FlexView>
@@ -256,9 +263,9 @@ export default () => {
         >
           <FlexView css={{ minWidth: `310px` }} gap={10} items="center">
             <Button
-              border={slotItems.one === `` ? `blue` : `red`}
               css={{
                 border: `1px solid`,
+                borderColor: slotItems.one === `` ? `blue` : `red`,
                 width: `60px`,
                 height: `36px`,
               }}
@@ -269,7 +276,9 @@ export default () => {
               <Text color={slotItems.one === `` ? `blue` : `red`}>슬롯1</Text>
             </Button>
 
-            {slotItems.one !== `` && <Image src="/empty.png" />}
+            {slotItems.one !== `` && (
+              <Image src={`${basicUrl}${slotItems.one}.png`} />
+            )}
           </FlexView>
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
@@ -287,14 +296,16 @@ export default () => {
               <Text color={slotItems.two === `` ? `blue` : `red`}>슬롯2</Text>
             </Button>
 
-            {slotItems.two !== `` && <Image src="/empty.png" />}
+            {slotItems.two !== `` && (
+              <Image src={`${basicUrl}${slotItems.two}.png`} />
+            )}
           </FlexView>
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
             <Button
-              border={slotItems.three === `` ? `blue` : `red`}
               css={{
                 border: `1px solid`,
+                borderColor: slotItems.three === `` ? `blue` : `red`,
                 width: `60px`,
                 height: `36px`,
               }}
@@ -305,7 +316,9 @@ export default () => {
               <Text color={slotItems.three === `` ? `blue` : `red`}>슬롯3</Text>
             </Button>
 
-            {slotItems.three !== `` && <Image src="/empty.png" />}
+            {slotItems.three !== `` && (
+              <Image src={`${basicUrl}${slotItems.three}.png`} />
+            )}
           </FlexView>
         </FlexView>
       </FlexView>

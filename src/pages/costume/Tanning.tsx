@@ -26,7 +26,7 @@ export default () => {
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar character="협가검@하자" count={40} skin={skinNumber} />
+        <Avatar character="협가검@하자" count={-1} skin={skinNumber} />
 
         <TanningList selectSkin={changeSkin} skinColor={skinNumber} />
       </FlexView>

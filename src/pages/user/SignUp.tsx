@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 
+import { checkUserId } from '@apis/auth';
 import {
   Button,
   Checkbox,
@@ -70,8 +71,10 @@ export default () => {
   };
 
   const checkUniqueId = () => {
+    checkUserId(userId).then(res => {
+      setIsUniqueId(true);
+    });
     // TODO: check unique id
-    setIsUniqueId(true);
   };
 
   const checkUniqueEmail = () => {

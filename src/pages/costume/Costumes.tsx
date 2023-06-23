@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import { Mannequin } from '@components/avatar';
 import { Button, FlexView, Input, Text } from '@components/common';
-import { LuxuryList } from '@components/costume-pages';
 import { MenuTab } from '@components/layout';
 import { Select, Option } from '@components/select';
 import { Colors } from '@styles/system';
@@ -42,7 +41,7 @@ export default () => {
   const [selectedTab, setSelectedTab] = useState(TABS[0]);
 
   const [searchKeyword, setSearchKeyword] = useState(``);
-  const [selectedPart, setSelectedPart] = useState(CLOTHES_PARTS[0]);
+  const [selectedPart, setSelectedPart] = useState(0);
   const [selectedItem, setSelectedItem] = useState(``);
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,8 +49,7 @@ export default () => {
   };
 
   const selectPart = (id: number) => {
-    setSelectedPart(CLOTHES_PARTS[id]);
-    // 해당 부위로 1페이지 불러오기
+    setSelectedPart(id);
   };
 
   const selectItem = (_item: string) => {
@@ -112,9 +110,14 @@ export default () => {
             </FlexView>
 
             <FlexView items="center" row>
-              <Select height={36} name={selectedPart} width={140} leftSquare>
+              <Select
+                height={36}
+                name={CLOTHES_PARTS[selectedPart]}
+                width={140}
+                leftSquare
+              >
                 <Option
-                  selected={selectedPart}
+                  selected={CLOTHES_PARTS[selectedPart]}
                   values={CLOTHES_PARTS}
                   onSelect={selectPart}
                 />
@@ -177,8 +180,6 @@ export default () => {
       <Text color={Colors.red} small>
         # 아이템 이름을 클릭하면 마네킹에 착용됩니다.
       </Text>
-
-      <LuxuryList />
     </FlexView>
   );
 };

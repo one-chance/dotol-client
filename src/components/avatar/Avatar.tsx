@@ -7,7 +7,7 @@ import RotateButtons from './RotateButtons';
 
 interface AvatarProps {
   character: string | undefined;
-  count: number;
+  count?: number;
   skin?: number;
   equip?: string;
 }
@@ -15,9 +15,7 @@ interface AvatarProps {
 type Naked = 'n' | 'y';
 
 export default ({ character, count, skin, equip }: AvatarProps) => {
-  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${encodeURI(
-    character ?? ``,
-  )}&is=1`;
+  const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${character}&is=1`;
 
   const [direction, setDirecrtion] = useState(2);
   const [isNaked, setIsNaked] = useState<Naked>(`n`);
@@ -42,9 +40,11 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
       gap={16}
       items="center"
     >
-      <Text color="blue" large semiBold>
-        잔여: {count}
-      </Text>
+      {count !== -1 && (
+        <Text color="blue" large semiBold>
+          남은 횟수: {count}
+        </Text>
+      )}
 
       <RotateButtons
         color="blue"

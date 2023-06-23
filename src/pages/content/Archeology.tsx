@@ -43,7 +43,10 @@ export default () => {
 
   return (
     <FlexView
-      css={{ margin: `20px auto`, padding: isMobile ? `0 10px` : 0 }}
+      css={{
+        margin: isMobile ? `20px auto` : `40px auto`,
+        padding: isMobile ? `0 10px` : 0,
+      }}
       gap={20}
     >
       <FlexView content="between" gap={20} items="center" row>
@@ -51,31 +54,39 @@ export default () => {
           고고학 유물
         </Text>
 
-        <FlexView items="center" row>
-          <Input
-            css={{
-              borderRadius: `4px 0 0 4px`,
-              borderRight: 0,
-              '::placeholder': {
-                fontSize: isMobile ? `14px` : `16px`,
-              },
-            }}
-            placeholder={isMobile ? `아이템, 지역` : `아이템, 지역, NPC, 보상`}
-            width={isMobile ? 120 : 180}
-            onChange={inputSearchKeyword}
-            onKeyDown={e => {
-              if (e.key === `Enter`) searchItem();
-            }}
-          />
+        {!isMobile && (
+          <FlexView items="center" row>
+            <Input
+              css={{
+                borderRadius: `4px 0 0 4px`,
+                borderRight: 0,
+                '::placeholder': {
+                  fontSize: isMobile ? `14px` : `16px`,
+                },
+              }}
+              placeholder={
+                isMobile ? `아이템, 지역` : `아이템, 지역, NPC, 보상`
+              }
+              width={isMobile ? 120 : 180}
+              onChange={inputSearchKeyword}
+              onKeyDown={e => {
+                if (e.key === `Enter`) searchItem();
+              }}
+            />
 
-          <Button
-            color="blue"
-            css={{ width: `60px`, height: `36px`, borderRadius: `0 4px 4px 0` }}
-            onClick={searchItem}
-          >
-            <Text color={Colors.white}>검색</Text>
-          </Button>
-        </FlexView>
+            <Button
+              color="blue"
+              css={{
+                width: `60px`,
+                height: `36px`,
+                borderRadius: `0 4px 4px 0`,
+              }}
+              onClick={searchItem}
+            >
+              <Text color={Colors.white}>검색</Text>
+            </Button>
+          </FlexView>
+        )}
       </FlexView>
 
       {isMobile ? (

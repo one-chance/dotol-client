@@ -9,7 +9,7 @@ import {
 } from '@pages/board';
 import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { Achievement, Adventure, Archeology } from '@pages/content';
-import { CostumeList, Lookbook, Tanning } from '@pages/costume';
+import { Costumes, LuxurySeries, Lookbook, Tanning } from '@pages/costume';
 import { AntiquityEquip, NormalEquip, PetEquip, SkillAbility } from '@pages/db';
 import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
@@ -85,9 +85,14 @@ export const ProductionPage = {
 };
 
 /* 코디 메뉴 */
-export const CostumeListPage = {
-  path: `/costume/list`,
-  element: <CostumeList />,
+export const LuxurySeriesPage = {
+  path: `/costume/list/luxury`,
+  element: <LuxurySeries />,
+};
+
+export const CostumesPage = {
+  path: `/costume/list/*`,
+  element: <Costumes />,
 };
 
 export const LookbookPage = {
