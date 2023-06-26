@@ -2,7 +2,9 @@ import { forwardRef } from 'react';
 
 import { Button, FlexView, Link, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
+import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
+import { useSetRecoilState } from 'recoil';
 
 const linkCSS: CSSObject = {
   lineHeight: `40px`,
@@ -16,8 +18,12 @@ type MenuProps = {
 
 export default forwardRef<HTMLDivElement, MenuProps>(
   ({ close }: MenuProps, ref) => {
+    const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+
     const signout = () => {
-      // 로그아웃
+      sessionStorage.removeItem(`accessToken`);
+      setIsLoggedIn(false);
+      close();
     };
 
     return (
@@ -47,8 +53,8 @@ export default forwardRef<HTMLDivElement, MenuProps>(
         <Link css={linkCSS} to="/user/change-password" onClick={close}>
           비밀번호 변경
         </Link>
-        <Link css={linkCSS} to="/" onClick={close}>
-          대표 캐릭터
+        <Link css={linkCSS} to="/user/character" onClick={close}>
+          캐릭터 관리
         </Link>
         <Button
           css={{

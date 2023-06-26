@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { forgotUserId } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -27,9 +28,13 @@ export default () => {
   };
 
   const findUserId = () => {
-    setNotFoundError(true);
-    // 이메일 존재 확인
-    // 아이디 찾기
+    forgotUserId(email).then(res => {
+      if (res.statusCode === 200) {
+        setUserId(res.data);
+      } else if (res.statusCode === 404) {
+        setNotFoundError(true);
+      }
+    });
   };
 
   return (
@@ -55,8 +60,8 @@ export default () => {
 
       <FlexView css={{ height: `84px` }}>
         <Input
-          css={{ height: `40px`, fontSize: `16px` }}
-          placeholder="이메일 주소"
+          height={40}
+          placeholder="이메일"
           width={300}
           onChange={inputEmail}
         />
@@ -74,12 +79,12 @@ export default () => {
         </Text>
       </Button>
 
-      {userId && !notFoundError && (
+      {userId !== `` && !notFoundError && (
         <Text center>
-          해당 이메일로 가입된 계정의 아이디는
+          해당 이메일로 가입된 계정은
           <br />
           <Text color="red" bold>
-            xxx
+            {userId}
           </Text>
           입니다.
         </Text>

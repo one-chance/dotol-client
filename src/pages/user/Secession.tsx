@@ -1,10 +1,13 @@
 import { useState } from 'react';
 
+import { deleteUser } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
+import { useNavigate } from 'react-router-dom';
 
 export default () => {
+  const navigate = useNavigate();
   const isMobile = useResponsive(400);
   const [password, setPassword] = useState(``);
 
@@ -13,8 +16,12 @@ export default () => {
   };
 
   const secesseUser = () => {
-    // 비밀번호 일치 확인
-    // TODO: 회원탈퇴 API 연동
+    deleteUser().then(res => {
+      if (res.statusCode === 200) {
+        alert(`회원탈퇴가 완료되었습니다.`);
+        navigate(`/`);
+      }
+    });
   };
 
   return (

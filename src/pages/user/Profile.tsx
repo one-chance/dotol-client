@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { getMyInfo, updateMyInfo } from '@apis/users';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
+import { IUser } from '@interfaces/users';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
@@ -10,19 +12,33 @@ export default () => {
   const isMobile = useResponsive(400);
   const [editMode, setEditMode] = useState(false);
 
+  const [userInfo, setUserInfo] = useState<Partial<IUser>>({});
+
   const INFO_LIST = [
-    `아이디`,
-    `이메일`,
-    `등급`,
-    `포인트`,
+    // `아이디`,
+    // `이메일`,
+    // `등급`,
+    // `포인트`,
     `대표 캐릭터`,
     `오픈카톡`,
   ];
+
+  const inputOpenTalk = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({ ...userInfo, openTalk: e.target.value });
+  };
 
   const saveProfile = () => {
     // TODO: save profile
     setEditMode(false);
   };
+
+  useEffect(() => {
+    getMyInfo().then(res => {
+      if (res.statusCode === 200) {
+        setUserInfo(res.data);
+      }
+    });
+  }, []);
 
   return (
     <FlexView
@@ -48,7 +64,7 @@ export default () => {
           <Button
             onClick={() => (editMode ? saveProfile() : setEditMode(true))}
           >
-            <Text>{editMode ? `저장` : `수정하기`}</Text>
+            <Text color={Colors.primary}>{editMode ? `저장` : `수정`}</Text>
           </Button>
 
           {editMode && (
@@ -59,25 +75,61 @@ export default () => {
         </FlexView>
 
         <FlexView gap={16}>
-          {INFO_LIST.map((info: string, index: number) => (
-            <FlexView key={info} css={{ height: `40px` }} items="center" row>
-              <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
-                {info}
-              </Text>
+          <FlexView css={{ height: `40px` }} items="center" row>
+            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+              아이디
+            </Text>
 
-              {index > 4 && editMode ? (
-                <Input
-                  css={{
-                    height: `40px`,
-                  }}
-                />
-              ) : (
-                <Text css={{ flex: 1 }} small={isMobile}>
-                  123
-                </Text>
-              )}
-            </FlexView>
-          ))}
+            <Text>{userInfo?.userId}</Text>
+          </FlexView>
+
+          <FlexView css={{ height: `40px` }} items="center" row>
+            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+              이메일
+            </Text>
+
+            <Text>{userInfo?.email}</Text>
+          </FlexView>
+
+          <FlexView css={{ height: `40px` }} items="center" row>
+            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+              도톨 레벨
+            </Text>
+
+            <Text>{userInfo?.grade}</Text>
+          </FlexView>
+
+          <FlexView css={{ height: `40px` }} items="center" row>
+            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+              도톨 포인트
+            </Text>
+
+            <Text>{userInfo?.point}</Text>
+          </FlexView>
+
+          <FlexView css={{ height: `40px` }} items="center" row>
+            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+              대표 캐릭터
+            </Text>
+
+            <Text>{userInfo?.mainCharacter}</Text>
+          </FlexView>
+
+          <FlexView css={{ height: `40px` }} items="center" row>
+            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+              오픈 카톡
+            </Text>
+
+            {editMode ? (
+              <Input
+                height={40}
+                value={userInfo?.openTalk}
+                onChange={inputOpenTalk}
+              />
+            ) : (
+              <Text>{userInfo?.openTalk}</Text>
+            )}
+          </FlexView>
 
           <FlexView
             css={{ minHeight: `40px` }}
@@ -108,7 +160,7 @@ export default () => {
           </FlexView>
         </FlexView>
 
-        <FlexView css={{ marginTop: `20px` }}>
+        <FlexView content="end" css={{ marginTop: `20px` }} row>
           <Button
             color={Colors.red}
             css={{ width: `100px`, height: `40px` }}

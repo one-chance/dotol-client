@@ -1,27 +1,44 @@
 import { useState } from 'react';
 
-import { getLookbookCount } from '@apis/costumes';
+import { getLookbookCount, decreaseLookbookCount } from '@apis/costumes';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { LookbookList } from '@components/costume-pages';
-import { LookbookCount } from '@interfaces/costumes';
+import { isLoggedInState, userInfoState } from '@states/login';
 import { Colors } from '@styles/system';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useResponsive } from '@utils/hooks';
+import { useRecoilValue } from 'recoil';
 
 export default () => {
   const isMobile = useResponsive(980);
-  const userId = `quwieo`;
+  const queryClient = useQueryClient();
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+  const { grade, character } = useRecoilValue(userInfoState);
 
   const [equipList, setEquipList] = useState(``);
   const { data: lookbookCount } = useQuery<number>(
-    [`lookbookCount`, userId],
-    () => getLookbookCount(userId),
+    [`lookbookCount`],
+
+    () => (isLoggedIn ? getLookbookCount() : 0),
   );
 
-  const equipItem = async (_items: string) => {
+  const decreaseCount = useMutation(decreaseLookbookCount, {
+    onSuccess: () => {
+      queryClient.invalidateQueries([`lookbookCount`]);
+    },
+  });
+
+  const equipItem = (_items: string) => {
+    if (grade < 2) {
+      alert(`대표 캐릭터를 인증한 후에 사용할 수 있습니다.`);
+      return;
+    }
+
+    if (lookbookCount === 0) return;
+
     setEquipList(_items);
-    // 잔여 횟수 1 감소
+    decreaseCount.mutate();
   };
 
   return (
@@ -35,11 +52,7 @@ export default () => {
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar
-          character="협가검@하자"
-          count={lookbookCount}
-          equip={equipList}
-        />
+        <Avatar character={character} count={lookbookCount} equip={equipList} />
 
         <LookbookList applyPreview={equipItem} isMobile={isMobile} />
       </FlexView>

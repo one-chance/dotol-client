@@ -138,7 +138,7 @@ export default () => {
 
           <FlexView content="center" gap={8} row wrap>
             {testList.map(item => (
-              <FlexView>
+              <FlexView key={item}>
                 <FlexView
                   color="#EBE7E2"
                   css={{ width: `160px`, height: `80px` }}

@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 
-import { checkUserId } from '@apis/auth';
+import { isDuplicatedUserId, isDuplicatedEmail } from '@apis/users';
 import {
   Button,
   Checkbox,
@@ -53,7 +53,10 @@ export default () => {
   };
 
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const passwordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=]).*$/;
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
+
+    // if (pattern.test(e.target.value)) setIsCertified(true);
+    // else setIsCertified(false);
 
     setPassword(e.target.value);
   };
@@ -71,19 +74,19 @@ export default () => {
   };
 
   const checkUniqueId = () => {
-    checkUserId(userId).then(res => {
-      setIsUniqueId(true);
+    isDuplicatedUserId(userId).then(res => {
+      if (res) alert(`중복된 아이디입니다.`);
+      else setIsUniqueId(true);
     });
     // TODO: check unique id
   };
 
-  const checkUniqueEmail = () => {
-    // TODO: check unique email
-  };
-
   const sendOTP = () => {
     // TODO: send OTP
-    setRequestOTP(true);
+    isDuplicatedEmail(email).then(res => {
+      if (res) alert(`이미 등록된 이메일입니다.\n다른 이메일로 시도해주세요.`);
+      else setRequestOTP(true);
+    });
   };
 
   const openTerms = () => {
@@ -173,7 +176,9 @@ export default () => {
               }}
               placeholder="영문, 숫자, 특수문자 (8자리 이상)"
               type="password"
+              value={password || ``}
               width={INPUT_WIDTH}
+              onChange={inputPassword}
             />
 
             <FlexView css={btnCSS} center>

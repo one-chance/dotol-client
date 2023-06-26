@@ -25,8 +25,8 @@ export default ({
   recommendList,
   write,
 }: BoardButtonProps) => {
-  const { grade } = useRecoilValue(userInfoState);
   const navigate = useNavigate();
+  const { grade } = useRecoilValue(userInfoState);
   const [isRecommended, setIsRecommended] = useState(
     recommendList?.includes(`내 아이디`),
   );

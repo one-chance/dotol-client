@@ -6,10 +6,16 @@ import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(400);
-  const [password, setPassword] = useState(``);
 
-  const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const [oldPassword, setOldPassword] = useState(``);
+  const [newPassword, setNewPassword] = useState(``);
+
+  const inputOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOldPassword(e.target.value);
+  };
+
+  const inputNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewPassword(e.target.value);
   };
 
   const changePassword = () => {
@@ -37,38 +43,38 @@ export default () => {
           비밀번호 변경
         </Text>
 
-        <FlexView css={{}} gap={16}>
-          <FlexView items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
-              기존 비밀번호
-            </Text>
-            <Input
-              css={{
-                height: `40px`,
-              }}
-              type="password"
-              onChange={inputPassword}
-            />
-          </FlexView>
+        <FlexView gap={32}>
+          <FlexView gap={16}>
+            <FlexView items="center" row>
+              <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+                기존 비밀번호
+              </Text>
+              <Input
+                height={40}
+                type="password"
+                value={oldPassword || ``}
+                onChange={inputOldPassword}
+              />
+            </FlexView>
 
-          <FlexView items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
-              새 비밀번호
-            </Text>
-            <Input
-              css={{
-                height: `40px`,
-              }}
-              type="password"
-              onChange={inputPassword}
-            />
+            <FlexView items="center" row>
+              <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+                새 비밀번호
+              </Text>
+              <Input
+                height={40}
+                type="password"
+                value={newPassword || ``}
+                onChange={inputNewPassword}
+              />
+            </FlexView>
           </FlexView>
 
           <FlexView content="end" row>
             <Button
               color={Colors.red}
               css={{ width: `160px`, height: `40px` }}
-              disabled={password.length < 8}
+              disabled={oldPassword.length < 8 || newPassword.length < 8}
               radius={4}
               onClick={changePassword}
             >

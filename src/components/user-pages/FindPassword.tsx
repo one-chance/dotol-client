@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { forgotPassword } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -31,8 +32,9 @@ export default () => {
   };
 
   const findPassword = () => {
-    // 이메일 존재 확인
-    // 비밀번호 초기화
+    forgotPassword(userId, email).then(res => {
+      if (res.statusCode === 200) setIsInitialized(true);
+    });
   };
 
   return (
@@ -42,7 +44,6 @@ export default () => {
         border: `1px solid lightgray`,
         borderRadius: `8px`,
         padding: `20px`,
-        boxSizing: `border-box`,
       }}
       fill={isMobile}
       gap={isMobile ? 12 : 24}
@@ -58,8 +59,18 @@ export default () => {
       </Text>
 
       <FlexView gap={12}>
-        <Input placeholder="사용자 ID" width={300} onChange={inputUserId} />
-        <Input placeholder="이메일 주소" width={300} onChange={inputEmail} />
+        <Input
+          height={40}
+          placeholder="아이디"
+          width={300}
+          onChange={inputUserId}
+        />
+        <Input
+          height={40}
+          placeholder="이메일"
+          width={300}
+          onChange={inputEmail}
+        />
       </FlexView>
 
       <Button
@@ -70,7 +81,7 @@ export default () => {
         onClick={findPassword}
       >
         <Text color={Colors.white} small={isMobile} medium>
-          비밀번호 초기화
+          찾기
         </Text>
       </Button>
 

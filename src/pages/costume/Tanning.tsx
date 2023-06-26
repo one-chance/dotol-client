@@ -3,14 +3,21 @@ import { useState } from 'react';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { TanningList } from '@components/costume-pages';
+import { userInfoState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
+import { useRecoilValue } from 'recoil';
 
 export default () => {
   const isMobile = useResponsive(980);
+  const { grade, character } = useRecoilValue(userInfoState);
   const [skinNumber, setSkinNumber] = useState(-1);
 
   const changeSkin = (_skin: number) => {
+    if (grade < 2) {
+      alert(`대표 캐릭터를 인증한 후에 사용할 수 있습니다.`);
+      return;
+    }
     setSkinNumber(_skin);
   };
 
@@ -26,7 +33,7 @@ export default () => {
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar character="협가검@하자" count={-1} skin={skinNumber} />
+        <Avatar character={character} count={-1} skin={skinNumber} />
 
         <TanningList selectSkin={changeSkin} skinColor={skinNumber} />
       </FlexView>

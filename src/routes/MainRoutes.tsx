@@ -36,7 +36,10 @@ export default () => {
         element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
         path="/user/profile"
       />
-      <Route element={<CharacterList />} path="/user/character" />
+      <Route
+        element={isLoggedIn ? <CharacterList /> : <Navigate to="/" />}
+        path="/user/character"
+      />
       <Route
         element={isLoggedIn ? <ChangePassword /> : <Navigate to="/" />}
         path="/user/change-password"

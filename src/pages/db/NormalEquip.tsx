@@ -92,24 +92,37 @@ export default () => {
   };
 
   const searchItemByName = () => {
-    // 장비 검색
+    if (searchKeyword === ``) {
+      setItems([]);
+      return;
+    }
+
     getEquipByName(searchKeyword).then(res => {
-      setItems(res.result);
+      if (res.statusCode === 200) setItems(res.data);
     });
 
     setSearchOption({ type: 0, part: 0, job: 0 });
   };
 
   const searchItemByOption = () => {
-    setSearchKeyword(``);
+    if (
+      searchOption.type === 0 &&
+      searchOption.part === 0 &&
+      searchOption.job === 0
+    ) {
+      setItems([]);
+      return;
+    }
 
     getEquipByOption({
       type: searchOption.type,
       part: searchOption.part,
       job: searchOption.job,
     }).then(res => {
-      setItems(res.result);
+      if (res.statusCode === 200) setItems(res.data);
     });
+
+    setSearchKeyword(``);
   };
 
   const saveToSlot = (name: string) => {

@@ -4,9 +4,3 @@ export type IClothes = {
   gender: number;
   luxury: boolean;
 };
-
-export type LookbookCount = {
-  userId: string;
-  usedDate: string;
-  count: number;
-};

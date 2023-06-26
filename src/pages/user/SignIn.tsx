@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { verifyUser } from '@apis/users';
 import {
   Button,
   Checkbox,
@@ -29,6 +30,7 @@ export default () => {
   const inputCSS: CSSObject = {
     height: `40px`,
     borderRadius: `4px`,
+    fontSize: `16px`,
   };
 
   const inputUserId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,12 +41,21 @@ export default () => {
     setPassword(e.target.value);
   };
 
-  const signinUser = () => {
-    // 아이디 존재 확인
-    // 비밀번호 일치 확인
-    // 로그인
-    navigate(-1);
-    setIsLoggedIn(true);
+  const login = () => {
+    setNotFoundError(false);
+    setPasswordError(false);
+
+    verifyUser(userId, password).then(res => {
+      if (res.statusCode === 201) {
+        sessionStorage.setItem(`accessToken`, res.data);
+        setIsLoggedIn(true);
+        navigate(-1);
+      } else if (res.statusCode === 404) {
+        setNotFoundError(true);
+      } else if (res.statusCode === 400) {
+        setPasswordError(true);
+      }
+    });
   };
 
   return (
@@ -66,6 +77,7 @@ export default () => {
             <Input
               css={inputCSS}
               placeholder="아이디"
+              value={userId || ``}
               width={INPUT_WIDTH}
               onChange={inputUserId}
             />
@@ -85,6 +97,7 @@ export default () => {
               css={inputCSS}
               placeholder="비밀번호"
               type="password"
+              value={password || ``}
               width={INPUT_WIDTH}
               onChange={inputPassword}
             />
@@ -110,7 +123,7 @@ export default () => {
             css={{ minHeight: `40px` }}
             disabled={userId.length < 6 || password.length < 8}
             radius={20}
-            onClick={signinUser}
+            onClick={login}
           >
             <Text color={Colors.white} semiBold>
               로그인

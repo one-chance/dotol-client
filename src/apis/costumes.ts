@@ -1,8 +1,8 @@
-import { LookbookCount } from '@interfaces/costumes';
+import { getAccessToken } from '@utils/common';
 
 export const getClothesByName = async (name: string) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/costumes/${name}`,
+    `${import.meta.env.VITE_API_SERVER}/costumes/item/${name}`,
     {
       method: `GET`,
       headers: {
@@ -16,7 +16,9 @@ export const getClothesByName = async (name: string) => {
 
 export const getClothesByPart = async (part: number, page: number) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/costumes?part=${part}&page=${page}`,
+    `${
+      import.meta.env.VITE_API_SERVER
+    }/costumes/item?part=${part}&page=${page}`,
     {
       method: `GET`,
       headers: {
@@ -28,27 +30,30 @@ export const getClothesByPart = async (part: number, page: number) => {
   return data;
 };
 
-export const getLookbookCount = async (userId: string): Promise<number> => {
+export const getLookbookCount = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_API_SERVER}/costumes/lookbook/count`,
     {
       method: `GET`,
       headers: {
         'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     },
   );
   const data = await res.json();
-  return data;
+
+  return data.count;
 };
 
-export const decreaseLookbookCount = async (userId: string) => {
+export const decreaseLookbookCount = async () => {
   const res = await fetch(
     `${import.meta.env.VITE_API_SERVER}/costumes/lookbook/count`,
     {
       method: `PATCH`,
       headers: {
         'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     },
   );

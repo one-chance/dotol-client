@@ -7,7 +7,7 @@ import RotateButtons from './RotateButtons';
 
 interface AvatarProps {
   character: string | undefined;
-  count?: number;
+  count?: number | any;
   skin?: number;
   equip?: string;
 }
