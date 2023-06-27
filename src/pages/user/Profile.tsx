@@ -11,25 +11,27 @@ export default () => {
   const navigate = useNavigate();
   const isMobile = useResponsive(400);
   const [editMode, setEditMode] = useState(false);
-
-  const [userInfo, setUserInfo] = useState<Partial<IUser>>({});
-
-  const INFO_LIST = [
-    // `아이디`,
-    // `이메일`,
-    // `등급`,
-    // `포인트`,
-    `대표 캐릭터`,
-    `오픈카톡`,
-  ];
+  const [userInfo, setUserInfo] = useState<IUser>({
+    index: 0,
+    userId: ``,
+    password: ``,
+    email: ``,
+    grade: 0,
+    point: 0,
+    mainCharacter: ``,
+    openTalk: ``,
+    isReset: false,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  });
 
   const inputOpenTalk = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInfo({ ...userInfo, openTalk: e.target.value });
   };
 
   const saveProfile = () => {
-    // TODO: save profile
     setEditMode(false);
+    updateMyInfo(userInfo);
   };
 
   useEffect(() => {
@@ -51,8 +53,8 @@ export default () => {
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
-          borderRadius: `4px`,
-          padding: `40px`,
+          borderRadius: `8px`,
+          padding: isMobile ? `10px` : `40px`,
         }}
         gap={40}
       >
@@ -141,20 +143,21 @@ export default () => {
             </Text>
 
             {editMode ? (
-              <FlexView gap={8} items="center" row>
-                <Input
-                  css={{
-                    height: `40px`,
-                  }}
-                  readOnly
-                />
-                {/* 등급이 일정 이상이어야 수정 가능 */}
-                <Button css={{ width: `60px`, height: `40px` }}>
+              <FlexView gap={8} items="center" fill row>
+                <Input height={40} readOnly />
+
+                <Button
+                  border={Colors.primary}
+                  css={{ width: `60px`, height: `40px` }}
+                  radius={4}
+                >
                   <Text>업로드</Text>
                 </Button>
               </FlexView>
             ) : (
-              <Text>123</Text>
+              <FlexView content="center" css={{ minHeight: `40px` }}>
+                <Text>123</Text>
+              </FlexView>
               // <Image />
             )}
           </FlexView>

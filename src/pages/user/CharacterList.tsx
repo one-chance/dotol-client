@@ -6,6 +6,7 @@ import {
   registerCharacter,
   updateMainCharacter,
 } from '@apis/characters';
+import { getMyInfo } from '@apis/users';
 import {
   Button,
   FlexView,
@@ -14,55 +15,58 @@ import {
   Text,
   Divider,
 } from '@components/common';
-import { userInfoState } from '@states/login';
 import { Colors } from '@styles/system';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useResponsive } from '@utils/hooks';
-import { useRecoilValue } from 'recoil';
 
 export default () => {
   const isMobile = useResponsive(510);
-  const mainCharacter = useRecoilValue(userInfoState).character;
-  const [characters, setCharacters] = useState([]);
-  const [character, setCharacter] = useState(``);
+  const queryClient = useQueryClient();
+  const [newCharacter, setNewCharacter] = useState(``);
+  const [mainCharacter, setMainCharacter] = useState(``);
+
+  const { data: characterList } = useQuery(
+    [`characterList`],
+    () => getCharacterList().then(res => res.data),
+    { initialData: [] },
+  );
+
+  const addCharacter = useMutation(() => registerCharacter(newCharacter), {
+    onSuccess: res => {
+      if (res.statusCode === 200) {
+        queryClient.invalidateQueries([`characterList`]);
+      } else if (res.statusCode === 400) {
+        alert(res.message);
+      }
+    },
+  });
+
+  const changeMainCharacter = useMutation(updateMainCharacter, {
+    onSuccess: res => {
+      if (res.statusCode === 200) {
+        window.location.reload();
+      }
+    },
+  });
+
+  const removeCharacter = useMutation(deleteCharacter, {
+    onSuccess: res => {
+      if (res.statusCode === 200) {
+        queryClient.invalidateQueries([`characterList`]);
+      } else if (res.statusCode === 400) {
+        alert(res.message);
+      }
+    },
+  });
 
   const inputCharacter = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCharacter(e.target.value);
-  };
-
-  const addCharacter = () => {
-    if (character === ``) return;
-
-    registerCharacter(character).then(res => {
-      if (res.statusCode === 200) {
-        window.location.reload();
-      } else if (res.statusCode === 400) {
-        alert(res.message);
-      }
-    });
-  };
-
-  const changeMainCharacter = (id: number) => {
-    updateMainCharacter(characters[id]).then(res => {
-      if (res.statusCode === 200) {
-        window.location.reload();
-      }
-    });
-  };
-
-  const removeCharacter = (id: number) => {
-    deleteCharacter(characters[id]).then(res => {
-      if (res.statusCode === 200) {
-        window.location.reload();
-      } else if (res.statusCode === 400) {
-        alert(res.message);
-      }
-    });
+    setNewCharacter(e.target.value);
   };
 
   useEffect(() => {
-    getCharacterList().then(res => {
+    getMyInfo().then(res => {
       if (res.statusCode === 200) {
-        setCharacters(res.data);
+        setMainCharacter(res.data.mainCharacter);
       }
     });
   }, []);
@@ -100,12 +104,12 @@ export default () => {
             <FlexView content="center" gap={4} items="center" row>
               <Input
                 placeholder="캐릭터@서버"
-                value={character || ``}
+                value={newCharacter || ``}
                 width={isMobile ? 160 : 240}
                 center
                 onChange={inputCharacter}
                 onKeyDown={e => {
-                  if (e.key === `Enter`) addCharacter();
+                  if (e.key === `Enter`) addCharacter.mutate();
                 }}
               />
 
@@ -113,7 +117,7 @@ export default () => {
                 color={Colors.primary}
                 css={{ width: `60px`, minHeight: `36px` }}
                 radius={4}
-                onClick={addCharacter}
+                onClick={() => addCharacter.mutate()}
               >
                 <Text color={Colors.white}>인증</Text>
               </Button>
@@ -128,7 +132,7 @@ export default () => {
             캐릭터 목록
           </Text>
 
-          {characters?.length === 0 && (
+          {characterList?.length === 0 && (
             <FlexView css={{ minHeight: `40px` }} center>
               <Text color={Colors.grey} semiBold>
                 인증된 캐릭터가 없습니다.
@@ -136,7 +140,7 @@ export default () => {
             </FlexView>
           )}
 
-          {characters?.map((name, index) => (
+          {characterList?.map((name: string, index: number) => (
             <FlexView key={name} content="between" gap={20} items="center" row>
               <FlexView gap={4} items="center" row>
                 <Text semiBold>{name}</Text>
@@ -147,7 +151,9 @@ export default () => {
                   border="black"
                   css={{ width: `40px`, height: `30px` }}
                   radius={4}
-                  onClick={() => changeMainCharacter(index)}
+                  onClick={() =>
+                    changeMainCharacter.mutate(characterList[index])
+                  }
                 >
                   <Text small>대표</Text>
                 </Button>
@@ -155,7 +161,7 @@ export default () => {
                   border={Colors.red}
                   css={{ width: `40px`, height: `30px` }}
                   radius={4}
-                  onClick={() => removeCharacter(index)}
+                  onClick={() => removeCharacter.mutate(characterList[index])}
                 >
                   <Text color={Colors.red} small>
                     삭제

@@ -9,5 +9,5 @@ export type IUser = {
   openTalk: string;
   isReset: boolean;
   createdAt: Date;
-  editedAt: Date;
+  updatedAt: Date;
 };

@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { isLoggedInState } from '@states/login';
-import { useQueryClient } from '@tanstack/react-query';
-import { useRecoilState } from 'recoil';
+import { getMyInfo } from '@apis/users';
 
 interface Size {
   width: number;
@@ -45,18 +43,3 @@ export const useResponsive = (breakpoin: number): boolean => {
 
   return isMobile;
 };
-
-export const useLoginState = () => {
-  const [isLoggedIn, setIsLoggedIn] = useRecoilState(isLoggedInState);
-
-  useEffect(() => {
-    const storedLoggedInState = sessionStorage.getItem(`accessToken`);
-    if (storedLoggedInState === `true`) {
-      setIsLoggedIn(true);
-    }
-  }, [setIsLoggedIn]);
-
-  return isLoggedIn;
-};
-
-export default useLoginState;

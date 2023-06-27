@@ -10,8 +10,9 @@ import {
   Text,
 } from '@components/common';
 import { CSSObject } from '@emotion/react';
-import { isLoggedInState } from '@states/login';
+import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
+import { decodeJWT } from '@utils/common';
 import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
@@ -25,7 +26,8 @@ export default () => {
   const [password, setPassword] = useState(``);
   const [notFoundError, setNotFoundError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+  const setIsLoggedInState = useSetRecoilState(isLoggedInState);
+  const setUserIdState = useSetRecoilState(userIdState);
 
   const inputCSS: CSSObject = {
     height: `40px`,
@@ -48,7 +50,8 @@ export default () => {
     verifyUser(userId, password).then(res => {
       if (res.statusCode === 201) {
         sessionStorage.setItem(`accessToken`, res.data);
-        setIsLoggedIn(true);
+        setIsLoggedInState(true);
+        setUserIdState(decodeJWT(res.data).userId);
         navigate(-1);
       } else if (res.statusCode === 404) {
         setNotFoundError(true);

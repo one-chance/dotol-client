@@ -15,26 +15,17 @@ export const isLoggedInState = atom<boolean>({
   ],
 });
 
-export const userInfoState = atom<{
-  userId: string;
-  character: string;
-  grade: number;
-}>({
-  key: `userInfoState`,
-  default: { userId: ``, character: `캐릭터@서버`, grade: 0 },
+export const userIdState = atom<string>({
+  key: `userIdState`,
+  default: ``,
   effects: [
     ({ setSelf }) => {
       const token = getAccessToken();
 
       if (token !== null) {
-        const info = decodeJWT(token);
-        setSelf({
-          userId: info.userId,
-          character: info.character,
-          grade: info.grade,
-        });
+        setSelf(decodeJWT(token));
       } else {
-        setSelf({ userId: ``, character: `캐릭터@서버`, grade: 0 });
+        setSelf(``);
       }
     },
   ],

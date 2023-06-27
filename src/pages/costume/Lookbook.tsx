@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { getLookbookCount, decreaseLookbookCount } from '@apis/costumes';
+import { getMyInfo } from '@apis/users';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { LookbookList } from '@components/costume-pages';
-import { isLoggedInState, userInfoState } from '@states/login';
+import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useResponsive } from '@utils/hooks';
@@ -14,13 +15,14 @@ export default () => {
   const isMobile = useResponsive(980);
   const queryClient = useQueryClient();
   const isLoggedIn = useRecoilValue(isLoggedInState);
-  const { grade, character } = useRecoilValue(userInfoState);
+  const [grade, setGrade] = useState(0);
+  const [mainCharacter, setMainCharacter] = useState(``);
 
   const [equipList, setEquipList] = useState(``);
   const { data: lookbookCount } = useQuery<number>(
     [`lookbookCount`],
-
-    () => (isLoggedIn ? getLookbookCount() : 0),
+    () => (isLoggedIn ? getLookbookCount().then(res => res.data) : 0),
+    { initialData: 0, enabled: isLoggedIn },
   );
 
   const decreaseCount = useMutation(decreaseLookbookCount, {
@@ -41,6 +43,21 @@ export default () => {
     decreaseCount.mutate();
   };
 
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setGrade(0);
+      setMainCharacter(``);
+      return;
+    }
+
+    getMyInfo().then(res => {
+      if (res.statusCode === 200) {
+        setGrade(res.data.grade);
+        setMainCharacter(res.data.mainCharacter);
+      }
+    });
+  }, [isLoggedIn]);
+
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
       <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
@@ -52,7 +69,11 @@ export default () => {
         items={isMobile ? `center` : undefined}
         row={!isMobile}
       >
-        <Avatar character={character} count={lookbookCount} equip={equipList} />
+        <Avatar
+          character={mainCharacter}
+          count={lookbookCount}
+          equip={equipList}
+        />
 
         <LookbookList applyPreview={equipItem} isMobile={isMobile} />
       </FlexView>

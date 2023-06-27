@@ -42,8 +42,7 @@ export const getLookbookCount = async () => {
     },
   );
   const data = await res.json();
-
-  return data.count;
+  return data;
 };
 
 export const decreaseLookbookCount = async () => {

@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { Button, FlexView, Link, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
-import { isLoggedInState } from '@states/login';
+import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useSetRecoilState } from 'recoil';
 
@@ -18,11 +18,13 @@ type MenuProps = {
 
 export default forwardRef<HTMLDivElement, MenuProps>(
   ({ close }: MenuProps, ref) => {
-    const setIsLoggedIn = useSetRecoilState(isLoggedInState);
+    const setIsLoggedInState = useSetRecoilState(isLoggedInState);
+    const setUserIdState = useSetRecoilState(userIdState);
 
     const signout = () => {
       sessionStorage.removeItem(`accessToken`);
-      setIsLoggedIn(false);
+      setIsLoggedInState(false);
+      setUserIdState(``);
       close();
     };
 

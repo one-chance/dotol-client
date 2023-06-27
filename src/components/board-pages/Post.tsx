@@ -6,23 +6,22 @@ import {
 } from '@components/board-pages';
 import { Button, FlexView, Text } from '@components/common';
 import { CATEGORES } from '@constants/board';
-import { Category } from '@interfaces/board';
-import { userInfoState } from '@states/login';
+import { Category, IPost } from '@interfaces/board';
+import { userIdState } from '@states/login';
 import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 type PostProps = {
+  post: IPost;
   category: Category;
-  title: string;
-  content: string;
 };
 
 const basicUrl = `https://dotols.com`;
 
-export default ({ category, title, content }: PostProps) => {
+export default ({ post, category }: PostProps) => {
   const location = useLocation();
-  const { userId } = useRecoilValue(userInfoState);
-  const postId = location.pathname.split(`post/`)[1];
+  const userId = useRecoilValue(userIdState);
+  const postId = post.index;
 
   const copyUrl = () => {
     navigator.clipboard.writeText(basicUrl + location.pathname);
@@ -62,9 +61,9 @@ export default ({ category, title, content }: PostProps) => {
           <Text>작성자</Text>
         </FlexView>
 
-        <Text css={{ minWidth: `60px` }}>조회 1</Text>
+        <Text css={{ minWidth: `60px` }}>조회 {post?.views}</Text>
 
-        <Text css={{ minWidth: `60px` }}>추천 1</Text>
+        <Text css={{ minWidth: `60px` }}>추천 {post?.recommenders.length}</Text>
       </FlexView>
 
       <FlexView
@@ -94,7 +93,7 @@ export default ({ category, title, content }: PostProps) => {
           </Text>
         </FlexView>
 
-        {userId === `협가검@하자` && (
+        {userId === post?.writer.userId && (
           <FlexView gap={16} items="center" row>
             <Button onClick={editPost}>
               <Text small>수정</Text>
