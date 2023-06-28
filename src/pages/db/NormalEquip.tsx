@@ -237,11 +237,11 @@ export default () => {
               borderRadius: `4px`,
               padding: `10px 20px`,
             }}
-            gap={4}
+            gap={8}
             row
             wrap
           >
-            {items?.length < 1 && (
+            {items?.length === 0 && (
               <FlexView css={{ width: `100%` }} center>
                 <Text color="gray" small={isMobile}>
                   아이템을 선택하면 빈 슬롯에 자동으로 추가됩니다.
@@ -255,7 +255,7 @@ export default () => {
             {items?.map((item: IEquip) => (
               <Chip
                 key={item.name}
-                radius={8}
+                radius={4}
                 text={item.name}
                 clickable
                 onClick={() => saveToSlot(item.index.toString())}

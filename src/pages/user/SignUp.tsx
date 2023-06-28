@@ -75,10 +75,9 @@ export default () => {
 
   const checkUniqueId = () => {
     isDuplicatedUserId(userId).then(res => {
-      if (res) alert(`중복된 아이디입니다.`);
-      else setIsUniqueId(true);
+      if (res.statusCode === 400) alert(`중복된 아이디입니다.`);
+      else if (res.statusCode === 200) setIsUniqueId(true);
     });
-    // TODO: check unique id
   };
 
   const sendOTP = () => {
@@ -147,13 +146,13 @@ export default () => {
             />
 
             <Button
-              color="red"
+              color={Colors.primary}
               css={btnCSS}
               disabled={userId.length < 6}
               onClick={checkUniqueId}
             >
               <Text color={Colors.white} small={isMobile}>
-                중복 확인
+                {isUniqueId ? `사용 가능` : `중복 확인`}
               </Text>
             </Button>
           </FlexView>

@@ -9,7 +9,7 @@ import {
 } from '@pages/board';
 import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { Achievement, Adventure, Archeology } from '@pages/content';
-import { Costumes, LuxurySeries, Lookbook, Tanning } from '@pages/costume';
+import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
 import { AntiquityEquip, NormalEquip, PetEquip, SkillAbility } from '@pages/db';
 import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
@@ -63,8 +63,8 @@ export default () => {
       <Route element={<EditPost />} path="/board/:boardId/edit/:postId" />
 
       {/* 코디 메뉴 */}
+      <Route element={<Clothes />} path="/costume/list/*" />
       <Route element={<LuxurySeries />} path="/costume/list/luxury" />
-      <Route element={<Costumes />} path="/costume/list/*" />
       <Route element={<Lookbook />} path="/costume/lookbook" />
       <Route element={<Tanning />} path="/costume/tanning" />
 

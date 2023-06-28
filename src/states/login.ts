@@ -23,7 +23,7 @@ export const userIdState = atom<string>({
       const token = getAccessToken();
 
       if (token !== null) {
-        setSelf(decodeJWT(token));
+        setSelf(decodeJWT(token).userId);
       } else {
         setSelf(``);
       }

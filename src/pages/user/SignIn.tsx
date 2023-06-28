@@ -48,7 +48,7 @@ export default () => {
     setPasswordError(false);
 
     verifyUser(userId, password).then(res => {
-      if (res.statusCode === 201) {
+      if (res.statusCode === 200) {
         sessionStorage.setItem(`accessToken`, res.data);
         setIsLoggedInState(true);
         setUserIdState(decodeJWT(res.data).userId);

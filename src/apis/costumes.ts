@@ -1,8 +1,14 @@
 import { getAccessToken } from '@utils/common';
 
-export const getClothesByName = async (name: string) => {
+export const getClothesByName = async (
+  name: string,
+  part: number,
+  page: number,
+) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/costumes/item/${name}`,
+    `${
+      import.meta.env.VITE_API_SERVER
+    }/costumes/item/${name}?part=${part}&page=${page}`,
     {
       method: `GET`,
       headers: {

@@ -12,10 +12,11 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
 export default forwardRef<HTMLInputElement, InputProps>(
   ({ noBorder, center, width, height, ...props }: InputProps, ref) => {
     const inputCSS: CSSObject = {
+      background: `none`,
       border: `1px solid lightgray`,
       borderRadius: `4px`,
       outline: `none`,
-      background: `none`,
+      fontSize: `16px`,
       minHeight: height || `36px`,
       minWidth: 0,
       padding: `0 8px`,

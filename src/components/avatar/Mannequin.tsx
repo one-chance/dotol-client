@@ -14,15 +14,15 @@ export default ({ equip, character }: AvatarProps) => {
   const [direction, setDirecrtion] = useState(2);
   const [avatar, setAvatar] = useState(basic);
 
+  const equipList = equip ? `&previewEquip=${equip}` : ``;
+
   const changeDirection = (_dir: number) => {
     setDirecrtion(_dir);
   };
 
   useEffect(() => {
-    setAvatar(
-      `${basic}&changeDir=${direction}${equip ? `&previewEquip=${equip}` : ``}`,
-    );
-  }, [basic, equip, direction]);
+    setAvatar(`${basic}&changeDir=${direction}${equipList}`);
+  }, [basic, equipList, direction]);
 
   return (
     <FlexView css={{ padding: `20px` }} gap={16} items="center">
@@ -37,10 +37,10 @@ export default ({ equip, character }: AvatarProps) => {
         css={{ width: `180px`, height: `158px` }}
         center
       >
-        <Image src={avatar} />
+        {character && <Image src={avatar} />}
       </FlexView>
 
-      <Text semiBold>{character}</Text>
+      <Text semiBold>{character || `아이디@서버`}</Text>
     </FlexView>
   );
 };

@@ -127,7 +127,10 @@ export default () => {
 
         <Divider color="lightgray" margin={40} />
 
-        <FlexView css={{ padding: `0 20px` }} gap={20}>
+        <FlexView
+          css={{ padding: isMobile ? `0 10px` : `0 20px` }}
+          gap={isMobile ? 10 : 20}
+        >
           <Text bold center xLarge>
             캐릭터 목록
           </Text>
@@ -149,13 +152,13 @@ export default () => {
               <FlexView gap={8} items="center" row>
                 <Button
                   border="black"
-                  css={{ width: `40px`, height: `30px` }}
+                  css={{ width: `72px`, height: `30px` }}
                   radius={4}
                   onClick={() =>
                     changeMainCharacter.mutate(characterList[index])
                   }
                 >
-                  <Text small>대표</Text>
+                  <Text small>대표 변경</Text>
                 </Button>
                 <Button
                   border={Colors.red}

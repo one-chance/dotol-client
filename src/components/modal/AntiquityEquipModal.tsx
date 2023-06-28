@@ -32,7 +32,6 @@ const desktopModal = (close: () => void) => (
       <FlexView gap={8}>
         <FlexView>
           <Text semiBold>장비 수치</Text>
-
           <FlexView gap={4} row wrap>
             <Text small>사색인장 7(9.1)</Text>
             <Text small>/</Text>
@@ -51,8 +50,18 @@ const desktopModal = (close: () => void) => (
         </FlexView>
 
         <FlexView>
-          <Text semiBold>치장 효과</Text>
+          <Text semiBold>한벌 효과</Text>
+          <FlexView gap={4} row wrap>
+            <Text small>바람연대기(최상) 8.4</Text>
+            <Text small>/</Text>
+            <Text small>바람연대기(상) 7</Text>
+            <Text small>/</Text>
+            <Text small>바람연대기(중) 3.5</Text>
+          </FlexView>
+        </FlexView>
 
+        <FlexView>
+          <Text semiBold>치장 효과</Text>
           <FlexView gap={4} row wrap>
             <Text small>2품의 1.025</Text>
             <Text small>/</Text>
@@ -65,18 +74,6 @@ const desktopModal = (close: () => void) => (
         <FlexView>
           <Text semiBold>가문 특성</Text>
           <Text small>2포인트 0.7</Text>
-        </FlexView>
-
-        <FlexView>
-          <Text semiBold>한벌 효과</Text>
-
-          <FlexView gap={4} row wrap>
-            <Text small>바람연대기(최상) 8.4</Text>
-            <Text small>/</Text>
-            <Text small>바람연대기(상) 7</Text>
-            <Text small>/</Text>
-            <Text small>바람연대기(중) 3.5</Text>
-          </FlexView>
         </FlexView>
       </FlexView>
 
