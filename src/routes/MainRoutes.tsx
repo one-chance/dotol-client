@@ -10,7 +10,14 @@ import {
 import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { Achievement, Adventure, Archeology } from '@pages/content';
 import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
-import { AntiquityEquip, NormalEquip, PetEquip, SkillAbility } from '@pages/db';
+import {
+  AntiquityEquip,
+  NormalEquip,
+  PetEquipAccuracy,
+  PetEquipList,
+  PetEquipRecipe,
+  SkillAbility,
+} from '@pages/db';
 import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
 import {
@@ -64,14 +71,16 @@ export default () => {
 
       {/* 코디 메뉴 */}
       <Route element={<Clothes />} path="/costume/list/*" />
-      <Route element={<LuxurySeries />} path="/costume/list/luxury" />
+      <Route element={<LuxurySeries />} path="/costume/luxury" />
       <Route element={<Lookbook />} path="/costume/lookbook" />
       <Route element={<Tanning />} path="/costume/tanning" />
 
       {/* 도감 메뉴 */}
       <Route element={<AntiquityEquip />} path="/db/antiquity-equip" />
       <Route element={<NormalEquip />} path="/db/normal-equip" />
-      <Route element={<PetEquip />} path="/db/pet-equip" />
+      <Route element={<PetEquipAccuracy />} path="/db/pet-equip/accuracy" />
+      <Route element={<PetEquipList />} path="/db/pet-equip/list" />
+      <Route element={<PetEquipRecipe />} path="/db/pet-equip/recipe" />
       <Route element={<SkillAbility />} path="/db/skill-ability" />
 
       {/* 콘텐츠 메뉴 */}

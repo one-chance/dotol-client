@@ -7,6 +7,7 @@ import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
+import { COSTUME_TABS } from '@constants/menu';
 import { IClothes } from '@interfaces/costumes';
 import { isLoggedInState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -28,8 +29,6 @@ const CLOTHES_PARTS = [
   `세트옷`,
 ];
 
-const TABS = [`치장 미리보기`, `명품의 시리즈`];
-
 export default () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -39,7 +38,6 @@ export default () => {
   const [grade, setGrade] = useState(0);
   const [mainCharacter, setMainCharacter] = useState(``);
   const isLoggedIn = useRecoilValue(isLoggedInState);
-  const [selectedTab, setSelectedTab] = useState(TABS[0]);
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [selectedPart, setSelectedPart] = useState(0);
   const [selectedItem, setSelectedItem] = useState<IClothes>({
@@ -52,9 +50,9 @@ export default () => {
   const [clothesList, setClothesList] = useState<IClothes[]>([]);
   const [itemCount, setItemCount] = useState(1);
 
-  const selectTab = (tab: string) => {
-    setSelectedTab(tab);
-  };
+  // const selectTab = (tab: string) => {
+  //   setSelectedTab(tab);
+  // };
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -166,7 +164,7 @@ export default () => {
       css={{ margin: isMobile ? `0 auto 20px auto` : `40px auto` }}
       gap={20}
     >
-      <MenuTab isMobile={isMobile} menus={TABS} onClick={selectTab} />
+      <MenuTab isMobile={isMobile} menus={COSTUME_TABS} />
 
       <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
         치장 미리보기

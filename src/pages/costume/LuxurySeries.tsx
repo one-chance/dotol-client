@@ -1,16 +1,23 @@
-import { FlexView, Image } from '@components/common';
+import { FlexView } from '@components/common';
 import { LuxuryList } from '@components/costume-pages';
+import { MenuTab } from '@components/layout';
+import { COSTUME_TABS } from '@constants/menu';
+import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const test = encodeURIComponent(`111.png`);
-
-  console.log(encodeURIComponent(`[상급]고대은제팔찌.png`));
+  const isMobile = useResponsive(960);
 
   return (
-    <FlexView>
-      <LuxuryList />
+    <FlexView
+      css={{
+        width: `960px`,
+        margin: isMobile ? `0 auto 20px auto` : `40px auto`,
+      }}
+      gap={20}
+    >
+      <MenuTab isMobile={isMobile} menus={COSTUME_TABS} />
 
-      <Image src="https://image.dotols.com/equip/1.png" />
+      <LuxuryList />
     </FlexView>
   );
 };

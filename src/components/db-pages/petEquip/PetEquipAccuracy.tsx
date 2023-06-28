@@ -3,10 +3,7 @@ import { useState, useEffect } from 'react';
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { Colors } from '@styles/system';
-
-type AccuracyProps = {
-  isMobile: boolean;
-};
+import { useResponsive } from '@utils/hooks';
 
 const TYPES = [`환수 종류`, `황룡`, `청룡`, `주작`, `백호`, `현무`];
 const TYPES_ACC: { [key: string]: number } = {
@@ -102,7 +99,8 @@ const FACES_ACC: { [key: string]: number } = {
   "문양'진": 20,
 };
 
-export default ({ isMobile }: AccuracyProps) => {
+export default () => {
+  const isMobile = useResponsive(580);
   const [accuracy, setAccuracy] = useState(0);
   const [extra, setExtra] = useState(0);
   const [names, setNames] = useState({

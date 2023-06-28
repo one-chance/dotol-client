@@ -1,21 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button, FlexView, Link, Text } from '@components/common';
 import { Colors } from '@styles/system';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-type MenuTabProps = {
-  menus: string[];
-  isMobile?: boolean;
-  onClick: (tab: string) => void;
+type Menu = {
+  name: string;
+  path: string;
 };
 
-export default ({ menus, isMobile, onClick }: MenuTabProps) => {
-  const [selectedTab, setSelectedTab] = useState(menus[0]);
+type MenuTabProps = {
+  menus: Menu[];
+  isMobile?: boolean;
+};
 
-  const selectTab = (tab: string) => {
-    setSelectedTab(tab);
-    onClick(tab);
+export default ({ menus, isMobile }: MenuTabProps) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [selectedTab, setSelectedTab] = useState(``);
+
+  const selectTab = (tab: Menu) => {
+    navigate(tab.path);
   };
+
+  useEffect(() => {
+    const path = menus.find(menu => menu.path === location.pathname);
+    if (path) {
+      setSelectedTab(path.name);
+    }
+  }, [location.pathname, menus]);
 
   return (
     <FlexView
@@ -29,22 +42,23 @@ export default ({ menus, isMobile, onClick }: MenuTabProps) => {
       items="center"
       row
     >
-      {menus?.map((tab, index) => (
+      {menus?.map(menu => (
         <FlexView
-          key={tab}
+          key={menu.name}
           content="center"
           css={{
             minHeight: `40px`,
-            borderBottom: tab === selectedTab ? `1px solid white` : undefined,
+            borderBottom:
+              menu.name === selectedTab ? `1px solid white` : undefined,
           }}
         >
-          <Button onClick={() => selectTab(menus[index])}>
+          <Button onClick={() => selectTab(menu)}>
             <Text
-              color={tab === selectedTab ? Colors.white : Colors.grey}
+              color={menu.name === selectedTab ? Colors.white : Colors.grey}
               small={isMobile}
               bold
             >
-              {tab}
+              {menu.name}
             </Text>
           </Button>
         </FlexView>
