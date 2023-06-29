@@ -53,12 +53,12 @@ export default () => {
   };
 
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+
     const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
 
-    // if (pattern.test(e.target.value)) setIsCertified(true);
-    // else setIsCertified(false);
-
-    setPassword(e.target.value);
+    if (pattern.test(e.target.value)) setIsCertified(true);
+    else setIsCertified(false);
   };
 
   const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {

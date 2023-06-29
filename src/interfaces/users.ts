@@ -7,7 +7,6 @@ export type IUser = {
   point: number;
   mainCharacter: string;
   openTalk: string;
-  isReset: boolean;
   createdAt: Date;
   updatedAt: Date;
 };

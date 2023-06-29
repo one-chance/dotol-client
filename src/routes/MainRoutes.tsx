@@ -11,7 +11,8 @@ import { Ability, Calendar, Power, Production } from '@pages/calculator';
 import { Achievement, Adventure, Archeology } from '@pages/content';
 import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
 import {
-  AntiquityEquip,
+  AntiquityEquipList,
+  AntiquityEquipRecipe,
   NormalEquip,
   PetEquipAccuracy,
   PetEquipList,
@@ -25,6 +26,7 @@ import {
   CharacterList,
   FindAccount,
   Profile,
+  ResetPassword,
   Secession,
   SignIn,
   SignUp,
@@ -40,10 +42,6 @@ export default () => {
     <Routes>
       {/* 사용자 메뉴 */}
       <Route
-        element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
-        path="/user/profile"
-      />
-      <Route
         element={isLoggedIn ? <CharacterList /> : <Navigate to="/" />}
         path="/user/character"
       />
@@ -52,12 +50,17 @@ export default () => {
         path="/user/change-password"
       />
       <Route
+        element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
+        path="/user/profile"
+      />
+      <Route
         element={isLoggedIn ? <Secession /> : <Navigate to="/" />}
         path="/user/secession"
       />
       <Route element={<FindAccount />} path="/user/find-account" />
       <Route element={<SignIn />} path="/user/signin" />
       <Route element={<SignUp />} path="/user/signup" />
+      <Route element={<ResetPassword />} path="/user/reset-password/:token" />
 
       {/* 게시판 메뉴 */}
       <Route element={<FreeBoard />} path="/board/free" />
@@ -76,8 +79,12 @@ export default () => {
       <Route element={<Tanning />} path="/costume/tanning" />
 
       {/* 도감 메뉴 */}
-      <Route element={<AntiquityEquip />} path="/db/antiquity-equip" />
-      <Route element={<NormalEquip />} path="/db/normal-equip" />
+      <Route element={<AntiquityEquipList />} path="/db/antiquity-equip/list" />
+      <Route
+        element={<AntiquityEquipRecipe />}
+        path="/db/antiquity-equip/recipe"
+      />
+      <Route element={<NormalEquip />} path="/db/normal-equip/list" />
       <Route element={<PetEquipAccuracy />} path="/db/pet-equip/accuracy" />
       <Route element={<PetEquipList />} path="/db/pet-equip/list" />
       <Route element={<PetEquipRecipe />} path="/db/pet-equip/recipe" />

@@ -20,7 +20,6 @@ export default () => {
     point: 0,
     mainCharacter: ``,
     openTalk: ``,
-    isReset: false,
     createdAt: new Date(),
     updatedAt: new Date(),
   });
