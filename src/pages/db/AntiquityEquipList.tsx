@@ -1,11 +1,11 @@
 import { FlexView } from '@components/common';
-import { PetEquipList } from '@components/db-pages/petEquip';
+import { AntiquityEquipList } from '@components/db-pages/antiquityEquip';
 import { MenuTab } from '@components/layout';
-import { PETEQUIP_TABS } from '@constants/menu';
+import { ANTIQUITYEQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const isMobile = useResponsive(580);
+  const isMobile = useResponsive(620);
 
   return (
     <FlexView
@@ -15,9 +15,9 @@ export default () => {
       }}
       gap={isMobile ? 20 : 40}
     >
-      <MenuTab isMobile={isMobile} menus={PETEQUIP_TABS} />
+      <MenuTab isMobile={isMobile} menus={ANTIQUITYEQUIP_TABS} />
 
-      <PetEquipList />
+      <AntiquityEquipList />
     </FlexView>
   );
 };

@@ -1,4 +1,6 @@
-import { FlexView, Image, Text } from '@components/common';
+import { useState } from 'react';
+
+import { Button, FlexView, Image, Text } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
@@ -17,52 +19,76 @@ const NAMES = [
 ];
 
 export default () => {
-  const isMobile = useResponsive(1080);
+  const isMobile = useResponsive(960);
+  const [series, setSeries] = useState(0);
+
+  const selectSeries = (id: number) => {
+    setSeries(id);
+  };
 
   return (
-    <FlexView>
+    <FlexView gap={20}>
       <Text bold center xxLarge>
-        명품의 시리즈
+        명품의 도감
       </Text>
 
-      <FlexView gap={16} row wrap>
-        <FlexView color="lightgray" css={{ padding: `10px` }} gap={8}>
+      <FlexView gap={8}>
+        <FlexView
+          css={{
+            padding: `10px`,
+            border: `1px solid lightgray`,
+            borderRadius: `4px`,
+          }}
+          gap={16}
+          row
+          wrap
+        >
           {NAMES.map((name, index) => (
-            <Text key={name} medium>
-              {index + 1}기 {name} 시리즈
-            </Text>
+            <Button onClick={() => selectSeries(index + 1)}>
+              <Text
+                key={name}
+                bold={NAMES[series - 1] === name}
+                color={NAMES[series - 1] === name ? Colors.red : Colors.primary}
+                small
+              >
+                {index + 1}기 {name}
+              </Text>
+            </Button>
           ))}
         </FlexView>
 
         <FlexView
-          color="lightgray"
-          css={{ padding: `10px`, borderRadius: `4px` }}
+          css={{
+            padding: `10px`,
+            border: `1px solid lightgray`,
+            borderRadius: `4px`,
+          }}
           gap={8}
         >
           파츠
         </FlexView>
+
+        {series !== 0 && (
+          <FlexView
+            css={{
+              border: `1px solid lightgray`,
+              borderRadius: `4px`,
+              padding: `10px`,
+            }}
+            center
+          >
+            <FlexView
+              css={{
+                maxWidth: `fit-content`,
+              }}
+            >
+              {series !== 0 && <Image src={`/luxury/${series}.png`} />}
+            </FlexView>
+          </FlexView>
+        )}
       </FlexView>
 
-      <FlexView
-        css={{
-          maxWidth: `700px`,
-          border: `1px solid lightgray`,
-          borderRadius: `4px`,
-          padding: `0 10px`,
-        }}
-        center
-      >
-        <FlexView
-          css={{
-            maxWidth: `fit-content`,
-          }}
-        >
-          <Image src="/luxury/11.png" />
-        </FlexView>
-      </FlexView>
-      <Text color={Colors.red}>
-        * 시리즈 6부위를 착용하여 전용 이펙트가 발동된 이미지입니다.
-      </Text>
+      <Text color={Colors.red}>* 6부위 전용 이펙트가 적용된 이미지입니다.</Text>
     </FlexView>
   );
 };

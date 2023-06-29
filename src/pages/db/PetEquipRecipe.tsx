@@ -11,9 +11,9 @@ export default () => {
     <FlexView
       css={{
         width: isMobile ? `100%` : undefined,
-        margin: isMobile ? `0 0 20px 0` : `40px auto`,
+        margin: isMobile ? `0 0 40px 0` : `40px auto`,
       }}
-      gap={40}
+      gap={isMobile ? 20 : 40}
     >
       <MenuTab isMobile={isMobile} menus={PETEQUIP_TABS} />
 

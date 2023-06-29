@@ -99,7 +99,7 @@ const mobileModal = (close: () => void) => (
         </Text>
 
         <Text color="blue" small>
-          = 장비 수치 x 치장 효과 + 가문 특성 + 한벌 효과
+          = (장비 수치 + 한벌 효과) x 치장 효과 + 가문 특성
         </Text>
       </FlexView>
 
@@ -128,6 +128,20 @@ const mobileModal = (close: () => void) => (
 
         <FlexView>
           <Text semiBold small>
+            한벌 효과
+          </Text>
+
+          <FlexView gap={4} row wrap>
+            <Text xSmall>바람연대기(최상) 8.4</Text>
+            <Text xSmall>/</Text>
+            <Text xSmall>바람연대기(상) 7</Text>
+            <Text xSmall>/</Text>
+            <Text xSmall>바람연대기(중) 3.5</Text>
+          </FlexView>
+        </FlexView>
+
+        <FlexView>
+          <Text semiBold small>
             치장 효과
           </Text>
 
@@ -145,20 +159,6 @@ const mobileModal = (close: () => void) => (
             가문 특성
           </Text>
           <Text xSmall>2포인트 0.7</Text>
-        </FlexView>
-
-        <FlexView>
-          <Text semiBold small>
-            한벌 효과
-          </Text>
-
-          <FlexView gap={4} row wrap>
-            <Text xSmall>바람연대기(최상) 8.4</Text>
-            <Text xSmall>/</Text>
-            <Text xSmall>바람연대기(상) 7</Text>
-            <Text xSmall>/</Text>
-            <Text xSmall>바람연대기(중) 3.5</Text>
-          </FlexView>
         </FlexView>
       </FlexView>
 

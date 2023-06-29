@@ -11,7 +11,7 @@ export default () => {
     <FlexView
       css={{
         width: `960px`,
-        margin: isMobile ? `0 auto 20px auto` : `40px auto`,
+        margin: isMobile ? `0 auto 40px auto` : `40px auto`,
       }}
       gap={20}
     >

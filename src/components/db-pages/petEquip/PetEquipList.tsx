@@ -44,10 +44,10 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: `0 auto` }} gap={20}>
+    <FlexView gap={20}>
       <FlexView
         content="between"
-        css={{ padding: isMobile ? `0 10px` : undefined }}
+        css={{ padding: isMobile ? `0 4px` : undefined }}
         items="center"
         row
       >
@@ -68,7 +68,6 @@ export default () => {
         css={{
           borderLeft: `1px solid lightgray`,
           borderRight: `1px solid lightgray`,
-          margin: `0 auto`,
         }}
         wrap
       >
@@ -81,7 +80,7 @@ export default () => {
                 width: isMobile ? `44px` : `70px`,
                 height: `36px`,
                 ...(index === 0 && { width: isMobile ? `60px` : `90px` }),
-                ...(index === 1 && { width: isMobile ? `28px` : `50px` }),
+                ...(index === 1 && { width: isMobile ? `34px` : `48px` }),
               }}
               center
             >
@@ -108,7 +107,7 @@ export default () => {
               <Text css={{ ...cellCSS, width: isMobile ? `60px` : `90px` }}>
                 {data.장비}
               </Text>
-              <Text css={{ ...cellCSS, width: isMobile ? `28px` : `50px` }}>
+              <Text css={{ ...cellCSS, width: isMobile ? `34px` : `48px` }}>
                 {data.방어}
               </Text>
               <Text css={cellCSS}>{data.명중}</Text>
@@ -122,7 +121,7 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <FlexView css={{ padding: isMobile ? `0 10px` : undefined }}>
+      <FlexView css={{ padding: isMobile ? `0 4px` : undefined }}>
         <Text color={Colors.red} css={{ letterSpacing: -0.5 }} small={isMobile}>
           * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
         </Text>

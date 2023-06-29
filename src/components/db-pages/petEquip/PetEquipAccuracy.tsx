@@ -180,7 +180,7 @@ export default () => {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <Text
-        css={{ padding: isMobile ? `0 10px` : undefined }}
+        css={{ padding: isMobile ? `0 4px` : undefined }}
         xLarge={isMobile}
         xxLarge={!isMobile}
         semiBold
@@ -193,7 +193,6 @@ export default () => {
           width: isMobile ? `360px` : `560px`,
           border: `1px solid lightgrey`,
           padding: `20px`,
-          margin: isMobile ? `0 4px` : undefined,
         }}
       >
         <FlexView
@@ -297,7 +296,7 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <FlexView css={{ padding: isMobile ? `0 10px` : undefined }}>
+      <FlexView css={{ padding: isMobile ? `0 4px` : undefined }}>
         <Text color={Colors.red} small={isMobile}>
           * 사신수는 등급별 시동 명중률이 포함됩니다.
         </Text>

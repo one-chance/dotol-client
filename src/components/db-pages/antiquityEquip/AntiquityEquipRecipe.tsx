@@ -64,8 +64,13 @@ export default () => {
   }, [defaultPercentage, extraPercentage]);
 
   return (
-    <FlexView gap={20}>
-      <FlexView content="between" items="center" row>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <FlexView
+        content="between"
+        css={{ padding: isMobile ? `0 10px` : undefined }}
+        items="center"
+        row
+      >
         <Text xLarge={isMobile} xxLarge={!isMobile} bold>
           신수유물 강화재료
         </Text>
@@ -79,7 +84,14 @@ export default () => {
         </Select>
       </FlexView>
 
-      <FlexView content="between" gap={16} items="center" row wrap>
+      <FlexView
+        content="between"
+        css={{ padding: isMobile ? `0 10px` : undefined }}
+        gap={16}
+        items="center"
+        row
+        wrap
+      >
         <FlexView items="center" row>
           <Select
             height={36}
@@ -124,7 +136,12 @@ export default () => {
           row
         >
           {TITLES.map(title => (
-            <Text key={title} center fill semiBold>
+            <Text
+              key={title}
+              css={{ width: isMobile ? `72px` : `120px` }}
+              center
+              semiBold
+            >
               {title}
             </Text>
           ))}
@@ -135,7 +152,8 @@ export default () => {
             key={data.장비}
             css={{
               minHeight: `32px`,
-              borderBottom: `1px solid lightgray`,
+              border: `solid lightgray`,
+              borderWidth: isMobile ? `0 0 1px 0` : `0 1px 1px 1px`,
               padding: `4px 0`,
             }}
             items="center"

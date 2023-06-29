@@ -15,14 +15,10 @@ export const getEquipByName = async (name: string) => {
 };
 
 export const getEquipByOption = async (option: EquipOption) => {
-  const tempType = option.type !== 0 ? `&type=${option.part}&` : ``;
-  const tempPart = option.part !== 0 ? `&part=${option.part}&` : ``;
-  const tempJob = option.job !== 0 ? `&job=${option.job}` : ``;
-
   const res = await fetch(
-    `${
-      import.meta.env.VITE_API_SERVER
-    }/equips/item?${tempType}${tempPart}${tempJob}`,
+    `${import.meta.env.VITE_API_SERVER}/equips/item?type=${option.type}&part=${
+      option.part
+    }&job=${option.job}`,
     {
       method: `GET`,
       headers: {

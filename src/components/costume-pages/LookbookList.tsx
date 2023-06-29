@@ -50,11 +50,7 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
   };
 
   const applyLookbook = () => {
-    const list = itemList
-      .filter(equip => equip !== ``)
-      .map(encodeURI)
-      .join(`|`);
-
+    const list = itemList.filter(equip => equip !== ``).join(`|`);
     applyPreview(list);
   };
 
@@ -76,8 +72,12 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
               {part}
             </Text>
             <Input
+              value={itemList[index] || ``}
               width={INPUT_WIDTH}
               onChange={e => inputEquipName(e, index)}
+              onKeyDown={e => {
+                if (e.key === `Enter`) applyLookbook();
+              }}
             />
           </FlexView>
         ))}

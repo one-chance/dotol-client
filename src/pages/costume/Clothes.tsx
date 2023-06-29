@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getClothesByName, getClothesByPart } from '@apis/costumes';
+import { getClothesList } from '@apis/costumes';
 import { getMyInfo } from '@apis/users';
 import { Mannequin } from '@components/avatar';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
@@ -50,15 +50,22 @@ export default () => {
   const [clothesList, setClothesList] = useState<IClothes[]>([]);
   const [itemCount, setItemCount] = useState(1);
 
-  // const selectTab = (tab: string) => {
-  //   setSelectedTab(tab);
-  // };
-
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
   };
 
-  const searchByName = (part: number, page: number) => {
+  const initData = () => {
+    setClothesList([]);
+    setItemCount(1);
+    setSelectedItem({
+      name: `착용 아이템`,
+      part: 0,
+      gender: 0,
+      luxury: false,
+    });
+  };
+
+  const searchList = (part: number, page: number) => {
     if (grade < 2) {
       alert(`대표 캐릭터를 등록해야 사용할 수 있습니다.`);
       return;
@@ -66,46 +73,12 @@ export default () => {
 
     navigate(`${location.pathname}?page=${page}`, { replace: true });
 
-    if (selectedPart === 0 && searchKeyword === ``) {
-      setClothesList([]);
-      setItemCount(1);
-      setSelectedItem({
-        name: `착용 아이템`,
-        part: 0,
-        gender: 0,
-        luxury: false,
-      });
-      return;
-    }
+    if (part === 0 && searchKeyword === ``) return initData();
 
-    getClothesByName(searchKeyword, part, page).then(res => {
+    getClothesList(searchKeyword, part, page).then(res => {
       if (res.statusCode === 200) {
         setClothesList(res.data.list);
         setItemCount(res.data.count);
-      }
-    });
-  };
-
-  const searchByPart = (part: number, page: number) => {
-    navigate(`${location.pathname}?page=${page}`, { replace: true });
-
-    if (part === 0) {
-      setClothesList([]);
-      setItemCount(1);
-      setSelectedItem({
-        name: `착용 아이템`,
-        part: 0,
-        gender: 0,
-        luxury: false,
-      });
-      return;
-    }
-
-    getClothesByPart(part, page).then(res => {
-      if (res.statusCode === 200) {
-        setClothesList(res.data.list);
-        setItemCount(res.data.count);
-        setSearchKeyword(``);
       }
     });
   };
@@ -117,12 +90,7 @@ export default () => {
     }
 
     setSelectedPart(part);
-
-    if (searchKeyword !== ``) {
-      searchByName(part, 1);
-    } else {
-      searchByPart(part, 1);
-    }
+    searchList(part, 1);
   };
 
   const selectItem = (_item: IClothes) => {
@@ -130,17 +98,14 @@ export default () => {
   };
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
+    if (grade === 0) return;
+
+    const urlParams = new URLSearchParams(location.search);
     const page = urlParams.get(`page`);
 
     if (page === null) return;
 
-    if (searchKeyword !== ``) {
-      searchByName(selectedPart, Number(page));
-    } else {
-      searchByPart(selectedPart, Number(page));
-    }
-
+    searchList(selectedPart, Number(page));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
@@ -238,7 +203,7 @@ export default () => {
                 onChange={inputSearchKeyword}
                 onKeyDown={e => {
                   if (e.key === `Enter`) {
-                    searchByName(selectedPart, 1);
+                    searchList(selectedPart, 1);
                   }
                 }}
               />
@@ -249,7 +214,7 @@ export default () => {
                   height: `36px`,
                 }}
                 radius={4}
-                onClick={() => searchByName(selectedPart, 1)}
+                onClick={() => searchList(selectedPart, 1)}
               >
                 <Text color={Colors.white}>검색</Text>
               </Button>
@@ -257,7 +222,7 @@ export default () => {
 
             <FlexView
               css={{
-                height: `450px`,
+                minHeight: `450px`,
                 padding: isMobile ? `0 10px` : `0 20px`,
               }}
             >
@@ -270,17 +235,17 @@ export default () => {
                 {clothesList?.map(cloth => (
                   <FlexView key={cloth.name}>
                     <FlexView
-                      color="#EBE7E2"
+                      color="#E6E5E5"
                       css={{
                         width: `160px`,
-                        height: `90px`,
+                        minHeight: `90px`,
                       }}
                       items="center"
                     >
                       {cloth.name !== `` && (
                         <Image
                           css={{ margin: `auto` }}
-                          src={`${basicUrl}${cloth.name}`}
+                          src={`${basicUrl}${encodeURI(cloth.name)}`}
                         />
                       )}
                     </FlexView>

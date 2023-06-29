@@ -13,9 +13,9 @@ export const TOTAL_MENU = [
   {
     menu: `도감`,
     sub: [
-      { name: `일반 장비`, url: `/db/normal-equip` },
+      { name: `일반 장비`, url: `/db/normal-equip/list` },
       { name: `환수 장비`, url: `/db/pet-equip/list` },
-      { name: `신수 유물`, url: `/db/antiquity-equip` },
+      { name: `신수 유물`, url: `/db/antiquity-equip/list` },
       { name: `기술 능력`, url: `/db/skill-ability` },
     ],
   },
@@ -60,11 +60,16 @@ export const TOTAL_MENU = [
 
 export const COSTUME_TABS = [
   { name: `치장 미리보기`, path: `/costume/list` },
-  { name: `명품의 시리즈`, path: `/costume/luxury` },
+  { name: `명품의 도감`, path: `/costume/luxury` },
 ];
 
 export const PETEQUIP_TABS = [
   { name: `환수장비 도감`, path: `/db/pet-equip/list` },
   { name: `명중률 계산기`, path: `/db/pet-equip/accuracy` },
   { name: `강화 재료`, path: `/db/pet-equip/recipe` },
+];
+
+export const ANTIQUITYEQUIP_TABS = [
+  { name: `신수유물 도감`, path: `/db/antiquity-equip/list` },
+  { name: `강화 재료`, path: `/db/antiquity-equip/recipe` },
 ];

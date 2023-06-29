@@ -19,51 +19,40 @@ export default ({ count, unit }: PaginationProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [pageList, setPageList] = useState<number[]>([1, 2, 3, 4, 5]);
-  const [selectedPage, setSelectedPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
   const [maxPage, setMaxPage] = useState<number>(Math.ceil(count / unit));
 
-  const searchParam = new URLSearchParams(location.search).get(`search`) ?? ``;
-
-  const movePage = (_page: number) => {
-    const search = searchParam === `` ? `` : `&search=${searchParam}`;
-    navigate(`${location.pathname}?page=${_page}${search}`);
-    setSelectedPage(_page);
+  const getSearchKeyword = () => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchParam = urlParams.get(`search`);
+    return searchParam === null ? `` : `&search=${searchParam}`;
   };
 
-  const movePageList = (direction: number) => {
-    const distance = 5 * direction;
-    const maxPageList = Math.ceil(maxPage / 5);
-    const tempPageList = Math.ceil((selectedPage + distance) / 5);
-    const search = searchParam === `` ? `` : `&search=${searchParam}`;
+  const movePage = (_page: number) => {
+    const searchKeyword = getSearchKeyword();
+    navigate(`${location.pathname}?page=${_page}${searchKeyword}`);
+  };
 
-    if (selectedPage + distance < 1 || tempPageList > maxPageList) return;
+  const prevPageList = () => {
+    const searchKeyword = getSearchKeyword();
+    navigate(`${location.pathname}?page=${pageList[0] - 1}${searchKeyword}`);
+  };
 
-    setPageList(pageList.map(x => x + distance));
+  const nextPageList = () => {
+    const searchKeyword = getSearchKeyword();
 
-    if (maxPage < selectedPage + distance) {
-      navigate(`${location.pathname}?page=${maxPage}${search}`, {
-        replace: true,
-      });
-      setSelectedPage(maxPage);
-    } else {
-      navigate(`${location.pathname}?page=${selectedPage + distance}${search}`);
-      setSelectedPage(selectedPage + distance);
-    }
+    navigate(`${location.pathname}?page=${pageList[4] + 1}${searchKeyword}`);
   };
 
   useEffect(() => {
-    const pageParam =
-      Number(new URLSearchParams(location.search).get(`page`)) ?? 1;
-    setSelectedPage(pageParam);
+    const urlParams = new URLSearchParams(location.search);
+    const pageParam = urlParams.get(`page`);
 
-    const tempPage = 5 * Math.floor(pageParam / 6) + 1;
-    setPageList([
-      tempPage,
-      tempPage + 1,
-      tempPage + 2,
-      tempPage + 3,
-      tempPage + 4,
-    ]);
+    if (pageParam === null) return;
+    setPage(Number(pageParam));
+
+    const first = 5 * Math.floor((Number(pageParam) - 1) / 5) + 1;
+    setPageList([first, first + 1, first + 2, first + 3, first + 4]);
   }, [location.search]);
 
   useEffect(() => {
@@ -73,33 +62,34 @@ export default ({ count, unit }: PaginationProps) => {
 
   return (
     <FlexView css={{ height: `36px` }} gap={10} center row>
-      {selectedPage > 5 && maxPage >= selectedPage && (
-        <Button css={buttonCSS} onClick={() => movePageList(-1)}>
+      {count !== 1 && pageList[0] > 5 && (
+        <Button css={buttonCSS} onClick={prevPageList}>
           <Image height={16} src="/arrowLeft.png" width={16} />
           {/* <Icon color="#242424" name="arrowLeft" size={16} /> */}
         </Button>
       )}
 
-      {pageList.map(
-        (pageNumber: number) =>
-          pageNumber <= maxPage && (
-            <Button
-              key={pageNumber}
-              css={buttonCSS}
-              onClick={() => movePage(pageNumber)}
-            >
-              <Text
-                color={selectedPage === pageNumber ? `#242424` : `#878787`}
-                semiBold={selectedPage === pageNumber}
+      {count !== 1 &&
+        pageList.map(
+          (pageNumber: number) =>
+            pageNumber <= maxPage && (
+              <Button
+                key={pageNumber}
+                css={buttonCSS}
+                onClick={() => movePage(pageNumber)}
               >
-                {pageNumber}
-              </Text>
-            </Button>
-          ),
-      )}
+                <Text
+                  color={page === pageNumber ? `#242424` : `#878787`}
+                  semiBold={page === pageNumber}
+                >
+                  {pageNumber}
+                </Text>
+              </Button>
+            ),
+        )}
 
-      {pageList[4] < maxPage && (
-        <Button css={buttonCSS} onClick={() => movePageList(1)}>
+      {count !== 1 && pageList[4] < maxPage && (
+        <Button css={buttonCSS} onClick={nextPageList}>
           <Image height={16} src="/arrowRight.png" width={16} />
           {/* <Icon color="#242424" name="arrowRight" size={16} /> */}
         </Button>

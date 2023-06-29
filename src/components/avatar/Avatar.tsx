@@ -22,7 +22,7 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
   const [avatar, setAvatar] = useState(basic);
 
   const skinColor = skin ? `&sc=${skin}` : ``;
-  const equipList = equip ? `&previewEquip=${equip}` : ``;
+  const equipList = equip ? `&previewEquip=${encodeURI(equip)}` : ``;
 
   const changeDirection = (_dir: number) => {
     setDirecrtion(_dir);

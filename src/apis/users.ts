@@ -31,14 +31,14 @@ export const isDuplicatedEmail = async (email: string) => {
   return data;
 };
 
-export const sendOTPCode = async (userId: string) => {
+export const sendOTPCode = async (email: string) => {
   const res = await fetch(`${import.meta.env.VITE_API_SERVER}/users/send-otp`, {
     method: `POST`,
     headers: {
       'Content-Type': `application/json`,
     },
     body: JSON.stringify({
-      userId,
+      email,
     }),
   });
 
@@ -46,7 +46,7 @@ export const sendOTPCode = async (userId: string) => {
   return data;
 };
 
-export const verifyOTPCode = async (userId: string, otpCode: string) => {
+export const verifyOTPCode = async (email: string, OTPCode: string) => {
   const res = await fetch(
     `${import.meta.env.VITE_API_SERVER}/users/verify-otp`,
     {
@@ -55,8 +55,8 @@ export const verifyOTPCode = async (userId: string, otpCode: string) => {
         'Content-Type': `application/json`,
       },
       body: JSON.stringify({
-        userId,
-        otpCode,
+        email,
+        OTPCode,
       }),
     },
   );

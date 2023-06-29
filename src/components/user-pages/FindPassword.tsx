@@ -10,7 +10,7 @@ export default () => {
   const [userId, setUserId] = useState(``);
   const [email, setEmail] = useState(``);
   const [isEmailFormat, setIsEmailForamt] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [isSend, setIsSend] = useState(false);
 
   const checkEmailFormat = (_email: string) => {
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
@@ -33,7 +33,7 @@ export default () => {
 
   const findPassword = () => {
     forgotPassword(userId, email).then(res => {
-      if (res.statusCode === 200) setIsInitialized(true);
+      if (res.statusCode === 200) setIsSend(true);
     });
   };
 
@@ -85,11 +85,11 @@ export default () => {
         </Text>
       </Button>
 
-      {isInitialized && (
+      {isSend && (
         <Text center>
           입력된 이메일로 비밀번호 초기화
           <br />
-          관련 링크가 전송되었습니다.
+          관련 메일이 전송되었습니다.
         </Text>
       )}
     </FlexView>

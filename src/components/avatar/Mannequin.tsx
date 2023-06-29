@@ -14,7 +14,7 @@ export default ({ equip, character }: AvatarProps) => {
   const [direction, setDirecrtion] = useState(2);
   const [avatar, setAvatar] = useState(basic);
 
-  const equipList = equip ? `&previewEquip=${equip}` : ``;
+  const equipList = equip ? `&previewEquip=${encodeURI(equip)}` : ``;
 
   const changeDirection = (_dir: number) => {
     setDirecrtion(_dir);

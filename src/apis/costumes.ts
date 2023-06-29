@@ -1,30 +1,16 @@
 import { getAccessToken } from '@utils/common';
 
-export const getClothesByName = async (
-  name: string,
+export const getClothesList = async (
+  keyword: string,
   part: number,
   page: number,
 ) => {
-  const res = await fetch(
-    `${
-      import.meta.env.VITE_API_SERVER
-    }/costumes/item/${name}?part=${part}&page=${page}`,
-    {
-      method: `GET`,
-      headers: {
-        'Content-Type': `application/json`,
-      },
-    },
-  );
-  const data = await res.json();
-  return data;
-};
+  const tempKeyword = keyword !== `` ? `&keyword=${keyword}` : ``;
 
-export const getClothesByPart = async (part: number, page: number) => {
   const res = await fetch(
     `${
       import.meta.env.VITE_API_SERVER
-    }/costumes/item?part=${part}&page=${page}`,
+    }/costumes/item?keyword=${keyword}&part=${part}&page=${page}`,
     {
       method: `GET`,
       headers: {

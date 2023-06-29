@@ -61,7 +61,7 @@ const TITLES = [
 const EQUIP_PARTS = [`무기`, `투구`, `갑옷`, `명경`, `장갑`, `보주`];
 
 export default () => {
-  const isMobile = useResponsive(600);
+  const isMobile = useResponsive(620);
   const [selectedParts, setSelectedParts] = useState(EQUIP_PARTS[0]);
 
   const equipData: { [key: string]: string }[] =
@@ -85,8 +85,13 @@ export default () => {
   };
 
   return (
-    <FlexView gap={20}>
-      <FlexView content="between" items="center" row>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <FlexView
+        content="between"
+        css={{ padding: isMobile ? `0 4px` : undefined }}
+        items="center"
+        row
+      >
         <Text xLarge={isMobile} xxLarge={!isMobile} bold>
           신수유물 도감
         </Text>
@@ -101,7 +106,11 @@ export default () => {
       </FlexView>
 
       <FlexView gap={8}>
-        <Text large={!isMobile} semiBold>
+        <Text
+          css={{ padding: isMobile ? `0 4px` : undefined }}
+          large={!isMobile}
+          semiBold
+        >
           일반 유물
         </Text>
 
@@ -129,7 +138,11 @@ export default () => {
           {equipData?.map((item: { [key: string]: string }) => (
             <FlexView
               key={item.등급}
-              css={{ minHeight: `30px`, borderBottom: `1px solid lightgray` }}
+              css={{
+                minHeight: `30px`,
+                border: `solid lightgray`,
+                borderWidth: isMobile ? `0 0 1px 0` : `0 1px 1px 1px`,
+              }}
               items="center"
               row
             >
@@ -145,7 +158,11 @@ export default () => {
 
       {holyEquipData.length > 1 && (
         <FlexView gap={8}>
-          <Text large={!isMobile} semiBold>
+          <Text
+            css={{ padding: isMobile ? `0 4px` : undefined }}
+            large={!isMobile}
+            semiBold
+          >
             신성한 유물
           </Text>
 
@@ -173,7 +190,11 @@ export default () => {
             {holyEquipData?.map((item: { [key: string]: string }) => (
               <FlexView
                 key={item.등급}
-                css={{ minHeight: `30px`, borderBottom: `1px solid lightgray` }}
+                css={{
+                  minHeight: `30px`,
+                  border: `solid lightgray`,
+                  borderWidth: isMobile ? `0 0 1px 0` : `0 1px 1px 1px`,
+                }}
                 items="center"
                 row
               >
