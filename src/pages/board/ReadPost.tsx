@@ -24,7 +24,7 @@ export default () => {
 
   return (
     <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}>
-      <Post category={category} content="내용" title="제목" />
+      <Post category={category} />
     </FlexView>
   );
 };

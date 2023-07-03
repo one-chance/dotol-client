@@ -1,12 +1,15 @@
+import { HTMLAttributes, InputHTMLAttributes } from 'react';
+
 import { CSSObject, jsx } from '@emotion/react';
 import { Colors } from '@styles/system';
 
-interface CheckboxProps {
+type CheckboxProps = HTMLAttributes<HTMLInputElement> & {
   size?: number;
   disabled?: boolean;
-}
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
-export default ({ size, disabled, ...props }: CheckboxProps) => {
+export default ({ size, disabled, onChange, ...props }: CheckboxProps) => {
   const css: CSSObject = {
     backgroundColor: Colors.grey,
     borderRadius: `5px`,
@@ -23,5 +26,5 @@ export default ({ size, disabled, ...props }: CheckboxProps) => {
     },
   };
 
-  return jsx(`input`, { type: `checkbox`, css, disabled, ...props });
+  return jsx(`input`, { type: `checkbox`, css, onChange, disabled, ...props });
 };

@@ -12,7 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 type PostProps = {
-  post: IPost;
+  post?: IPost;
   category: Category;
 };
 
@@ -21,7 +21,7 @@ const basicUrl = `https://dotols.com`;
 export default ({ post, category }: PostProps) => {
   const location = useLocation();
   const userId = useRecoilValue(userIdState);
-  const postId = post.index;
+  const postId = post?.index;
 
   const copyUrl = () => {
     navigator.clipboard.writeText(basicUrl + location.pathname);

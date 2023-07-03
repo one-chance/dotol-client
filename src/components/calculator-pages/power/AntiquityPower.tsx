@@ -18,62 +18,64 @@ import {
 export default () => {
   const SELECT_WIDTH = 140;
 
-  const [glasses, setGlasses] = useState(GLASSES[0]);
-  const [weaphon, setWeapon] = useState(WEAPONS[0]);
-  const [armor, setArmor] = useState(ARMORS[0]);
-  const [helmet, setHelmet] = useState(HELMETS[0]);
-  const [glove1, setGlove1] = useState(GLOVES[0]);
-  const [glove2, setGlove2] = useState(GLOVES[0]);
-  const [orb1, setOrb1] = useState(ORBS[0]);
-  const [orb2, setOrb2] = useState(ORBS[0]);
+  const [equips, setEquips] = useState({
+    glasses: 0,
+    weapon: 0,
+    armor: 0,
+    helmet: 0,
+    leftGlove: 0,
+    rightGlove: 0,
+    leftOrb: 0,
+    rightOrb: 0,
+  });
+
   const [antiquityPower, setAntiquityPower] = useState(0);
 
   const selectGlasses = (idx: number) => {
-    setGlasses(GLASSES[idx]);
+    setEquips({ ...equips, glasses: idx });
   };
 
   const selectWeapon = (idx: number) => {
-    setWeapon(WEAPONS[idx]);
+    setEquips({ ...equips, weapon: idx });
   };
 
   const selectArmor = (idx: number) => {
-    setArmor(ARMORS[idx]);
+    setEquips({ ...equips, armor: idx });
   };
 
   const selectHelmet = (idx: number) => {
-    setHelmet(HELMETS[idx]);
+    setEquips({ ...equips, helmet: idx });
   };
 
-  const selectGlove1 = (idx: number) => {
-    setGlove1(GLOVES[idx]);
+  const selectLeftGlove = (idx: number) => {
+    setEquips({ ...equips, leftGlove: idx });
   };
 
-  const selectGlove2 = (idx: number) => {
-    setGlove2(GLOVES[idx]);
+  const selectRightGlove = (idx: number) => {
+    setEquips({ ...equips, rightGlove: idx });
   };
 
-  const selectOrb1 = (idx: number) => {
-    setOrb1(ORBS[idx]);
+  const selectLeftOrb = (idx: number) => {
+    setEquips({ ...equips, leftOrb: idx });
   };
 
-  const selectOrb2 = (idx: number) => {
-    setOrb2(ORBS[idx]);
+  const selectRightOrb = (idx: number) => {
+    setEquips({ ...equips, rightOrb: idx });
   };
 
   useEffect(() => {
     const power =
-      GLASSES_POWER[GLASSES.indexOf(glasses)] +
-      EQUIP_POWERS[WEAPONS.indexOf(weaphon)] +
-      EQUIP_POWERS[ARMORS.indexOf(armor)] +
-      EQUIP_POWERS[HELMETS.indexOf(helmet)] +
-      GRLOVE_POWERS[GLOVES.indexOf(glove1)] +
-      GRLOVE_POWERS[GLOVES.indexOf(glove2)] +
-      ORB_POWERS[ORBS.indexOf(orb1)] +
-      ORB_POWERS[ORBS.indexOf(orb2)];
+      GLASSES_POWER[equips.glasses] +
+      EQUIP_POWERS[equips.weapon] +
+      EQUIP_POWERS[equips.armor] +
+      EQUIP_POWERS[equips.helmet] +
+      GRLOVE_POWERS[equips.leftGlove] +
+      GRLOVE_POWERS[equips.rightGlove] +
+      ORB_POWERS[equips.leftOrb] +
+      ORB_POWERS[equips.rightOrb];
 
     setAntiquityPower(power);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [weaphon, helmet, armor, glasses, glove1, glove2, orb1, orb2]);
+  }, [equips]);
 
   return (
     <FlexView
@@ -89,17 +91,17 @@ export default () => {
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
-          <Select name={glasses} width={SELECT_WIDTH}>
+          <Select name={GLASSES[equips.glasses]} width={SELECT_WIDTH}>
             <Option
-              selected={glasses}
+              selected={GLASSES[equips.glasses]}
               values={GLASSES}
               onSelect={selectGlasses}
             />
           </Select>
 
-          <Select max={200} name={weaphon} width={SELECT_WIDTH}>
+          <Select max={200} name={WEAPONS[equips.weapon]} width={SELECT_WIDTH}>
             <Option
-              selected={weaphon}
+              selected={WEAPONS[equips.weapon]}
               values={WEAPONS}
               onSelect={selectWeapon}
             />
@@ -107,13 +109,17 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select max={200} name={armor} width={SELECT_WIDTH}>
-            <Option selected={armor} values={ARMORS} onSelect={selectArmor} />
+          <Select max={200} name={ARMORS[equips.armor]} width={SELECT_WIDTH}>
+            <Option
+              selected={ARMORS[equips.armor]}
+              values={ARMORS}
+              onSelect={selectArmor}
+            />
           </Select>
 
-          <Select max={200} name={helmet} width={SELECT_WIDTH}>
+          <Select max={200} name={HELMETS[equips.helmet]} width={SELECT_WIDTH}>
             <Option
-              selected={helmet}
+              selected={HELMETS[equips.helmet]}
               values={HELMETS}
               onSelect={selectHelmet}
             />
@@ -121,22 +127,38 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select name={glove1} width={SELECT_WIDTH}>
-            <Option selected={glove1} values={GLOVES} onSelect={selectGlove1} />
+          <Select name={GLOVES[equips.leftGlove]} width={SELECT_WIDTH}>
+            <Option
+              selected={GLOVES[equips.leftGlove]}
+              values={GLOVES}
+              onSelect={selectLeftGlove}
+            />
           </Select>
 
-          <Select name={glove2} width={SELECT_WIDTH}>
-            <Option selected={glove2} values={GLOVES} onSelect={selectGlove2} />
+          <Select name={GLOVES[equips.rightGlove]} width={SELECT_WIDTH}>
+            <Option
+              selected={GLOVES[equips.rightGlove]}
+              values={GLOVES}
+              onSelect={selectRightGlove}
+            />
           </Select>
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select name={orb1} width={SELECT_WIDTH}>
-            <Option selected={orb1} values={ORBS} onSelect={selectOrb1} />
+          <Select name={ORBS[equips.leftOrb]} width={SELECT_WIDTH}>
+            <Option
+              selected={ORBS[equips.leftOrb]}
+              values={ORBS}
+              onSelect={selectLeftOrb}
+            />
           </Select>
 
-          <Select name={orb2} width={SELECT_WIDTH}>
-            <Option selected={orb2} values={ORBS} onSelect={selectOrb2} />
+          <Select name={ORBS[equips.rightOrb]} width={SELECT_WIDTH}>
+            <Option
+              selected={ORBS[equips.rightOrb]}
+              values={ORBS}
+              onSelect={selectRightOrb}
+            />
           </Select>
         </FlexView>
       </FlexView>
