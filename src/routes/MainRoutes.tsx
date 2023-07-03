@@ -3,7 +3,7 @@ import {
   ServerBoard,
   TipBoard,
   VideoBoard,
-  Post,
+  ReadPost,
   WritePost,
   EditPost,
 } from '@pages/board';
@@ -68,7 +68,7 @@ export default () => {
       <Route element={<VideoBoard />} path="/board/video" />
       <Route element={<TradeBoard />} path="/board/trade" />
       <Route element={<ServerBoard />} path="/board/server" />
-      <Route element={<Post />} path="/board/:boardId/post/:postId" />
+      <Route element={<ReadPost />} path="/board/:boardId/post/:postId" />
       <Route element={<WritePost />} path="/board/:boardId/write" />
       <Route element={<EditPost />} path="/board/:boardId/edit/:postId" />
 

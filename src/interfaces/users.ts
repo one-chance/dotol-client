@@ -10,3 +10,9 @@ export type IUser = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type NewUser = {
+  userId: string;
+  password: string;
+  email: string;
+};

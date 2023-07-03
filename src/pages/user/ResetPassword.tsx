@@ -59,7 +59,7 @@ export default () => {
               },
             }}
             height={40}
-            placeholder="문자, 숫자, 특수문자의 조합으로 6자리 이상"
+            placeholder="문자, 숫자, 특수문자(8자리 이상)"
             type="password"
             value={newPassword || ``}
             width={isMobile ? 300 : 360}

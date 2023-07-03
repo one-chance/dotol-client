@@ -1,4 +1,4 @@
-import { IUser } from '@interfaces/users';
+import { IUser, NewUser } from '@interfaces/users';
 import { getAccessToken } from '@utils/common';
 
 export const isDuplicatedUserId = async (userId: string) => {
@@ -65,21 +65,13 @@ export const verifyOTPCode = async (email: string, OTPCode: string) => {
   return data;
 };
 
-export const createUser = async (
-  userId: string,
-  password: string,
-  email: string,
-) => {
+export const createUser = async (userInfo: NewUser) => {
   const res = await fetch(`${import.meta.env.VITE_API_SERVER}/users/register`, {
     method: `POST`,
     headers: {
       'Content-Type': `application/json`,
     },
-    body: JSON.stringify({
-      userId,
-      password,
-      email,
-    }),
+    body: JSON.stringify(userInfo),
   });
 
   const data = await res.json();
