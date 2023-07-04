@@ -5,8 +5,10 @@ import {
   BodyPower,
   EngravePower,
   GoldPower,
+  GoldPower2,
   LevelPower,
   PetEquipPower,
+  SkillPower,
 } from '@components/calculator-pages/power';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
@@ -49,8 +51,8 @@ const explanations: { [key in CALCULATOR]: string[] } = {
   부가잠재능력: [
     `[모든 능력 증가] 능력치가 최종 전투력에 반영된다.`,
     `%돋 통합 패치로 최대 전투력이 500으로 증가했다.`,
-    `콘텐츠로 감정한 장비는 기존 황돋 계산 공식을 따른다.`,
-    `소수점 자리수로 인해 미세한 오차가 발생할 수 있다.`,
+    `황금돋보기 능력치는 오른쪽 계산 공식을 따른다.`,
+    `콘텐츠 부가잠재능력은 왼쪽 계산 공식을 따른다.`,
   ],
   대표환수: [`환수장비에 달린 부가잠재능력은 따로 계산해야 한다.`],
   기술능력: [],
@@ -77,9 +79,14 @@ export default () => {
     레벨: <LevelPower />,
     장비: <LevelPower />,
     각인: <EngravePower />,
-    부가잠재능력: <GoldPower />,
+    부가잠재능력: (
+      <FlexView gap={40} items="center" row={!isMobile}>
+        <GoldPower2 />
+        <GoldPower />
+      </FlexView>
+    ),
     대표환수: <PetEquipPower />,
-    기술능력: <LevelPower />,
+    기술능력: <SkillPower />,
     신체강화: <BodyPower />,
     내공강화: <BodyPower />,
     신수유물: <AntiquityPower />,
@@ -95,6 +102,7 @@ export default () => {
       </Text>
 
       <FlexView
+        content={isMobile ? `start` : `center`}
         css={{ margin: `0 10px` }}
         gap={isMobile ? 8 : 12}
         items="center"

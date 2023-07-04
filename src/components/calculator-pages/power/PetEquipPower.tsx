@@ -103,7 +103,10 @@ export default () => {
 
   useEffect(() => {
     const petPower =
-      equips.level === 0 ? 0 : 200 * equips.grade + 2 * equips.level;
+      equips.grade === 0 || equips.level === 0
+        ? 0
+        : 200 * equips.grade + 2 * equips.level;
+
     const power =
       petPower +
       EQUIPS_POWER[equips.weapon] +

@@ -2,38 +2,18 @@ import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-
-const POWERS: { [key: string]: number } = {
-  '황금돋보기 능력치': 0,
-  명중회피: 0.556,
-  '방어도무시/방어도': 1,
-  '체력/마력/힘/민/지': 1,
-  '방관/마치/공증/마증': 0.417,
-  '타흡/마흡/피흡': 0.417,
-  '시향/회향/직타': 0.417,
-  '명중률/타격치/재생력': 0.417,
-};
-
-const MAXS: { [key: string]: number } = {
-  '황금돋보기 능력치': 0,
-  명중회피: 9,
-  '방어도무시/방어도': 5,
-  '체력/마력/힘/민/지': 5,
-  '방관/마치/공증/마증': 12,
-  '타흡/마흡/피흡': 12,
-  '시향/회향/직타': 12,
-  '명중률/타격치/재생력': 12,
-};
+import { GOLD_INFO } from '@constants/power';
 
 const ABILITIES = [
   `황금돋보기 능력치`,
-  `명중회피`,
-  `방어도무시/방어도`,
-  `체력/마력/힘/민/지`,
-  `방관/마치/공증/마증`,
-  `타흡/마흡/피흡`,
-  `시향/회향/직타`,
-  `명중률/타격치/재생력`,
+  `방어도무시/방어도(%)`,
+  `체력/마력(%)`,
+  `명중회피(%)`,
+  `힘/민첩/지력(%)`,
+  `방관/마치/공증/마증(%)`,
+  `타흡/마흡/피흡(%)`,
+  `시향/회향/직타(%)`,
+  `명중률/타격치/재생력(%)`,
 ];
 
 export default () => {
@@ -76,7 +56,7 @@ export default () => {
       ? `${temp.split(`.`)[0]}.${decimalPart.slice(0, 2)}`
       : temp;
 
-    if (Number(trimmedTemp) > MAXS[ability[order]]) return;
+    if (Number(trimmedTemp) > GOLD_INFO[ability[order]].max) return;
 
     setValue({ ...value, [order]: trimmedTemp });
   };
@@ -86,9 +66,9 @@ export default () => {
 
   useEffect(() => {
     setGoldPower(
-      Math.floor(POWERS[ability.one] * convertValue(value.one)) +
-        Math.floor(POWERS[ability.two] * convertValue(value.two)) +
-        Math.floor(POWERS[ability.three] * convertValue(value.three)),
+      Math.floor(GOLD_INFO[ability.one].power * convertValue(value.one)) +
+        Math.floor(GOLD_INFO[ability.two].power * convertValue(value.two)) +
+        Math.floor(GOLD_INFO[ability.three].power * convertValue(value.three)),
     );
   }, [ability, value]);
 
@@ -113,7 +93,7 @@ export default () => {
 
         <Input
           height={40}
-          placeholder="수치(%)"
+          placeholder="수치"
           readOnly={ability.one === `황금돋보기 능력치`}
           value={value.one || ``}
           width={80}
@@ -133,7 +113,7 @@ export default () => {
 
         <Input
           height={40}
-          placeholder="수치(%)"
+          placeholder="수치"
           readOnly={ability.two === `황금돋보기 능력치`}
           value={value.two || ``}
           width={80}
@@ -153,7 +133,7 @@ export default () => {
 
         <Input
           height={40}
-          placeholder="수치(%)"
+          placeholder="수치"
           readOnly={ability.three === `황금돋보기 능력치`}
           value={value.three || ``}
           width={80}
@@ -162,7 +142,7 @@ export default () => {
         />
       </FlexView>
 
-      <Text semiBold>부가잠재능력 전투력: {goldPower}</Text>
+      <Text semiBold>황금돋보기 전투력: {goldPower}</Text>
     </FlexView>
   );
 };
