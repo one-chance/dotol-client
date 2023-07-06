@@ -1,55 +1,61 @@
 import { useEffect, useState } from 'react';
 
+import { getProductionRecipe } from '@apis/production';
 import { Chip } from '@components/chip';
 import { FlexView } from '@components/common';
-import DATA from '@data/production-recipe.json';
+import { itemState } from '@states/production';
+import { useRecoilValue } from 'recoil';
 
-type RecipeProps = {
-  item: { name: string; amount: number };
+type Recipe = {
+  [key: string]: {
+    name: string;
+    amount: number;
+  }[];
 };
 
-type INGREDIENT = {
-  name: string;
-  amount: number;
-};
+export default () => {
+  const selectedItem = useRecoilValue(itemState);
 
-const myData: { [key: string]: INGREDIENT[] } = DATA;
-
-export default ({ item }: RecipeProps) => {
+  const [recipeList, setRecipeList] = useState<Recipe>({});
   const [ingredients, setIngredients] = useState(new Map());
 
   const addInGradient = (name: string, amount: number) => {
-    if (myData[name]) {
-      const tempMap = new Map(ingredients);
-      tempMap.delete(name);
-      myData[name].map(data => {
-        if (tempMap.has(data.name)) {
-          return tempMap.set(
-            data.name,
-            tempMap.get(data.name) + data.amount * amount,
-          );
-        }
-        return tempMap.set(data.name, data.amount * amount);
-      });
+    const tempMap = new Map(ingredients);
+    tempMap.delete(name);
 
-      setIngredients(tempMap);
-    }
+    recipeList[name].map(data => {
+      if (tempMap.has(data.name)) {
+        return tempMap.set(
+          data.name,
+          tempMap.get(data.name) + data.amount * amount,
+        );
+      }
+      return tempMap.set(data.name, data.amount * amount);
+    });
+
+    setIngredients(tempMap);
   };
 
   useEffect(() => {
     setIngredients(
       new Map(
-        item.name === ``
+        selectedItem.name === ``
           ? new Map()
           : new Map(
-              myData[item.name].map(obj => [
+              recipeList?.[selectedItem.name].map(obj => [
                 obj.name,
-                obj.amount * item.amount,
+                obj.amount * selectedItem.amount,
               ]),
             ),
       ),
     );
-  }, [item]);
+  }, [selectedItem]);
+
+  useEffect(() => {
+    getProductionRecipe().then(res => {
+      setRecipeList(res);
+    });
+  }, []);
 
   return (
     <FlexView
@@ -67,7 +73,7 @@ export default ({ item }: RecipeProps) => {
       {Array.from(ingredients.entries()).map(([name, amount]) => (
         <Chip
           key={name}
-          clickable={!!myData[name]}
+          clickable={!!recipeList[name]}
           text={`${name} ${amount}`}
           onClick={() => addInGradient(name, amount)}
         />

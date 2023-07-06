@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
+import { getIngredients } from '@apis/production';
 import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import DATA from '@data/production-grade.json';
 import { useResponsive } from '@utils/hooks';
 
 const SKILLS = [
@@ -31,17 +31,30 @@ const GRADES = [
 ];
 
 export default () => {
-  const [selectedSkill, setSelectedSkill] = useState(0);
-  const gradeData = DATA[selectedSkill];
   const isMobile = useResponsive(600);
+
+  const [data, setData] = useState([[[]]]);
+  const [selectedSkill, setSelectedSkill] = useState(0);
 
   const selectSkill = (idx: number) => {
     setSelectedSkill(idx);
   };
 
+  useEffect(() => {
+    getIngredients().then(res => {
+      setData(res);
+    });
+  }, []);
+
   return (
-    <FlexView css={{ margin: `0 10px` }} gap={20}>
-      <FlexView content="between" gap={12} items="center" row>
+    <FlexView gap={20}>
+      <FlexView
+        content="between"
+        css={{ margin: isMobile ? `0 10px` : undefined }}
+        gap={12}
+        items="center"
+        row
+      >
         <Text large={isMobile} xLarge={!isMobile} bold>
           생산 단계업 재료
         </Text>
@@ -82,9 +95,9 @@ export default () => {
         </FlexView>
 
         <FlexView css={{ border: `1px solid lightgray` }}>
-          {gradeData.map((ingredients, index) => (
+          {data[selectedSkill].map((ingredients, index) => (
             <FlexView
-              key={ingredients[0]}
+              key={GRADES[index]}
               css={{
                 minHeight: `32px`,
                 borderTop: index === 0 ? `none` : `1px solid lightgray`,
@@ -118,7 +131,7 @@ export default () => {
                 row
                 wrap
               >
-                {ingredients.map(ingredient => (
+                {ingredients.map((ingredient: any) => (
                   <Text key={ingredient} xSmall={isMobile}>
                     {ingredient}
                   </Text>

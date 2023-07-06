@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { getProductionItems } from '@apis/production';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import DATA from '@data/production-item.json';
 import { itemState } from '@states/production';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -36,25 +36,33 @@ const GRADES = [
 ];
 
 export default () => {
-  const ITEM_LIST = DATA;
   const isMobile = useResponsive(600);
-  const [selectedSkill, setSelectedSkill] = useState(0);
-  const [selectedGrade, setSelectedGrade] = useState(0);
+  const setRecipe = useSetRecoilState(itemState);
+
+  const [itemList, setItemList] = useState([[[]]]);
+  const [skill, setSkill] = useState(0);
+  const [grade, setGrade] = useState(0);
   const [selectedItem, setSelectedItem] = useState(`품목`);
   const [quantity, setQuantity] = useState(0);
 
-  const setRecipe = useSetRecoilState(itemState);
-
   const selectSkill = (idx: number) => {
-    setSelectedSkill(idx);
+    setSkill(idx);
+    setGrade(0);
   };
 
   const selectGrade = (idx: number) => {
-    setSelectedGrade(idx);
+    setGrade(idx);
+
+    setSelectedItem(`품목`);
+    setRecipe({ name: ``, amount: 0 });
+    setQuantity(0);
   };
 
   const selectItem = (idx: number) => {
-    setSelectedItem(DATA[selectedSkill][selectedGrade][idx]);
+    setSelectedItem(itemList[skill][grade][idx]);
+
+    setQuantity(1);
+    setRecipe({ name: itemList[skill][grade][idx], amount: 1 });
   };
 
   const inputQuantity = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,62 +80,48 @@ export default () => {
   };
 
   useEffect(() => {
-    setSelectedGrade(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSkill]);
-
-  useEffect(() => {
-    setSelectedItem(`품목`);
-    setRecipe({ name: ``, amount: 0 });
-    setQuantity(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedGrade]);
-
-  useEffect(() => {
-    if (selectedItem !== `품목`) {
-      setQuantity(1);
-      setRecipe({ name: selectedItem, amount: 1 });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedItem]);
+    getProductionItems().then(res => {
+      setItemList(res);
+    });
+  }, []);
 
   return (
     <FlexView gap={16} items="center" row wrap>
       <FlexView gap={isMobile ? 8 : 16} items="center" row>
         <Select
           isMobile={isMobile}
-          name={SKILLS[selectedSkill]}
+          name={SKILLS[skill]}
           width={isMobile ? 80 : 90}
         >
           <Option
-            selected={SKILLS[selectedSkill]}
+            selected={SKILLS[skill]}
             values={SKILLS}
             onSelect={selectSkill}
           />
         </Select>
 
         <Select
-          disabled={selectedSkill === 0}
+          disabled={skill === 0}
           isMobile={isMobile}
-          name={GRADES[selectedGrade]}
+          name={GRADES[grade]}
           width={isMobile ? 90 : 100}
         >
           <Option
-            selected={GRADES[selectedGrade]}
+            selected={GRADES[grade]}
             values={GRADES}
             onSelect={selectGrade}
           />
         </Select>
 
         <Select
-          disabled={selectedGrade === 0}
+          disabled={grade === 0}
           isMobile={isMobile}
           name={selectedItem}
           width={isMobile ? 155 : 185}
         >
           <Option
             selected={selectedItem}
-            values={ITEM_LIST[selectedSkill][selectedGrade]}
+            values={itemList[skill][grade]}
             onSelect={selectItem}
           />
         </Select>

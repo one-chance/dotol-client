@@ -1,5 +1,5 @@
 import { Button, FlexView, Text } from '@components/common';
-import DATA from '@data/tanning.json';
+import { SKIN_LIST } from '@constants/tanning';
 import { Colors } from '@styles/system';
 
 type TanningListProps = {
@@ -8,8 +8,6 @@ type TanningListProps = {
 };
 
 export default ({ skinColor, selectSkin }: TanningListProps) => {
-  const skinList = DATA;
-
   const changeSkin = (_skin: number) => {
     selectSkin(_skin);
   };
@@ -35,7 +33,7 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
           </Text>
         </Button>
 
-        {skinList.map(skin => (
+        {SKIN_LIST.map(skin => (
           <Button
             key={skin.name}
             color={skin.number === skinColor ? Colors.primary : Colors.white}
