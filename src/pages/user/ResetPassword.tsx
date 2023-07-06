@@ -53,11 +53,6 @@ export default () => {
 
         <FlexView gap={16}>
           <Input
-            css={{
-              '::placeholder': {
-                fontSize: isMobile ? `14px` : `16px`,
-              },
-            }}
             height={40}
             placeholder="문자, 숫자, 특수문자(8자리 이상)"
             type="password"

@@ -7,16 +7,19 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   center?: boolean;
   width?: number;
   height?: number;
+  isMobile?: boolean;
 };
 
 export default forwardRef<HTMLInputElement, InputProps>(
-  ({ noBorder, center, width, height, ...props }: InputProps, ref) => {
+  (
+    { noBorder, center, width, height, isMobile, ...props }: InputProps,
+    ref,
+  ) => {
     const inputCSS: CSSObject = {
       background: `none`,
       border: `1px solid lightgray`,
       borderRadius: `4px`,
       outline: `none`,
-      fontSize: `16px`,
       minHeight: height || `36px`,
       minWidth: 0,
       padding: `0 8px`,
@@ -34,6 +37,7 @@ export default forwardRef<HTMLInputElement, InputProps>(
         // Remove the padding when type=search.
         appearance: `none`,
       },
+      '::placeholder': { fontSize: isMobile ? `14px` : `16px` },
       ':focus': {
         outline: `none`,
       },

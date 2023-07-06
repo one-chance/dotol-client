@@ -43,9 +43,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
     height: `40px`,
     borderRadius: `4px 0 0 4px`,
     borderRight: `none`,
-    '::placeholder': {
-      fontSize: isMobile ? `0.75rem` : `1rem`,
-    },
   };
 
   const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,7 +80,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       else
         sendOTPCode(email).then(res2 => {
           if (res2.statusCode === 200) {
-            console.log(`OTP 전송 성공`);
             setIsCertified(true);
           }
         });

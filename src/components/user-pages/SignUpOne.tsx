@@ -29,9 +29,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   const inputCSS: CSSObject = {
     borderRadius: `4px 0 0 4px`,
     borderRight: `none`,
-    '::placeholder': {
-      fontSize: isMobile ? `0.75rem` : `1rem`,
-    },
   };
 
   const inputUserId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,8 +49,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       if (res.statusCode === 400) alert(`중복된 아이디입니다.`);
       else if (res.statusCode === 200) setIsUniqueId(true);
     });
-
-    console.log(`2`);
   };
 
   const nextPhase = () => {

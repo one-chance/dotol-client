@@ -191,12 +191,6 @@ export default () => {
               </Select>
 
               <Input
-                css={{
-                  fontSize: isMobile ? `14px` : `16px`,
-                  '::placeholder': {
-                    fontSize: isMobile ? `14px` : `16px`,
-                  },
-                }}
                 placeholder="치장 이름"
                 value={searchKeyword || ``}
                 width={isMobile ? 110 : 160}

@@ -60,9 +60,6 @@ export default () => {
               css={{
                 borderRadius: `4px 0 0 4px`,
                 borderRight: 0,
-                '::placeholder': {
-                  fontSize: isMobile ? `14px` : `16px`,
-                },
               }}
               placeholder={
                 isMobile ? `아이템, 지역` : `아이템, 지역, NPC, 보상`

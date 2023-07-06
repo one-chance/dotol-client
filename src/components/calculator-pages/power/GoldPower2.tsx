@@ -2,55 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import { GOLD_INFO2 } from '@constants/power';
-
-const POWERS: { [key: string]: number } = {
-  '콘텐츠 부가잠재능력': 0,
-  '방어도무시/방어도': 100,
-  명중회피: 100,
-  마법수준향상: 60,
-  '명중률/타격치': 37.5,
-  '힘/민첩/지력': 15,
-  '방관/공증/마증/마치': 3.75,
-  '타흡/마흡/피흡': 3.75,
-  '직타/시향/회향': 3.75,
-  '방어도무시/방어도(%)': 1,
-  '체력/마력(%)': 0.01,
-  '힘/민첩/지력(%)': 0.01,
-  '명중회피(%)': 0.429,
-  재생력: 0.375,
-  '재생력(%)': 0.3,
-  '명중률/타격치(%)': 0.3,
-  '마법수준향상(%)': 0.3,
-  '방관/공증/마증/마치(%)': 0.3,
-  '타흡/마흡/피흡(%)': 0.3,
-  '직타/시향/회향(%)': 0.3,
-  '체력/마력': 0.003,
-};
-
-const MAXS: { [key: string]: number } = {
-  '콘텐츠 부가잠재능력': 0,
-  '방어도무시/방어도': 3,
-  '방어도무시/방어도(%)': 3,
-  명중회피: 3,
-  마법수준향상: 5,
-  '명중률/타격치': 8,
-  '힘/민첩/지력': 20,
-  '방관/공증/마증/마치': 80,
-  '타흡/마흡/피흡': 80,
-  '직타/시향/회향': 80,
-  '체력/마력(%)': 3,
-  '힘/민첩/지력(%)': 5,
-  '명중회피(%)': 7,
-  재생력: 800,
-  '재생력(%)': 10,
-  '명중률/타격치(%)': 10,
-  '마법수준향상(%)': 10,
-  '방관/공증/마증/마치(%)': 10,
-  '타흡/마흡/피흡(%)': 10,
-  '직타/시향/회향(%)': 10,
-  '체력/마력': 100000,
-};
+import { GOLD_POWER2 } from '@constants/power';
 
 const ABILITIES = [
   `콘텐츠 부가잠재능력`,
@@ -116,13 +68,13 @@ export default () => {
         ? `${temp.split(`.`)[0]}.${decimalPart.slice(0, 2)}`
         : temp;
 
-      if (Number(trimmedTemp) > GOLD_INFO2[ability[order]].max) return;
+      if (Number(trimmedTemp) > GOLD_POWER2[ability[order]].max) return;
 
       setValue({ ...value, [order]: trimmedTemp });
     } else {
       const temp = e.target.value.replace(/[^0-9]/g, ``);
 
-      if (Number(temp) > GOLD_INFO2[ability[order]].max) return;
+      if (Number(temp) > GOLD_POWER2[ability[order]].max) return;
 
       setValue({ ...value, [order]: temp });
     }
@@ -139,13 +91,13 @@ export default () => {
   useEffect(() => {
     setGoldPower(
       Math.floor(
-        GOLD_INFO2[ability.one].power * convertValue(`one`, value.one),
+        GOLD_POWER2[ability.one].power * convertValue(`one`, value.one),
       ) +
         Math.floor(
-          GOLD_INFO2[ability.two].power * convertValue(`two`, value.two),
+          GOLD_POWER2[ability.two].power * convertValue(`two`, value.two),
         ) +
         Math.floor(
-          GOLD_INFO2[ability.three].power * convertValue(`three`, value.three),
+          GOLD_POWER2[ability.three].power * convertValue(`three`, value.three),
         ),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

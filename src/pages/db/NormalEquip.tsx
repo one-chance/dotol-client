@@ -60,7 +60,7 @@ const JOBS = [
 
 export default () => {
   const isMobile = useResponsive(960);
-  const basicUrl = `https://image.dotols.com/equip/`;
+  const basicUrl = `https://asset.dotols.com/image/equip/`;
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [searchOption, setSearchOption] = useState({
     type: 0,

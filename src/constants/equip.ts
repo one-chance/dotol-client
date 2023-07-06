@@ -1,4 +1,58 @@
-export const GLASSES = [
+export const PET_GRADES = [`환수 등급`, `6등급`, `7등급`, `8등급`, `9등급`];
+export const PET_EQUIP_WEAPONS = [
+  `무기 장비`,
+  `무기 1성`,
+  `무기 2성`,
+  `무기 3성`,
+  `무기 4성`,
+  `무기 5성`,
+  `무기 6성`,
+  `무기 7성`,
+];
+export const PET_EQUIP_ARMORS = [
+  `갑옷 장비`,
+  `갑옷 1성`,
+  `갑옷 2성`,
+  `갑옷 3성`,
+  `갑옷 4성`,
+  `갑옷 5성`,
+  `갑옷 6성`,
+  `갑옷 7성`,
+];
+export const PET_EQUIP_HELMETS = [
+  `투구 장비`,
+  `투구 1성`,
+  `투구 2성`,
+  `투구 3성`,
+  `투구 4성`,
+  `투구 5성`,
+  `투구 6성`,
+  `투구 7성`,
+];
+export const PET_EQUIP_GLOVES = [`성물 장비`, `성물`, `성물'진`];
+export const PET_EQUIP_NECKLACES = [
+  `목걸이 장비`,
+  `작생목`,
+  `생목`,
+  `커생목`,
+  `극락목`,
+];
+export const PET_EQUIP_SHIELDS = [
+  `신물 장비`,
+  `신물'1성`,
+  `신물'2성`,
+  `신물'3성`,
+  `신물'4성`,
+];
+export const PET_EQUIP_FACES = [`문양 장비`, `문양`, `문양'진`];
+export const PET_EQUIP_CLOTHES = [
+  `분신 장비`,
+  `용사/공주`,
+  `미라/해골神`,
+  `환수神`,
+];
+
+export const ANTIQUITY_GLASSES = [
   `명경유물`,
   `명경1성`,
   `명경2성`,
@@ -17,7 +71,7 @@ export const GLASSES = [
   `명경9성+2`,
 ];
 
-export const WEAPONS = [
+export const ANTIQUITY_WEAPONS = [
   `무기유물`,
   `무기1성`,
   `무기2성`,
@@ -44,8 +98,7 @@ export const WEAPONS = [
   `신성한8성`,
   `신성한9성`,
 ];
-
-export const ARMORS = [
+export const ANTIQUITY_ARMORS = [
   `갑옷유물`,
   `갑옷1성`,
   `갑옷2성`,
@@ -72,8 +125,7 @@ export const ARMORS = [
   `신성한8성`,
   `신성한9성`,
 ];
-
-export const HELMETS = [
+export const ANTIQUITY_HELMETS = [
   `투구유물`,
   `투구1성`,
   `투구2성`,
@@ -100,8 +152,7 @@ export const HELMETS = [
   `신성한8성`,
   `신성한9성`,
 ];
-
-export const GLOVES = [
+export const ANTIQUITY_GLOVES = [
   `장갑유물`,
   `신수장갑1성`,
   `신수장갑2성`,
@@ -109,16 +160,9 @@ export const GLOVES = [
   `신수장갑4성`,
   `신수장갑5성`,
 ];
-
-export const ORBS = [`보조유물`, `신수보주1성`, `신수보주2성`, `신수보주3성`];
-
-export const GLASSES_POWER = [
-  0, 796, 1196, 1596, 1996, 2396, 2596, 2796, 2996, 3196, 3396, 3596, 3796,
-  3996, 4196, 4396,
+export const ANTIQUITY_ORBS = [
+  `보조유물`,
+  `신수보주1성`,
+  `신수보주2성`,
+  `신수보주3성`,
 ];
-export const EQUIP_POWERS = [
-  0, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
-  600, 650, 700, 750, 800, 850, 900, 950, 1000,
-];
-export const GRLOVE_POWERS = [0, 100, 200, 300, 400, 500];
-export const ORB_POWERS = [0, 200, 400, 600];

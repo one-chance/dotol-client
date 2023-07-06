@@ -108,7 +108,6 @@ export default () => {
 
           <Text small={isMobile}>&nbsp;+&nbsp;</Text>
           <Input
-            css={{ '::placeholder': { fontSize: isMobile ? `14px` : `16px` } }}
             placeholder="제작확률 증가(%)"
             value={extraPercentage || ``}
             width={isMobile ? 95 : 140}

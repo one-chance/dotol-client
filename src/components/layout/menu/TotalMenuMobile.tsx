@@ -9,14 +9,6 @@ type MenuProps = {
   onClose: () => void;
 };
 
-const MENU_NAME: { [key: string]: string } = {
-  board: `게시판`,
-  costume: `코디`,
-  db: `도감`,
-  calculator: `계산기`,
-  trade: `거래소`,
-};
-
 export default ({ onClose }: MenuProps) => {
   const location = useLocation();
 

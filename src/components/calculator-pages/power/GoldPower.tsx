@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import { GOLD_INFO } from '@constants/power';
+import { GOLD_POWER } from '@constants/power';
 
 const ABILITIES = [
   `황금돋보기 능력치`,
@@ -18,13 +18,13 @@ const ABILITIES = [
 
 export default () => {
   const [goldPower, setGoldPower] = useState(0);
-  const [ability, setAbility] = useState<{ [key: string]: string }>({
+  const [ability, setAbility] = useState<Record<string, string>>({
     one: ABILITIES[0],
     two: ABILITIES[0],
     three: ABILITIES[0],
   });
 
-  const [value, setValue] = useState<{ [key: string]: string }>({
+  const [value, setValue] = useState<Record<string, string>>({
     one: ``,
     two: ``,
     three: ``,
@@ -56,7 +56,7 @@ export default () => {
       ? `${temp.split(`.`)[0]}.${decimalPart.slice(0, 2)}`
       : temp;
 
-    if (Number(trimmedTemp) > GOLD_INFO[ability[order]].max) return;
+    if (Number(trimmedTemp) > GOLD_POWER[ability[order]].max) return;
 
     setValue({ ...value, [order]: trimmedTemp });
   };
@@ -66,9 +66,9 @@ export default () => {
 
   useEffect(() => {
     setGoldPower(
-      Math.floor(GOLD_INFO[ability.one].power * convertValue(value.one)) +
-        Math.floor(GOLD_INFO[ability.two].power * convertValue(value.two)) +
-        Math.floor(GOLD_INFO[ability.three].power * convertValue(value.three)),
+      Math.floor(GOLD_POWER[ability.one].power * convertValue(value.one)) +
+        Math.floor(GOLD_POWER[ability.two].power * convertValue(value.two)) +
+        Math.floor(GOLD_POWER[ability.three].power * convertValue(value.three)),
     );
   }, [ability, value]);
 

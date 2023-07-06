@@ -3,17 +3,14 @@ import { useState, useEffect } from 'react';
 import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import {
-  GLASSES,
-  GLASSES_POWER,
-  WEAPONS,
-  EQUIP_POWERS,
-  ARMORS,
-  HELMETS,
-  GLOVES,
-  GRLOVE_POWERS,
-  ORBS,
-  ORB_POWERS,
-} from '@constants/antiquity';
+  ANTIQUITY_GLASSES,
+  ANTIQUITY_WEAPONS,
+  ANTIQUITY_ARMORS,
+  ANTIQUITY_HELMETS,
+  ANTIQUITY_GLOVES,
+  ANTIQUITY_ORBS,
+} from '@constants/equip';
+import { ANTIQUITY_POWER } from '@constants/power';
 
 export default () => {
   const SELECT_WIDTH = 140;
@@ -65,14 +62,14 @@ export default () => {
 
   useEffect(() => {
     const power =
-      GLASSES_POWER[equips.glasses] +
-      EQUIP_POWERS[equips.weapon] +
-      EQUIP_POWERS[equips.armor] +
-      EQUIP_POWERS[equips.helmet] +
-      GRLOVE_POWERS[equips.leftGlove] +
-      GRLOVE_POWERS[equips.rightGlove] +
-      ORB_POWERS[equips.leftOrb] +
-      ORB_POWERS[equips.rightOrb];
+      ANTIQUITY_POWER[equips.glasses] +
+      ANTIQUITY_POWER[equips.weapon] +
+      ANTIQUITY_POWER[equips.armor] +
+      ANTIQUITY_POWER[equips.helmet] +
+      ANTIQUITY_POWER[equips.leftGlove] +
+      ANTIQUITY_POWER[equips.rightGlove] +
+      ANTIQUITY_POWER[equips.leftOrb] +
+      ANTIQUITY_POWER[equips.rightOrb];
 
     setAntiquityPower(power);
   }, [equips]);
@@ -91,72 +88,90 @@ export default () => {
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
-          <Select name={GLASSES[equips.glasses]} width={SELECT_WIDTH}>
+          <Select name={ANTIQUITY_GLASSES[equips.glasses]} width={SELECT_WIDTH}>
             <Option
-              selected={GLASSES[equips.glasses]}
-              values={GLASSES}
+              selected={ANTIQUITY_GLASSES[equips.glasses]}
+              values={ANTIQUITY_GLASSES}
               onSelect={selectGlasses}
             />
           </Select>
 
-          <Select max={200} name={WEAPONS[equips.weapon]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={ANTIQUITY_WEAPONS[equips.weapon]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={WEAPONS[equips.weapon]}
-              values={WEAPONS}
+              selected={ANTIQUITY_WEAPONS[equips.weapon]}
+              values={ANTIQUITY_WEAPONS}
               onSelect={selectWeapon}
             />
           </Select>
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select max={200} name={ARMORS[equips.armor]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={ANTIQUITY_ARMORS[equips.armor]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={ARMORS[equips.armor]}
-              values={ARMORS}
+              selected={ANTIQUITY_ARMORS[equips.armor]}
+              values={ANTIQUITY_ARMORS}
               onSelect={selectArmor}
             />
           </Select>
 
-          <Select max={200} name={HELMETS[equips.helmet]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={ANTIQUITY_HELMETS[equips.helmet]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={HELMETS[equips.helmet]}
-              values={HELMETS}
+              selected={ANTIQUITY_HELMETS[equips.helmet]}
+              values={ANTIQUITY_HELMETS}
               onSelect={selectHelmet}
             />
           </Select>
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select name={GLOVES[equips.leftGlove]} width={SELECT_WIDTH}>
+          <Select
+            name={ANTIQUITY_GLOVES[equips.leftGlove]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={GLOVES[equips.leftGlove]}
-              values={GLOVES}
+              selected={ANTIQUITY_GLOVES[equips.leftGlove]}
+              values={ANTIQUITY_GLOVES}
               onSelect={selectLeftGlove}
             />
           </Select>
 
-          <Select name={GLOVES[equips.rightGlove]} width={SELECT_WIDTH}>
+          <Select
+            name={ANTIQUITY_GLOVES[equips.rightGlove]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={GLOVES[equips.rightGlove]}
-              values={GLOVES}
+              selected={ANTIQUITY_GLOVES[equips.rightGlove]}
+              values={ANTIQUITY_GLOVES}
               onSelect={selectRightGlove}
             />
           </Select>
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select name={ORBS[equips.leftOrb]} width={SELECT_WIDTH}>
+          <Select name={ANTIQUITY_ORBS[equips.leftOrb]} width={SELECT_WIDTH}>
             <Option
-              selected={ORBS[equips.leftOrb]}
-              values={ORBS}
+              selected={ANTIQUITY_ORBS[equips.leftOrb]}
+              values={ANTIQUITY_ORBS}
               onSelect={selectLeftOrb}
             />
           </Select>
 
-          <Select name={ORBS[equips.rightOrb]} width={SELECT_WIDTH}>
+          <Select name={ANTIQUITY_ORBS[equips.rightOrb]} width={SELECT_WIDTH}>
             <Option
-              selected={ORBS[equips.rightOrb]}
-              values={ORBS}
+              selected={ANTIQUITY_ORBS[equips.rightOrb]}
+              values={ANTIQUITY_ORBS}
               onSelect={selectRightOrb}
             />
           </Select>

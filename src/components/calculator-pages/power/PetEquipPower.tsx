@@ -3,22 +3,17 @@ import { useState, useEffect } from 'react';
 import { Checkbox, FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import {
-  GRADES,
-  NECKLACES,
-  NECKLACES_POWER,
-  WEAPONS,
-  EQUIPS_POWER,
-  FACES,
-  FACES_POWER,
-  ARMORS,
-  HELMETS,
-  GLOVES,
-  GRLOVES_POWER,
-  SHIELDS,
-  SHIELDS_POWER,
-  CLOTHES,
-  CLOTHES_POWER,
-} from '@constants/petEquip';
+  PET_GRADES,
+  PET_EQUIP_NECKLACES,
+  PET_EQUIP_WEAPONS,
+  PET_EQUIP_FACES,
+  PET_EQUIP_ARMORS,
+  PET_EQUIP_HELMETS,
+  PET_EQUIP_GLOVES,
+  PET_EQUIP_SHIELDS,
+  PET_EQUIP_CLOTHES,
+} from '@constants/equip';
+import { PET_EQUIP_POWER } from '@constants/power';
 
 export default () => {
   const SELECT_WIDTH = 140;
@@ -109,15 +104,15 @@ export default () => {
 
     const power =
       petPower +
-      EQUIPS_POWER[equips.weapon] +
-      EQUIPS_POWER[equips.armor] +
-      EQUIPS_POWER[equips.helmet] +
-      NECKLACES_POWER[equips.necklace] +
-      FACES_POWER[equips.face] +
-      SHIELDS_POWER[equips.shield] +
-      GRLOVES_POWER[equips.leftGlove] +
-      GRLOVES_POWER[equips.rightGlove] +
-      CLOTHES_POWER[equips.clothes] +
+      PET_EQUIP_POWER[equips.weapon] +
+      PET_EQUIP_POWER[equips.armor] +
+      PET_EQUIP_POWER[equips.helmet] +
+      PET_EQUIP_POWER[equips.necklace] +
+      PET_EQUIP_POWER[equips.face] +
+      PET_EQUIP_POWER[equips.shield] +
+      PET_EQUIP_POWER[equips.leftGlove] +
+      PET_EQUIP_POWER[equips.rightGlove] +
+      PET_EQUIP_POWER[equips.clothes] +
       200 * reinforce.weapon +
       200 * reinforce.armor +
       200 * reinforce.helmet +
@@ -142,10 +137,14 @@ export default () => {
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
-          <Select max={200} name={GRADES[equips.grade]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={PET_GRADES[equips.grade]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={GRADES[equips.weapon]}
-              values={GRADES}
+              selected={PET_GRADES[equips.weapon]}
+              values={PET_GRADES}
               onSelect={selectGrade}
             />
           </Select>
@@ -162,10 +161,14 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select max={200} name={WEAPONS[equips.weapon]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={PET_EQUIP_WEAPONS[equips.weapon]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={WEAPONS[equips.weapon]}
-              values={WEAPONS}
+              selected={PET_EQUIP_WEAPONS[equips.weapon]}
+              values={PET_EQUIP_WEAPONS}
               onSelect={selectWeapon}
             />
           </Select>
@@ -186,10 +189,14 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} items="center" row>
-          <Select max={200} name={HELMETS[equips.helmet]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={PET_EQUIP_HELMETS[equips.helmet]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={HELMETS[equips.helmet]}
-              values={HELMETS}
+              selected={PET_EQUIP_HELMETS[equips.helmet]}
+              values={PET_EQUIP_HELMETS}
               onSelect={selectHelmet}
             />
           </Select>
@@ -210,10 +217,14 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select max={200} name={ARMORS[equips.armor]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={PET_EQUIP_ARMORS[equips.armor]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={ARMORS[equips.armor]}
-              values={ARMORS}
+              selected={PET_EQUIP_ARMORS[equips.armor]}
+              values={PET_EQUIP_ARMORS}
               onSelect={selectArmor}
             />
           </Select>
@@ -234,10 +245,13 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} items="center" row>
-          <Select name={GLOVES[equips.leftGlove]} width={SELECT_WIDTH}>
+          <Select
+            name={PET_EQUIP_GLOVES[equips.leftGlove]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={GLOVES[equips.leftGlove]}
-              values={GLOVES}
+              selected={PET_EQUIP_GLOVES[equips.leftGlove]}
+              values={PET_EQUIP_GLOVES}
               onSelect={selectLeftGlove}
             />
           </Select>
@@ -258,10 +272,13 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} items="center" row>
-          <Select name={GLOVES[equips.rightGlove]} width={SELECT_WIDTH}>
+          <Select
+            name={PET_EQUIP_GLOVES[equips.rightGlove]}
+            width={SELECT_WIDTH}
+          >
             <Option
-              selected={GLOVES[equips.rightGlove]}
-              values={GLOVES}
+              selected={PET_EQUIP_GLOVES[equips.rightGlove]}
+              values={PET_EQUIP_GLOVES}
               onSelect={selectRightGlove}
             />
           </Select>
@@ -282,10 +299,10 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} items="center" row>
-          <Select name={SHIELDS[equips.shield]} width={SELECT_WIDTH}>
+          <Select name={PET_EQUIP_SHIELDS[equips.shield]} width={SELECT_WIDTH}>
             <Option
-              selected={SHIELDS[equips.shield]}
-              values={SHIELDS}
+              selected={PET_EQUIP_SHIELDS[equips.shield]}
+              values={PET_EQUIP_SHIELDS}
               onSelect={selectShield}
             />
           </Select>
@@ -299,26 +316,29 @@ export default () => {
           </FlexView>
         </FlexView>
 
-        <Select name={NECKLACES[equips.necklace]} width={SELECT_WIDTH}>
+        <Select
+          name={PET_EQUIP_NECKLACES[equips.necklace]}
+          width={SELECT_WIDTH}
+        >
           <Option
-            selected={NECKLACES[equips.necklace]}
-            values={NECKLACES}
+            selected={PET_EQUIP_NECKLACES[equips.necklace]}
+            values={PET_EQUIP_NECKLACES}
             onSelect={selectNecklace}
           />
         </Select>
 
-        <Select name={FACES[equips.face]} width={SELECT_WIDTH}>
+        <Select name={PET_EQUIP_FACES[equips.face]} width={SELECT_WIDTH}>
           <Option
-            selected={FACES[equips.face]}
-            values={FACES}
+            selected={PET_EQUIP_FACES[equips.face]}
+            values={PET_EQUIP_FACES}
             onSelect={selectFace}
           />
         </Select>
 
-        <Select name={CLOTHES[equips.clothes]} width={SELECT_WIDTH}>
+        <Select name={PET_EQUIP_CLOTHES[equips.clothes]} width={SELECT_WIDTH}>
           <Option
-            selected={CLOTHES[equips.clothes]}
-            values={CLOTHES}
+            selected={PET_EQUIP_CLOTHES[equips.clothes]}
+            values={PET_EQUIP_CLOTHES}
             onSelect={selectClothes}
           />
         </Select>

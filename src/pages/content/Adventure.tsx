@@ -20,15 +20,15 @@ const TABS = [`괴수`, `물품`, `임무`, `탐방`, `보상`];
 
 export default () => {
   const isMobile = useResponsive(600);
-  const [selectedTab, setSelectedTab] = useState<AdventureTab>(`괴수`); // 탐험 탭
-  const [selectedLocation, setSelectedLocation] = useState(0); // 탐험 지역
+  const [tab, setTab] = useState(0); // 탐험 탭
+  const [location, setLocation] = useState(0); // 탐험 지역
 
   const selectLocation = (idx: number) => {
-    setSelectedLocation(idx);
+    setLocation(idx);
   };
 
   const selectTab = (idx: number) => {
-    setSelectedTab(TABS[idx] as AdventureTab);
+    setTab(idx);
   };
 
   return (
@@ -46,28 +46,24 @@ export default () => {
         </Text>
 
         <FlexView gap={8} row>
-          <Select
-            isMobile={isMobile}
-            name={LOCATIONS[selectedLocation]}
-            width={100}
-          >
+          <Select isMobile={isMobile} name={LOCATIONS[location]} width={100}>
             <Option
-              selected={LOCATIONS[selectedLocation]}
+              selected={LOCATIONS[location]}
               values={LOCATIONS}
               onSelect={selectLocation}
             />
           </Select>
 
-          <Select isMobile={isMobile} name={selectedTab} width={80}>
-            <Option selected={selectedTab} values={TABS} onSelect={selectTab} />
+          <Select isMobile={isMobile} name={TABS[tab]} width={80}>
+            <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
           </Select>
         </FlexView>
       </FlexView>
 
       <AdventureList
         isMobile={isMobile}
-        location={selectedLocation}
-        tab={selectedTab}
+        location={location}
+        tab={TABS[tab] as AdventureTab}
       />
     </FlexView>
   );

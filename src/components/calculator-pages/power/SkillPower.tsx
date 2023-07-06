@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import { getSkillAbilityList } from '@apis/skill';
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import { SKILL_INFO } from '@constants/skillPower';
-import DATA from '@data/skill-ability.json';
+import { SKILL_POWER } from '@constants/power';
 
 const JOBS = [
   `전사`,
@@ -20,47 +20,40 @@ const JOBS = [
 
 const EQUIP_PARTS = [`목/어깨장식`, `투구`, `무기`, `갑옷`, `망토`];
 
-const test: { [key: string]: { power: number; max: string } } = {
-  '호기방출 쿨타임[-]': { power: 1, max: `20.0` },
-  '호기방출 피해량[+]': { power: 0.667, max: `30.0` },
-  '초혼진무 쿨타임[-]': { power: 5, max: `4.0` },
-  '초혼진무 PvP 쿨타임[-]': { power: 2.5, max: `8.0` },
-  '폭풍결장 쿨타임[-]': { power: 2, max: `10.0` },
-  '광폭 광기소모도[-]': { power: 0.834, max: `24.0` },
-  '광폭 쿨타임[-]': { power: 2, max: `10.0` },
-  '광폭 피해증가율': { power: 1, max: `200` },
-  '백호령 지속시간[+]': { power: 4, max: `5.0` },
-  '백호령 피해증가율[+]': { power: 4, max: `50` },
-  '운상미보 이속증가율[+]': { power: 20, max: `10` },
-  '어검화 피해량[+]': { power: 0.667, max: `30.0` },
-  '기력방패 마력소모도[-]': { power: 20, max: `10` },
-  '기력방패 방어 증가[+]': { power: 40, max: `5` },
+type Ability = {
+  기술능력: string;
+  전설: string;
+  신화: string;
 };
 
 export default () => {
   const [skillPower, setSkillPower] = useState(0);
-  const [selectedJob, setSelectedJob] = useState(0);
-  const [selectedPart, setSelectedPart] = useState(0);
-
+  const [job, setJob] = useState(0);
+  const [parts, setParts] = useState(0);
   const [skillValue, setSkillValue] = useState(``);
 
-  const skillList = DATA[selectedJob][selectedPart].map(
-    element => element.기술능력,
-  );
+  const [abilityList, setAbilityList] = useState([[[]]]);
+  const [skillList, setSkillList] = useState([`기술능력`]);
 
-  const [selectedSkill, setSelectedSkill] = useState(skillList[0]);
-  const skillInfo = SKILL_INFO[selectedSkill];
+  const [selectedSkill, setSelectedSkill] = useState(`기술능력`);
+  const skillInfo = SKILL_POWER[selectedSkill];
 
   const selectJob = (id: number) => {
-    setSelectedJob(id);
+    setJob(id);
+    setSelectedSkill(`기술능력`);
+    setSkillValue(``);
   };
 
-  const selectPart = (id: number) => {
-    setSelectedPart(id);
+  const selectParts = (id: number) => {
+    setParts(id);
+
+    setSelectedSkill(`기술능력`);
+    setSkillValue(``);
   };
 
   const selectSkill = (id: number) => {
     setSelectedSkill(skillList[id]);
+    setSkillValue(``);
   };
 
   const inputSkillValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,16 +81,27 @@ export default () => {
   };
 
   useEffect(() => {
-    setSkillPower(
-      Math.floor(SKILL_INFO[selectedSkill].power * convertValue(skillValue)),
-    );
+    if (skillValue === ``) return setSkillPower(0);
+
+    setSkillPower(Math.floor(skillInfo.power * convertValue(skillValue)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skillValue]);
 
   useEffect(() => {
-    setSelectedSkill(skillList[0]);
+    setSkillList(
+      abilityList?.[job][parts].map((skill: Ability) => skill.기술능력),
+    );
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedPart]);
+  }, [job, parts]);
+
+  useEffect(() => {
+    getSkillAbilityList().then(res => {
+      setAbilityList(res);
+      setSkillList(res[job][parts].map((skill: Ability) => skill.기술능력));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <FlexView
@@ -110,19 +114,15 @@ export default () => {
       items="center"
     >
       <FlexView gap={16} items="center" row>
-        <Select name={JOBS[selectedJob]} width={120}>
-          <Option
-            selected={JOBS[selectedJob]}
-            values={JOBS}
-            onSelect={selectJob}
-          />
+        <Select name={JOBS[job]} width={120}>
+          <Option selected={JOBS[job]} values={JOBS} onSelect={selectJob} />
         </Select>
 
-        <Select name={EQUIP_PARTS[selectedPart]} width={120}>
+        <Select name={EQUIP_PARTS[parts]} width={120}>
           <Option
-            selected={EQUIP_PARTS[selectedPart]}
+            selected={EQUIP_PARTS[parts]}
             values={EQUIP_PARTS}
-            onSelect={selectPart}
+            onSelect={selectParts}
           />
         </Select>
       </FlexView>
@@ -138,6 +138,7 @@ export default () => {
       <Input
         height={40}
         placeholder="수치"
+        readOnly={selectedSkill === `기술능력`}
         value={skillValue || ``}
         width={256}
         center
