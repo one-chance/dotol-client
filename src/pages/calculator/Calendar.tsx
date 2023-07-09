@@ -21,7 +21,7 @@ export default () => {
           row={!isMobile}
           wrap
         >
-          {SCHEDULES.map((data, index) => (
+          {SCHEDULES.map(data => (
             <FlexView key={data.event} gap={16} items="center" row>
               <Text
                 css={{ minWidth: isMobile ? `100px` : `120px` }}
