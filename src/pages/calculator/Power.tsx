@@ -4,6 +4,7 @@ import {
   AntiquityPower,
   BodyPower,
   EngravePower,
+  InnerPower,
   GoldPower,
   GoldPower2,
   LevelPower,
@@ -57,7 +58,10 @@ const explanations: { [key in CALCULATOR]: string[] } = {
   대표환수: [`환수장비에 달린 부가잠재능력은 따로 계산해야 한다.`],
   기술능력: [],
   신체강화: [],
-  내공강화: [],
+  내공강화: [
+    `같은 능력치는 수치를 합산해서 계산해야 한다.`,
+    `모든 능력 증가 1%는 전투력에 반영되지 않는다.`,
+  ],
   신수유물: [],
 };
 
@@ -88,7 +92,7 @@ export default () => {
     대표환수: <PetEquipPower />,
     기술능력: <SkillPower />,
     신체강화: <BodyPower />,
-    내공강화: <BodyPower />,
+    내공강화: <InnerPower />,
     신수유물: <AntiquityPower />,
   };
 

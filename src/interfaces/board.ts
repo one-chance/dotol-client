@@ -11,8 +11,8 @@ export interface IPost {
   commentCount: number;
   recommenders: string[];
   comments: IComment[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   imgs?: string[];
   server?: IServer;
   video?: string;
@@ -28,7 +28,7 @@ export interface IComment {
   writer: IWriter;
   content: string;
   isDeleted: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   replies?: IComment[];
 }

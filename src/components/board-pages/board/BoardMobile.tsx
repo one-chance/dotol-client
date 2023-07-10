@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-import { BoardButtons } from '@components/board-pages';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
@@ -141,8 +140,6 @@ export default ({ category }: BoardProps) => {
           </FlexView>
         </FlexView>
       </FlexView>
-
-      <BoardButtons category={category} recent write />
 
       <Pagination count={100} unit={10} />
 

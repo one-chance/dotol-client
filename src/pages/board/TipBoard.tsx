@@ -1,4 +1,4 @@
-import { Board, BoardMobile } from '@components/board-pages';
+import { Board, BoardMobile } from '@components/board-pages/board';
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@utils/hooks';
 

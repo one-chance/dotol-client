@@ -1,27 +1,15 @@
 import { useState } from 'react';
 
-import { Comment, InputComment } from '@components/board-pages';
+import { Comment, NewComment } from '@components/board-pages/post';
 import { Button, FlexView, Text } from '@components/common';
+import { IComment } from '@interfaces/board';
 
 type CommentProps = {
-  editedAt: string;
-  writer: string;
-  content: string;
-  recomments?: any;
+  comment: IComment;
   isRecomment?: boolean;
-  isEdited?: boolean;
-  isDeleted?: boolean;
 };
 
-export default ({
-  editedAt,
-  writer,
-  content,
-  recomments,
-  isRecomment,
-  isEdited,
-  isDeleted,
-}: CommentProps) => {
+export default ({ comment, isRecomment }: CommentProps) => {
   const [editMode, setEditMode] = useState(false);
   const [replyMode, setReplyMode] = useState(false);
 
@@ -48,10 +36,10 @@ export default ({
       >
         <FlexView gap={4} items="end" row>
           <Text bold small>
-            {writer}
+            {comment.writer.character}
           </Text>
-          <Text xSmall>{editedAt}</Text>
-          {isEdited && (
+          <Text xSmall>{comment.updatedAt}</Text>
+          {comment.createdAt !== comment.updatedAt && (
             <Text color="gray" xSmall>
               (수정)
             </Text>
@@ -77,33 +65,27 @@ export default ({
 
       <FlexView css={{ padding: `4px 20px`, minHeight: `60px` }}>
         {editMode ? (
-          <InputComment onSubmit={editComment} />
+          <NewComment onSubmit={editComment} />
         ) : (
-          <Text color={isDeleted ? `gray` : `black`} small>
-            {isDeleted ? `삭제된 댓글입니다.` : content}
+          <Text color={comment.isDeleted ? `gray` : `black`} small>
+            {comment.isDeleted ? `삭제된 댓글입니다.` : comment.content}
           </Text>
         )}
       </FlexView>
 
-      {recomments?.map((recomment: any) => (
+      {comment.replies?.map((reply: IComment) => (
         <FlexView
-          key={recomment.id}
+          key={reply.index}
           color="lightgray"
           css={{ marginLeft: `20px`, borderTop: `1px solid` }}
         >
-          <Comment
-            key={recomment.id}
-            content="답글 테스트"
-            editedAt="2023-06-13 06:06:12"
-            writer={recomment.writer}
-            isRecomment
-          />
+          <Comment comment={reply} isRecomment />
         </FlexView>
       ))}
 
       {replyMode && (
         <FlexView css={{ paddingLeft: `20px` }}>
-          <InputComment onSubmit={submitRecomment} />
+          <NewComment onSubmit={submitRecomment} />
         </FlexView>
       )}
     </FlexView>
