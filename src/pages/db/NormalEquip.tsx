@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { getEquipByName, getEquipByOption } from '@apis/equip';
-import { Chip } from '@components/chip';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { IEquip } from '@interfaces/equip';
@@ -235,14 +234,15 @@ export default () => {
               overflowY: `auto`,
               border: `1px solid lightgray`,
               borderRadius: `4px`,
-              padding: `10px 20px`,
+              padding: `10px`,
+              alignContent: items.length === 0 ? `center` : `flex-start`,
             }}
             gap={8}
             row
             wrap
           >
             {items?.length === 0 && (
-              <FlexView css={{ width: `100%` }} center>
+              <FlexView center fill>
                 <Text color="gray" small={isMobile}>
                   아이템을 선택하면 빈 슬롯에 자동으로 추가됩니다.
                 </Text>
@@ -253,13 +253,20 @@ export default () => {
             )}
 
             {items?.map((item: IEquip) => (
-              <Chip
-                key={item.name}
+              <Button
+                key={item.index}
+                css={{
+                  height: `24px`,
+                  border: `1px solid ${Colors.primary}`,
+                  padding: `0 4px`,
+                }}
                 radius={4}
-                text={item.name}
-                clickable
                 onClick={() => saveToSlot(item.index.toString())}
-              />
+              >
+                <Text color={Colors.primary} small>
+                  {item.name}
+                </Text>
+              </Button>
             ))}
           </FlexView>
         </FlexView>
@@ -290,7 +297,10 @@ export default () => {
             </Button>
 
             {slotItems.one !== `` && (
-              <Image src={`${basicUrl}${slotItems.one}.png`} />
+              <Image
+                css={{ maxWidth: `310px` }}
+                src={`${basicUrl}${slotItems.one}.png`}
+              />
             )}
           </FlexView>
 

@@ -104,15 +104,15 @@ export default () => {
 
     const power =
       petPower +
-      PET_EQUIP_POWER[equips.weapon] +
-      PET_EQUIP_POWER[equips.armor] +
-      PET_EQUIP_POWER[equips.helmet] +
-      PET_EQUIP_POWER[equips.necklace] +
-      PET_EQUIP_POWER[equips.face] +
-      PET_EQUIP_POWER[equips.shield] +
-      PET_EQUIP_POWER[equips.leftGlove] +
-      PET_EQUIP_POWER[equips.rightGlove] +
-      PET_EQUIP_POWER[equips.clothes] +
+      PET_EQUIP_POWER[PET_EQUIP_WEAPONS[equips.weapon]] +
+      PET_EQUIP_POWER[PET_EQUIP_ARMORS[equips.armor]] +
+      PET_EQUIP_POWER[PET_EQUIP_HELMETS[equips.helmet]] +
+      PET_EQUIP_POWER[PET_EQUIP_NECKLACES[equips.necklace]] +
+      PET_EQUIP_POWER[PET_EQUIP_FACES[equips.face]] +
+      PET_EQUIP_POWER[PET_EQUIP_SHIELDS[equips.shield]] +
+      PET_EQUIP_POWER[PET_EQUIP_GLOVES[equips.leftGlove]] +
+      PET_EQUIP_POWER[PET_EQUIP_GLOVES[equips.rightGlove]] +
+      PET_EQUIP_POWER[PET_EQUIP_CLOTHES[equips.clothes]] +
       200 * reinforce.weapon +
       200 * reinforce.armor +
       200 * reinforce.helmet +

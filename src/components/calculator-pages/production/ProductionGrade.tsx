@@ -58,7 +58,7 @@ export default () => {
         <Text large={isMobile} xLarge={!isMobile} bold>
           생산 단계업 재료
         </Text>
-        <Select name={SKILLS[selectedSkill]} width={160}>
+        <Select name={SKILLS[selectedSkill]} width={100}>
           <Option
             selected={SKILLS[selectedSkill]}
             values={SKILLS}
@@ -77,57 +77,56 @@ export default () => {
           <Text
             css={{
               width: isMobile ? `60px` : `80px`,
-              paddingLeft: isMobile ? `4px` : `8px`,
             }}
             small={isMobile}
             bold
+            center
           >
             단계
           </Text>
           <Text
-            css={{ paddingLeft: isMobile ? `4px` : `8px` }}
+            css={{
+              width: isMobile ? `300px` : `460px`,
+            }}
             small={isMobile}
             bold
-            fill
+            center
           >
             재료
           </Text>
         </FlexView>
 
-        <FlexView css={{ border: `1px solid lightgray` }}>
+        <FlexView>
           {data[selectedSkill].map((ingredients, index) => (
             <FlexView
               key={GRADES[index]}
               css={{
-                minHeight: `32px`,
-                borderTop: index === 0 ? `none` : `1px solid lightgray`,
+                minHeight: isMobile ? `32px` : `40px`,
+                borderLeft: `1px solid lightgray`,
+                borderBottom: `1px solid lightgray`,
+                borderRight: `1px solid lightgray`,
               }}
               row
             >
               <FlexView
                 css={{
-                  minHeight: isMobile ? `32px` : `40px`,
+                  width: isMobile ? `60px` : `80px`,
                   borderRight: `1px solid lightgray`,
                 }}
                 center
               >
-                <Text
-                  css={{
-                    minWidth: isMobile ? `60px` : `80px`,
-                    paddingLeft: isMobile ? `4px` : `8px`,
-                  }}
-                  xSmall={isMobile}
-                  medium
-                >
+                <Text xSmall={isMobile} medium>
                   {GRADES[index]}
                 </Text>
               </FlexView>
 
               <FlexView
-                css={{ padding: isMobile ? `4px` : `2px 8px` }}
+                css={{
+                  padding: isMobile ? `4px` : `2px 8px`,
+                  width: isMobile ? `300px` : `460px`,
+                }}
                 gap={isMobile ? 4 : 16}
                 items="center"
-                fill
                 row
                 wrap
               >

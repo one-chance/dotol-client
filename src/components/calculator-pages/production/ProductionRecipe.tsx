@@ -13,7 +13,11 @@ type Recipe = {
   }[];
 };
 
-export default () => {
+type RecipeProps = {
+  isMobile?: boolean;
+};
+
+export default ({ isMobile }: RecipeProps) => {
   const selectedItem = useRecoilValue(itemState);
 
   const [recipeList, setRecipeList] = useState<Recipe>({});
@@ -49,6 +53,7 @@ export default () => {
             ),
       ),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedItem]);
 
   useEffect(() => {
@@ -61,8 +66,9 @@ export default () => {
     <FlexView
       css={{
         alignContent: `flex-start`,
+        maxWidth: `540px`,
         minHeight: `200px`,
-        padding: `20px`,
+        padding: isMobile ? `5px` : `10px`,
         border: `1px solid lightgray`,
         borderRadius: `4px`,
       }}

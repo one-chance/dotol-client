@@ -40,9 +40,9 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
             css={{
               height: `28px`,
               border: `1px solid ${Colors.primary}`,
-              borderRadius: `4px`,
               padding: `0 8px`,
             }}
+            radius={4}
             onClick={() => changeSkin(skin.number)}
           >
             <Text

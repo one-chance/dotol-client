@@ -62,14 +62,14 @@ export default () => {
 
   useEffect(() => {
     const power =
-      ANTIQUITY_POWER[equips.glasses] +
-      ANTIQUITY_POWER[equips.weapon] +
-      ANTIQUITY_POWER[equips.armor] +
-      ANTIQUITY_POWER[equips.helmet] +
-      ANTIQUITY_POWER[equips.leftGlove] +
-      ANTIQUITY_POWER[equips.rightGlove] +
-      ANTIQUITY_POWER[equips.leftOrb] +
-      ANTIQUITY_POWER[equips.rightOrb];
+      ANTIQUITY_POWER[ANTIQUITY_GLASSES[equips.glasses]] +
+      ANTIQUITY_POWER[ANTIQUITY_WEAPONS[equips.weapon]] +
+      ANTIQUITY_POWER[ANTIQUITY_ARMORS[equips.armor]] +
+      ANTIQUITY_POWER[ANTIQUITY_HELMETS[equips.helmet]] +
+      ANTIQUITY_POWER[ANTIQUITY_GLOVES[equips.leftGlove]] +
+      ANTIQUITY_POWER[ANTIQUITY_GLOVES[equips.rightGlove]] +
+      ANTIQUITY_POWER[ANTIQUITY_ORBS[equips.leftOrb]] +
+      ANTIQUITY_POWER[ANTIQUITY_ORBS[equips.rightOrb]];
 
     setAntiquityPower(power);
   }, [equips]);

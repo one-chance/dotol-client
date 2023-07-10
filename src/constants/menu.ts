@@ -44,12 +44,12 @@ export const TOTAL_MENU = [
         name: `자유 게시판`,
         url: `/board/free?page=1`,
       },
-      {
-        name: `영상 게시판`,
-        url: `/board/video?page=1`,
-      },
-      { name: `서버 게시판`, url: `/board/server?page=1` },
-      { name: `거래 게시판`, url: `/board/trade?page=1` },
+      // {
+      //   name: `영상 게시판`,
+      //   url: `/board/video?page=1`,
+      // },
+      // { name: `서버 게시판`, url: `/board/server?page=1` },
+      // { name: `거래 게시판`, url: `/board/trade?page=1` },
     ],
   },
   // {

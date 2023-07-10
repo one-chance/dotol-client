@@ -36,7 +36,7 @@ const GRADES = [
 ];
 
 export default () => {
-  const isMobile = useResponsive(600);
+  const isMobile = useResponsive(560);
   const setRecipe = useSetRecoilState(itemState);
 
   const [itemList, setItemList] = useState([[[]]]);
@@ -48,6 +48,7 @@ export default () => {
   const selectSkill = (idx: number) => {
     setSkill(idx);
     setGrade(0);
+    setSelectedItem(`품목`);
   };
 
   const selectGrade = (idx: number) => {
@@ -86,13 +87,9 @@ export default () => {
   }, []);
 
   return (
-    <FlexView gap={16} items="center" row wrap>
-      <FlexView gap={isMobile ? 8 : 16} items="center" row>
-        <Select
-          isMobile={isMobile}
-          name={SKILLS[skill]}
-          width={isMobile ? 80 : 90}
-        >
+    <FlexView content="between" gap={16} items="center" row wrap>
+      <FlexView gap={8} items="center" row>
+        <Select isMobile={isMobile} name={SKILLS[skill]} width={80}>
           <Option
             selected={SKILLS[skill]}
             values={SKILLS}

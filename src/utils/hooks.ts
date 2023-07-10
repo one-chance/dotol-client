@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { getMyInfo } from '@apis/users';
-
 interface Size {
   width: number;
   height: number;

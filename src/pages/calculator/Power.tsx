@@ -8,6 +8,7 @@ import {
   GoldPower,
   GoldPower2,
   LevelPower,
+  NormalEquipPower,
   PetEquipPower,
   SkillPower,
 } from '@components/calculator-pages/power';
@@ -59,8 +60,8 @@ const explanations: { [key in CALCULATOR]: string[] } = {
   기술능력: [],
   신체강화: [],
   내공강화: [
-    `같은 능력치는 수치를 합산해서 계산해야 한다.`,
-    `모든 능력 증가 1%는 전투력에 반영되지 않는다.`,
+    `같은 능력치는 수치를 합산해서 한 번에 계산해야 한다.`,
+    `[모든 능력 증가] 능력치가 최종 전투력에 반영되지 않는다.`,
   ],
   신수유물: [],
 };
@@ -81,7 +82,7 @@ export default () => {
 
   const calculator = {
     레벨: <LevelPower />,
-    장비: <LevelPower />,
+    장비: <NormalEquipPower />,
     각인: <EngravePower />,
     부가잠재능력: (
       <FlexView gap={40} items="center" row={!isMobile}>

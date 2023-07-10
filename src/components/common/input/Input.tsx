@@ -23,14 +23,10 @@ export default forwardRef<HTMLInputElement, InputProps>(
       minHeight: height || `36px`,
       minWidth: 0,
       padding: `0 8px`,
+      fontSize: isMobile ? `14px` : `16px`,
       //   color: 'currentColor',
-      //   fontSize: FontSizes.normal,
-      //   '::placeholder': {
-      //     color: TextColors.textLight
-      //   },
       WebkitTapHighlightColor: `transparent`,
       '&:-webkit-autofill': {
-        // WebkitTextFillColor: TextColors.text,
         transition: `background-color 5000s ease-in-out 0s`,
       },
       '&::-webkit-search-decoration': {
