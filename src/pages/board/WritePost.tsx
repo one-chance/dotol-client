@@ -1,5 +1,5 @@
 /* eslint-disable no-alert */
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { NewPost } from '@components/board-pages/post';
 import { FlexView } from '@components/common';

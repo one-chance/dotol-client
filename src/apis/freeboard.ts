@@ -1,3 +1,5 @@
+import { getAccessToken } from '@utils/common';
+
 export const getFreeboard = async (
   page: number,
   searchType: string,
@@ -6,7 +8,9 @@ export const getFreeboard = async (
   const search = `${searchType}, ${searchKeyword}`;
 
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/freeboard/posts?page=${page}${search}`,
+    `${
+      import.meta.env.VITE_API_SERVER
+    }/freeboard/posts?page=${page}&search=${search}`,
     {
       method: `GET`,
       headers: {
@@ -34,19 +38,21 @@ export const getFreeboardPost = async (postId: number) => {
   return data;
 };
 
-export const updateFreeboardPost = async (
-  postId: number,
+export const createFreeboardPost = async (
+  _id: string,
   title: string,
   content: string,
 ) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/freeboard/posts/${postId}`,
+    `${import.meta.env.VITE_API_SERVER}/freeboard/posts`,
     {
-      method: `PATCH`,
+      method: `POST`,
       headers: {
         'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
       body: JSON.stringify({
+        _id,
         title,
         content,
       }),
@@ -237,56 +243,43 @@ export const increaseFreeboardViews = async (postId: number) => {
   return data;
 };
 
-export const requestPreSignedPostUrl = async () => {
-  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/aws/test`, {
-    method: `POST`,
-    headers: {
-      'Content-Type': `application/json`,
+export const requestPreSignedPostUrl = async (fileName: string) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/freeboard/posts/presigned-url`,
+    {
+      method: `POST`,
+      headers: {
+        'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+      body: JSON.stringify({
+        fileName,
+      }),
     },
-  });
+  );
 
   const data = await res.json();
   return data;
 };
 
-export const upload = async (key: string, fileName: string) => {
-  const data: FormData = new FormData();
+export const uploadPreSignedPostUrl = async (
+  presignedUrl: string,
+  fields: any,
+  file: Blob,
+) => {
+  const formdata = new FormData();
 
-  data.append(
-    `key`,
-    `<your folder path in aws s3>/sample_1624816164229_3e01f5e9-89b0-4a85-a648-fa278ce11a08.jpg`,
-  );
-  data.append(`X-Amz-Algorithm`, `AWS4-HMAC-SHA256`);
-  data.append(
-    `X-Amz-Credential`,
-    `xxxxxxxxxxxx/20210608/ap-south-1/s3/aws4_request`,
-  );
-  data.append(`X-Amz-Date`, `20210608T093333Z`);
-  data.append(`Policy`, `jwt-token`);
-  data.append(`X-Amz-Signature`, `xxxxxx`);
-  data.append(`x-amz-meta-file_id`, `12345`);
-  data.append(
-    `Tagging`,
+  Object.keys(fields).forEach(key => {
+    formdata.append(key, fields[key]);
+  });
+  formdata.append(
+    `tagging`,
     `<Tagging><TagSet><Tag><Key>isUnverified</Key><Value>true</Value></Tag></TagSet></Tagging>`,
   );
-  data.append(`Content-Type`, `image/png`);
-  data.append(`Cache-Control`, `max-age=86400`);
-  // data.append(
-  //   `file`,
-  //   fs.createReadStream(`/home/ramprakash/Downloads/sample.jpeg`),
-  // );
+  formdata.append(`file`, file);
 
-  const res = await fetch(
-    `https://<your bucket name>.s3.ap-south-1.amazonaws.com/baram`,
-    {
-      method: `POST`,
-      headers: {
-        'Content-Type': `multipart/form-data`,
-      },
-      body: data,
-    },
-  );
-
-  const resData = await res.json();
-  return resData;
+  return fetch(presignedUrl, {
+    method: `POST`,
+    body: formdata,
+  });
 };

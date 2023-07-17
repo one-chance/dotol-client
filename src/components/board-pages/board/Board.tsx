@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { getFreeboard } from '@apis/freeboard';
 import { PostSummary } from '@components/board-pages/board';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
@@ -61,6 +62,9 @@ export default ({ category }: BoardProps) => {
   };
 
   useEffect(() => {
+    getFreeboard(1, ``, ``).then(res => {
+      if (res.statusCode === 200) setPostList(res.data);
+    });
     // setArticleList();
   }, []);
 

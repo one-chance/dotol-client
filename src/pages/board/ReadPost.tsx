@@ -18,7 +18,7 @@ export default () => {
   const [post, setPost] = useState<IPost>({
     index: 0,
     title: `테스트 제목입니다.`,
-    content: `테스트 본문입니다.`,
+    content: `테스트 본문입니다. 테스트 본문입니다.`,
     writer: { userId: `quwieo`, character: `협가검@하자` },
     recommenders: [`quwieo`],
     views: 12,

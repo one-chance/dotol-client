@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import PostComment from './PostComment';
+import PostContent from './PostContent';
 import PostTitle from './PostTitle';
 
 type PostProps = {
@@ -57,15 +58,7 @@ export default ({ category, post, page }: PostProps) => {
         writer={post?.writer}
       />
 
-      <FlexView
-        css={{
-          minHeight: `100px`,
-          marginTop: `20px`,
-          padding: `10px 20px`,
-        }}
-      >
-        POST 내용
-      </FlexView>
+      <PostContent content={post?.content} />
 
       <FlexView
         content="between"

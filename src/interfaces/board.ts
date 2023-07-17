@@ -13,7 +13,6 @@ export interface IPost {
   comments: IComment[];
   createdAt: string;
   updatedAt: string;
-  imgs?: string[];
   server?: IServer;
   video?: string;
 }
