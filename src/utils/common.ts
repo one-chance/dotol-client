@@ -30,13 +30,22 @@ export function convertDateFormat(inputDate: string) {
   const today = new Date();
 
   if (date.getFullYear() !== today.getFullYear())
-    return `${date.getMonth() + 1}/${date.getDate()}`;
+    return `${(date.getMonth() + 1).toString().padStart(2, `0`)}.${date
+      .getDate()
+      .toString()
+      .padStart(2, `0`)}`;
 
   if (date.getMonth() !== today.getMonth())
-    return `${date.getMonth() + 1}/${date.getDate()}`;
+    return `${(date.getMonth() + 1).toString().padStart(2, `0`)}.${date
+      .getDate()
+      .toString()
+      .padStart(2, `0`)}`;
 
   if (date.getDate() !== today.getDate())
-    return `${date.getMonth() + 1}/${date.getDate()}`;
+    return `${(date.getMonth() + 1).toString().padStart(2, `0`)}.${date
+      .getDate()
+      .toString()
+      .padStart(2, `0`)}`;
 
   if (date.getDate() === today.getDate())
     return `${date.getHours().toString().padStart(2, `0`)}:${date

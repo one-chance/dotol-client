@@ -39,6 +39,28 @@ export const arrowUp = (color: string) => (
   </Svg>
 );
 
+export const arrowLeft = (color: string) => (
+  <Svg height={24} width={24}>
+    <path
+      clipRule="evenodd"
+      d="M15.75 4.192a.75.75 0 01.058 1.059l-6.054 6.748 6.054 6.75a.75.75 0 01-1.116 1L8.189 12.5a.75.75 0 010-1.001l6.503-7.25a.75.75 0 011.059-.057z"
+      fill={color}
+      fillRule="evenodd"
+    />
+  </Svg>
+);
+
+export const arrowRight = (color: string) => (
+  <Svg height={24} width={24}>
+    <path
+      clipRule="evenodd"
+      d="M8.25 19.808a.75.75 0 01-.058-1.059l6.053-6.748-6.053-6.75a.75.75 0 011.116-1l6.503 7.249a.75.75 0 010 1.001l-6.503 7.25a.75.75 0 01-1.059.057z"
+      fill={color}
+      fillRule="evenodd"
+    />
+  </Svg>
+);
+
 export const menu = (color: string) => (
   <Svg height={24} width={24}>
     <path
@@ -57,6 +79,40 @@ export const close = (color: string) => (
       d="M5.53 4.47a.75.75 0 00-1.06 1.06L10.94 12l-6.47 6.47a.75.75 0 101.06 1.06L12 13.06l6.47 6.47a.75.75 0 101.06-1.06L13.06 12l6.47-6.47a.75.75 0 00-1.06-1.06L12 10.94 5.53 4.47z"
       fill={color}
       fillRule="evenodd"
+    />
+  </Svg>
+);
+
+export const check = (color: string) => (
+  <Svg height={16} width={16}>
+    <rect
+      fill="#fff"
+      height="15"
+      rx="3.5"
+      stroke="#D3D8DD"
+      width="15"
+      x=".5"
+      y=".5"
+    />
+  </Svg>
+);
+
+export const checked = (color: string) => (
+  <Svg height={16} width={16}>
+    <rect
+      fill="#6877FF"
+      height="15"
+      rx="3.5"
+      stroke="#6877FF"
+      width="15"
+      x=".5"
+      y=".5"
+    />
+    <path
+      d="M5 8l2 2 4-4"
+      stroke="#fff"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </Svg>
 );

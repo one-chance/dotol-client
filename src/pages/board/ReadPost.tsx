@@ -13,15 +13,14 @@ export default () => {
   const location = useLocation();
   const navigate = useNavigate();
   const category = location.pathname.split(`/`)[2] as Category;
-  const [isValid, setIsValid] = useState(true);
 
   const [post, setPost] = useState<IPost>({
     index: 0,
-    title: `테스트 제목입니다.`,
-    content: `테스트 본문입니다. 테스트 본문입니다.`,
-    writer: { userId: `quwieo`, character: `협가검@하자` },
-    recommenders: [`quwieo`],
-    views: 12,
+    title: ``,
+    content: ``,
+    writer: { userId: ``, character: `` },
+    recommenders: [],
+    views: 0,
     commentCount: 0,
     comments: [],
     createdAt: ``,
@@ -39,7 +38,6 @@ export default () => {
     getFreeboardPost(seq).then(res => {
       if (res.statusCode === 200) {
         setPost(res.data);
-        setIsValid(true);
       } else {
         alert(`존재하지 않는 글입니다.`);
         navigate(`/board/${category}`);
@@ -50,7 +48,7 @@ export default () => {
 
   return (
     <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}>
-      {isValid && <Post category={category} page={1} post={post} />}
+      {post.index !== 0 && <Post category={category} page={1} post={post} />}
     </FlexView>
   );
 };

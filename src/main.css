@@ -4,6 +4,11 @@ code {
 }
 
 @font-face {
+  font-family: 'Red Hat Display';
+  src: url("./assets/fonts/RedHatDisplay.ttf") format("ttf");
+}
+
+@font-face {
   font-family: 'Noto Sans KR';
   font-weight: 900;
   src: url('./assets/fonts/NotoSansKR-Black.woff2') format('woff2');

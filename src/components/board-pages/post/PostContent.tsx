@@ -9,12 +9,8 @@ type PostContentProps = {
   content: string;
 };
 
-export default ({ content }: PostContentProps) => {
-  const a = 1;
-
-  return (
-    <FlexView css={{ minHeight: `400px`, padding: `10px` }}>
-      <Viewer initialValue={content || ``} />
-    </FlexView>
-  );
-};
+export default ({ content }: PostContentProps) => (
+  <FlexView css={{ minHeight: `400px`, padding: `10px` }}>
+    <Viewer initialValue={content} />
+  </FlexView>
+);

@@ -1,56 +1,53 @@
 import { useEffect, useState } from 'react';
 
 import { getFreeboard } from '@apis/freeboard';
-import { PostSummary } from '@components/board-pages/board';
+import { PostSummary } from '@components/board-pages/post';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
-import { CATEGORES } from '@constants/board';
-import { Category } from '@interfaces/board';
+import {
+  CATEGORES,
+  TITLES,
+  SEARCH_TYPES_EN,
+  SEARCH_TYPES_KO,
+} from '@constants/board';
+import { Category, IPost } from '@interfaces/board';
+import { Colors } from '@styles/system';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import BoardButton from './BoardButton';
 
 type BoardProps = {
   category: Category;
 };
 
-const TITLES = [`번호`, `제목`, `작성자`, `조회`, `추천`, `작성일`];
 const WIDTHS = [`60`, `auto`, `140`, `60`, `60`, `60`];
-const SEARCH_TYPES = [`제목`, `내용`, `제목+내용`, `작성자`];
-
-const test = [
-  {
-    index: 1,
-    title: `제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.제목입니다.`,
-    content: `내용입니다.`,
-    writer: { userId: `quwieo`, character: `협가검@하자` },
-    views: 10,
-    commentCount: 100,
-    recommenders: [`quwieo`, `2`],
-    comments: [],
-    createdAt: `2023-07-07T03:04:25.071Z`,
-    updatedAt: `2023-06-25T03:04:25.071Z`,
-  },
-  {
-    index: 2,
-    title: `제목입니다.`,
-    content: `내용입니다.`,
-    writer: { userId: `quwieo`, character: `협가검@하자` },
-    views: 10,
-    commentCount: 100,
-    recommenders: [`1`, `2`],
-    comments: [],
-    createdAt: `2021-06-25T03:04:25.071Z`,
-    updatedAt: `2021-06-25T03:04:25.071Z`,
-  },
-];
 
 export default ({ category }: BoardProps) => {
-  const [searchType, setSearchType] = useState(`제목`);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [page, setpage] = useState(1);
+  const [count, setCount] = useState(0);
+  const [postList, setPostList] = useState<IPost[]>([]);
+  const [searchType, setSearchType] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState(``);
 
-  const [postList, setPostList] = useState(test);
+  const getPostList = (_page: number) => {
+    if (category === `free`)
+      getFreeboard(_page, SEARCH_TYPES_EN[searchType], searchKeyword).then(
+        res => {
+          console.log(res);
+          if (res.statusCode === 200) {
+            setPostList(res.data.data);
+            setCount(res.data.count);
+          }
+        },
+      );
+  };
 
-  const selectSearchType = (idx: number) => {
-    setSearchType(SEARCH_TYPES[idx]);
+  const selectSearchType = (id: number) => {
+    setSearchType(id);
   };
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,15 +55,23 @@ export default ({ category }: BoardProps) => {
   };
 
   const searchArticle = () => {
-    // 게시물 검색
+    if (searchKeyword === ``) {
+      navigate(`/board/${category}?page=1`, { replace: true });
+      return;
+    }
+
+    navigate(
+      `/board/${category}?page=1&search=${SEARCH_TYPES_EN[searchType]},${searchKeyword}`,
+    );
   };
 
   useEffect(() => {
-    getFreeboard(1, ``, ``).then(res => {
-      if (res.statusCode === 200) setPostList(res.data);
-    });
-    // setArticleList();
-  }, []);
+    const params = new URLSearchParams(location.search);
+    const pageParam = Number(params.get(`page`) ?? 1);
+
+    getPostList(pageParam);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
 
   return (
     <FlexView gap={20}>
@@ -76,6 +81,7 @@ export default ({ category }: BoardProps) => {
 
       <FlexView
         css={{
+          minHeight: `400px`,
           borderTop: `1px solid lightgray`,
           borderBottom: `1px solid lightgray`,
         }}
@@ -94,27 +100,26 @@ export default ({ category }: BoardProps) => {
           ))}
         </FlexView>
 
-        {postList.map(post => (
-          <PostSummary key={post.index} category={category} post={post} />
+        {postList?.map(post => (
+          <PostSummary
+            key={post.index}
+            category={category}
+            page={1}
+            post={post}
+          />
         ))}
       </FlexView>
 
       <FlexView gap={10}>
-        {/* <BoardButtons
-          category={category}
-          grade={2}
-          userId="quwieo"
-          recent
-          write
-        /> */}
+        <BoardButton category={category} />
 
-        <Pagination count={100} unit={10} />
+        <Pagination count={count} unit={10} />
 
         <FlexView gap={8} center row>
-          <Select height={36} name={searchType} width={140}>
+          <Select height={36} name={SEARCH_TYPES_KO[searchType]} width={100}>
             <Option
-              selected={searchType}
-              values={SEARCH_TYPES}
+              selected={SEARCH_TYPES_KO[searchType]}
+              values={SEARCH_TYPES_KO}
               onSelect={selectSearchType}
             />
           </Select>
@@ -123,7 +128,7 @@ export default ({ category }: BoardProps) => {
             <Input
               css={{ borderRight: 0, borderRadius: `4px 0 0 4px` }}
               value={searchKeyword || ``}
-              width={280}
+              width={200}
               onChange={inputSearchKeyword}
               onKeyDown={e => {
                 if (e.key === `Enter`) {
@@ -132,11 +137,13 @@ export default ({ category }: BoardProps) => {
               }}
             />
             <Button
-              color="blue"
+              color={Colors.purple}
               css={{ width: `60px`, borderRadius: `0 4px 4px 0` }}
               onClick={searchArticle}
             >
-              <Text color="white">검색</Text>
+              <Text color="white" semiBold>
+                검색
+              </Text>
             </Button>
           </FlexView>
         </FlexView>

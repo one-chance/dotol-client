@@ -1,4 +1,4 @@
-import { FormEventHandler, useState } from 'react';
+import { useState } from 'react';
 
 import { Button, FlexView, Text, TextArea } from '@components/common';
 import { Colors } from '@styles/system';
@@ -35,8 +35,8 @@ export default ({ color, onSubmit }: CommentProps) => {
       </FlexView>
 
       <Button
-        color="blue"
-        css={{ width: `60px`, height: `100%`, borderRadius: `4px` }}
+        color={Colors.purple}
+        css={{ width: `60px`, height: `80px`, borderRadius: `4px` }}
         onClick={submitValue}
       >
         <Text color={Colors.white} semiBold small>

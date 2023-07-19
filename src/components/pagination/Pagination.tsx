@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { FlexView, Button, Icon, Image, Text } from '@components/common';
+import { FlexView, Button, Icon, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -64,8 +64,7 @@ export default ({ count, unit }: PaginationProps) => {
     <FlexView css={{ height: `36px` }} gap={10} center row>
       {count !== 1 && pageList[0] > 5 && (
         <Button css={buttonCSS} onClick={prevPageList}>
-          <Image height={16} src="/arrowLeft.png" width={16} />
-          {/* <Icon color="#242424" name="arrowLeft" size={16} /> */}
+          <Icon color="#242424" name="arrowLeft" size={16} />
         </Button>
       )}
 
@@ -90,8 +89,7 @@ export default ({ count, unit }: PaginationProps) => {
 
       {count !== 1 && pageList[4] < maxPage && (
         <Button css={buttonCSS} onClick={nextPageList}>
-          <Image height={16} src="/arrowRight.png" width={16} />
-          {/* <Icon color="#242424" name="arrowRight" size={16} /> */}
+          <Icon color="#242424" name="arrowRight" size={16} />
         </Button>
       )}
     </FlexView>

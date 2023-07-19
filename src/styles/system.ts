@@ -56,9 +56,16 @@ export const BreakPoints = {
 
 export const Colors = {
   primary: `#223A54`,
-  primary50: `#99223A54`,
+  primary90: `#384E65`,
+  primary80: `#4E6176`,
+  primary70: `#4E6176`,
+  primary60: `#7A8998`,
+  primary50: `#909DA9`,
+  primary40: `#A7B0BB`,
+  primary30: `#BDC4CC`,
+  primary20: `#D3D8DD`,
   primary10: `#10223A54`,
-  secondary: `#E9E2D1`,
+  secondary: `#E9EBEE`,
   background: `#F2F5F8`,
   red: `#FB4E4E`,
   black: `#000000`,
@@ -66,4 +73,5 @@ export const Colors = {
   whiteGrey: `#EEEEEE`,
   grey: `#808496`,
   lightGrey: `#B4B6BC`,
+  purple: `#6877FF`,
 };

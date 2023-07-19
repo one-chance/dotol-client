@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { FlexView } from '@components/common';
 import { IComment } from '@interfaces/board';
+import { Colors } from '@styles/system';
 
 import Comment from './Comment';
 import NewComment from './NewComment';
@@ -20,13 +21,13 @@ export default ({ comments }: PostCommentProps) => {
 
   return (
     <>
-      <FlexView css={{ padding: `10px 0` }}>
+      <FlexView css={{ paddingTop: `10px` }}>
         {comments?.map((comment: IComment) => (
           <Comment key={comment.index} comment={comment} />
         ))}
       </FlexView>
 
-      <NewComment color="lightgray" onSubmit={submitComment} />
+      <NewComment color={Colors.whiteGrey} onSubmit={submitComment} />
     </>
   );
 };

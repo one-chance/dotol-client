@@ -1,5 +1,4 @@
 import { useWindowSize } from '@utils/hooks';
-import { Route, Routes } from 'react-router-dom';
 
 import MainRoutes from './MainRoutes';
 

@@ -5,12 +5,10 @@ export const getFreeboard = async (
   searchType: string,
   searchKeyword: string,
 ) => {
-  const search = `${searchType}, ${searchKeyword}`;
-
   const res = await fetch(
     `${
       import.meta.env.VITE_API_SERVER
-    }/freeboard/posts?page=${page}&search=${search}`,
+    }/freeboard/posts?page=${page}&search=${searchType},${searchKeyword}`,
     {
       method: `GET`,
       headers: {

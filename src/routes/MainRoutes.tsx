@@ -1,5 +1,6 @@
 import {
   FreeBoard,
+  FreePost,
   ServerBoard,
   TipBoard,
   VideoBoard,
@@ -24,7 +25,8 @@ import { Auction, TradeBoard } from '@pages/trade';
 import {
   ChangePassword,
   CharacterList,
-  FindAccount,
+  ForgotPassword,
+  ForgotUserId,
   Profile,
   ResetPassword,
   Secession,
@@ -57,13 +59,15 @@ export default () => {
         element={isLoggedIn ? <Secession /> : <Navigate to="/" />}
         path="/user/secession"
       />
-      <Route element={<FindAccount />} path="/user/find-account" />
+      <Route element={<ForgotPassword />} path="/user/forgot-password" />
+      <Route element={<ForgotUserId />} path="/user/forgot-userid" />
       <Route element={<SignIn />} path="/user/signin" />
       <Route element={<SignUp />} path="/user/signup" />
       <Route element={<ResetPassword />} path="/user/reset-password/:token" />
 
       {/* 게시판 메뉴 */}
       <Route element={<FreeBoard />} path="/board/free" />
+      <Route element={<FreePost />} path="/board/free/post/:postId" />
       <Route element={<TipBoard />} path="/board/tip" />
       <Route element={<VideoBoard />} path="/board/video" />
       <Route element={<TradeBoard />} path="/board/trade" />

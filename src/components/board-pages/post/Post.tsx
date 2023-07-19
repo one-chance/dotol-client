@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
+import { increaseFreeboardViews } from '@apis/freeboard';
 import { getMyInfo } from '@apis/users';
 import { Button, FlexView, Text } from '@components/common';
 import { Category, IPost } from '@interfaces/board';
@@ -48,15 +49,14 @@ export default ({ category, post, page }: PostProps) => {
     });
   }, [userId]);
 
+  useEffect(() => {
+    increaseFreeboardViews(post?.index);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <FlexView>
-      <PostTitle
-        commentCount={post?.comments.length}
-        recommenders={post?.recommenders}
-        title={post?.title}
-        views={post?.views}
-        writer={post?.writer}
-      />
+    <>
+      <PostTitle post={post} />
 
       <PostContent content={post?.content} />
 
@@ -71,12 +71,14 @@ export default ({ category, post, page }: PostProps) => {
         row
       >
         <Button
-          color="blue"
+          color={Colors.purple}
           css={{ width: `80px`, height: `36px` }}
           radius={4}
           onClick={goToList}
         >
-          <Text color={Colors.white}>목록</Text>
+          <Text color={Colors.white} semiBold small>
+            목록
+          </Text>
         </Button>
 
         <Button
@@ -89,22 +91,30 @@ export default ({ category, post, page }: PostProps) => {
           radius={4}
           onClick={recommendPost}
         >
-          <Text color={post.recommenders.includes(userId) ? `red` : `blue`}>
+          <Text
+            color={post.recommenders.includes(userId) ? `red` : `blue`}
+            semiBold
+            small
+          >
             추천 {post.recommenders.length}
           </Text>
         </Button>
 
         <Button
-          color="red"
+          color={Colors.red}
           css={{ width: `80px`, height: `36px` }}
           radius={4}
           onClick={goToWrite}
         >
-          <Text color={Colors.white}>글쓰기</Text>
+          <Text color={Colors.white} semiBold small>
+            글쓰기
+          </Text>
         </Button>
       </FlexView>
 
       <PostComment comments={post.comments} />
-    </FlexView>
+
+      {/* page로 postSummary */}
+    </>
   );
 };

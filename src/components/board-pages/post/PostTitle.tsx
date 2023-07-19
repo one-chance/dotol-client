@@ -1,29 +1,21 @@
+import { deleteFreeboardPost } from '@apis/freeboard';
 import { Button, FlexView, Text } from '@components/common';
-import { IWriter } from '@interfaces/board';
+import { IPost } from '@interfaces/board';
 import { userIdState } from '@states/login';
-import { useResponsive } from '@utils/hooks';
-import { useLocation } from 'react-router-dom';
+import { Colors } from '@styles/system';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 type PostTitleProps = {
-  title: string;
-  writer: IWriter;
-  views: number;
-  commentCount: number;
-  recommenders: string[];
+  post: IPost;
+  isMobile?: boolean;
 };
 
 const basicUrl = `https://dotols.com`;
 
-export default ({
-  title,
-  writer,
-  views,
-  commentCount,
-  recommenders,
-}: PostTitleProps) => {
+export default ({ post, isMobile }: PostTitleProps) => {
   const location = useLocation();
-  const isMobile = useResponsive(600);
+  const navigate = useNavigate();
   const userId = useRecoilValue(userIdState);
 
   const copyUrl = () => {
@@ -31,16 +23,19 @@ export default ({
   };
 
   const editPost = () => {
-    // 글 수정
-    console.log(`수정 가능`);
+    navigate(`/board/free/write/${post.index}`);
   };
 
   const deletePost = () => {
-    // 글 삭제
-    console.log(`삭제 가능`);
+    deleteFreeboardPost(post.index).then(res => {
+      if (res.statusCode === 200) {
+        alert(`삭제되었습니다.`);
+        navigate(`/board/free?page=1`);
+      }
+    });
   };
 
-  return (
+  const desktop = (
     <FlexView
       css={{
         borderTop: `1px solid lightgray`,
@@ -50,31 +45,29 @@ export default ({
     >
       <FlexView
         css={{ padding: `0 8px`, minHeight: `24px` }}
-        items={!isMobile ? `center` : `start`}
-        row={!isMobile}
+        items="center"
+        row
         wrap
       >
         <Text bold fill small>
-          {title}
+          {post.title}
         </Text>
 
         <FlexView gap={8} items="center" row>
-          <FlexView css={{ margin: `0 16px` }} center>
-            <Button>
-              <Text small>{writer.character}</Text>
-            </Button>
-          </FlexView>
+          <Button>
+            <Text small>{post.writer.character}</Text>
+          </Button>
 
           <Text center small>
-            조회 {views}
+            조회 {post.views}
           </Text>
 
           <Text center small>
-            댓글 {commentCount}
+            댓글 {post.commentCount}
           </Text>
 
           <Text center small>
-            추천 {recommenders.length}
+            추천 {post.recommenders.length}
           </Text>
         </FlexView>
       </FlexView>
@@ -94,17 +87,98 @@ export default ({
           </Text>
         </Button>
 
-        {userId === writer.userId && (
-          <FlexView gap={16} items="center" row>
-            <Button onClick={editPost}>
+        <FlexView gap={8} items="center" row>
+          <FlexView gap={4} items="center" row>
+            <Text xSmall>{post.updatedAt.split(`.`)[0].replace(`T`, ` `)}</Text>
+            {post.createdAt !== post.updatedAt && <Text>(수정)</Text>}
+          </FlexView>
+
+          <FlexView gap={8} items="center" row>
+            <Button disabled={userId !== post.writer.userId} onClick={editPost}>
               <Text xSmall>수정</Text>
             </Button>
-            <Button onClick={deletePost}>
+            <Button
+              disabled={userId !== post.writer.userId}
+              onClick={deletePost}
+            >
               <Text xSmall>삭제</Text>
             </Button>
           </FlexView>
-        )}
+        </FlexView>
       </FlexView>
     </FlexView>
   );
+
+  const mobile = (
+    <FlexView
+      css={{
+        borderTop: `1px solid lightgray`,
+        borderBottom: `1px solid lightgray`,
+        padding: `8px 0`,
+      }}
+      gap={8}
+    >
+      <FlexView css={{ padding: `0 8px`, minHeight: `24px` }} gap={4}>
+        <Text bold small>
+          {post.title}
+        </Text>
+
+        <FlexView gap={4} items="center" row>
+          <Button>
+            <Text xSmall>{post.writer.character}</Text>
+          </Button>
+
+          <Text center xSmall>
+            조회 {post.views}
+          </Text>
+
+          <Text center xSmall>
+            댓글 {post.commentCount}
+          </Text>
+
+          <Text center xSmall>
+            추천 {post.recommenders.length}
+          </Text>
+        </FlexView>
+      </FlexView>
+
+      <FlexView
+        content="between"
+        css={{
+          borderTop: `1px solid lightgray`,
+          padding: `8px 8px 0 8px`,
+        }}
+        gap={8}
+        items="center"
+        row
+      >
+        <Button
+          border={Colors.lightGrey}
+          css={{ width: `40px`, padding: `2px 4px` }}
+          radius={4}
+          onClick={copyUrl}
+        >
+          <Text color="gray" xSmall>
+            주소
+          </Text>
+        </Button>
+
+        <FlexView gap={4} items="center" row>
+          <Text xSmall>{post.updatedAt.split(`.`)[0].replace(`T`, ` `)}</Text>
+          {post.createdAt !== post.updatedAt && <Text>(수정)</Text>}
+        </FlexView>
+
+        <FlexView gap={16} items="center" row>
+          <Button disabled={userId !== post.writer.userId} onClick={editPost}>
+            <Text xSmall>수정</Text>
+          </Button>
+          <Button disabled={userId !== post.writer.userId} onClick={deletePost}>
+            <Text xSmall>삭제</Text>
+          </Button>
+        </FlexView>
+      </FlexView>
+    </FlexView>
+  );
+
+  return isMobile ? mobile : desktop;
 };
