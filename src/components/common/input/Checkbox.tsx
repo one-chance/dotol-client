@@ -1,30 +1,47 @@
-import { HTMLAttributes, InputHTMLAttributes } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 import { CSSObject, jsx } from '@emotion/react';
 import { Colors } from '@styles/system';
 
 type CheckboxProps = HTMLAttributes<HTMLInputElement> & {
   size?: number;
+  checked?: boolean;
   disabled?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  children?: ReactNode;
 };
 
-export default ({ size, disabled, onChange, ...props }: CheckboxProps) => {
+export default ({
+  size,
+  checked,
+  disabled,
+  onChange,
+  children,
+  ...props
+}: CheckboxProps) => {
   const css: CSSObject = {
-    backgroundColor: Colors.grey,
-    borderRadius: `5px`,
-    width: `${size || 20}px`,
-    height: `${size || 20}px`,
+    borderColor: `red`,
+
+    accentColor: Colors.purple,
+    border: `1px solid  ${Colors.primary20}`,
+    borderRadius: `4px`,
+    width: `${size || 16}px`,
+    height: `${size || 16}px`,
     margin: 0,
     outline: `none`,
     appearance: `none`,
     '&:checked': {
-      backgroundColor: Colors.black,
-      //   backgroundImage: `URL("./checked.svg")`,
-      backgroundSize: `cover`,
-      borderColor: Colors.primary,
+      appearance: `checkbox`,
     },
   };
 
-  return jsx(`input`, { type: `checkbox`, css, onChange, disabled, ...props });
+  return jsx(`input`, {
+    type: `checkbox`,
+    css,
+    checked,
+    onChange,
+    disabled,
+    children,
+    ...props,
+  });
 };

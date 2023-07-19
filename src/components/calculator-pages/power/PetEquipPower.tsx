@@ -92,8 +92,7 @@ export default () => {
 
   const applyReinforce = (key: string, value: number) => {
     if (reinforce[key] === value) setReinforce({ ...reinforce, [key]: 0 });
-
-    setReinforce({ ...reinforce, [key]: value });
+    else setReinforce({ ...reinforce, [key]: value });
   };
 
   useEffect(() => {
@@ -173,18 +172,29 @@ export default () => {
             />
           </Select>
 
-          <FlexView css={{ width: `140px` }} gap={4} items="center" row>
-            <Checkbox
-              disabled={equips.weapon === 0}
-              onChange={() => applyReinforce(`weapon`, 1)}
-            />
-            <Text small>강화+1</Text>
+          <FlexView
+            content="between"
+            css={{ width: `140px` }}
+            items="center"
+            row
+          >
+            <FlexView gap={4} items="center" row>
+              <Checkbox
+                checked={reinforce.weapon === 1}
+                disabled={equips.weapon === 0}
+                onChange={() => applyReinforce(`weapon`, 1)}
+              />
+              <Text small>강화+1</Text>
+            </FlexView>
 
-            <Checkbox
-              disabled={equips.weapon === 0}
-              onChange={() => applyReinforce(`weapon`, 2)}
-            />
-            <Text small>강화+2</Text>
+            <FlexView gap={4} items="center" row>
+              <Checkbox
+                checked={reinforce.weapon === 2}
+                disabled={equips.weapon === 0}
+                onChange={() => applyReinforce(`weapon`, 2)}
+              />
+              <Text small>강화+2</Text>
+            </FlexView>
           </FlexView>
         </FlexView>
 

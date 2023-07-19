@@ -46,7 +46,7 @@ export default () => {
         content="between"
         css={{
           padding: `20px 24px 16px 24px`,
-          boxShadow: `0 2px 4px rgba(0, 0, 0, 0.2)`,
+          // boxShadow: `0 2px 4px rgba(0, 0, 0, 0.2)`,
         }}
         items="center"
         row

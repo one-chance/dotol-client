@@ -3,11 +3,16 @@ import {
   ProductionGrade,
 } from '@components/calculator-pages/production';
 import { FlexView } from '@components/common';
+import { useResponsive } from '@utils/hooks';
 
-export default () => (
-  <FlexView css={{ margin: `40px auto` }} gap={40}>
-    <ProductionCalculator />
+export default () => {
+  const isMobile = useResponsive(560);
 
-    <ProductionGrade />
-  </FlexView>
-);
+  return (
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={40}>
+      <ProductionCalculator />
+
+      <ProductionGrade />
+    </FlexView>
+  );
+};

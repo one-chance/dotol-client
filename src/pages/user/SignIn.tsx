@@ -1,14 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { verifyUser } from '@apis/users';
-import {
-  Button,
-  Checkbox,
-  FlexView,
-  Input,
-  Link,
-  Text,
-} from '@components/common';
+import { Button, FlexView, Input, Link, Text } from '@components/common';
+import { Toast } from '@components/toast';
 import { CSSObject } from '@emotion/react';
 import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -18,12 +12,12 @@ import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
 export default () => {
-  const INPUT_WIDTH = 320;
   const navigate = useNavigate();
   const isMobile = useResponsive(600);
 
   const [userId, setUserId] = useState(``);
   const [password, setPassword] = useState(``);
+  const [showToast, setShowToast] = useState(false);
   const [notFoundError, setNotFoundError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const setIsLoggedInState = useSetRecoilState(isLoggedInState);
@@ -31,8 +25,20 @@ export default () => {
 
   const inputCSS: CSSObject = {
     height: `40px`,
-    borderRadius: `4px`,
-    fontSize: `16px`,
+    border: `none`,
+    borderRadius: 0,
+    borderBottom: `1px solid ${Colors.primary30}`,
+    padding: 0,
+    '::placeholder': {
+      color: Colors.primary30,
+    },
+  };
+
+  const openToast = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
   };
 
   const inputUserId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,89 +67,98 @@ export default () => {
     });
   };
 
+  useEffect(() => {
+    openToast();
+  }, []);
+
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `auto` }}>
-      <FlexView
-        css={{
-          border: isMobile ? undefined : `1px solid lightgray`,
-          borderRadius: `8px`,
-          padding: isMobile ? `10px` : `20px`,
-        }}
-        gap={20}
-      >
-        <Text xLarge={isMobile} bold center xxLarge>
+    <FlexView color={Colors.white} css={{ margin: `auto` }}>
+      <FlexView gap={40}>
+        <Text
+          css={{
+            fontFamily: `Red Hat Display`,
+            fontSize: `40px`,
+            lineHeight: 1,
+          }}
+          xLarge={isMobile}
+          bold
+          center
+        >
           dotol
         </Text>
 
-        <FlexView gap={notFoundError ? 12 : 0}>
-          <FlexView gap={4}>
+        <FlexView gap={24}>
+          <FlexView gap={10}>
             <Input
+              autoComplete="username"
               css={inputCSS}
+              height={isMobile ? 40 : 42}
               placeholder="아이디"
               value={userId || ``}
-              width={INPUT_WIDTH}
+              width={isMobile ? 280 : 360}
               onChange={inputUserId}
             />
 
-            <Text
-              color={Colors.red}
-              css={{ paddingLeft: `4px`, minHeight: `15px` }}
-              noDrag
-              xSmall
-            >
-              {notFoundError ? `가입되지 않은 아이디입니다.` : ``}
-            </Text>
-          </FlexView>
-
-          <FlexView gap={4}>
             <Input
+              autoComplete="current-password"
               css={inputCSS}
+              height={isMobile ? 40 : 42}
               placeholder="비밀번호"
               type="password"
               value={password || ``}
-              width={INPUT_WIDTH}
+              width={isMobile ? 280 : 360}
               onChange={inputPassword}
             />
-
-            <Text
-              color={Colors.red}
-              css={{ paddingLeft: `4px`, minHeight: `15px` }}
-              xSmall
-            >
-              {passwordError ? `비밀번호가 일치하지 않습니다.` : ``}
-            </Text>
           </FlexView>
-        </FlexView>
 
-        <FlexView gap={4} items="center" row>
-          <Checkbox />
-          <Text small>로그인 상태 유지</Text>
+          <FlexView content="between" items="center" row>
+            <Link to="/user/signup">
+              <Text color={Colors.primary} small={isMobile} semiBold>
+                회원가입
+              </Text>
+            </Link>
+
+            <FlexView gap={2} items="center" row>
+              <Link to="/user/forgot-userId">
+                <Text color={Colors.primary60} small={isMobile}>
+                  아이디
+                </Text>
+              </Link>
+              <Text color={Colors.primary60}>/</Text>
+              <Link to="/user/forgot-password">
+                <Text color={Colors.primary60} small={isMobile}>
+                  비밀번호 찾기
+                </Text>
+              </Link>
+            </FlexView>
+          </FlexView>
         </FlexView>
 
         <FlexView gap={16}>
           <Button
-            color="blue"
-            css={{ minHeight: `40px` }}
-            disabled={userId.length < 6 || password.length < 8}
-            radius={20}
+            color={Colors.purple}
+            css={{
+              width: isMobile ? `280px` : `360px`,
+              height: isMobile ? `44px` : `50px`,
+            }}
+            // disabled={userId.length < 6 || password.length < 8}
+            radius={24}
             onClick={login}
           >
             <Text color={Colors.white} semiBold>
               로그인
             </Text>
           </Button>
-
-          <FlexView content="between" items="center" row>
-            <Link to="/user/signup">
-              <Text small>회원가입</Text>
-            </Link>
-
-            <Link to="/user/find-account">
-              <Text small>ID/PW 찾기</Text>
-            </Link>
-          </FlexView>
         </FlexView>
       </FlexView>
+
+      {showToast && (
+        <Toast
+          isMobile={isMobile}
+          message="비밀번호가 일치하지 않습니다."
+          type="error"
+        />
+      )}
     </FlexView>
   );
 };

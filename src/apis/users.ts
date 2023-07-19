@@ -108,15 +108,18 @@ export const deleteUser = async () => {
 };
 
 export const forgotUserId = async (email: string) => {
-  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/users/find-id`, {
-    method: `POST`,
-    headers: {
-      'Content-Type': `application/json`,
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/users/forgot-id`,
+    {
+      method: `POST`,
+      headers: {
+        'Content-Type': `application/json`,
+      },
+      body: JSON.stringify({
+        email,
+      }),
     },
-    body: JSON.stringify({
-      email,
-    }),
-  });
+  );
 
   const data = await res.json();
   return data;
@@ -124,7 +127,7 @@ export const forgotUserId = async (email: string) => {
 
 export const forgotPassword = async (userId: string, email: string) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/users/reset-password`,
+    `${import.meta.env.VITE_API_SERVER}/users/forgot-password`,
     {
       method: `POST`,
       headers: {
@@ -133,6 +136,48 @@ export const forgotPassword = async (userId: string, email: string) => {
       body: JSON.stringify({
         userId,
         email,
+      }),
+    },
+  );
+
+  const data = await res.json();
+  return data;
+};
+
+export const resetPassword = async (token: string, newPassword: string) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/users/reset-password`,
+    {
+      method: `PATCH`,
+      headers: {
+        'Content-Type': `application/json`,
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        newPassword,
+      }),
+    },
+  );
+
+  const data = await res.json();
+  return data;
+};
+
+export const updatePassword = async (
+  oldPassword: string,
+  newPassword: string,
+) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/users/change-password`,
+    {
+      method: `PATCH`,
+      headers: {
+        'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+      body: JSON.stringify({
+        oldPassword,
+        newPassword,
       }),
     },
   );

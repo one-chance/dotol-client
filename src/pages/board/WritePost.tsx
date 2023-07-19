@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { useEffect } from 'react';
 
-import { NewPost } from '@components/board-pages/post';
+import { NewPost } from '@components/board-pages';
 import { FlexView } from '@components/common';
 import { Category } from '@interfaces/board';
 import { useLocation, useNavigate } from 'react-router-dom';

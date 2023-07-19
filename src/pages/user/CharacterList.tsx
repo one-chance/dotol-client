@@ -94,10 +94,13 @@ export default () => {
             </FlexView>
             <FlexView gap={4}>
               <Text color={Colors.red}>
-                ① 인증할 캐릭터의 호패 인사말에 도톨 ID를 저장하세요.
+                1) 인증할 캐릭터의 호패 인사말에 도톨 ID를 저장하세요.
               </Text>
               <Text color={Colors.red}>
-                ② 아래에 캐릭터@서버를 입력하고 인증 버튼을 누르세요.
+                2) 아래에 캐릭터@서버를 입력하고 인증 버튼을 누르세요.
+              </Text>
+              <Text color={Colors.red}>
+                3) 인증이 완료되면 보안을 위해 인사말의 ID를 지워주세요.
               </Text>
             </FlexView>
 

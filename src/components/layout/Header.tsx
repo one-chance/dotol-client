@@ -89,11 +89,18 @@ export default () => {
         row
         onMouseLeave={() => setShowTotalMenu(false)}
       >
-        <FlexView css={{ height: `42px` }} center>
-          <Link to="/">
-            <Text bold xLarge>
-              dotol
-            </Text>
+        <FlexView css={{ height: `42px` }}>
+          <Link
+            css={{
+              color: Colors.purple,
+              fontFamily: `Red Hat Display`,
+              fontSize: `40px`,
+              fontWeight: 700,
+              lineHeight: 1,
+            }}
+            to="/"
+          >
+            dotol
           </Link>
         </FlexView>
 

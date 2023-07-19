@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { forgotPassword } from '@apis/users';
+import { resetPassword } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -11,7 +11,7 @@ export default () => {
   const navigate = useNavigate();
   const isMobile = useResponsive(400);
 
-  const [userId, setUserId] = useState(``);
+  const [token, setToken] = useState(``);
   const [newPassword, setNewPassword] = useState(``);
   const [isPasswordForm, setIsPasswordForm] = useState(false);
 
@@ -24,18 +24,18 @@ export default () => {
   };
 
   const changePassword = () => {
-    forgotPassword(userId, newPassword).then(res => {
+    resetPassword(token, newPassword).then(res => {
       if (res.statusCode === 200) {
-        alert(`비밀번호가 재설정되었습니다.`);
-        navigate(`/users/signin`);
-      } else if (res.statusCode === 400) alert(`유효하지 않은 링크입니다.`);
+        alert(`비밀번호가 변경되었습니다.`);
+        navigate(`/`);
+      }
     });
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    setUserId(params.get(`userId`) || ``);
-  }, [location.search]);
+    setToken(location.pathname.split(`reset-password/`)[1] ?? ``);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <FlexView css={{ margin: isMobile ? `40px auto` : `auto` }}>
@@ -48,11 +48,12 @@ export default () => {
         gap={40}
       >
         <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          비밀번호 재설정
+          비밀번호 변경
         </Text>
 
         <FlexView gap={16}>
           <Input
+            autoComplete="new-password"
             height={40}
             placeholder="문자, 숫자, 특수문자(8자리 이상)"
             type="password"
