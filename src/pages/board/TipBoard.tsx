@@ -1,4 +1,3 @@
-import { Board, BoardMobile } from '@components/board-pages/board';
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@utils/hooks';
 
@@ -13,7 +12,7 @@ export default () => {
         margin: isMobile ? `20px auto` : `40px auto`,
       }}
     >
-      {isMobile ? <BoardMobile category="tip" /> : <Board category="tip" />}
+      <Text>팁 게시판</Text>
     </FlexView>
   );
 };

@@ -1,17 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { getFreeboard } from '@apis/freeboard';
-import { Board, BoardButton, BoardMobile } from '@components/board-pages/board';
-import { PostSummary } from '@components/board-pages/post';
+import { getPostList } from '@apis/board';
+import { BoardButton, PostSummary } from '@components/board-pages';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
-import {
-  CATEGORES,
-  TITLES,
-  SEARCH_TYPES_EN,
-  SEARCH_TYPES_KO,
-} from '@constants/board';
+import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/board';
 import { IPost } from '@interfaces/board';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -48,7 +42,7 @@ export default () => {
   };
 
   useEffect(() => {
-    getFreeboard(1, ``, ``).then(res => {
+    getPostList(`free`, 1, ``, ``).then(res => {
       if (res.statusCode === 200) {
         setPostList(res.data.data);
       }

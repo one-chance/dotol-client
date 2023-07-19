@@ -5,10 +5,10 @@ import '@toast-ui/editor/dist/i18n/ko-kr';
 import { useRef, useState } from 'react';
 
 import {
-  createFreeboardPost,
+  createPost,
   requestPreSignedPostUrl,
   uploadPreSignedPostUrl,
-} from '@apis/freeboard';
+} from '@apis/board';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { CATEGORES } from '@constants/board';
 import { Category } from '@interfaces/board';
@@ -49,7 +49,7 @@ export default ({ category }: NewPostProps) => {
       blob.type.split(`/`)[1]
     }`;
 
-    const res = await requestPreSignedPostUrl(key);
+    const res = await requestPreSignedPostUrl(category, key);
     if (res.statusCode === 200) {
       const upload = await uploadPreSignedPostUrl(
         res.data.url,
@@ -76,7 +76,8 @@ export default ({ category }: NewPostProps) => {
   };
 
   const uploadPost = () => {
-    createFreeboardPost(
+    createPost(
+      category,
       postId,
       title,
       contentRef.current?.getInstance().getHTML() || ``,
@@ -128,6 +129,7 @@ export default ({ category }: NewPostProps) => {
           border={Colors.red}
           css={{ width: `160px`, height: `40px` }}
           radius={4}
+          onClick={() => navigate(-1)}
         >
           <Text color="red">취소</Text>
         </Button>

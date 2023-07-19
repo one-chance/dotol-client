@@ -1,21 +1,16 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import {
-  getFreeboard,
-  getFreeboardPost,
-  increaseFreeboardViews,
-} from '@apis/freeboard';
+import { getPostList, getPost, increaseViews } from '@apis/board';
 import {
   PostSummary,
   PostButton,
   PostComment,
   PostContent,
   PostTitle,
-} from '@components/board-pages/post';
+} from '@components/board-pages';
 import { FlexView } from '@components/common';
 import { IPost } from '@interfaces/board';
-import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -45,7 +40,7 @@ export default () => {
   const [postList, setPostList] = useState<IPost[]>([]);
 
   useEffect(() => {
-    getFreeboard(page, ``, ``).then(res => {
+    getPostList(`free`, page, ``, ``).then(res => {
       if (res.statusCode === 200) {
         setPostList(res.data.data);
       }
@@ -55,10 +50,10 @@ export default () => {
   useEffect(() => {
     const seq = Number(location.pathname.split(`/`)[4]);
 
-    getFreeboardPost(seq).then(res => {
+    getPost(`free`, seq).then(res => {
       if (res.statusCode === 200) {
         setPost(res.data);
-        increaseFreeboardViews(res.data.index);
+        increaseViews(`free`, res.data.index);
       } else {
         alert(`존재하지 않는 글입니다.`);
         navigate(`/board/free?page=1`);
@@ -77,7 +72,7 @@ export default () => {
     >
       {post.index !== 0 && (
         <>
-          <PostTitle isMobile={isMobile} post={post} />
+          <PostTitle category="free" isMobile={isMobile} post={post} />
           <PostContent content={post?.content} />
           <PostButton
             category="free"
@@ -87,24 +82,17 @@ export default () => {
           />
           <PostComment comments={post.comments} />
 
-          {postList.length > 1 && (
-            <FlexView
-              css={{
-                margin: `10px 0`,
-                borderBottom: `1px solid ${Colors.lightGrey}`,
-              }}
-            >
-              {postList.map(preview => (
-                <PostSummary
-                  key={preview.index}
-                  category="free"
-                  isMobile={isMobile}
-                  page={page}
-                  post={preview}
-                />
-              ))}
-            </FlexView>
-          )}
+          <FlexView css={{ margin: `10px 0` }}>
+            {postList.map(preview => (
+              <PostSummary
+                key={preview.index}
+                category="free"
+                isMobile={isMobile}
+                page={page}
+                post={preview}
+              />
+            ))}
+          </FlexView>
         </>
       )}
     </FlexView>

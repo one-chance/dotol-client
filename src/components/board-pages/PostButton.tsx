@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { recommendFreeboardPost } from '@apis/freeboard';
+import { recommendPost } from '@apis/board';
 import { getMyInfo } from '@apis/users';
 import { Button, FlexView, Text } from '@components/common';
 import { userIdState } from '@states/login';
@@ -29,14 +29,12 @@ export default ({
     navigate(`/board/${category}?page=1`);
   };
 
-  const recommendPost = () => {
+  const thumbUpAndDown = () => {
     if (grade < 2) {
       alert(`로그인이 필요한 기능입니다.`);
     }
 
-    if (category === `free`) {
-      recommendFreeboardPost(index);
-    }
+    recommendPost(category, index);
   };
 
   const goToWrite = () => {
@@ -88,7 +86,7 @@ export default ({
           height: `36px`,
         }}
         radius={4}
-        onClick={recommendPost}
+        onClick={thumbUpAndDown}
       >
         <Text
           color={recommenders.includes(userId) ? Colors.red : `blue`}

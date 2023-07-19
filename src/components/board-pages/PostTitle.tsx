@@ -1,4 +1,4 @@
-import { deleteFreeboardPost } from '@apis/freeboard';
+import { deletePost } from '@apis/board';
 import { Button, FlexView, Text } from '@components/common';
 import { IPost } from '@interfaces/board';
 import { userIdState } from '@states/login';
@@ -8,12 +8,13 @@ import { useRecoilValue } from 'recoil';
 
 type PostTitleProps = {
   post: IPost;
+  category: string;
   isMobile?: boolean;
 };
 
 const basicUrl = `https://dotols.com`;
 
-export default ({ post, isMobile }: PostTitleProps) => {
+export default ({ post, category, isMobile }: PostTitleProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const userId = useRecoilValue(userIdState);
@@ -23,11 +24,11 @@ export default ({ post, isMobile }: PostTitleProps) => {
   };
 
   const editPost = () => {
-    navigate(`/board/free/write/${post.index}`);
+    navigate(`/board/${category}/edit/${post.index}`, { state: post });
   };
 
-  const deletePost = () => {
-    deleteFreeboardPost(post.index).then(res => {
+  const removePost = () => {
+    deletePost(category, post.index).then(res => {
       if (res.statusCode === 200) {
         alert(`삭제되었습니다.`);
         navigate(`/board/free?page=1`);
@@ -99,7 +100,7 @@ export default ({ post, isMobile }: PostTitleProps) => {
             </Button>
             <Button
               disabled={userId !== post.writer.userId}
-              onClick={deletePost}
+              onClick={removePost}
             >
               <Text xSmall>삭제</Text>
             </Button>
@@ -172,7 +173,7 @@ export default ({ post, isMobile }: PostTitleProps) => {
           <Button disabled={userId !== post.writer.userId} onClick={editPost}>
             <Text xSmall>수정</Text>
           </Button>
-          <Button disabled={userId !== post.writer.userId} onClick={deletePost}>
+          <Button disabled={userId !== post.writer.userId} onClick={removePost}>
             <Text xSmall>삭제</Text>
           </Button>
         </FlexView>

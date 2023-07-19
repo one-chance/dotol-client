@@ -3,6 +3,7 @@ export type Category = 'free' | 'tip' | 'video' | 'server' | 'trade';
 export type IServer = '연' | '호동' | '하자' | '유리' | '무휼' | '진';
 
 export interface IPost {
+  [x: string]: any;
   index: number;
   title: string;
   content: string;

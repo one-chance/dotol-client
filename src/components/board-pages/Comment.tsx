@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Comment, NewComment } from '@components/board-pages/post';
+import { Comment, NewComment } from '@components/board-pages';
 import { Button, FlexView, Text } from '@components/common';
 import { IComment } from '@interfaces/board';
 import { userIdState } from '@states/login';
