@@ -40,7 +40,7 @@ export default ({ children, closePortal, color, close }: ModalProps) => {
         <FlexView css={contentCSS}>
           {close && (
             <FlexView content="end" row>
-              <Button aria-label="close" onClick={closePortal}>
+              <Button aria-label="닫기" onClick={closePortal}>
                 <Icon color={Colors.black} name="close" size={24} />
               </Button>
             </FlexView>

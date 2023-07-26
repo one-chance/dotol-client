@@ -55,19 +55,25 @@ export default ({ comment, isRecomment }: CommentProps) => {
 
           <FlexView gap={8} items="center" row>
             {userId === comment.writer.userId && (
-              <Button onClick={() => setEditMode(!editMode)}>
+              <Button
+                aria-label={editMode ? `취소` : `수정`}
+                onClick={() => setEditMode(!editMode)}
+              >
                 <Text small>{editMode ? `취소` : `수정`}</Text>
               </Button>
             )}
 
             {userId === comment.writer.userId && (
-              <Button onClick={deleteComment}>
+              <Button aria-label="삭제" onClick={deleteComment}>
                 <Text small>삭제</Text>
               </Button>
             )}
 
             {!isRecomment && (
-              <Button onClick={() => setReplyMode(!replyMode)}>
+              <Button
+                aria-label="답글"
+                onClick={() => setReplyMode(!replyMode)}
+              >
                 <Text small>답글</Text>
               </Button>
             )}

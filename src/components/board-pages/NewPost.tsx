@@ -97,6 +97,7 @@ export default ({ category }: NewPostProps) => {
 
       <FlexView gap={10}>
         <Input
+          aria-label="제목"
           height={40}
           placeholder="제목을 입력하세요."
           value={title || ``}
@@ -126,6 +127,7 @@ export default ({ category }: NewPostProps) => {
         row
       >
         <Button
+          aria-label="취소"
           border={Colors.red}
           css={{ width: `160px`, height: `40px` }}
           radius={4}
@@ -134,6 +136,7 @@ export default ({ category }: NewPostProps) => {
           <Text color="red">취소</Text>
         </Button>
         <Button
+          aria-label="등록"
           border={Colors.primary}
           css={{ width: `160px`, height: `40px` }}
           radius={4}

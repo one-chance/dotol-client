@@ -51,22 +51,26 @@ export default () => {
         items="center"
         row
       >
-        <Link css={{ height: `17px` }} to="/">
+        <Link aria-label="로고" css={{ height: `17px` }} to="/">
           <Text>dotol</Text>
         </Link>
 
         <FlexView gap={8} items="center" row>
           {isLoggedIn ? (
-            <Button onClick={openUserMenu}>
+            <Button aria-label="사용자" onClick={openUserMenu}>
               <Image height={24} src="/user.png" width={24} />
             </Button>
           ) : (
-            <Link css={{ height: `24px` }} to="/user/signin">
+            <Link
+              aria-label="사용자"
+              css={{ height: `24px` }}
+              to="/user/signin"
+            >
               <Image height={24} src="/user.png" width={24} />
             </Link>
           )}
 
-          <Button onClick={openTotalMenu}>
+          <Button aria-label="메뉴" onClick={openTotalMenu}>
             <Icon name="menu" />
           </Button>
         </FlexView>

@@ -46,6 +46,7 @@ export default () => {
 
         <FlexView gap={10}>
           <Input
+            aria-label="아이디"
             css={{
               border: `none`,
               borderBottom: `1px solid lightgray`,
@@ -56,7 +57,9 @@ export default () => {
             width={isMobile ? 280 : 360}
             onChange={inputUserId}
           />
+
           <Input
+            aria-label="이메일"
             css={{
               border: `none`,
               borderBottom: `1px solid lightgray`,
@@ -70,6 +73,7 @@ export default () => {
         </FlexView>
 
         <Button
+          aria-label="찾기"
           color={Colors.primary}
           css={{ minHeight: `40px` }}
           disabled={!isEmailFormat || userId.length < 6}

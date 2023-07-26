@@ -106,6 +106,7 @@ export default () => {
 
             <FlexView content="center" gap={4} items="center" row>
               <Input
+                aria-label="캐릭터@서버"
                 placeholder="캐릭터@서버"
                 value={newCharacter || ``}
                 width={isMobile ? 160 : 240}
@@ -117,6 +118,7 @@ export default () => {
               />
 
               <Button
+                aria-label="인증"
                 color={Colors.primary}
                 css={{ width: `60px`, minHeight: `36px` }}
                 radius={4}
@@ -154,6 +156,7 @@ export default () => {
               </FlexView>
               <FlexView gap={8} items="center" row>
                 <Button
+                  aria-label="대표 변경"
                   border="black"
                   css={{ width: `72px`, height: `30px` }}
                   radius={4}
@@ -164,6 +167,7 @@ export default () => {
                   <Text small>대표 변경</Text>
                 </Button>
                 <Button
+                  aria-label="삭제"
                   border={Colors.red}
                   css={{ width: `40px`, height: `30px` }}
                   radius={4}

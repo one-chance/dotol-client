@@ -23,6 +23,7 @@ export default ({ isMobile }: SignUpProps) => {
       </FlexView>
 
       <Button
+        aria-label="로그인"
         color={Colors.primary}
         css={{ width: `160px`, height: `40px`, borderRadius: `4px` }}
         onClick={goLogin}

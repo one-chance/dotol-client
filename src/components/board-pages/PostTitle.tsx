@@ -55,7 +55,7 @@ export default ({ post, category, isMobile }: PostTitleProps) => {
         </Text>
 
         <FlexView gap={8} items="center" row>
-          <Button>
+          <Button aria-label="작성자">
             <Text small>{post.writer.character}</Text>
           </Button>
 
@@ -82,7 +82,7 @@ export default ({ post, category, isMobile }: PostTitleProps) => {
         items="center"
         row
       >
-        <Button onClick={copyUrl}>
+        <Button aria-label="url" onClick={copyUrl}>
           <Text color="gray" xSmall>
             {basicUrl + location.pathname}
           </Text>
@@ -95,10 +95,15 @@ export default ({ post, category, isMobile }: PostTitleProps) => {
           </FlexView>
 
           <FlexView gap={8} items="center" row>
-            <Button disabled={userId !== post.writer.userId} onClick={editPost}>
+            <Button
+              aria-label="수정"
+              disabled={userId !== post.writer.userId}
+              onClick={editPost}
+            >
               <Text xSmall>수정</Text>
             </Button>
             <Button
+              aria-label="삭제"
               disabled={userId !== post.writer.userId}
               onClick={removePost}
             >
@@ -125,7 +130,7 @@ export default ({ post, category, isMobile }: PostTitleProps) => {
         </Text>
 
         <FlexView gap={4} items="center" row>
-          <Button>
+          <Button aria-label="작성자">
             <Text xSmall>{post.writer.character}</Text>
           </Button>
 
@@ -154,6 +159,7 @@ export default ({ post, category, isMobile }: PostTitleProps) => {
         row
       >
         <Button
+          aria-label="url"
           border={Colors.lightGrey}
           css={{ width: `40px`, padding: `2px 4px` }}
           radius={4}
@@ -170,10 +176,18 @@ export default ({ post, category, isMobile }: PostTitleProps) => {
         </FlexView>
 
         <FlexView gap={16} items="center" row>
-          <Button disabled={userId !== post.writer.userId} onClick={editPost}>
+          <Button
+            aria-label="수정"
+            disabled={userId !== post.writer.userId}
+            onClick={editPost}
+          >
             <Text xSmall>수정</Text>
           </Button>
-          <Button disabled={userId !== post.writer.userId} onClick={removePost}>
+          <Button
+            aria-label="삭제"
+            disabled={userId !== post.writer.userId}
+            onClick={removePost}
+          >
             <Text xSmall>삭제</Text>
           </Button>
         </FlexView>

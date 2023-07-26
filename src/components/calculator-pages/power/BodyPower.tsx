@@ -54,6 +54,7 @@ export default () => {
             </Text>
 
             <Input
+              aria-label="등급"
               height={40}
               placeholder="등급"
               value={value[index] || ``}

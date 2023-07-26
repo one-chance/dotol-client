@@ -63,13 +63,14 @@ export default () => {
 
         <FlexView content="end" gap={16} row>
           <Button
+            aria-label={editMode ? `저장` : `수정`}
             onClick={() => (editMode ? saveProfile() : setEditMode(true))}
           >
             <Text color={Colors.primary}>{editMode ? `저장` : `수정`}</Text>
           </Button>
 
           {editMode && (
-            <Button onClick={() => setEditMode(false)}>
+            <Button aria-label="취소" onClick={() => setEditMode(false)}>
               <Text>취소</Text>
             </Button>
           )}
@@ -123,6 +124,7 @@ export default () => {
 
             {editMode ? (
               <Input
+                aria-label="오픈톡 주소"
                 height={40}
                 value={userInfo?.openTalk}
                 onChange={inputOpenTalk}
@@ -143,9 +145,10 @@ export default () => {
 
             {editMode ? (
               <FlexView gap={8} items="center" fill row>
-                <Input height={40} readOnly />
+                <Input aria-label="서명 주소" height={40} readOnly />
 
                 <Button
+                  aria-label="업로드"
                   border={Colors.primary}
                   css={{ width: `60px`, height: `40px` }}
                   radius={4}
@@ -164,6 +167,7 @@ export default () => {
 
         <FlexView content="end" css={{ marginTop: `20px` }} row>
           <Button
+            aria-label="회원 탈퇴"
             color={Colors.red}
             css={{ width: `100px`, height: `40px` }}
             radius={4}

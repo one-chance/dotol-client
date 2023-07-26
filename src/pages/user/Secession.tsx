@@ -56,6 +56,7 @@ export default () => {
           </Text>
           <FlexView gap={8} items="center" row>
             <Input
+              aria-label="비밀번호"
               css={{
                 height: `40px`,
               }}
@@ -63,6 +64,7 @@ export default () => {
               onChange={inputPassword}
             />
             <Button
+              aria-label="탈퇴"
               color={Colors.red}
               css={{ width: `60px`, height: `40px` }}
               disabled={password.length < 8}

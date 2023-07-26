@@ -71,7 +71,9 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
             <Text css={{ minWidth: `120px` }} medium>
               {part}
             </Text>
+
             <Input
+              aria-label="장비"
               value={itemList[index] || ``}
               width={INPUT_WIDTH}
               onChange={e => inputEquipName(e, index)}
@@ -85,6 +87,7 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
 
       <FlexView content="end" gap={20} items="center" row>
         <Button
+          aria-label="초기화"
           border={Colors.red}
           css={{
             width: `120px`,
@@ -99,6 +102,7 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
         </Button>
 
         <Button
+          aria-label="적용"
           border={Colors.primary}
           css={{
             width: `120px`,

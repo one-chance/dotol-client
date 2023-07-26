@@ -23,6 +23,7 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
     >
       <FlexView gap={8} row wrap>
         <Button
+          aria-label="초기화"
           color={Colors.red}
           css={{ padding: `4px 8px` }}
           radius={4}
@@ -36,6 +37,7 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
         {SKIN_LIST.map(skin => (
           <Button
             key={skin.name}
+            aria-label="태닝 색상"
             color={skin.number === skinColor ? Colors.primary : Colors.white}
             css={{
               height: `28px`,

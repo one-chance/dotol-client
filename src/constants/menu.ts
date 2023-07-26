@@ -32,6 +32,7 @@ export const TOTAL_MENU = [
     sub: [
       { name: `전투력`, url: `/calculator/power` },
       { name: `능력치`, url: `/calculator/ability` },
+      { name: `각인 수치`, url: `/calculator/engrave` },
       { name: `생산`, url: `/calculator/production` },
       { name: `세시마을`, url: `/calculator/calendar` },
     ],

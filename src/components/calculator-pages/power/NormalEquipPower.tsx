@@ -81,6 +81,7 @@ export default () => {
         {EQUIP_PARTS.map(part => (
           <Button
             key={part}
+            aria-label="장비 부위"
             border="lightgray"
             css={{ width: `140px`, height: `40px` }}
             radius={4}

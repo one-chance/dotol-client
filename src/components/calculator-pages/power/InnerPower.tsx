@@ -120,6 +120,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={innerType.one === 0}
@@ -140,6 +141,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={innerType.two === 0}

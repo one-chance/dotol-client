@@ -108,6 +108,7 @@ export default () => {
 
           <Text small={isMobile}>&nbsp;+&nbsp;</Text>
           <Input
+            aria-label="제작확률 증가"
             placeholder="제작확률 증가(%)"
             value={extraPercentage || ``}
             width={isMobile ? 95 : 140}
@@ -120,7 +121,7 @@ export default () => {
           </Text>
         </FlexView>
 
-        <Button onClick={openModal}>
+        <Button aria-label="설명" onClick={openModal}>
           <Text color="blue" small>
             제작확률 증가?
           </Text>

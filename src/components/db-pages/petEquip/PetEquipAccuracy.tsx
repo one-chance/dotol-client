@@ -281,6 +281,7 @@ export default () => {
           </Select>
 
           <Input
+            aria-label="부적, 돋"
             css={{ textAlign: `center` }}
             placeholder="부적, 돋"
             value={extra || ``}

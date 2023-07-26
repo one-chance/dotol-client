@@ -19,7 +19,7 @@ export default ({ onClose }: MenuProps) => (
     >
       <Text>헤더</Text>
 
-      <Button onClick={onClose}>
+      <Button aria-label="닫기" onClick={onClose}>
         <Icon name="close" size={24} />
       </Button>
     </FlexView>

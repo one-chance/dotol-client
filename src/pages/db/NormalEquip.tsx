@@ -169,6 +169,7 @@ export default () => {
                 }}
               />
               <Button
+                aria-label="검색"
                 color="blue"
                 css={{ width: `60px`, borderRadius: `0 4px 4px 0` }}
                 onClick={searchItemByName}
@@ -218,6 +219,7 @@ export default () => {
               </Select>
 
               <Button
+                aria-label="검색"
                 color="blue"
                 css={{ width: `48px`, height: `36px`, borderRadius: `4px` }}
                 onClick={searchItemByOption}
@@ -255,6 +257,7 @@ export default () => {
             {items?.map((item: IEquip) => (
               <Button
                 key={item.index}
+                aria-label="장비"
                 css={{
                   height: `24px`,
                   border: `1px solid ${Colors.primary}`,
@@ -283,6 +286,7 @@ export default () => {
         >
           <FlexView css={{ minWidth: `310px` }} gap={10} items="center">
             <Button
+              aria-label="슬롯1"
               css={{
                 border: `1px solid`,
                 borderColor: slotItems.one === `` ? `blue` : `red`,
@@ -306,6 +310,7 @@ export default () => {
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
             <Button
+              aria-label="슬롯2"
               css={{
                 border: `1px solid`,
                 borderColor: slotItems.two === `` ? `blue` : `red`,
@@ -326,6 +331,7 @@ export default () => {
 
           <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
             <Button
+              aria-label="슬롯3"
               css={{
                 border: `1px solid`,
                 borderColor: slotItems.three === `` ? `blue` : `red`,

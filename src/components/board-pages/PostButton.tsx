@@ -68,6 +68,7 @@ export default ({
       row
     >
       <Button
+        aria-label="등록"
         color={Colors.purple}
         css={{ width: `80px`, height: `36px` }}
         radius={4}
@@ -79,6 +80,7 @@ export default ({
       </Button>
 
       <Button
+        aria-label="추천"
         css={{
           border: `1px solid`,
           borderColor: recommenders.includes(userId) ? Colors.red : `blue`,
@@ -98,6 +100,7 @@ export default ({
       </Button>
 
       <Button
+        aria-label="글쓰기"
         color={Colors.red}
         css={{ width: `80px`, height: `36px` }}
         radius={4}

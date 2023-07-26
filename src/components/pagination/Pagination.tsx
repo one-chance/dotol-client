@@ -63,7 +63,7 @@ export default ({ count, unit }: PaginationProps) => {
   return (
     <FlexView css={{ height: `36px` }} gap={10} center row>
       {count !== 1 && pageList[0] > 5 && (
-        <Button css={buttonCSS} onClick={prevPageList}>
+        <Button aria-label="prev button" css={buttonCSS} onClick={prevPageList}>
           <Icon color="#242424" name="arrowLeft" size={16} />
         </Button>
       )}
@@ -74,6 +74,7 @@ export default ({ count, unit }: PaginationProps) => {
             pageNumber <= maxPage && (
               <Button
                 key={pageNumber}
+                aria-label="page button"
                 css={buttonCSS}
                 onClick={() => movePage(pageNumber)}
               >
@@ -88,7 +89,7 @@ export default ({ count, unit }: PaginationProps) => {
         )}
 
       {count !== 1 && pageList[4] < maxPage && (
-        <Button css={buttonCSS} onClick={nextPageList}>
+        <Button aria-label="next button" css={buttonCSS} onClick={nextPageList}>
           <Icon color="#242424" name="arrowRight" size={16} />
         </Button>
       )}

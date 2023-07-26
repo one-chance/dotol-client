@@ -57,6 +57,7 @@ export default () => {
         {!isMobile && (
           <FlexView items="center" row>
             <Input
+              aria-label="검색어"
               css={{
                 borderRadius: `4px 0 0 4px`,
                 borderRight: 0,
@@ -72,6 +73,7 @@ export default () => {
             />
 
             <Button
+              aria-label="검색"
               color="blue"
               css={{
                 width: `60px`,

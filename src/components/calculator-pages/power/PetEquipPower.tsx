@@ -150,6 +150,7 @@ export default () => {
 
           <FlexView css={{ width: `140px` }} gap={4} items="center" row>
             <Input
+              aria-label="환수 레벨"
               height={40}
               placeholder="환수 레벨"
               value={equips.level || ``}

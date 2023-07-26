@@ -26,6 +26,7 @@ export default ({ close }: ModalProps) => {
 
         <FlexView content="end" gap={8} row>
           <Button
+            aria-label="취소"
             border={Colors.red}
             css={{
               width: `80px`,
@@ -36,7 +37,9 @@ export default ({ close }: ModalProps) => {
           >
             <Text color="red">취소</Text>
           </Button>
+
           <Button
+            aria-label="로그인"
             border={Colors.primary}
             css={{
               width: `80px`,

@@ -119,6 +119,7 @@ export default () => {
 
           <FlexView row>
             <Input
+              aria-label="검색어"
               css={{ borderRight: 0, borderRadius: `4px 0 0 4px` }}
               value={searchKeyword || ``}
               width={isMobile ? 150 : 200}
@@ -130,6 +131,7 @@ export default () => {
               }}
             />
             <Button
+              aria-label="검색"
               color={Colors.purple}
               css={{ width: `60px`, borderRadius: `0 4px 4px 0` }}
               onClick={searchArticle}

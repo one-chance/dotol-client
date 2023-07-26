@@ -91,6 +91,7 @@ export default () => {
       >
         <FlexView css={{ height: `42px` }}>
           <Link
+            aria-label="로고"
             css={{
               color: Colors.purple,
               fontFamily: `Red Hat Display`,
@@ -132,6 +133,7 @@ export default () => {
                 {isLoggedIn ? (
                   <Button
                     ref={alarmRef}
+                    aria-label={isLoggedIn ? `알림` : `회원가입`}
                     color={Colors.background}
                     css={{
                       ...btnCSS,
@@ -146,6 +148,7 @@ export default () => {
                   </Button>
                 ) : (
                   <Link
+                    aria-label="회원가입"
                     css={{
                       ...btnCSS,
                       display: `flex`,
@@ -160,6 +163,7 @@ export default () => {
                 )}
                 <Button
                   ref={infoRef}
+                  aria-label={isLoggedIn ? `내 정보` : `로그인`}
                   color={Colors.primary}
                   css={{
                     ...btnCSS,

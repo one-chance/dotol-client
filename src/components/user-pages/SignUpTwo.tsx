@@ -101,14 +101,18 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           >
             이메일
           </Text>
+
           <Input
+            aria-label="이메일"
             css={inputCSS}
             placeholder="이메일 주소"
             value={email || ``}
             width={INPUT_WIDTH}
             onChange={inputEmail}
           />
+
           <Button
+            aria-label="OTP 전송"
             color="red"
             css={btnCSS}
             disabled={!isEmailForm}
@@ -128,14 +132,22 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           >
             OTP
           </Text>
+
           <Input
+            aria-label="OTP"
             css={inputCSS}
             placeholder="숫자 6자리"
             value={otp || ``}
             width={INPUT_WIDTH}
             onChange={inputOTP}
           />
-          <Button color="red" css={btnCSS} disabled={otp.length < 6}>
+
+          <Button
+            aria-label="인증"
+            color="red"
+            css={btnCSS}
+            disabled={otp.length < 6}
+          >
             <Text color={Colors.white} small={isMobile}>
               인증
             </Text>
@@ -153,14 +165,14 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         <FlexView content="center" gap={isMobile ? 20 : 40} row>
           <FlexView gap={4} items="center" row>
             <Checkbox onChange={() => setAgreeTerms(!agreeTerms)} />
-            <Button onClick={openTerms}>
+            <Button aria-label="서비스 이용약관" onClick={openTerms}>
               <Text small={isMobile}>서비스 이용약관</Text>
             </Button>
           </FlexView>
 
           <FlexView gap={4} items="center" row>
             <Checkbox onChange={() => setAgreePrivacy(!agreePrivacy)} />
-            <Button onClick={openPrivacy}>
+            <Button aria-label="개인정보 처리방침" onClick={openPrivacy}>
               <Text small={isMobile}>개인정보 처리방침</Text>
             </Button>
           </FlexView>
@@ -171,6 +183,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
       <FlexView items="center">
         <Button
+          aria-label="가입하기"
           color="blue"
           css={{ width: `240px`, minHeight: `40px` }}
           disabled={!isCertified || !agreeTerms || !agreePrivacy}

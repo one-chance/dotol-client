@@ -115,7 +115,11 @@ export default () => {
         wrap
       >
         {NAMES.map(name => (
-          <Button key={name} onClick={() => setType(name as CALCULATOR)}>
+          <Button
+            key={name}
+            aria-label="탭"
+            onClick={() => setType(name as CALCULATOR)}
+          >
             <Text
               bold={name === type}
               color={name === type ? Colors.red : Colors.black}
@@ -144,6 +148,7 @@ export default () => {
       >
         <FlexView gap={4} items="center" row>
           <Input
+            aria-label="A"
             placeholder="A"
             value={plus.a || ``}
             width={80}
@@ -157,6 +162,7 @@ export default () => {
           />
           <Text>+</Text>
           <Input
+            aria-label="B"
             placeholder="B"
             value={plus.b || ``}
             width={80}
@@ -173,6 +179,7 @@ export default () => {
 
         <FlexView gap={4} items="center" row>
           <Input
+            aria-label="A"
             placeholder="A"
             value={multiple.a || ``}
             width={80}
@@ -186,6 +193,7 @@ export default () => {
           />
           <Text>x</Text>
           <Input
+            aria-label="B"
             placeholder="B"
             value={multiple.b || ``}
             width={80}

@@ -41,6 +41,7 @@ export default () => {
       items="center"
     >
       <Input
+        aria-label="레벨"
         placeholder="99~899"
         value={level || ``}
         center

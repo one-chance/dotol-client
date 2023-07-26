@@ -81,7 +81,7 @@ export default ({
           <FlexView css={contentCSS}>
             {close && (
               <FlexView css={{ margin: `16px 16px 0 0` }} items="end">
-                <Button aria-label="close" onClick={closePortal}>
+                <Button aria-label="닫기" onClick={closePortal}>
                   <Icon color={Colors.black} name="close" size={24} />
                 </Button>
               </FlexView>

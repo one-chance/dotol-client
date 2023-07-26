@@ -66,6 +66,7 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
 
       <FlexView gap={16} row>
         <Button
+          aria-label="벗기"
           color={isNaked === `y` ? `blue` : `transparent`}
           css={{
             width: `60px`,
@@ -78,6 +79,7 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
           <Text color={isNaked === `y` ? Colors.white : `blue`}>벗기</Text>
         </Button>
         <Button
+          aria-label="입기"
           color={isNaked === `n` ? `blue` : `transparent`}
           css={{
             width: `60px`,

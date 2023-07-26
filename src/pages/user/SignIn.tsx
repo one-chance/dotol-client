@@ -90,6 +90,7 @@ export default () => {
         <FlexView gap={24}>
           <FlexView gap={10}>
             <Input
+              aria-label="아이디"
               autoComplete="username"
               css={inputCSS}
               height={isMobile ? 40 : 42}
@@ -100,6 +101,7 @@ export default () => {
             />
 
             <Input
+              aria-label="비밀번호"
               autoComplete="current-password"
               css={inputCSS}
               height={isMobile ? 40 : 42}
@@ -112,20 +114,20 @@ export default () => {
           </FlexView>
 
           <FlexView content="between" items="center" row>
-            <Link to="/user/signup">
+            <Link aria-label="회원가입" to="/user/signup">
               <Text color={Colors.primary} small={isMobile} semiBold>
                 회원가입
               </Text>
             </Link>
 
             <FlexView gap={2} items="center" row>
-              <Link to="/user/forgot-userId">
+              <Link aria-label="아이디 찾기" to="/user/forgot-userId">
                 <Text color={Colors.primary60} small={isMobile}>
                   아이디
                 </Text>
               </Link>
               <Text color={Colors.primary60}>/</Text>
-              <Link to="/user/forgot-password">
+              <Link aria-label="비밀번호 찾기" to="/user/forgot-password">
                 <Text color={Colors.primary60} small={isMobile}>
                   비밀번호 찾기
                 </Text>
@@ -136,6 +138,7 @@ export default () => {
 
         <FlexView gap={16}>
           <Button
+            aria-label="로그인"
             color={Colors.purple}
             css={{
               width: isMobile ? `280px` : `360px`,

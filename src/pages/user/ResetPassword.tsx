@@ -53,6 +53,7 @@ export default () => {
 
         <FlexView gap={16}>
           <Input
+            aria-label="새 비밀번호"
             autoComplete="new-password"
             height={40}
             placeholder="문자, 숫자, 특수문자(8자리 이상)"
@@ -64,6 +65,7 @@ export default () => {
 
           <FlexView content="end" row>
             <Button
+              aria-label="비밀번호 변경"
               color={Colors.red}
               css={{ width: isMobile ? `300px` : `360px`, height: `40px` }}
               disabled={!isPasswordForm}

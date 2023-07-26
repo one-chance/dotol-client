@@ -70,17 +70,23 @@ export default () => {
           {editMode ? (
             <FlexView css={{ width: `70px` }} gap={8} items="center" row>
               <Button
+                aria-label="취소"
                 css={{ height: `36px` }}
                 onClick={() => setEditMode(false)}
               >
                 <Text>취소</Text>
               </Button>
-              <Button css={{ height: `36px` }} onClick={saveMyAchievement}>
+              <Button
+                aria-label="저장"
+                css={{ height: `36px` }}
+                onClick={saveMyAchievement}
+              >
                 <Text>저장</Text>
               </Button>
             </FlexView>
           ) : (
             <Button
+              aria-label="업적 등록"
               css={{ height: `36px` }}
               disabled={selectedTab === 0}
               onClick={() => setEditMode(true)}

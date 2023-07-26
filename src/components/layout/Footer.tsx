@@ -13,7 +13,11 @@ export default () => (
       items="center"
       row
     >
-      <Link css={{ lineHeight: `15px` }} to="/terms-of-service">
+      <Link
+        aria-label="이용 약관"
+        css={{ lineHeight: `15px` }}
+        to="/terms-of-service"
+      >
         <Text color={Colors.white} small>
           이용 약관
         </Text>
@@ -21,7 +25,11 @@ export default () => (
       <Text color={Colors.white} noDrag>
         /
       </Text>
-      <Link css={{ lineHeight: `15px` }} to="/privacy-policy">
+      <Link
+        aria-label="개인정보 처리방침"
+        css={{ lineHeight: `15px` }}
+        to="/privacy-policy"
+      >
         <Text color={Colors.white} small>
           개인정보 처리방침
         </Text>

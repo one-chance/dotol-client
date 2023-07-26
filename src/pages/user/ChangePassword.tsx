@@ -56,6 +56,7 @@ export default () => {
                 기존 비밀번호
               </Text>
               <Input
+                aria-label="기존 비밀번호"
                 height={40}
                 type="password"
                 value={oldPassword || ``}
@@ -68,6 +69,7 @@ export default () => {
                 새 비밀번호
               </Text>
               <Input
+                aria-label="새 비밀번호"
                 height={40}
                 type="password"
                 value={newPassword || ``}
@@ -78,6 +80,7 @@ export default () => {
 
           <FlexView content="end" row>
             <Button
+              aria-label="변경하기"
               color={Colors.red}
               css={{ width: `160px`, height: `40px` }}
               disabled={oldPassword.length < 8 || newPassword.length < 8}

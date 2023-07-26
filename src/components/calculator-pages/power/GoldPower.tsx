@@ -92,6 +92,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={ability.one === `황금돋보기 능력치`}
@@ -112,6 +113,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={ability.two === `황금돋보기 능력치`}
@@ -132,6 +134,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={ability.three === `황금돋보기 능력치`}

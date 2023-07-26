@@ -56,7 +56,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
             댓글이 달렸습니다.
           </Link>
 
-          <Button>
+          <Button aria-label="삭제">
             <Text>x</Text>
           </Button>
         </FlexView>

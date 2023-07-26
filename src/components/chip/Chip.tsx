@@ -42,6 +42,7 @@ export default ({
 
         {onDelete && (
           <Button
+            aria-label="제거"
             css={{ borderRadius: `50%`, border: `1px solid lightgray` }}
             onClick={onDelete}
           >

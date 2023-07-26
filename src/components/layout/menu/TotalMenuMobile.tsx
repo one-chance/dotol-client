@@ -24,11 +24,11 @@ export default ({ onClose }: MenuProps) => {
         items="center"
         row
       >
-        <Link css={{ height: `17px` }} to="/">
+        <Link aria-label="로고" css={{ height: `17px` }} to="/">
           <Text>dotol</Text>
         </Link>
 
-        <Button onClick={onClose}>
+        <Button aria-label="닫기" onClick={onClose}>
           <Icon name="close" size={24} />
         </Button>
       </FlexView>
@@ -78,7 +78,12 @@ export default ({ onClose }: MenuProps) => {
                       content="center"
                       css={{ paddingLeft: `16px`, minHeight: `40px` }}
                     >
-                      <Link key={sub.name} to={sub.url} onClick={onClose}>
+                      <Link
+                        key={sub.name}
+                        aria-label="메뉴"
+                        to={sub.url}
+                        onClick={onClose}
+                      >
                         <Text
                           color={
                             location.pathname === sub.url

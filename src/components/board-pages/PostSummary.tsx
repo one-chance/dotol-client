@@ -43,6 +43,7 @@ export default ({ post, page, category, isMobile }: PostSummaryProps) => {
         row
       >
         <Link
+          aria-label="게시물"
           css={{
             fontSize: `14px`,
             overflow: `hidden`,
@@ -66,7 +67,11 @@ export default ({ post, page, category, isMobile }: PostSummaryProps) => {
         )}
       </FlexView>
 
-      <Button css={{ minWidth: `140px` }} onClick={openUserModal}>
+      <Button
+        aria-label="작성자"
+        css={{ minWidth: `140px` }}
+        onClick={openUserModal}
+      >
         <Text center small>
           {post.writer.character}
         </Text>
@@ -94,6 +99,7 @@ export default ({ post, page, category, isMobile }: PostSummaryProps) => {
         <FlexView gap={4} fill>
           <FlexView>
             <Link
+              aria-label="게시물"
               css={{
                 fontWeight: 700,
                 fontSize: `14px`,
@@ -111,7 +117,7 @@ export default ({ post, page, category, isMobile }: PostSummaryProps) => {
           </FlexView>
 
           <FlexView gap={4} items="center" fill row>
-            <Button>
+            <Button aria-label="작성자">
               <Text xSmall>{post.writer.character}</Text>
             </Button>
             <Text xSmall>조회{post.views}</Text>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { Button, FlexView, Link, Text } from '@components/common';
+import { Button, FlexView, Text } from '@components/common';
 import { Colors } from '@styles/system';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ export default ({ menus, isMobile }: MenuTabProps) => {
               menu.name === selectedTab ? `1px solid white` : undefined,
           }}
         >
-          <Button onClick={() => selectTab(menu)}>
+          <Button aria-label="메뉴" onClick={() => selectTab(menu)}>
             <Text
               color={menu.name === selectedTab ? Colors.white : Colors.grey}
               small={isMobile}

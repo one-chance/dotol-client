@@ -123,6 +123,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={ability.one === `콘텐츠 부가잠재능력`}
@@ -143,6 +144,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={ability.two === `콘텐츠 부가잠재능력`}
@@ -163,6 +165,7 @@ export default () => {
         </Select>
 
         <Input
+          aria-label="수치"
           height={40}
           placeholder="수치"
           readOnly={ability.three === `콘텐츠 부가잠재능력`}

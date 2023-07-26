@@ -25,6 +25,7 @@ export default ({ onHover, onSelect }: MenuProps) => (
             center
           >
             <Link
+              aria-label="메뉴"
               css={{ color: `#486284`, ':hover': { color: `blue` } }}
               to={menu.url}
               onClick={onSelect}

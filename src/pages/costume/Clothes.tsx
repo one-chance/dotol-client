@@ -191,6 +191,7 @@ export default () => {
               </Select>
 
               <Input
+                aria-label="검색어"
                 placeholder="치장 이름"
                 value={searchKeyword || ``}
                 width={isMobile ? 110 : 160}
@@ -202,6 +203,7 @@ export default () => {
                 }}
               />
               <Button
+                aria-label="검색"
                 color="blue"
                 css={{
                   width: isMobile ? `48px` : `60px`,
@@ -269,6 +271,7 @@ export default () => {
                       center
                     >
                       <Button
+                        aria-label="치장 아이템"
                         css={{ userSelect: `text` }}
                         onClick={() => selectItem(cloth)}
                       >

@@ -41,6 +41,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
         }}
       >
         <Link
+          aria-label="프로필"
           css={{
             borderTopLeftRadius: `4px`,
             borderTopRightRadius: `4px`,
@@ -52,13 +53,26 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           프로필
         </Link>
 
-        <Link css={linkCSS} to="/user/change-password" onClick={close}>
+        <Link
+          aria-label="비밀번호 변경"
+          css={linkCSS}
+          to="/user/change-password"
+          onClick={close}
+        >
           비밀번호 변경
         </Link>
-        <Link css={linkCSS} to="/user/character" onClick={close}>
+
+        <Link
+          aria-label="캐릭터 관리"
+          css={linkCSS}
+          to="/user/character"
+          onClick={close}
+        >
           캐릭터 관리
         </Link>
+
         <Button
+          aria-label="로그아웃"
           css={{
             height: `40px`,
             borderBottomLeftRadius: `4px`,

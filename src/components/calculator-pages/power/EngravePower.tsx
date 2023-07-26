@@ -73,6 +73,7 @@ export default () => {
           </Select>
 
           <Input
+            aria-label="수치"
             height={40}
             placeholder="수치(%)"
             value={value.one || ``}
@@ -92,6 +93,7 @@ export default () => {
           </Select>
 
           <Input
+            aria-label="수치"
             height={40}
             placeholder="수치(%)"
             value={value.two || ``}

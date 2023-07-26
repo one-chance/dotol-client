@@ -68,6 +68,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           </Text>
 
           <Input
+            aria-label="아이디"
             css={inputCSS}
             height={40}
             placeholder="영문, 숫자 (6자리 이상)"
@@ -80,6 +81,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           />
 
           <Button
+            aria-label={isUniqueId ? `사용 가능` : `중복 확인`}
             color={Colors.primary}
             css={btnCSS}
             disabled={userId.length < 6}
@@ -102,6 +104,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
             비밀번호
           </Text>
           <Input
+            aria-label="비밀번호"
             css={inputCSS}
             height={40}
             placeholder="영문, 숫자, 특수문자 (8자리 이상)"
@@ -124,6 +127,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       </FlexView>
       <FlexView content="center" row>
         <Button
+          aria-label="다음"
           color={Colors.primary}
           css={{
             width: isMobile ? `200px` : `280px`,

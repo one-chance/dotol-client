@@ -136,6 +136,7 @@ export default () => {
       </Select>
 
       <Input
+        aria-label="수치"
         height={40}
         placeholder="수치"
         readOnly={selectedSkill === `기술능력`}

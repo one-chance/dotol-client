@@ -44,7 +44,7 @@ export default () => {
           wrap
         >
           {NAMES.map((name, index) => (
-            <Button onClick={() => selectSeries(index + 1)}>
+            <Button aria-label="기수" onClick={() => selectSeries(index + 1)}>
               <Text
                 key={name}
                 bold={NAMES[series - 1] === name}

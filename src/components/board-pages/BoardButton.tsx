@@ -20,6 +20,7 @@ export default ({ category }: BoardButtonProps) => {
   return (
     <FlexView content="between" items="center" row>
       <Button
+        aria-label="목록"
         color={Colors.purple}
         css={{ width: `60px`, height: `30px` }}
         radius={4}
@@ -31,6 +32,7 @@ export default ({ category }: BoardButtonProps) => {
       </Button>
 
       <Button
+        aria-label="글쓰기"
         color={Colors.red}
         css={{ width: `60px`, height: `30px` }}
         radius={4}

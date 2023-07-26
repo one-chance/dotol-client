@@ -40,6 +40,7 @@ export default ({ selected, color, onClick }: RotateButtonProps) => {
       {directions.map((direction, index) => (
         <Button
           key={direction.name}
+          aria-label="아바타 방향"
           css={{
             width: `45px`,
             height: `36px`,

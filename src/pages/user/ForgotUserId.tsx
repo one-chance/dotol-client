@@ -48,6 +48,7 @@ export default () => {
         </Text>
 
         <Input
+          aria-label="이메일"
           css={{
             border: `none`,
             borderBottom: `1px solid lightgray`,
@@ -60,6 +61,7 @@ export default () => {
         />
 
         <Button
+          aria-label="찾기"
           color={Colors.primary}
           css={{ minHeight: `40px` }}
           disabled={!isEmailFormat}
@@ -84,6 +86,7 @@ export default () => {
 
             <FlexView gap={10} items="center" row>
               <Button
+                aria-label="비밀번호 찾기"
                 border={Colors.red}
                 css={{ width: isMobile ? `135px` : `175px`, height: `40px` }}
                 radius={4}
@@ -95,6 +98,7 @@ export default () => {
               </Button>
 
               <Button
+                aria-label="로그인"
                 border={Colors.purple}
                 css={{ width: isMobile ? `135px` : `175px`, height: `40px` }}
                 radius={4}

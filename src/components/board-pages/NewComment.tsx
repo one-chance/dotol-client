@@ -35,6 +35,7 @@ export default ({ color, onSubmit }: CommentProps) => {
       </FlexView>
 
       <Button
+        aria-label="등록"
         color={Colors.purple}
         css={{ width: `60px`, height: `80px`, borderRadius: `4px` }}
         onClick={submitValue}
