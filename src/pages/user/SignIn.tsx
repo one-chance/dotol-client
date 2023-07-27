@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { verifyUser } from '@apis/users';
 import { Button, FlexView, Input, Link, Text } from '@components/common';
@@ -18,8 +18,7 @@ export default () => {
   const [userId, setUserId] = useState(``);
   const [password, setPassword] = useState(``);
   const [showToast, setShowToast] = useState(false);
-  const [notFoundError, setNotFoundError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
   const setIsLoggedInState = useSetRecoilState(isLoggedInState);
   const setUserIdState = useSetRecoilState(userIdState);
 
@@ -27,14 +26,15 @@ export default () => {
     height: `40px`,
     border: `none`,
     borderRadius: 0,
-    borderBottom: `1px solid ${Colors.primary30}`,
+    borderBottom: `1px solid ${Colors.primary10}`,
     padding: 0,
     '::placeholder': {
       color: Colors.primary30,
     },
   };
 
-  const openToast = () => {
+  const openToast = (text: string) => {
+    setToastMessge(text);
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
@@ -50,8 +50,7 @@ export default () => {
   };
 
   const login = () => {
-    setNotFoundError(false);
-    setPasswordError(false);
+    setToastMessge(``);
 
     verifyUser(userId, password).then(res => {
       if (res.statusCode === 200) {
@@ -59,25 +58,19 @@ export default () => {
         setIsLoggedInState(true);
         setUserIdState(decodeJWT(res.data).userId);
         navigate(-1);
-      } else if (res.statusCode === 404) {
-        setNotFoundError(true);
-      } else if (res.statusCode === 400) {
-        setPasswordError(true);
+      } else {
+        openToast(res.message);
       }
     });
   };
 
-  useEffect(() => {
-    openToast();
-  }, []);
-
   return (
     <FlexView color={Colors.white} css={{ margin: `auto` }}>
-      <FlexView gap={40}>
+      <FlexView>
         <Text
           css={{
             fontFamily: `Red Hat Display`,
-            fontSize: `40px`,
+            fontSize: isMobile ? `32px` : `40px`,
             lineHeight: 1,
           }}
           xLarge={isMobile}
@@ -87,7 +80,10 @@ export default () => {
           dotol
         </Text>
 
-        <FlexView gap={24}>
+        <FlexView
+          css={{ margin: isMobile ? `40px 0` : `40px 0 48px 0` }}
+          gap={16}
+        >
           <FlexView gap={10}>
             <Input
               aria-label="아이디"
@@ -114,23 +110,49 @@ export default () => {
           </FlexView>
 
           <FlexView content="between" items="center" row>
-            <Link aria-label="회원가입" to="/user/signup">
-              <Text color={Colors.primary} small={isMobile} semiBold>
-                회원가입
-              </Text>
+            <Link
+              aria-label="회원가입"
+              css={{
+                color: Colors.primary,
+                fontWeight: 600,
+                lineHeight: 1,
+                textDecoration: `underline`,
+                textUnderlineOffset: `2px`,
+                fontSize: isMobile ? `14px` : `16px`,
+              }}
+              to="/user/signup"
+            >
+              회원가입
             </Link>
 
-            <FlexView gap={2} items="center" row>
-              <Link aria-label="아이디 찾기" to="/user/forgot-userId">
-                <Text color={Colors.primary60} small={isMobile}>
-                  아이디
-                </Text>
+            <FlexView gap={4} items="center" row>
+              <Link
+                aria-label="아이디 찾기"
+                css={{
+                  color: Colors.primary60,
+                  fontSize: isMobile ? `14px` : `16px`,
+                  letterSpacing: `-0.96px`,
+                }}
+                to="/user/forgot-userId"
+              >
+                아이디
               </Link>
-              <Text color={Colors.primary60}>/</Text>
-              <Link aria-label="비밀번호 찾기" to="/user/forgot-password">
-                <Text color={Colors.primary60} small={isMobile}>
-                  비밀번호 찾기
-                </Text>
+              <Text
+                color={Colors.primary60}
+                css={{ lineHeight: 1, fontSize: isMobile ? `14px` : `16px` }}
+              >
+                /
+              </Text>
+              <Link
+                aria-label="비밀번호 찾기"
+                css={{
+                  color: Colors.primary60,
+                  fontSize: isMobile ? `14px` : `16px`,
+                  letterSpacing: `-0.96px`,
+                }}
+                to="/user/forgot-password"
+              >
+                비밀번호 찾기
               </Link>
             </FlexView>
           </FlexView>
@@ -156,11 +178,7 @@ export default () => {
       </FlexView>
 
       {showToast && (
-        <Toast
-          isMobile={isMobile}
-          message="비밀번호가 일치하지 않습니다."
-          type="error"
-        />
+        <Toast isMobile={isMobile} message={toastMessage} type="error" />
       )}
     </FlexView>
   );

@@ -9,7 +9,8 @@ import { useSetRecoilState } from 'recoil';
 const linkCSS: CSSObject = {
   lineHeight: `40px`,
   padding: `0 20px`,
-  ':hover': { backgroundColor: `lightgray` },
+  color: Colors.white,
+  ':hover': { backgroundColor: Colors.primary80 },
 };
 
 type MenuProps = {
@@ -31,7 +32,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
     return (
       <FlexView
         ref={ref}
-        color={Colors.white}
+        color={Colors.primary}
         css={{
           position: `absolute`,
           width: `160px`,
@@ -81,7 +82,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           }}
           onClick={signout}
         >
-          <Text fill start>
+          <Text color={Colors.white} fill start>
             로그아웃
           </Text>
         </Button>

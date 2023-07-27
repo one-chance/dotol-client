@@ -2,19 +2,13 @@ import { FlexView, Link } from '@components/common';
 import { TOTAL_MENU } from '@constants/menu';
 
 type MenuProps = {
-  onHover: (a: number) => void;
   onSelect: () => void;
 };
 
-export default ({ onHover, onSelect }: MenuProps) => (
+export default ({ onSelect }: MenuProps) => (
   <FlexView gap={32} row>
     {TOTAL_MENU.map((menus, index) => (
-      <FlexView
-        key={menus.menu}
-        gap={18}
-        onMouseEnter={() => onHover(index)}
-        onMouseLeave={() => onHover(-1)}
-      >
+      <FlexView key={menus.menu} gap={18}>
         {menus.sub.map(menu => (
           <FlexView
             key={menu.name}

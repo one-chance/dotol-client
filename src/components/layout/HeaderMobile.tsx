@@ -51,8 +51,18 @@ export default () => {
         items="center"
         row
       >
-        <Link aria-label="로고" css={{ height: `17px` }} to="/">
-          <Text>dotol</Text>
+        <Link
+          aria-label="로고"
+          css={{
+            fontFamily: `Red Hat Display`,
+            fontSize: `20px`,
+            fontWeight: 700,
+            letterSpacing: `-0.96px`,
+            lineHeight: 1,
+          }}
+          to="/"
+        >
+          dotol
         </Link>
 
         <FlexView gap={8} items="center" row>

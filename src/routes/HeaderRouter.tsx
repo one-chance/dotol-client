@@ -8,7 +8,7 @@ export default () => {
   return (
     <Routes>
       <Route
-        element={width >= 1080 ? <Header /> : <HeaderMobile />}
+        element={width >= 1040 ? <Header /> : <HeaderMobile />}
         path="/*"
       />
     </Routes>

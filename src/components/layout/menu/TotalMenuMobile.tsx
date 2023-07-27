@@ -24,8 +24,18 @@ export default ({ onClose }: MenuProps) => {
         items="center"
         row
       >
-        <Link aria-label="로고" css={{ height: `17px` }} to="/">
-          <Text>dotol</Text>
+        <Link
+          aria-label="로고"
+          css={{
+            fontFamily: `Red Hat Display`,
+            fontSize: `20px`,
+            fontWeight: 700,
+            letterSpacing: `-0.96px`,
+            lineHeight: 1,
+          }}
+          to="/"
+        >
+          dotol
         </Link>
 
         <Button aria-label="닫기" onClick={onClose}>

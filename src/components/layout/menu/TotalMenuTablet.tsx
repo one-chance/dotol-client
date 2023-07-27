@@ -1,5 +1,4 @@
 import { Button, FlexView, Icon, Text } from '@components/common';
-import { TOTAL_MENU } from '@constants/menu';
 import { Colors } from '@styles/system';
 
 type MenuProps = {
