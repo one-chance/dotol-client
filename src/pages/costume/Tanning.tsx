@@ -4,21 +4,38 @@ import { getMyInfo } from '@apis/users';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { TanningList } from '@components/costume-pages';
-import { isLoggedInState } from '@states/login';
+import { Toast } from '@components/toast';
+import { isLoggedInState, showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default () => {
   const isMobile = useResponsive(980);
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const setShowLogin = useSetRecoilState(showLoginState);
+
   const [grade, setGrade] = useState(0);
   const [mainCharacter, setMainCharacter] = useState(``);
   const [skinNumber, setSkinNumber] = useState(-1);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
 
   const changeSkin = (_skin: number) => {
+    if (grade === 0) {
+      setShowLogin(true);
+      return;
+    }
     if (grade < 2) {
-      alert(`대표 캐릭터를 인증한 후에 사용할 수 있습니다.`);
+      openToast(`대표 캐릭터를 인증해주세요.`);
       return;
     }
     setSkinNumber(_skin);
@@ -64,6 +81,8 @@ export default () => {
       >
         * 착용 중인 장비를 벗은 상태로 확인해보세요.
       </Text>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

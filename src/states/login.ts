@@ -30,3 +30,8 @@ export const userIdState = atom<string>({
     },
   ],
 });
+
+export const showLoginState = atom<boolean>({
+  key: `showLoginState`,
+  default: false,
+});

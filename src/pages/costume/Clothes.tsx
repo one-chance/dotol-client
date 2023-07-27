@@ -7,13 +7,14 @@ import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
+import { Toast } from '@components/toast';
 import { COSTUME_TABS } from '@constants/menu';
 import { IClothes } from '@interfaces/costumes';
-import { isLoggedInState } from '@states/login';
+import { isLoggedInState, showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const CLOTHES_PARTS = [
   `착용 부위`,
@@ -35,9 +36,11 @@ export default () => {
   const isMobile = useResponsive(960);
   const basicUrl = `https://avatar.baram.nexon.com/Profile/itemRender.aspx?inm=`;
 
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+  const setShowLogin = useSetRecoilState(showLoginState);
+
   const [grade, setGrade] = useState(0);
   const [mainCharacter, setMainCharacter] = useState(``);
-  const isLoggedIn = useRecoilValue(isLoggedInState);
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [selectedPart, setSelectedPart] = useState(0);
   const [selectedItem, setSelectedItem] = useState<IClothes>({
@@ -49,6 +52,16 @@ export default () => {
 
   const [clothesList, setClothesList] = useState<IClothes[]>([]);
   const [itemCount, setItemCount] = useState(1);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -66,8 +79,12 @@ export default () => {
   };
 
   const searchList = (part: number, page: number) => {
+    if (grade === 0) {
+      setShowLogin(true);
+      return;
+    }
     if (grade < 2) {
-      alert(`대표 캐릭터를 등록해야 사용할 수 있습니다.`);
+      openToast(`대표 캐릭터를 인증해주세요.`);
       return;
     }
 
@@ -84,8 +101,12 @@ export default () => {
   };
 
   const selectPart = (part: number) => {
+    if (grade === 0) {
+      setShowLogin(true);
+      return;
+    }
     if (grade < 2) {
-      alert(`대표 캐릭터를 등록해야 사용할 수 있습니다.`);
+      openToast(`대표 캐릭터를 인증해주세요.`);
       return;
     }
 
@@ -304,6 +325,8 @@ export default () => {
           </Text>
         </FlexView>
       </FlexView>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

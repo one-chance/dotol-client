@@ -2,14 +2,25 @@ import { useState } from 'react';
 
 import { updatePassword } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { Toast } from '@components/toast';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(400);
-
   const [oldPassword, setOldPassword] = useState(``);
   const [newPassword, setNewPassword] = useState(``);
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
 
   const inputOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setOldPassword(e.target.value);
@@ -23,8 +34,9 @@ export default () => {
     updatePassword(oldPassword, newPassword).then(res => {
       if (res.statusCode === 200) {
         alert(`비밀번호가 변경되었습니다.`);
+        // 바뀐 비밀번호로 로그인 시켜야 함
       } else if (res.statusCode === 400) {
-        alert(`기존 비밀번호가 일치하지 않습니다.`);
+        openToast(`기존 비밀번호가 일치하지 않습니다.`);
       }
     });
   };
@@ -94,6 +106,8 @@ export default () => {
           </FlexView>
         </FlexView>
       </FlexView>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

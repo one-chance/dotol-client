@@ -15,6 +15,7 @@ import {
   Text,
   Divider,
 } from '@components/common';
+import { Toast } from '@components/toast';
 import { Colors } from '@styles/system';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useResponsive } from '@utils/hooks';
@@ -24,6 +25,8 @@ export default () => {
   const queryClient = useQueryClient();
   const [newCharacter, setNewCharacter] = useState(``);
   const [mainCharacter, setMainCharacter] = useState(``);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
 
   const { data: characterList } = useQuery(
     [`characterList`],
@@ -31,12 +34,20 @@ export default () => {
     { initialData: [] },
   );
 
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
+
   const addCharacter = useMutation(() => registerCharacter(newCharacter), {
     onSuccess: res => {
       if (res.statusCode === 200) {
         queryClient.invalidateQueries([`characterList`]);
       } else if (res.statusCode === 400) {
-        alert(res.message);
+        openToast(res.message);
       }
     },
   });
@@ -54,7 +65,7 @@ export default () => {
       if (res.statusCode === 200) {
         queryClient.invalidateQueries([`characterList`]);
       } else if (res.statusCode === 400) {
-        alert(res.message);
+        openToast(res.message);
       }
     },
   });
@@ -182,6 +193,8 @@ export default () => {
           ))}
         </FlexView>
       </FlexView>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

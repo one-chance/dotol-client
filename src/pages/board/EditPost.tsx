@@ -1,5 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-alert */
 import 'tui-color-picker/dist/tui-color-picker.css';
 import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css';
 import '@toast-ui/editor/dist/i18n/ko-kr';
@@ -11,6 +10,7 @@ import {
   uploadPreSignedPostUrl,
 } from '@apis/board';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { Toast } from '@components/toast';
 import { Category, IPost } from '@interfaces/board';
 import { Colors } from '@styles/system';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
@@ -20,22 +20,33 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 const CATEGORES = [`free`, `tip`, `video`, `sever`, `trade`];
 
+const toolbarItems = [
+  [`heading`, `bold`, `italic`, `strike`],
+  [`hr`],
+  [`ul`, `ol`, `task`],
+  [`table`, `link`, `image`],
+];
+
 export default () => {
   const navigate = useNavigate();
   const location = useLocation();
   const post = (location.state as IPost) ?? null;
+  const category = location.pathname.split(`/`)[2] as Category;
 
   const isMobile = useResponsive(800);
   const contentRef = useRef<Editor>(null);
-  const [title, setTitle] = useState(``);
-  const category = location.pathname.split(`/`)[2] as Category;
 
-  const toolbarItems = [
-    [`heading`, `bold`, `italic`, `strike`],
-    [`hr`],
-    [`ul`, `ol`, `task`],
-    [`table`, `link`, `image`],
-  ];
+  const [title, setTitle] = useState(``);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
 
   const inputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 30) return;
@@ -63,7 +74,7 @@ export default () => {
 
   const convertImage = async (blob: Blob, callback: CallableFunction) => {
     if (blob.size > 1024 * 1024 * 10) {
-      alert(`10MB 이하의 이미지만 업로드 가능합니다.`);
+      openToast(`이미지는 10MB 이하만 가능합니다.`);
       return;
     }
 
@@ -81,7 +92,6 @@ export default () => {
       contentRef.current?.getInstance().getHTML() || ``,
     ).then(res => {
       if (res.statusCode === 200) {
-        alert(`성공적으로 등록되었습니다.`);
         navigate(`/board/free/post/postId`);
       }
     });
@@ -156,6 +166,8 @@ export default () => {
           </Button>
         </FlexView>
       </FlexView>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { recommendPost } from '@apis/board';
 import { getMyInfo } from '@apis/users';
 import { Button, FlexView, Text } from '@components/common';
-import { userIdState } from '@states/login';
+import { Toast } from '@components/toast';
+import { showLoginState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 type PostButtonProps = {
   category: string;
@@ -23,23 +24,44 @@ export default ({
 }: PostButtonProps) => {
   const navigate = useNavigate();
   const userId = useRecoilValue(userIdState);
+  const setShowLogin = useSetRecoilState(showLoginState);
+
   const [grade, setGrade] = useState(0);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
 
   const goToList = () => {
     navigate(`/board/${category}?page=1`);
   };
 
   const thumbUpAndDown = () => {
+    if (grade === 0) {
+      setShowLogin(true);
+      return;
+    }
     if (grade < 2) {
-      alert(`로그인이 필요한 기능입니다.`);
+      openToast(`대표 캐릭터를 인증해주세요.`);
+      return;
     }
 
     recommendPost(category, index);
   };
 
   const goToWrite = () => {
+    if (grade === 0) {
+      setShowLogin(true);
+      return;
+    }
     if (grade < 2) {
-      alert(`로그인이 필요한 기능입니다.`);
+      openToast(`대표 캐릭터를 인증해주세요.`);
       return;
     }
 
@@ -110,6 +132,8 @@ export default ({
           글쓰기
         </Text>
       </Button>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

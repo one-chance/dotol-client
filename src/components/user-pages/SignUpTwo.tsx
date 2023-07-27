@@ -10,6 +10,7 @@ import {
   Text,
 } from '@components/common';
 import { TermsModal } from '@components/modal';
+import { Toast } from '@components/toast';
 import { CSSObject } from '@emotion/react';
 import { NewUser } from '@interfaces/users';
 import { Colors } from '@styles/system';
@@ -23,6 +24,12 @@ const btnCSS: CSSObject = {
   width: `80px`,
   height: `40px`,
   borderRadius: `0 4px 4px 0`,
+};
+
+const inputCSS: CSSObject = {
+  height: `40px`,
+  borderRadius: `4px 0 0 4px`,
+  borderRight: `none`,
 };
 
 export default ({ isMobile, setPhase }: SignUpProps) => {
@@ -39,10 +46,15 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   const [showTerms, setShowTerms] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
 
-  const inputCSS: CSSObject = {
-    height: `40px`,
-    borderRadius: `4px 0 0 4px`,
-    borderRight: `none`,
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
   };
 
   const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,8 +87,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   const sendOTP = () => {
     isDuplicatedEmail(email).then(res => {
-      if (res.statusCode === 400)
-        alert(`이미 등록된 이메일입니다.\n다른 이메일로 시도해주세요.`);
+      if (res.statusCode === 400) openToast(`이미 등록된 이메일입니다.`);
       else
         sendOTPCode(email).then(res2 => {
           if (res2.statusCode === 200) {
@@ -198,6 +209,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
       {showTerms && <TermsModal close={closeTerms} type="terms" />}
       {showPrivacy && <TermsModal close={closePrivacy} type="privacy" />}
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

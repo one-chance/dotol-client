@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { isDuplicatedUserId } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { Toast } from '@components/toast';
 import { CSSObject } from '@emotion/react';
 import { NewUser } from '@interfaces/users';
 import { Colors } from '@styles/system';
@@ -18,6 +19,11 @@ const btnCSS: CSSObject = {
   outline: `none`,
 };
 
+const inputCSS: CSSObject = {
+  borderRadius: `4px 0 0 4px`,
+  borderRight: `none`,
+};
+
 export default ({ isMobile, setPhase }: SignUpProps) => {
   const INPUT_WIDTH = isMobile ? 180 : 240;
 
@@ -26,9 +32,15 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   const [isUniqueId, setIsUniqueId] = useState(false);
   const [isPasswordForm, setIsPasswordForm] = useState(false);
 
-  const inputCSS: CSSObject = {
-    borderRadius: `4px 0 0 4px`,
-    borderRight: `none`,
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
   };
 
   const inputUserId = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,8 +58,9 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   const checkUniqueId = () => {
     isDuplicatedUserId(userId).then(res => {
-      if (res.statusCode === 400) alert(`중복된 아이디입니다.`);
-      else if (res.statusCode === 200) setIsUniqueId(true);
+      if (res.statusCode === 400) {
+        openToast(`중복된 아이디입니다.`);
+      } else if (res.statusCode === 200) setIsUniqueId(true);
     });
   };
 
@@ -140,6 +153,8 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           <Text color={Colors.white}>다음</Text>
         </Button>
       </FlexView>
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

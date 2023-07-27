@@ -1,8 +1,12 @@
 import { useState } from 'react';
 
+import { createComment } from '@apis/board';
 import { FlexView } from '@components/common';
+import { Toast } from '@components/toast';
 import { IComment } from '@interfaces/board';
+import { showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
+import { useSetRecoilState } from 'recoil';
 
 import Comment from './Comment';
 import NewComment from './NewComment';
@@ -13,9 +17,28 @@ type PostCommentProps = {
 
 export default ({ comments }: PostCommentProps) => {
   const [grade, setGrade] = useState(0);
+  const setShowLogin = useSetRecoilState(showLoginState);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessge] = useState(``);
+
+  const openToast = (message: string) => {
+    setToastMessge(message);
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 1500);
+  };
 
   const submitComment = (_comment: string) => {
-    if (grade < 2) alert(`로그인이 필요한 기능입니다.`);
+    if (grade === 0) {
+      setShowLogin(true);
+      return;
+    }
+    if (grade < 2) {
+      openToast(`대표 캐릭터를 인증해주세요.`);
+    }
+
+    // createComment
     // 댓글 등록
   };
 
@@ -28,6 +51,8 @@ export default ({ comments }: PostCommentProps) => {
       </FlexView>
 
       <NewComment color={Colors.whiteGrey} onSubmit={submitComment} />
+
+      {showToast && <Toast message={toastMessage} type="error" />}
     </>
   );
 };
