@@ -111,11 +111,11 @@ export default () => {
       css={{ margin: isMobile ? `20px auto` : `40px auto` }}
       gap={isMobile ? 40 : 80}
     >
-      <FlexView content="between" gap={20} items="center" row>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          각인 수치 계산기
-        </Text>
+      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        각인 수치 계산기
+      </Text>
 
+      <FlexView center>
         <Select
           isMobile={isMobile}
           name={ABILITIES[ability]}

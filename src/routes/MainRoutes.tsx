@@ -1,5 +1,7 @@
+import React, { Suspense, lazy } from 'react';
+
 import {
-  FreeBoard,
+  // FreeBoard,
   FreePost,
   ServerBoard,
   TipBoard,
@@ -7,7 +9,13 @@ import {
   WritePost,
   EditPost,
 } from '@pages/board';
-import { Ability, Calendar, Power, Production } from '@pages/calculator';
+import {
+  Ability,
+  Calendar,
+  OldEngrave,
+  Power,
+  Production,
+} from '@pages/calculator';
 import { Achievement, Adventure, Archeology } from '@pages/content';
 import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
 import {
@@ -23,7 +31,7 @@ import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
 import {
   ChangePassword,
-  CharacterList,
+  // CharacterList,
   ForgotPassword,
   ForgotUserId,
   Profile,
@@ -36,14 +44,21 @@ import { isLoggedInState } from '@states/login';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-export default () => {
+const LazyCharacterList = React.lazy(() => import(`@pages/user/CharacterList`));
+const LazyFreeBoard = lazy(() => import(`@pages/board/FreeBoard`));
+
+const MainRoutes = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   return (
     <Routes>
       {/* 사용자 메뉴 */}
       <Route
-        element={isLoggedIn ? <CharacterList /> : <Navigate to="/" />}
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            {isLoggedIn ? <LazyCharacterList /> : <Navigate to="/" />}
+          </Suspense>
+        }
         path="/user/character"
       />
       <Route
@@ -65,7 +80,15 @@ export default () => {
       <Route element={<ResetPassword />} path="/user/reset-password/:token" />
 
       {/* 게시판 메뉴 */}
-      <Route element={<FreeBoard />} path="/board/free" />
+      <Route
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyFreeBoard />
+          </Suspense>
+        }
+        path="/board/free"
+      />
+
       <Route element={<FreePost />} path="/board/free/post/:postId" />
       <Route element={<TipBoard />} path="/board/tip" />
       <Route element={<VideoBoard />} path="/board/video" />
@@ -101,6 +124,7 @@ export default () => {
       {/* 계산기 메뉴 */}
       <Route element={<Ability />} path="/calculator/ability" />
       <Route element={<Calendar />} path="/calculator/calendar" />
+      <Route element={<OldEngrave />} path="/calculator/engrave" />
       <Route element={<Power />} path="/calculator/power" />
       <Route element={<Production />} path="/calculator/production" />
 
@@ -115,3 +139,5 @@ export default () => {
     </Routes>
   );
 };
+
+export default MainRoutes;

@@ -4,10 +4,10 @@ import { Button, FlexView, Text, Link, Icon } from '@components/common';
 import { LoginModal } from '@components/modal';
 import { MAIN_MENU } from '@constants/menu';
 import { CSSObject } from '@emotion/react';
-import { isLoggedInState } from '@states/login';
+import { isLoggedInState, showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { TotalMenu, UserMenu } from './menu';
 
@@ -27,13 +27,14 @@ const tab: { [key: string]: number } = {
 export default () => {
   const location = useLocation();
   const isLoggedIn = useRecoilValue(isLoggedInState);
+  const [showLogin, setShowLogin] = useRecoilState(showLoginState);
+
   const infoRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   const [selectedMenu, setSelectedMenu] = useState(-1);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showTotalMenu, setShowTotalMenu] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
 
   const closeUserMenu = () => {
     setShowUserMenu(false);
