@@ -69,7 +69,10 @@ export default () => {
       <FlexView
         color={Colors.white}
         content="between"
-        css={{ padding: `20px 24px 16px 24px` }}
+        css={{
+          padding: `20px 24px 16px 24px`,
+          borderBottom: `1px solid ${Colors.primary20}}`,
+        }}
         items="center"
         row
       >

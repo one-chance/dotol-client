@@ -2,11 +2,69 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=5.0, user-scalable=yes"
+    />
+    <meta
+      name="description"
+      content="바람의나라 치장, 룩북, 전투력, 능력치, 장비, 업적, 탐험일지, 고고학"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="apple-touch-icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:url" content="https://dotols.com/" />
+    <meta property="og:title" content="바람의나라 도톨" />
+    <meta property="og:description" content="바람의나라 유저를 위한 커뮤니티" />
+    <!-- <meta property="og:image" content="https://dotols.com/thumbnail.png" /> -->
+
+    <!-- 웹마스터 등록 -->
+    <meta
+      name="naver-site-verification"
+      content="e38ec83d4f6c185fb92df5738a3ddb26fc8cf6fc"
+    />
+    <meta
+      name="google-site-verification"
+      content="-y66V7BedoXWlpqO8sc3SddYDLXDyPgn4jFYGg1MHWQ"
+    />
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-P6DF2R46');
+    </script>
+
+    <!-- For Naver Analytics -->
+    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+    <script type="text/javascript">
+      if (!wcs_add) var wcs_add = {};
+      wcs_add['wa'] = '57e05a25075d6c';
+      if (window.wcs) {
+        wcs_do();
+      }
+    </script>
+
     <title>바람의나라 도톨</title>
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P6DF2R46"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <div id="root-modal"></div>
     <script type="module" src="/src/main.tsx"></script>

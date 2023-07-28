@@ -37,7 +37,6 @@ import {
   Profile,
   ResetPassword,
   Secession,
-  SignIn,
   SignUp,
 } from '@pages/user';
 import { isLoggedInState } from '@states/login';
@@ -75,7 +74,6 @@ const MainRoutes = () => {
       />
       <Route element={<ForgotPassword />} path="/user/forgot-password" />
       <Route element={<ForgotUserId />} path="/user/forgot-userid" />
-      <Route element={<SignIn />} path="/user/signin" />
       <Route element={<SignUp />} path="/user/signup" />
       <Route element={<ResetPassword />} path="/user/reset-password/:token" />
 
@@ -88,7 +86,6 @@ const MainRoutes = () => {
         }
         path="/board/free"
       />
-
       <Route element={<FreePost />} path="/board/free/post/:postId" />
       <Route element={<TipBoard />} path="/board/tip" />
       <Route element={<VideoBoard />} path="/board/video" />
@@ -99,7 +96,7 @@ const MainRoutes = () => {
       <Route element={<EditPost />} path="/board/:boardId/edit/:postId" />
 
       {/* 코디 메뉴 */}
-      <Route element={<Clothes />} path="/costume/list/*" />
+      <Route element={<Clothes />} path="/costume/list" />
       <Route element={<LuxurySeries />} path="/costume/luxury" />
       <Route element={<Lookbook />} path="/costume/lookbook" />
       <Route element={<Tanning />} path="/costume/tanning" />

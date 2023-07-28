@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /thumnail.png
+Allow : /
+Sitemap: https://dotols.com/sitemap.xml
