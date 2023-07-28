@@ -99,7 +99,10 @@ export default () => {
             aria-label={isLoggedIn ? `사용자` : `로그인`}
             onClick={isLoggedIn ? openUserMenu : openLoginModal}
           >
-            <Image height={24} src="/user.png" width={24} />
+            <Text color={isLoggedIn ? Colors.purple : Colors.black} semiBold>
+              {isLoggedIn ? `내 정보` : `로그인`}
+            </Text>
+            {/* <Image height={24} src="/user.png" width={24} /> */}
           </Button>
           {showUserMenu && (
             <UserMenuMobile ref={userMenuRef} close={closeUserMenu} />
