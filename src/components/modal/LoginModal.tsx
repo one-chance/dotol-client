@@ -70,15 +70,22 @@ export default ({ close }: ModalProps) => {
   };
 
   return (
-    <Modal closePortal={close} height={464} width={440}>
+    <Modal
+      closePortal={close}
+      height={isMobile ? 396 : 464}
+      width={isMobile ? 300 : 440}
+    >
       <FlexView
         color={Colors.white}
-        css={{ padding: `80px 40px`, borderRadius: `4px` }}
+        css={{
+          padding: isMobile ? `60px 30px` : `80px 40px`,
+          borderRadius: `4px`,
+        }}
       >
         <Text
           css={{
             fontFamily: `Red Hat Display`,
-            fontSize: `40px`,
+            fontSize: isMobile ? `32px` : `40px`,
             lineHeight: 1,
             letterSpacing: `-0.96px`,
           }}
@@ -88,16 +95,19 @@ export default ({ close }: ModalProps) => {
           dotol
         </Text>
 
-        <FlexView css={{ margin: `40px 0 48px 0` }} gap={16}>
+        <FlexView
+          css={{ margin: isMobile ? `40px 0` : `40px 0 48px 0` }}
+          gap={16}
+        >
           <FlexView gap={10}>
             <Input
               aria-label="아이디"
               autoComplete="username"
               css={inputCSS}
-              height={42}
+              height={isMobile ? 40 : 42}
               placeholder="아이디"
               value={userId || ``}
-              width={360}
+              width={isMobile ? 240 : 360}
               autoFocus
               onChange={inputUserId}
             />
@@ -106,11 +116,11 @@ export default ({ close }: ModalProps) => {
               aria-label="비밀번호"
               autoComplete="current-password"
               css={inputCSS}
-              height={42}
+              height={isMobile ? 40 : 42}
               placeholder="비밀번호"
               type="password"
               value={password || ``}
-              width={360}
+              width={isMobile ? 240 : 360}
               onChange={inputPassword}
             />
           </FlexView>
@@ -120,6 +130,7 @@ export default ({ close }: ModalProps) => {
               aria-label="회원가입"
               css={{
                 color: Colors.primary,
+                fontSize: isMobile ? `14px` : `16px`,
                 fontWeight: 600,
                 lineHeight: 1,
                 textDecoration: `underline`,
@@ -133,15 +144,30 @@ export default ({ close }: ModalProps) => {
             <FlexView gap={4} items="center" row>
               <Link
                 aria-label="아이디 찾기"
-                css={{ color: Colors.primary60, letterSpacing: `-0.96px` }}
+                css={{
+                  color: Colors.primary60,
+                  letterSpacing: `-0.96px`,
+                  fontSize: isMobile ? `14px` : `16px`,
+                  lineHeight: 1,
+                }}
                 to="/user/forgot-userId"
               >
                 아이디
               </Link>
-              <Text color={Colors.primary60}>/</Text>
+              <Text
+                color={Colors.primary60}
+                css={{ fontSize: isMobile ? `14px` : `16px`, lineHeight: 1 }}
+              >
+                /
+              </Text>
               <Link
                 aria-label="비밀번호 찾기"
-                css={{ color: Colors.primary60, letterSpacing: `-0.96px` }}
+                css={{
+                  color: Colors.primary60,
+                  letterSpacing: `-0.96px`,
+                  fontSize: isMobile ? `14px` : `16px`,
+                  lineHeight: 1,
+                }}
                 to="/user/forgot-password"
               >
                 비밀번호 찾기
@@ -153,12 +179,16 @@ export default ({ close }: ModalProps) => {
         <Button
           aria-label="로그인"
           color={Colors.purple}
-          css={{ height: `50px` }}
+          css={{ height: isMobile ? `44px` : `50px` }}
           // disabled={userId.length < 6 || password.length < 8}
           radius={24}
           onClick={login}
         >
-          <Text color={Colors.white} css={{ fontSize: `18px` }} semiBold>
+          <Text
+            color={Colors.white}
+            css={{ fontSize: isMobile ? `16px` : `18px` }}
+            semiBold
+          >
             로그인
           </Text>
         </Button>

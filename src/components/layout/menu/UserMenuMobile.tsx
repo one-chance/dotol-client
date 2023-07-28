@@ -5,8 +5,10 @@ import { CSSObject } from '@emotion/react';
 import { Colors } from '@styles/system';
 
 const linkCSS: CSSObject = {
+  fontSize: `14px`,
   lineHeight: `40px`,
   padding: `0 20px`,
+  color: Colors.white,
   ':hover': { backgroundColor: `lightgray` },
 };
 
@@ -23,11 +25,11 @@ export default forwardRef<HTMLDivElement, MenuProps>(
     return (
       <FlexView
         ref={ref}
-        color={Colors.white}
+        color={Colors.primary}
         css={{
           position: `absolute`,
           width: `160px`,
-          marginTop: `50px`,
+          marginTop: `40px`,
           borderRadius: `4px`,
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
@@ -35,9 +37,9 @@ export default forwardRef<HTMLDivElement, MenuProps>(
         <Link
           aria-label="프로필"
           css={{
+            ...linkCSS,
             borderTopLeftRadius: `4px`,
             borderTopRightRadius: `4px`,
-            ...linkCSS,
           }}
           to="/user/profile"
           onClick={close}
@@ -68,7 +70,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           }}
           onClick={signout}
         >
-          <Text fill start>
+          <Text color={Colors.white} fill small start>
             로그아웃
           </Text>
         </Button>

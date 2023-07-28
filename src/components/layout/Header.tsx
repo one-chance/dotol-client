@@ -26,11 +26,11 @@ const tab: { [key: string]: number } = {
 
 export default () => {
   const location = useLocation();
-  const isLoggedIn = useRecoilValue(isLoggedInState);
-  const [showLogin, setShowLogin] = useRecoilState(showLoginState);
-
   const infoRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+
+  const isLoggedIn = useRecoilValue(isLoggedInState);
+  const [showLogin, setShowLogin] = useRecoilState(showLoginState);
 
   const [selectedMenu, setSelectedMenu] = useState(-1);
   const [showUserMenu, setShowUserMenu] = useState(false);

@@ -48,7 +48,7 @@ export default ({
   };
 
   const contentCSS: CSSObject = {
-    maxWidth: `calc(100% - 80px)`,
+    // maxWidth: `calc(100% - 80px)`,
     width: `${width}px`,
     height: `${height}px`,
     // padding: `40px`,

@@ -19,12 +19,16 @@ export default ({ onClose }: MenuProps) => {
       gap={40}
     >
       <FlexView
-        content="between"
         css={{ padding: `20px 24px 16px 24px` }}
+        gap={8}
         items="center"
         row
       >
-        <Link
+        <Button aria-label="닫기" onClick={onClose}>
+          <Icon name="close" size={24} />
+        </Button>
+
+        {/* <Link
           aria-label="로고"
           css={{
             fontFamily: `Red Hat Display`,
@@ -36,16 +40,12 @@ export default ({ onClose }: MenuProps) => {
           to="/"
         >
           dotol
-        </Link>
-
-        <Button aria-label="닫기" onClick={onClose}>
-          <Icon name="close" size={24} />
-        </Button>
+        </Link> */}
       </FlexView>
 
       <FlexView
         css={{
-          padding: `0 28px`,
+          padding: `0 28px 40px 28px`,
           overflowY: `auto`,
           scrollbarWidth: `none`,
           '::-webkit-scrollbar': { display: `none` },
@@ -68,11 +68,16 @@ export default ({ onClose }: MenuProps) => {
                 items="center"
                 row
               >
-                <Text bold={showSubMenu} color={Colors.primary} xLarge>
+                <Text
+                  bold={showSubMenu}
+                  color={Colors.primary}
+                  css={{ lineHeight: 1 }}
+                  xLarge
+                >
                   {menu}
                 </Text>
 
-                <Icon name={showSubMenu ? `arrowUp` : `arrowDown`} size={16} />
+                <Icon name={showSubMenu ? `arrowUp` : `arrowDown`} size={24} />
               </FlexView>
 
               {showSubMenu && (
