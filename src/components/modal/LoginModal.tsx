@@ -108,7 +108,6 @@ export default ({ close }: ModalProps) => {
               placeholder="아이디"
               value={userId || ``}
               width={isMobile ? 240 : 360}
-              autoFocus
               onChange={inputUserId}
             />
 

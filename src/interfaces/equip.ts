@@ -5,6 +5,7 @@ export type IEquip = {
   part: number;
   job: number;
   power: number;
+  grade: number;
 };
 
 export type EquipOption = {

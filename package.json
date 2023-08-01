@@ -1,10 +1,10 @@
 {
-  "name": "vite-starter",
+  "name": "dotol-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite --open",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp .env dist/.env",
     "preview": "vite preview",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --fix",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write"
