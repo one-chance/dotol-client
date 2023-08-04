@@ -2,7 +2,9 @@ import { useState } from 'react';
 
 import { getEquipByName, getEquipByOption } from '@apis/equip';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
+import { MenuTab } from '@components/layout';
 import { Select, Option } from '@components/select';
+import { NORMALEQUIP_TABS } from '@constants/menu';
 import { IEquip } from '@interfaces/equip';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -137,9 +139,15 @@ export default () => {
 
   return (
     <FlexView
-      css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}
+      css={{
+        maxWidth: `960px`,
+        width: `100%`,
+        margin: isMobile ? `0 0 40px 0` : `40px auto`,
+      }}
       gap={40}
     >
+      <MenuTab isMobile={isMobile} menus={NORMALEQUIP_TABS} />
+
       <Text bold center xxLarge>
         일반장비 도감
       </Text>

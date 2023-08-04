@@ -64,6 +64,11 @@ export const COSTUME_TABS = [
   { name: `명품의 도감`, path: `/costume/luxury` },
 ];
 
+export const NORMALEQUIP_TABS = [
+  { name: `일반장비 도감`, path: `/db/normal-equip/list` },
+  { name: `한벌 효과`, path: `/db/normal-equip/set` },
+];
+
 export const PETEQUIP_TABS = [
   { name: `환수장비 도감`, path: `/db/pet-equip/list` },
   { name: `명중률 계산기`, path: `/db/pet-equip/accuracy` },

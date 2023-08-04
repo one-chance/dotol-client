@@ -21,7 +21,8 @@ import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
 import {
   AntiquityEquipList,
   AntiquityEquipRecipe,
-  NormalEquip,
+  NormalEquipList,
+  NormalEquipSet,
   PetEquipAccuracy,
   PetEquipList,
   PetEquipRecipe,
@@ -107,7 +108,8 @@ const MainRoutes = () => {
         element={<AntiquityEquipRecipe />}
         path="/db/antiquity-equip/recipe"
       />
-      <Route element={<NormalEquip />} path="/db/normal-equip/list" />
+      <Route element={<NormalEquipList />} path="/db/normal-equip/list" />
+      <Route element={<NormalEquipSet />} path="/db/normal-equip/set" />
       <Route element={<PetEquipAccuracy />} path="/db/pet-equip/accuracy" />
       <Route element={<PetEquipList />} path="/db/pet-equip/list" />
       <Route element={<PetEquipRecipe />} path="/db/pet-equip/recipe" />
