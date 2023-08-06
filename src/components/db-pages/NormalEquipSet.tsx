@@ -25,7 +25,7 @@ const ITEM_TYPES = [
 
 export default () => {
   const isMobile = useResponsive(620);
-  const basicUrl = `https://d321hhav3uhyny.cloudfront.net/image/equip-set/`;
+  const basicUrl = `https://asset.dotols.com/image/equip-set/`;
 
   const [equipType, setEquipType] = useState(0);
   const [slotItems, setSlotItems] = useState({

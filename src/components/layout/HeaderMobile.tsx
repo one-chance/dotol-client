@@ -70,7 +70,7 @@ export default () => {
         color={Colors.white}
         content="between"
         css={{
-          padding: `20px 24px 16px 24px`,
+          padding: `20px 12px 16px 12px`,
           borderBottom: `1px solid ${Colors.primary20}}`,
         }}
         items="center"

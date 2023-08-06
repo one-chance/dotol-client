@@ -19,7 +19,7 @@ export default ({ onClose }: MenuProps) => {
       gap={40}
     >
       <FlexView
-        css={{ padding: `20px 24px 16px 24px` }}
+        css={{ padding: `20px 12px 16px 12px` }}
         gap={8}
         items="center"
         row

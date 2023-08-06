@@ -6,7 +6,10 @@ export default () => {
 
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `auto` }} gap={20}>
-      <FlexView
+      <Text bold xxLarge>
+        홈페이지를 업데이트 하고 있습니다.
+      </Text>
+      {/* <FlexView
         css={{
           width: isMobile ? `340px` : `800px`,
           height: `120px`,
@@ -44,7 +47,7 @@ export default () => {
         >
           <Text>게시판 최신글</Text>
         </FlexView>
-      </FlexView>
+      </FlexView> */}
     </FlexView>
   );
 };
