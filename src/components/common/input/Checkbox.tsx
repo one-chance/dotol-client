@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes, ReactNode, forwardRef } from 'react';
 
 import { CSSObject, jsx } from '@emotion/react';
 import { Colors } from '@styles/system';
@@ -11,37 +11,36 @@ type CheckboxProps = HTMLAttributes<HTMLInputElement> & {
   children?: ReactNode;
 };
 
-export default ({
-  size,
-  checked,
-  disabled,
-  onChange,
-  children,
-  ...props
-}: CheckboxProps) => {
-  const css: CSSObject = {
-    borderColor: `red`,
+export default forwardRef<HTMLInputElement, CheckboxProps>(
+  (
+    { size, checked, disabled, onChange, children, ...props }: CheckboxProps,
+    ref,
+  ) => {
+    const css: CSSObject = {
+      borderColor: `red`,
 
-    accentColor: Colors.purple,
-    border: `1px solid  ${Colors.primary20}`,
-    borderRadius: `4px`,
-    width: `${size || 16}px`,
-    height: `${size || 16}px`,
-    margin: 0,
-    outline: `none`,
-    appearance: `none`,
-    '&:checked': {
-      appearance: `checkbox`,
-    },
-  };
+      accentColor: Colors.purple,
+      border: `1px solid  ${Colors.primary20}`,
+      borderRadius: `4px`,
+      width: `${size || 16}px`,
+      height: `${size || 16}px`,
+      margin: 0,
+      outline: `none`,
+      appearance: `none`,
+      '&:checked': {
+        appearance: `checkbox`,
+      },
+    };
 
-  return jsx(`input`, {
-    type: `checkbox`,
-    css,
-    checked,
-    onChange,
-    disabled,
-    children,
-    ...props,
-  });
-};
+    return jsx(`input`, {
+      type: `checkbox`,
+      ref,
+      css,
+      checked,
+      onChange,
+      disabled,
+      children,
+      ...props,
+    });
+  },
+);

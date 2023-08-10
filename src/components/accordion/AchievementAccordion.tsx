@@ -19,6 +19,8 @@ export default ({ title, titleCSS, divider, children }: AccordionProps) => {
     <FlexView
       css={{
         width: `fit-content`,
+        borderLeft: `1px solid lightgray`,
+        borderRight: `1px solid lightgray`,
         borderBottom: `1px solid lightgray`,
         ...titleCSS,
       }}

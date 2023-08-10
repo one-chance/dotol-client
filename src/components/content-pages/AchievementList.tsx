@@ -1,53 +1,35 @@
 import { AchievementAccordion } from '@components/accordion';
-import { Checkbox, FlexView, Text } from '@components/common';
+import { FlexView, Text } from '@components/common';
 import DATA from '@data/achievement.json';
 import { useResponsive } from '@utils/hooks';
 
 type ListProps = {
   tab: number;
-  editMode: boolean;
 };
 
-export default ({ tab, editMode }: ListProps) => {
-  const selectedData = DATA[tab - 1];
+export default ({ tab }: ListProps) => {
+  const selectedData = DATA[tab];
   const isMobile = useResponsive(480);
 
   return (
-    <FlexView css={{ border: `1px solid lightgray` }}>
+    <FlexView>
       <FlexView
         color="lightgray"
-        css={{ minHeight: `40px` }}
-        items="center"
-        row
+        content="center"
+        css={{ minHeight: `40px`, padding: `0 8px` }}
       >
-        <Text css={{ minWidth: isMobile ? `40px` : `80px` }} bold center>
-          달성
-        </Text>
-        <Text bold center fill>
-          업적
-        </Text>
+        <Text bold>업적 종류</Text>
       </FlexView>
 
       <FlexView>
         {selectedData.mission.map(mission => (
-          <FlexView
-            key={mission.name}
-            css={{ borderTop: `1px solid lightgray` }}
-            items="center"
-            row
+          <AchievementAccordion
+            title={mission.name}
+            titleCSS={{ width: isMobile ? `350px` : `480px` }}
           >
-            <FlexView css={{ minWidth: isMobile ? `40px` : `80px` }} center>
-              <Checkbox disabled={!editMode} />
-            </FlexView>
-
-            <AchievementAccordion
-              title={mission.name}
-              titleCSS={{ width: isMobile ? `300px` : `400px`, border: `none` }}
-            >
-              <Text small={isMobile}>점수: {mission.score}</Text>
-              <Text small={isMobile}>조건: {mission.condition}</Text>
-            </AchievementAccordion>
-          </FlexView>
+            <Text small={isMobile}>점수: {mission.score}</Text>
+            <Text small={isMobile}>조건: {mission.condition}</Text>
+          </AchievementAccordion>
         ))}
       </FlexView>
     </FlexView>
