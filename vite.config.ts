@@ -14,15 +14,6 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    proxy: {
-      '/api': {
-        target: `http://api.dotols.com`,
-        changeOrigin: true,
-        rewrite: endpoint => endpoint.replace(/^\/api/, ``),
-      },
-    },
-  },
   resolve: {
     alias: [
       {
