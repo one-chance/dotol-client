@@ -35,6 +35,7 @@ export default () => {
   };
 
   const BONUS_POWERS = [
+    `등급 효과`,
     `[고급]등급 효과`,
     `[희귀]등급 효과`,
     `[영웅]등급 효과`,
@@ -87,7 +88,7 @@ export default () => {
 
   useEffect(() => {
     setInnerPower(
-      (bonusPower + 1) * 100 +
+      bonusPower * 100 +
         Math.floor(
           INNER_POWERS[INNER_POWER_TYPES[innerType.one]].power *
             convertValue(innerValue.one),

@@ -31,6 +31,7 @@ export default () => {
   const [slotItems, setSlotItems] = useState({
     one: -1,
     two: -1,
+    three: -1,
   });
   const equipSetList = EQUIP_SET_LIST[ITEM_TYPES[equipType]];
 
@@ -45,6 +46,10 @@ export default () => {
     }
     if (slotItems.two === -1) {
       setSlotItems({ ...slotItems, two: EQUIP_SET_INDEX.indexOf(name) + 1 });
+      return;
+    }
+    if (slotItems.three === -1) {
+      setSlotItems({ ...slotItems, three: EQUIP_SET_INDEX.indexOf(name) + 1 });
     }
   };
 
@@ -90,6 +95,17 @@ export default () => {
         row
         wrap
       >
+        {equipSetList?.length === 0 && (
+          <FlexView center fill>
+            <Text color="gray" small={isMobile}>
+              한벌 효과를 선택하면 빈 슬롯에 자동으로 추가됩니다.
+            </Text>
+            <Text color="gray" small={isMobile}>
+              슬롯 버튼을 클릭하면 빈 슬롯으로 변경됩니다.
+            </Text>
+          </FlexView>
+        )}
+
         {equipSetList.map(set => (
           <Button
             key={set}
@@ -108,7 +124,11 @@ export default () => {
 
       <FlexView
         content={isMobile ? `start` : `center`}
-        css={{ minHeight: `240px` }}
+        css={{
+          border: `1px solid lightgray`,
+          borderRadius: `4px`,
+          padding: `8px`,
+        }}
         gap={isMobile ? 20 : 40}
         items={isMobile ? `center` : `start`}
         row={!isMobile}
@@ -155,6 +175,29 @@ export default () => {
             <Image
               css={{ maxWidth: `245px` }}
               src={`${basicUrl}${slotItems.two}.png`}
+            />
+          )}
+        </FlexView>
+
+        <FlexView css={{ width: `245px` }} gap={12} items="center">
+          <Button
+            border={slotItems.three !== -1 ? Colors.red : Colors.purple}
+            css={{ width: `60px`, height: `36px` }}
+            radius={4}
+            onClick={() => removeFromSlot(`three`)}
+          >
+            <Text
+              color={slotItems.three !== -1 ? Colors.red : Colors.purple}
+              small={isMobile}
+            >
+              슬롯3
+            </Text>
+          </Button>
+
+          {slotItems.three !== -1 && (
+            <Image
+              css={{ maxWidth: `245px` }}
+              src={`${basicUrl}${slotItems.three}.png`}
             />
           )}
         </FlexView>

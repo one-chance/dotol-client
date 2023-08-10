@@ -22,7 +22,7 @@ export default () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useResponsive(800);
-  const { page } = location.state as State;
+  const { page } = (location.state as State) || 0;
 
   const [post, setPost] = useState<IPost>({
     index: 0,
@@ -40,6 +40,8 @@ export default () => {
   const [postList, setPostList] = useState<IPost[]>([]);
 
   useEffect(() => {
+    if (page === 0) return;
+
     getPostList(`free`, page, ``, ``).then(res => {
       if (res.statusCode === 200) {
         setPostList(res.data.data);

@@ -74,7 +74,7 @@ export default () => {
 
             <Button
               aria-label="검색"
-              color="blue"
+              color={Colors.purple}
               css={{
                 width: `60px`,
                 height: `36px`,
@@ -119,7 +119,7 @@ export default () => {
       ) : (
         <FlexView css={{ minWidth: `960px`, overflowX: `auto` }}>
           <FlexView
-            color="purple"
+            color={Colors.red}
             css={{ minHeight: `40px` }}
             items="center"
             row

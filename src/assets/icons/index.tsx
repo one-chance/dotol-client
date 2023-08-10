@@ -116,3 +116,9 @@ export const checked = (color: string) => (
     />
   </Svg>
 );
+
+export const reply = (color: string) => (
+  <Svg height={16} width={16}>
+    <path d="M.5 0v16M16 15.5H0" stroke={color} />
+  </Svg>
+);

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Comment, NewComment } from '@components/board-pages';
-import { Button, FlexView, Text } from '@components/common';
+import { Button, FlexView, Icon, Text } from '@components/common';
 import { IComment } from '@interfaces/board';
 import { userIdState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -32,7 +32,7 @@ export default ({ comment, isRecomment }: CommentProps) => {
 
   return (
     <FlexView>
-      <FlexView css={{ borderBottom: `1px solid lightgray` }}>
+      <FlexView css={{ borderBottom: `1px solid ${Colors.primary30}` }}>
         <FlexView
           content="between"
           css={{ padding: `0 10px`, minHeight: `30px` }}
@@ -94,9 +94,11 @@ export default ({ comment, isRecomment }: CommentProps) => {
       {comment.replies?.map((reply: IComment) => (
         <FlexView
           key={reply.index}
-          color="lightgray"
-          css={{ paddingLeft: `20px` }}
+          color={Colors.primary10}
+          css={{ padding: `10px 0 0 20px` }}
+          row
         >
+          <Icon color={Colors.primary60} name="reply" size={16} />
           <Comment comment={reply} isRecomment />
         </FlexView>
       ))}

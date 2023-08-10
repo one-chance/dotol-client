@@ -1,4 +1,5 @@
 import { FlexView, Text } from '@components/common';
+import { BoardSection, ClothSection } from '@components/home-page';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
@@ -6,16 +7,14 @@ export default () => {
 
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `auto` }} gap={20}>
-      <Text bold xxLarge>
-        홈페이지를 업데이트 하고 있습니다.
-      </Text>
-      {/* <FlexView
+      <FlexView
         css={{
-          width: isMobile ? `340px` : `800px`,
+          width: isMobile ? `350px` : `900px`,
           height: `120px`,
           border: `1px solid lightgray`,
           borderRadius: `4px`,
           padding: `10px`,
+          margin: `0 auto`,
         }}
         center
       >
@@ -23,31 +22,10 @@ export default () => {
       </FlexView>
 
       <FlexView gap={20} row={!isMobile}>
-        <FlexView
-          css={{
-            minHeight: `400px`,
-            border: `1px solid lightgray`,
-            borderRadius: `4px`,
-            padding: `10px`,
-          }}
-          center
-          fill
-        >
-          <Text>이달의 치장</Text>
-        </FlexView>
-        <FlexView
-          css={{
-            minHeight: `400px`,
-            border: `1px solid lightgray`,
-            borderRadius: `4px`,
-            padding: `10px`,
-          }}
-          center
-          fill
-        >
-          <Text>게시판 최신글</Text>
-        </FlexView>
-      </FlexView> */}
+        <ClothSection />
+
+        <BoardSection />
+      </FlexView>
     </FlexView>
   );
 };

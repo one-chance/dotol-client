@@ -6,9 +6,9 @@ export default () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* <HeaderRouter /> */}
+      <HeaderRouter />
       <MainRouter />
-      {/* <FooterRouter /> */}
+      <FooterRouter />
     </QueryClientProvider>
   );
 };

@@ -136,8 +136,8 @@ export default () => {
   };
 
   return (
-    <FlexView gap={40}>
-      <Text bold center xxLarge>
+    <FlexView gap={20}>
+      <Text bold xxLarge>
         일반장비 도감
       </Text>
       <FlexView gap={20}>
@@ -255,12 +255,6 @@ export default () => {
               <Button
                 key={item.index}
                 aria-label="장비"
-                css={{
-                  height: `24px`,
-                  border: `1px solid ${Colors.primary}`,
-                  padding: `0 4px`,
-                }}
-                radius={4}
                 onClick={() => saveToSlot(item.index.toString())}
               >
                 <Text color={Colors.primary} small>
@@ -272,16 +266,17 @@ export default () => {
         </FlexView>
 
         <FlexView
-          content="center"
+          content={isMobile ? `start` : `center`}
           css={{
             border: `1px solid lightgray`,
             borderRadius: `4px`,
-            padding: `10px`,
+            padding: `8px`,
           }}
-          gap={16}
+          gap={isMobile ? 20 : 10}
+          items={isMobile ? `center` : `start`}
           row={!isMobile}
         >
-          <FlexView css={{ minWidth: `310px` }} gap={10} items="center">
+          <FlexView css={{ width: `304px` }} gap={10} items="center">
             <Button
               aria-label="슬롯1"
               css={{
@@ -299,13 +294,13 @@ export default () => {
 
             {slotItems.one !== `` && (
               <Image
-                css={{ maxWidth: `310px` }}
+                css={{ maxWidth: `304px` }}
                 src={`${basicUrl}${slotItems.one}.png`}
               />
             )}
           </FlexView>
 
-          <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
+          <FlexView gap={10} items="center" fill>
             <Button
               aria-label="슬롯2"
               css={{
@@ -322,11 +317,14 @@ export default () => {
             </Button>
 
             {slotItems.two !== `` && (
-              <Image src={`${basicUrl}${slotItems.two}.png`} />
+              <Image
+                css={{ maxWidth: `310px` }}
+                src={`${basicUrl}${slotItems.two}.png`}
+              />
             )}
           </FlexView>
 
-          <FlexView css={{ minWidth: `300px` }} gap={10} items="center">
+          <FlexView gap={10} items="center" fill>
             <Button
               aria-label="슬롯3"
               css={{
@@ -343,7 +341,10 @@ export default () => {
             </Button>
 
             {slotItems.three !== `` && (
-              <Image src={`${basicUrl}${slotItems.three}.png`} />
+              <Image
+                css={{ maxWidth: `310px` }}
+                src={`${basicUrl}${slotItems.three}.png`}
+              />
             )}
           </FlexView>
         </FlexView>
