@@ -21,3 +21,19 @@ export const getArcheologyList = async () => {
 
   return res.json();
 };
+
+export const getBodyReinforceBonusList = async () => {
+  const res = await fetch(
+    `https://asset.dotols.com/data/content/body-reinforce-bonus.json`,
+  );
+
+  return res.json();
+};
+
+export const getBodyReinforceAbilityList = async () => {
+  const res = await fetch(
+    `https://asset.dotols.com/data/content/body-reinforce-ability.json`,
+  );
+
+  return res.json();
+};
