@@ -1,14 +1,13 @@
 import { AchievementAccordion } from '@components/accordion';
 import { FlexView, Text } from '@components/common';
-import DATA from '@data/achievement.json';
+import { Mission } from '@interfaces/content';
 import { useResponsive } from '@utils/hooks';
 
 type ListProps = {
-  tab: number;
+  list: Mission[];
 };
 
-export default ({ tab }: ListProps) => {
-  const selectedData = DATA[tab];
+export default ({ list }: ListProps) => {
   const isMobile = useResponsive(480);
 
   return (
@@ -22,8 +21,9 @@ export default ({ tab }: ListProps) => {
       </FlexView>
 
       <FlexView>
-        {selectedData.mission.map(mission => (
+        {list?.map(mission => (
           <AchievementAccordion
+            key={mission.name}
             title={mission.name}
             titleCSS={{ width: isMobile ? `350px` : `480px` }}
           >

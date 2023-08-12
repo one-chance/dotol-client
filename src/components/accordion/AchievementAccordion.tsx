@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { FlexView, Icon, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
@@ -14,6 +14,10 @@ type AccordionProps = {
 export default ({ title, titleCSS, divider, children }: AccordionProps) => {
   const isMobile = useResponsive(480);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [title]);
 
   return (
     <FlexView

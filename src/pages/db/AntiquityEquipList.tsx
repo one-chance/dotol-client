@@ -1,7 +1,7 @@
 import { FlexView } from '@components/common';
 import { AntiquityEquipList } from '@components/db-pages/antiquityEquip';
 import { MenuTab } from '@components/layout';
-import { ANTIQUITYEQUIP_TABS } from '@constants/menu';
+import { ANTIQUITY_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
@@ -15,7 +15,7 @@ export default () => {
       }}
       gap={isMobile ? 20 : 40}
     >
-      <MenuTab isMobile={isMobile} menus={ANTIQUITYEQUIP_TABS} />
+      <MenuTab isMobile={isMobile} menus={ANTIQUITY_EQUIP_TABS} />
 
       <AntiquityEquipList />
     </FlexView>

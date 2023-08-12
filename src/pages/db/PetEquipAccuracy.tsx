@@ -1,7 +1,7 @@
 import { FlexView } from '@components/common';
 import { PetEquipAccuracy } from '@components/db-pages/petEquip';
 import { MenuTab } from '@components/layout';
-import { PETEQUIP_TABS } from '@constants/menu';
+import { PET_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
@@ -15,7 +15,7 @@ export default () => {
       }}
       gap={isMobile ? 20 : 40}
     >
-      <MenuTab isMobile={isMobile} menus={PETEQUIP_TABS} />
+      <MenuTab isMobile={isMobile} menus={PET_EQUIP_TABS} />
 
       <PetEquipAccuracy />
     </FlexView>

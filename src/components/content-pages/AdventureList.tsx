@@ -1,6 +1,6 @@
 import { FlexView, Text } from '@components/common';
 import DATA from '@data/adventure.json';
-import { AdventureTab } from '@interfaces/adventure';
+import { AdventureTab } from '@interfaces/content';
 
 type DETAIL = {
   name: string;

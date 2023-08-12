@@ -92,7 +92,7 @@ export default () => {
         <FlexView css={{ border: `1px solid lightgray` }}>
           {myData.map(item => (
             <ArcheologyAccordion
-              key={item.item}
+              key={item.index}
               subTitle={item.location}
               title={item.item}
               titleCSS={{ width: `340px` }}
@@ -144,7 +144,7 @@ export default () => {
           <FlexView>
             {myData.map((item, index) => (
               <FlexView
-                key={item.item}
+                key={item.index}
                 ref={el => (itemRef.current[index] = el as HTMLDivElement)}
                 css={{ minHeight: `40px`, borderBottom: `1px solid lightgray` }}
                 items="center"

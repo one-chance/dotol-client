@@ -1,30 +1,43 @@
 import { useEffect, useState } from 'react';
 
-import { Button, FlexView, Text } from '@components/common';
+import { getAchievementList } from '@apis/content';
+import { FlexView, Text } from '@components/common';
 import { AchievementList } from '@components/content-pages';
 import { Select, Option } from '@components/select';
+import { Achievement, Mission } from '@interfaces/content';
 import { useResponsive } from '@utils/hooks';
+
+const TAB_LIST = [
+  `탐험일지`,
+  `고고학`,
+  `전장`,
+  `세시마을`,
+  `환웅의유산`,
+  `안시성 전투`,
+  `환상의시련`,
+  `영웅의 기억`,
+  `그 외`,
+];
 
 export default () => {
   const isMobile = useResponsive(600);
-
-  const TAB_LIST = [
-    `탐험일지`,
-    `고고학`,
-    `전장`,
-    `세시마을`,
-    `환웅의유산`,
-    `안시성 전투`,
-    `환상의시련`,
-    `영웅의 기억`,
-    `그 외`,
-  ];
-
-  const [selectedTab, setSelectedTab] = useState(0);
+  const [tab, setTab] = useState(0);
+  const [infoList, setInfoList] = useState<Achievement[]>([]);
+  const [selectedList, setSelectedInfoList] = useState<Mission[]>([]);
 
   const selectTab = (idx: number) => {
-    setSelectedTab(idx);
+    setTab(idx);
   };
+
+  useEffect(() => {
+    setSelectedInfoList(infoList[tab]?.mission);
+  }, [tab, infoList]);
+
+  useEffect(() => {
+    getAchievementList().then(data => {
+      setInfoList(data);
+    });
+  }, []);
 
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
@@ -35,18 +48,18 @@ export default () => {
 
         <Select
           isMobile={isMobile}
-          name={TAB_LIST[selectedTab]}
+          name={TAB_LIST[tab]}
           width={isMobile ? 100 : 140}
         >
           <Option
-            selected={TAB_LIST[selectedTab]}
+            selected={TAB_LIST[tab]}
             values={TAB_LIST}
             onSelect={selectTab}
           />
         </Select>
       </FlexView>
 
-      <AchievementList tab={selectedTab} />
+      <AchievementList list={selectedList} />
     </FlexView>
   );
 };

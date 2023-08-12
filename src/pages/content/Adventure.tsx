@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FlexView, Text } from '@components/common';
 import { AdventureList } from '@components/content-pages';
 import { Select, Option } from '@components/select';
-import { AdventureTab } from '@interfaces/adventure';
+import { AdventureTab } from '@interfaces/content';
 import { useResponsive } from '@utils/hooks';
 
 const LOCATIONS = [
@@ -22,6 +22,7 @@ export default () => {
   const isMobile = useResponsive(600);
   const [tab, setTab] = useState(0); // 탐험 탭
   const [location, setLocation] = useState(0); // 탐험 지역
+  const [infoList, setInfoList] = useState<string[][]>([[]]);
 
   const selectLocation = (idx: number) => {
     setLocation(idx);

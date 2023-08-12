@@ -1,7 +1,7 @@
 import { FlexView } from '@components/common';
 import { NormalEquipSet } from '@components/db-pages';
 import { MenuTab } from '@components/layout';
-import { NORMALEQUIP_TABS } from '@constants/menu';
+import { NORMAL_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
@@ -16,7 +16,7 @@ export default () => {
       }}
       gap={40}
     >
-      <MenuTab isMobile={isMobile} menus={NORMALEQUIP_TABS} />
+      <MenuTab isMobile={isMobile} menus={NORMAL_EQUIP_TABS} />
 
       <NormalEquipSet />
     </FlexView>
