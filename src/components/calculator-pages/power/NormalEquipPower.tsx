@@ -77,7 +77,7 @@ export default () => {
       gap={16}
       items="center"
     >
-      <FlexView css={{ width: `302px` }} gap={16} items="center" row wrap>
+      <FlexView css={{ width: `300px` }} gap={20} items="center" row wrap>
         {EQUIP_PARTS.map(part => (
           <Button
             key={part}

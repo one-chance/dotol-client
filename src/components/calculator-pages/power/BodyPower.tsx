@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
+import { useResponsive } from '@utils/hooks';
 
 const PARTS = [
   `무기`,
-  `투구`,
   `갑옷`,
-  `목/어깨`,
+  `투구`,
   `왼손`,
   `오른손`,
+  `목/어깨`,
   `망토`,
   `신발`,
 ];
 
 export default () => {
+  const isMobile = useResponsive(580);
   const [bodyPower, setBodyPower] = useState(0);
-
   const [value, setValue] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
 
   const inputValue = (
@@ -24,16 +25,25 @@ export default () => {
   ) => {
     const temp = e.target.value.replace(/[^0-9]/g, ``);
 
-    if (Number(temp) > 20) return;
+    if (order < 5 && Number(temp) > 20) return;
+    if (order >= 5 && Number(temp) > 15) return;
+
     value[order] = Number(temp);
     setValue([...value]);
   };
 
   useEffect(() => {
-    const multipliedSum = value
-      .map(num => num * 5)
-      .reduce((acc, curr) => acc + curr, 0);
-    setBodyPower(multipliedSum);
+    const tempPower =
+      value[0] * 5 +
+      value[1] * 5 +
+      value[2] * 5 +
+      value[3] * 5 +
+      value[4] * 5 +
+      (value[5] === 0 ? 0 : value[5] * 5 + 25) +
+      (value[6] === 0 ? 0 : value[6] * 5 + 25) +
+      (value[7] === 0 ? 0 : value[7] * 5 + 25);
+
+    setBodyPower(tempPower);
   }, [value]);
 
   return (
@@ -46,19 +56,31 @@ export default () => {
       gap={16}
       items="center"
     >
-      <FlexView gap={8}>
+      <FlexView
+        content="between"
+        css={{ width: isMobile ? `298px` : `380px` }}
+        gap={8}
+        items="center"
+        row
+        wrap
+      >
         {PARTS.map((part, index) => (
           <FlexView key={part} items="center" row>
-            <Text css={{ minWidth: `100px` }} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `60px` : `75px` }}
+              small={isMobile}
+              semiBold
+            >
               {part}
             </Text>
 
             <Input
               aria-label="등급"
               height={40}
+              isMobile={isMobile}
               placeholder="등급"
               value={value[index] || ``}
-              width={100}
+              width={isMobile ? 60 : 100}
               center
               onChange={e => inputValue(index, e)}
             />

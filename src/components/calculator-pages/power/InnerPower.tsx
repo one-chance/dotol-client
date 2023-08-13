@@ -112,7 +112,7 @@ export default () => {
       items="center"
     >
       <FlexView gap={8} items="center" row>
-        <Select name={INNER_POWER_TYPES[innerType.one]} width={200}>
+        <Select name={INNER_POWER_TYPES[innerType.one]} width={200} disabled>
           <Option
             selected={INNER_POWER_TYPES[innerType.one]}
             values={INNER_POWER_TYPES}
@@ -133,7 +133,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={8} items="center" row>
-        <Select name={INNER_POWER_TYPES[innerType.two]} width={200}>
+        <Select name={INNER_POWER_TYPES[innerType.two]} width={200} disabled>
           <Option
             selected={INNER_POWER_TYPES[innerType.two]}
             values={INNER_POWER_TYPES}

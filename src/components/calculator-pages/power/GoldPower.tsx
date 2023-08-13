@@ -83,7 +83,7 @@ export default () => {
       items="center"
     >
       <FlexView gap={10} items="center" row>
-        <Select name={ability.one} width={210}>
+        <Select max={210} name={ability.one} width={210}>
           <Option
             selected={ability.one}
             values={ABILITIES}
@@ -104,7 +104,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={10} items="center" row>
-        <Select name={ability.two} width={210}>
+        <Select max={210} name={ability.two} width={210}>
           <Option
             selected={ability.two}
             values={ABILITIES}
@@ -125,7 +125,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={10} items="center" row>
-        <Select name={ability.three} width={210}>
+        <Select max={210} name={ability.three} width={210}>
           <Option
             selected={ability.three}
             values={ABILITIES}
@@ -145,7 +145,7 @@ export default () => {
         />
       </FlexView>
 
-      <Text semiBold>황금돋보기 전투력: {goldPower}</Text>
+      <Text semiBold>(황돋)부가잠재능력 전투력: {goldPower}</Text>
     </FlexView>
   );
 };

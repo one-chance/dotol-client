@@ -1,6 +1,7 @@
 import { FlexView, Text } from '@components/common';
 import DATA from '@data/adventure.json';
 import { AdventureTab } from '@interfaces/content';
+import { Colors } from '@styles/system';
 
 type DETAIL = {
   name: string;
@@ -236,7 +237,12 @@ export default ({ location, tab, isMobile }: ListProps) => {
 
       <FlexView css={{ padding: `0 5px` }} gap={4} wrap>
         {messages[tab].map(message => (
-          <Text key={message} color="blue" small={!isMobile} xSmall={isMobile}>
+          <Text
+            key={message}
+            color={Colors.red}
+            small={!isMobile}
+            xSmall={isMobile}
+          >
             * {message}
           </Text>
         ))}

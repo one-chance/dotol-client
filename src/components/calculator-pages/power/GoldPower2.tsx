@@ -5,27 +5,17 @@ import { Select, Option } from '@components/select';
 import { GOLD_POWER2 } from '@constants/power';
 
 const ABILITIES = [
-  `콘텐츠 부가잠재능력`,
+  `콘텐츠 능력치`,
   `방어도무시/방어도`,
-  `방어도무시/방어도(%)`,
   `명중회피`,
-  `명중회피(%)`,
   `마법수준향상`,
-  `마법수준향상(%)`,
   `명중률/타격치`,
-  `명중률/타격치(%)`,
   `힘/민첩/지력`,
-  `힘/민첩/지력(%)`,
   `방관/공증/마증/마치`,
-  `방관/공증/마증/마치(%)`,
   `타흡/마흡/피흡`,
-  `타흡/마흡/피흡(%)`,
   `직타/시향/회향`,
-  `직타/시향/회향(%)`,
   `재생력`,
-  `재생력(%)`,
   `체력/마력`,
-  `체력/마력(%)`,
 ];
 
 export default () => {
@@ -114,7 +104,7 @@ export default () => {
       items="center"
     >
       <FlexView gap={10} items="center" row>
-        <Select max={300} name={ability.one} width={210}>
+        <Select max={210} name={ability.one} width={210}>
           <Option
             selected={ability.one}
             values={ABILITIES}
@@ -135,7 +125,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={10} items="center" row>
-        <Select max={300} name={ability.two} width={210}>
+        <Select max={210} name={ability.two} width={210}>
           <Option
             selected={ability.two}
             values={ABILITIES}
@@ -156,7 +146,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={10} items="center" row>
-        <Select max={300} name={ability.three} width={210}>
+        <Select max={210} name={ability.three} width={210}>
           <Option
             selected={ability.three}
             values={ABILITIES}
@@ -176,7 +166,7 @@ export default () => {
         />
       </FlexView>
 
-      <Text semiBold>콘텐츠 부가잠재능력 전투력: {goldPower}</Text>
+      <Text semiBold>(콘텐츠)부가잠재능력 전투력: {goldPower}</Text>
     </FlexView>
   );
 };

@@ -88,7 +88,11 @@ export default () => {
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
-          <Select name={ANTIQUITY_GLASSES[equips.glasses]} width={SELECT_WIDTH}>
+          <Select
+            max={200}
+            name={ANTIQUITY_GLASSES[equips.glasses]}
+            width={SELECT_WIDTH}
+          >
             <Option
               selected={ANTIQUITY_GLASSES[equips.glasses]}
               values={ANTIQUITY_GLASSES}

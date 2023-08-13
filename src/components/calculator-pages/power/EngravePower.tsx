@@ -64,7 +64,7 @@ export default () => {
     >
       <FlexView gap={8}>
         <FlexView gap={8} items="center" row>
-          <Select name={engrave.one} width={120}>
+          <Select name={engrave.one} width={120} disabled>
             <Option
               selected={engrave.one}
               values={ENGRAVES}
@@ -79,12 +79,13 @@ export default () => {
             value={value.one || ``}
             width={100}
             center
+            readOnly
             onChange={e => inputValue(`one`, e)}
           />
         </FlexView>
 
         <FlexView gap={8} items="center" row>
-          <Select name={engrave.two} width={120}>
+          <Select name={engrave.two} width={120} disabled>
             <Option
               selected={engrave.two}
               values={ENGRAVES}
@@ -99,6 +100,7 @@ export default () => {
             value={value.two || ``}
             width={100}
             center
+            readOnly
             onChange={e => inputValue(`two`, e)}
           />
         </FlexView>

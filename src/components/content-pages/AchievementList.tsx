@@ -15,7 +15,11 @@ export default ({ list }: ListProps) => {
       <FlexView
         color="lightgray"
         content="center"
-        css={{ minHeight: `40px`, padding: `0 8px` }}
+        css={{
+          minHeight: `40px`,
+          padding: `0 8px`,
+          width: isMobile ? `352px` : `480px`,
+        }}
       >
         <Text bold>업적 종류</Text>
       </FlexView>
@@ -25,7 +29,7 @@ export default ({ list }: ListProps) => {
           <AchievementAccordion
             key={mission.name}
             title={mission.name}
-            titleCSS={{ width: isMobile ? `350px` : `480px` }}
+            titleCSS={{ width: isMobile ? `352px` : `480px` }}
           >
             <Text small={isMobile}>점수: {mission.score}</Text>
             <Text small={isMobile}>조건: {mission.condition}</Text>

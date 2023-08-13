@@ -13,10 +13,11 @@ import {
   SkillPower,
 } from '@components/calculator-pages/power';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { Option, Select } from '@components/select';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
-const NAMES = [
+const TYPES = [
   `레벨`,
   `장비`,
   `각인`,
@@ -28,73 +29,51 @@ const NAMES = [
   `신수유물`,
 ];
 
-type CALCULATOR =
-  | `레벨`
-  | `장비`
-  | `각인`
-  | `부가잠재능력`
-  | `대표환수`
-  | `기술능력`
-  | `신체강화`
-  | `내공강화`
-  | `신수유물`;
-
-const explanations: { [key in CALCULATOR]: string[] } = {
-  레벨: [
+const explanations: { [key: number]: string[] } = {
+  0: [
     `99레벨에 최초로 부여되며 이후 레벨업마다 증가한다.`,
     `소수점 첫재자리까지 계산되지만 s창에는 올림한다.`,
     `승급전투력은 100레벨마다 자동으로 증가한다.`,
   ],
-  장비: [`장비에 부가된 잠재 능력의 전투력은 따로 계산해야 한다.`],
-  각인: [
+  1: [`추후 업데이트 됩니다.`],
+  2: [`추후 업데이트 됩니다.`],
+  3: [
     `[모든 능력 증가] 능력치가 최종 전투력에 반영된다.`,
-    `%가 되면서 기준 수치도 바뀌어 오차가 발생할 수 있다.`,
+    `황금돋보기 1줄의 최대 전투력은 500이다.`,
+    `황금돋보기로 부여한 옵션은 (%)수치만 나온다.`,
+    `콘텐츠로 부여한 옵션은 (+)수치만 나온다.`,
+    `(콘텐츠)부가잠재능력은 장비전투력에 합산된다.`,
   ],
-  부가잠재능력: [
-    `[모든 능력 증가] 능력치가 최종 전투력에 반영된다.`,
-    `%돋 통합 패치로 최대 전투력이 500으로 증가했다.`,
-    `황금돋보기 능력치는 오른쪽 계산 공식을 따른다.`,
-    `콘텐츠 부가잠재능력은 왼쪽 계산 공식을 따른다.`,
-  ],
-  대표환수: [`환수장비에 달린 부가잠재능력은 따로 계산해야 한다.`],
-  기술능력: [],
-  신체강화: [],
-  내공강화: [
-    `같은 능력치는 수치를 합산해서 한 번에 계산해야 한다.`,
-    `[모든 능력 증가] 능력치가 최종 전투력에 반영되지 않는다.`,
-  ],
-  신수유물: [`[모든 능력 증가] 능력치가 최종 전투력에 반영되지 않는다.`],
+  4: [`환수장비에 달린 부가잠재능력은 따로 계산해야 한다.`],
+  5: [],
+  6: [],
+  7: [`추후 업데이트 됩니다.`],
+  8: [`[모든 능력 증가] 능력치가 최종 전투력에 반영되지 않는다.`],
 };
 
 export default () => {
   const isMobile = useResponsive(600);
-  const [type, setType] = useState<CALCULATOR>(`레벨`);
+  const [type, setType] = useState(0);
 
-  const [plus, setPlus] = useState({
-    a: ``,
-    b: ``,
-  });
-
-  const [multiple, setMultiple] = useState({
-    a: ``,
-    b: ``,
-  });
-
-  const calculator = {
-    레벨: <LevelPower />,
-    장비: <NormalEquipPower />,
-    각인: <EngravePower />,
-    부가잠재능력: (
-      <FlexView gap={40} items="center" row={!isMobile}>
-        <GoldPower2 />
+  const calculator: { [key: number]: JSX.Element } = {
+    0: <LevelPower />,
+    1: <NormalEquipPower />,
+    2: <EngravePower />,
+    3: (
+      <FlexView gap={isMobile ? 20 : 40}>
         <GoldPower />
+        <GoldPower2 />
       </FlexView>
     ),
-    대표환수: <PetEquipPower />,
-    기술능력: <SkillPower />,
-    신체강화: <BodyPower />,
-    내공강화: <InnerPower />,
-    신수유물: <AntiquityPower />,
+    4: <PetEquipPower />,
+    5: <SkillPower />,
+    6: <BodyPower />,
+    7: <InnerPower />,
+    8: <AntiquityPower />,
+  };
+
+  const selectType = (id: number) => {
+    setType(id);
   };
 
   return (
@@ -102,35 +81,28 @@ export default () => {
       css={{ margin: isMobile ? `20px auto 40px` : `40px auto` }}
       gap={isMobile ? 20 : 40}
     >
-      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-        전투력 계산기
-      </Text>
-
       <FlexView
-        content={isMobile ? `start` : `center`}
-        css={{ margin: `0 10px` }}
-        gap={isMobile ? 8 : 12}
+        content="between"
+        css={{ margin: isMobile ? `0 10px` : 0 }}
         items="center"
         row
-        wrap
       >
-        {NAMES.map(name => (
-          <Button
-            key={name}
-            aria-label="탭"
-            onClick={() => setType(name as CALCULATOR)}
-          >
-            <Text
-              bold={name === type}
-              color={name === type ? Colors.red : Colors.black}
-            >
-              {name}
-            </Text>
-          </Button>
-        ))}
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+          전투력 계산기
+        </Text>
+
+        <Select
+          isMobile={isMobile}
+          name={TYPES[type]}
+          width={isMobile ? 120 : 140}
+        >
+          <Option selected={TYPES[type]} values={TYPES} onSelect={selectType} />
+        </Select>
       </FlexView>
 
-      <FlexView css={{ margin: `0 10px` }}>{calculator[type]}</FlexView>
+      <FlexView css={{ width: isMobile ? `340px` : `440px`, margin: `0 10px` }}>
+        {calculator[type]}
+      </FlexView>
 
       <FlexView css={{ margin: `0 10px` }} gap={4}>
         {explanations[type].map(text => (
@@ -138,75 +110,6 @@ export default () => {
             {text}
           </Text>
         ))}
-      </FlexView>
-
-      <FlexView
-        content="between"
-        css={{ margin: `0 10px` }}
-        gap={8}
-        row={!isMobile}
-      >
-        <FlexView gap={4} items="center" row>
-          <Input
-            aria-label="A"
-            placeholder="A"
-            value={plus.a || ``}
-            width={80}
-            center
-            onChange={e =>
-              setPlus({
-                ...plus,
-                a: e.target.value.replace(/[^0-9.]|([.-](?=.*[.-]))/g, ``),
-              })
-            }
-          />
-          <Text>+</Text>
-          <Input
-            aria-label="B"
-            placeholder="B"
-            value={plus.b || ``}
-            width={80}
-            center
-            onChange={e =>
-              setPlus({
-                ...plus,
-                b: e.target.value.replace(/[^0-9.]|([.-](?=.*[.-]))/g, ``),
-              })
-            }
-          />
-          <Text>= {Number(plus.a) + Number(plus.b)}</Text>
-        </FlexView>
-
-        <FlexView gap={4} items="center" row>
-          <Input
-            aria-label="A"
-            placeholder="A"
-            value={multiple.a || ``}
-            width={80}
-            center
-            onChange={e =>
-              setPlus({
-                ...plus,
-                a: e.target.value.replace(/[^0-9.]|([.-](?=.*[.-]))/g, ``),
-              })
-            }
-          />
-          <Text>x</Text>
-          <Input
-            aria-label="B"
-            placeholder="B"
-            value={multiple.b || ``}
-            width={80}
-            center
-            onChange={e =>
-              setPlus({
-                ...plus,
-                b: e.target.value.replace(/[^0-9.]|([.-](?=.*[.-]))/g, ``),
-              })
-            }
-          />
-          <Text>= {Number(multiple.a) * Number(multiple.b)}</Text>
-        </FlexView>
       </FlexView>
     </FlexView>
   );
