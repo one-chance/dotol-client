@@ -12,7 +12,7 @@ import {
   PetEquipPower,
   SkillPower,
 } from '@components/calculator-pages/power';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { FlexView, Text } from '@components/common';
 import { Option, Select } from '@components/select';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -40,9 +40,9 @@ const explanations: { [key: number]: string[] } = {
   3: [
     `[모든 능력 증가] 능력치가 최종 전투력에 반영된다.`,
     `황금돋보기 1줄의 최대 전투력은 500이다.`,
-    `황금돋보기로 부여한 옵션은 (%)수치만 나온다.`,
-    `콘텐츠로 부여한 옵션은 (+)수치만 나온다.`,
-    `(콘텐츠)부가잠재능력은 장비전투력에 합산된다.`,
+    `황금돋보기로 부여한 옵션은 곱연산(%) 되는 수치이다.`,
+    `콘텐츠로 부여한 옵션은 합연산(+) 되는 수치이다.`,
+    `콘텐츠 능력치 중에 (%)옵션은 수치x10을 입력하세요.`,
   ],
   4: [`환수장비에 달린 부가잠재능력은 따로 계산해야 한다.`],
   5: [],
@@ -106,7 +106,7 @@ export default () => {
 
       <FlexView css={{ margin: `0 10px` }} gap={4}>
         {explanations[type].map(text => (
-          <Text key={text} color={Colors.primary} small={isMobile}>
+          <Text key={text} color={Colors.red} small={isMobile}>
             {text}
           </Text>
         ))}

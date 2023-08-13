@@ -1,10 +1,25 @@
-import { Anchor, FlexView, Text, TextArea } from '@components/common';
+import { useEffect, useState } from 'react';
+
+import { getTotalVisitor, getTodayVisitor } from '@apis/visit';
+import { Anchor, FlexView, Text } from '@components/common';
 import { BoardSection, ClothSection } from '@components/home-page';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(980);
+  const [todayVisitor, setTodayVisitor] = useState(0);
+  const [totalVisitor, setTotalVisitor] = useState(0);
+
+  useEffect(() => {
+    getTodayVisitor().then(res => {
+      setTodayVisitor(res);
+    });
+
+    getTotalVisitor().then(res => {
+      setTotalVisitor(res);
+    });
+  }, []);
 
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `auto` }} gap={20}>
@@ -66,6 +81,11 @@ export default () => {
         <ClothSection />
 
         <BoardSection />
+      </FlexView>
+
+      <FlexView gap={16} center row>
+        <Text semiBold>Today: {todayVisitor}</Text>
+        <Text semiBold>Total: {totalVisitor}</Text>
       </FlexView>
     </FlexView>
   );

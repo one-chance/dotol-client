@@ -12,16 +12,19 @@ export const GOLD_POWER: { [key: string]: { power: number; max: number } } = {
 
 export const GOLD_POWER2: { [key: string]: { power: number; max: number } } = {
   '콘텐츠 능력치': { power: 0, max: 0 },
-  '방어도무시/방어도': { power: 100, max: 3 },
-  명중회피: { power: 100, max: 3 },
-  마법수준향상: { power: 60, max: 5 },
-  '명중률/타격치': { power: 37.5, max: 8 },
-  '힘/민첩/지력': { power: 15, max: 20 },
-  '방관/공증/마증/마치': { power: 3.75, max: 80 },
-  '타흡/마흡/피흡': { power: 3.75, max: 80 },
-  '직타/시향/회향': { power: 3.75, max: 80 },
-  재생력: { power: 0.375, max: 800 },
-  '체력/마력': { power: 0.003, max: 100000 },
+  방어도: { power: 100, max: 6 },
+  방어도무시: { power: 100, max: 3 },
+  명중회피: { power: 75, max: 4 },
+  마법수준향상: { power: 60, max: 2 },
+  명중률: { power: 37.5, max: 4 },
+  타격치: { power: 37.5, max: 3 },
+  '힘/민첩/지력': { power: 15, max: 7 },
+  방어구관통: { power: 3.75, max: 36 },
+  '공증/마증/마치': { power: 3.75, max: 27 },
+  '타흡/마흡/피흡': { power: 3.75, max: 27 },
+  '직타/시향/회향': { power: 3.75, max: 27 },
+  재생력: { power: 0.375, max: 300 },
+  '체력/마력': { power: 0.003, max: 30000 },
 };
 
 export const PET_EQUIP_POWER: { [key: string]: number } = {

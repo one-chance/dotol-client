@@ -6,7 +6,7 @@ export const getIPAddress = async () => {
 };
 
 export const checkNewVisitor = async (ip: string) => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/visit/new`, {
+  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/visit/new`, {
     method: `POST`,
     headers: {
       'Content-Type': `application/json`,
@@ -21,7 +21,14 @@ export const checkNewVisitor = async (ip: string) => {
 };
 
 export const getTotalVisitor = async () => {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/visit/total`);
+  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/visit/total`);
+
+  const data = await res.json();
+  return data;
+};
+
+export const getTodayVisitor = async () => {
+  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/visit/today`);
 
   const data = await res.json();
   return data;
