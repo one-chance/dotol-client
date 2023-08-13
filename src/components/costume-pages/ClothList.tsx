@@ -53,6 +53,12 @@ export default () => {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessge] = useState(``);
 
+  const Gender: { [key: number]: string } = {
+    0: `공용`,
+    1: `남성`,
+    2: `여성`,
+  };
+
   const openToast = (message: string) => {
     setToastMessge(message);
     setShowToast(true);
@@ -145,7 +151,12 @@ export default () => {
 
   return (
     <FlexView gap={20}>
-      <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+      <Text
+        css={{ margin: isMobile ? `0 10px` : 0 }}
+        xLarge={isMobile}
+        xxLarge={!isMobile}
+        bold
+      >
         치장 미리보기
       </Text>
 
@@ -176,7 +187,7 @@ export default () => {
           <FlexView
             content="between"
             css={{
-              width: isMobile ? `360px` : `718px`,
+              width: isMobile ? `352px` : `718px`,
               border: `1px solid lightgray`,
             }}
             gap={20}
@@ -267,7 +278,9 @@ export default () => {
                       items="center"
                       row
                     >
-                      <Text xSmall>성별</Text>
+                      <Text color={Colors.purple} xSmall>
+                        {Gender[cloth.gender]}
+                      </Text>
 
                       {cloth.luxury && (
                         <Text color={Colors.red} xSmall>
@@ -313,9 +326,14 @@ export default () => {
             </FlexView>
           </FlexView>
 
-          <Text color={Colors.red} small>
-            * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
-          </Text>
+          <FlexView>
+            <Text color={Colors.red} small>
+              * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
+            </Text>
+            <Text color={Colors.red} small>
+              * 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
+            </Text>
+          </FlexView>
         </FlexView>
       </FlexView>
       {showToast && <Toast message={toastMessage} type="error" />}

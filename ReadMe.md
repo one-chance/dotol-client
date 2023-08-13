@@ -2,9 +2,7 @@
 
 ## About the Project
 
-v1 production: https://dotols.com<br/>
-v2 development: https://dev.dotols.com
-
+https://dotols.com<br/>
 1인 개발하여 2년 3개월째 운영중인 바람의나라 게임 커뮤니티입니다. 게임에서 제공하지 않지만, 유저에겐 필요한 데이터와 기능을 제공합니다. 넥슨과 협업하여 비공개 API를 제공받는 유일한 [공식 팬사이트](https://baram.nexon.com/FanSite/List)입니다.
 
 <img src="https://asset.dotols.com/image/termsofservice.png" style="max-width:600px" />
@@ -16,7 +14,7 @@ v2 development: https://dev.dotols.com
 22.01 업데이트 중단<br />
 23.04 v2 구상<br />
 23.05 v2 개발 시작<br />
-23.08 v2 배포 및 운영(예정)
+23.08 v2 배포 및 운영
 
 ## Background
 

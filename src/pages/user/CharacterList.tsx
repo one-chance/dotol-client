@@ -104,20 +104,21 @@ export default () => {
               />
             </FlexView>
             <FlexView gap={4}>
-              <Text color={Colors.red}>
+              <Text color={Colors.red} small={isMobile}>
                 1) 인증할 캐릭터의 호패 인사말에 도톨 ID를 저장하세요.
               </Text>
-              <Text color={Colors.red}>
-                2) 아래에 캐릭터@서버를 입력하고 인증 버튼을 누르세요.
+              <Text color={Colors.red} small={isMobile}>
+                2) 아래에 캐릭터@서버를 입력하고 인증을 누르세요.
               </Text>
-              <Text color={Colors.red}>
-                3) 인증이 완료되면 보안을 위해 인사말의 ID를 지워주세요.
+              <Text color={Colors.red} small={isMobile}>
+                3) 인증이 완료되면 인사말의 ID를 지워도 됩니다.
               </Text>
             </FlexView>
 
-            <FlexView content="center" gap={4} items="center" row>
+            <FlexView content="center" items="center" row>
               <Input
                 aria-label="캐릭터@서버"
+                css={{ borderRadius: `4px 0 0 4px` }}
                 placeholder="캐릭터@서버"
                 value={newCharacter || ``}
                 width={isMobile ? 160 : 240}
@@ -131,7 +132,11 @@ export default () => {
               <Button
                 aria-label="인증"
                 color={Colors.primary}
-                css={{ width: `60px`, minHeight: `36px` }}
+                css={{
+                  width: `60px`,
+                  minHeight: `36px`,
+                  borderRadius: `0 4px 4px 0`,
+                }}
                 radius={4}
                 onClick={() => addCharacter.mutate()}
               >

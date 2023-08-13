@@ -109,6 +109,11 @@ export default () => {
           <Text small={isMobile}>&nbsp;+&nbsp;</Text>
           <Input
             aria-label="제작확률 증가"
+            css={{
+              '::placeholder': {
+                fontSize: isMobile ? `14px` : `16px`,
+              },
+            }}
             placeholder="제작확률 증가(%)"
             value={extraPercentage || ``}
             width={isMobile ? 95 : 140}
@@ -121,11 +126,11 @@ export default () => {
           </Text>
         </FlexView>
 
-        <Button aria-label="설명" onClick={openModal}>
+        {/* <Button aria-label="설명" onClick={openModal}>
           <Text color="blue" small>
             제작확률 증가?
           </Text>
-        </Button>
+        </Button> */}
       </FlexView>
 
       <FlexView>

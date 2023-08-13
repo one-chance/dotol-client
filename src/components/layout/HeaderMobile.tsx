@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Button, FlexView, Icon, Image, Text, Link } from '@components/common';
+import { Button, FlexView, Icon, Text, Link } from '@components/common';
 import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -105,7 +105,6 @@ export default () => {
             <Text color={isLoggedIn ? Colors.purple : Colors.black} semiBold>
               {isLoggedIn ? `내 정보` : `로그인`}
             </Text>
-            {/* <Image height={24} src="/user.png" width={24} /> */}
           </Button>
           {showUserMenu && (
             <UserMenuMobile ref={userMenuRef} close={closeUserMenu} />

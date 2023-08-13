@@ -97,11 +97,10 @@ export default () => {
 
       <FlexView css={{ margin: `0 4px` }}>
         <Text color={Colors.red} small={isMobile} medium>
-          * 게임 내에서 세트옷 부위 장비를 노출한 캐릭터는 룩북이 적용되지
-          않습니다.
+          * 게임에서 세트옷을 착용하지 않아야 룩북이 적용됩니다.
         </Text>
         <Text color={Colors.red} small={isMobile} medium>
-          * 벗은 상태에서는 투구 부위에 아이템을 착용할 수 없는 버그가 있습니다.
+          * 벗은 상태에서 투구를 착용할 수 없는 버그가 있습니다.
         </Text>
       </FlexView>
 

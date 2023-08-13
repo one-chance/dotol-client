@@ -1,4 +1,5 @@
-export const MAIN_MENU = [`코디`, `도감`, `콘텐츠`, `계산기`, `게시판`];
+export const MAIN_MENU = [`코디`, `도감`, `콘텐츠`, `계산기`];
+// export const MAIN_MENU = [`코디`, `도감`, `콘텐츠`, `계산기`, `게시판`];
 
 export const TOTAL_MENU = [
   {
@@ -25,6 +26,7 @@ export const TOTAL_MENU = [
       { name: `업적`, url: `/content/achievement` },
       { name: `탐험일지`, url: `/content/adventure` },
       { name: `고고학`, url: `/content/archeology` },
+      { name: `신체 강화`, url: `/content/body-reinforce/ability` },
     ],
   },
   {
@@ -37,22 +39,22 @@ export const TOTAL_MENU = [
       { name: `세시마을`, url: `/calculator/calendar` },
     ],
   },
-  {
-    menu: `게시판`,
-    sub: [
-      { name: `팁 게시판`, url: `/board/tip?page=1` },
-      {
-        name: `자유 게시판`,
-        url: `/board/free?page=1`,
-      },
-      // {
-      //   name: `영상 게시판`,
-      //   url: `/board/video?page=1`,
-      // },
-      // { name: `서버 게시판`, url: `/board/server?page=1` },
-      // { name: `거래 게시판`, url: `/board/trade?page=1` },
-    ],
-  },
+  // {
+  //   menu: `게시판`,
+  //   sub: [
+  //     { name: `팁 게시판`, url: `/board/tip?page=1` },
+  //     {
+  //       name: `자유 게시판`,
+  //       url: `/board/free?page=1`,
+  //     },
+  //     {
+  //       name: `영상 게시판`,
+  //       url: `/board/video?page=1`,
+  //     },
+  //     { name: `서버 게시판`, url: `/board/server?page=1` },
+  //     { name: `거래 게시판`, url: `/board/trade?page=1` },
+  //   ],
+  // },
   // {
   //   menu: `거래소`,
   //   sub: [{ name: `거래소`, url: `/trade/auction` }],
@@ -64,18 +66,24 @@ export const COSTUME_TABS = [
   { name: `명품의 도감`, path: `/costume/luxury` },
 ];
 
-export const NORMALEQUIP_TABS = [
+export const NORMAL_EQUIP_TABS = [
   { name: `일반장비 도감`, path: `/db/normal-equip/list` },
   { name: `한벌 효과`, path: `/db/normal-equip/set` },
 ];
 
-export const PETEQUIP_TABS = [
+export const PET_EQUIP_TABS = [
   { name: `환수장비 도감`, path: `/db/pet-equip/list` },
   { name: `명중률 계산기`, path: `/db/pet-equip/accuracy` },
   { name: `강화 재료`, path: `/db/pet-equip/recipe` },
 ];
 
-export const ANTIQUITYEQUIP_TABS = [
+export const ANTIQUITY_EQUIP_TABS = [
   { name: `신수유물 도감`, path: `/db/antiquity-equip/list` },
   { name: `강화 재료`, path: `/db/antiquity-equip/recipe` },
+];
+
+export const BODY_REINFORCE_TABS = [
+  { name: `신체강화 능력`, path: `/content/body-reinforce/ability` },
+  { name: `신체강화 재료`, path: `/content/body-reinforce/recipe` },
+  { name: `신체강화 보너스`, path: `/content/body-reinforce/bonus` },
 ];

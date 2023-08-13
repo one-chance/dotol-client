@@ -13,7 +13,7 @@ export default () => {
         width: `960px`,
         margin: isMobile ? `0 auto 40px auto` : `40px auto`,
       }}
-      gap={20}
+      gap={isMobile ? 20 : 40}
     >
       <MenuTab isMobile={isMobile} menus={COSTUME_TABS} />
 

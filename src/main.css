@@ -5,7 +5,7 @@ code {
 
 @font-face {
   font-family: 'Red Hat Display';
-  src: url("./assets/fonts/RedHatDisplay.ttf") format("ttf");
+  src: url("./assets/fonts/RedHatDisplay.ttf") format("truetype");
 }
 
 @font-face {

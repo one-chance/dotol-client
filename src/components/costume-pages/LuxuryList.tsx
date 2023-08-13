@@ -146,14 +146,20 @@ export default () => {
   };
 
   return (
-    <FlexView gap={20}>
-      <Text bold xxLarge>
+    <FlexView gap={isMobile ? 10 : 20}>
+      <Text
+        css={{ margin: isMobile ? `0 10px` : 0 }}
+        xLarge={isMobile}
+        xxLarge={!isMobile}
+        bold
+      >
         명품의 도감
       </Text>
 
       <FlexView gap={8}>
         <FlexView
           css={{
+            margin: isMobile ? `0 4px` : 0,
             padding: `10px`,
             border: `1px solid lightgray`,
             borderRadius: `4px`,
@@ -163,7 +169,11 @@ export default () => {
           wrap
         >
           {NAMES.map((name, index) => (
-            <Button aria-label="기수" onClick={() => selectSeries(index + 1)}>
+            <Button
+              key={name}
+              aria-label="기수"
+              onClick={() => selectSeries(index + 1)}
+            >
               <Text
                 key={name}
                 bold={NAMES[series - 1] === name}
@@ -180,6 +190,7 @@ export default () => {
             <FlexView
               css={{
                 minHeight: `40px`,
+                margin: isMobile ? `0 4px` : 0,
                 padding: `10px`,
                 border: `1px solid lightgray`,
                 borderRadius: `4px`,
@@ -197,21 +208,22 @@ export default () => {
 
             <FlexView
               css={{
-                border: `1px solid lightgray`,
-                borderRadius: `4px`,
-                padding: `10px`,
+                border: isMobile ? `none` : `1px solid lightgray`,
+                borderRadius: isMobile ? 0 : `4px`,
+                padding: isMobile ? 0 : `10px`,
               }}
               center
             >
               <FlexView
                 css={{
-                  maxWidth: `fit-content`,
+                  maxWidth: isMobile ? `352px` : `fit-content`,
                 }}
               >
                 {series !== 0 && <Image src={`${basicURL}${series}.png`} />}
               </FlexView>
             </FlexView>
-            <Text color={Colors.red}>
+
+            <Text color={Colors.red} css={{ margin: isMobile ? `0 4px` : 0 }}>
               * 6부위 전용 이펙트가 적용된 이미지입니다.
             </Text>
           </>

@@ -16,7 +16,14 @@ import {
   Power,
   Production,
 } from '@pages/calculator';
-import { Achievement, Adventure, Archeology } from '@pages/content';
+import {
+  Achievement,
+  Adventure,
+  Archeology,
+  BodyReinforceAbility,
+  BodyReinforceBonus,
+  BodyReinforceRecipe,
+} from '@pages/content';
 import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
 import {
   AntiquityEquipList,
@@ -119,6 +126,18 @@ const MainRoutes = () => {
       <Route element={<Achievement />} path="/content/achievement" />
       <Route element={<Adventure />} path="/content/adventure" />
       <Route element={<Archeology />} path="/content/archeology" />
+      <Route
+        element={<BodyReinforceAbility />}
+        path="/content/body-reinforce/ability"
+      />
+      <Route
+        element={<BodyReinforceBonus />}
+        path="/content/body-reinforce/bonus"
+      />
+      <Route
+        element={<BodyReinforceRecipe />}
+        path="/content/body-reinforce/recipe"
+      />
 
       {/* 계산기 메뉴 */}
       <Route element={<Ability />} path="/calculator/ability" />

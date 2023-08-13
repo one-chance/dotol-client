@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getMyInfo, updateMyInfo } from '@apis/users';
-import { Button, FlexView, Image, Input, Text } from '@components/common';
+import { Button, FlexView, Input, Text } from '@components/common';
 import { IUser } from '@interfaces/users';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -20,8 +20,8 @@ export default () => {
     point: 0,
     mainCharacter: ``,
     openTalk: ``,
-    createdAt: new Date(),
-    updatedAt: new Date(),
+    createdAt: ``,
+    updatedAt: ``,
   });
 
   const inputOpenTalk = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,79 +46,108 @@ export default () => {
       css={{
         maxWidth: `600px`,
         width: `100%`,
-        margin: isMobile ? `0` : `auto`,
+        margin: isMobile ? `20px auto` : `auto`,
       }}
     >
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `8px`,
-          padding: isMobile ? `10px` : `40px`,
+          padding: isMobile ? `0 5px` : `40px`,
         }}
-        gap={40}
+        gap={isMobile ? 20 : 40}
       >
         <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
           프로필
         </Text>
 
-        <FlexView content="end" gap={16} row>
+        <FlexView content="end" row>
+          {editMode && (
+            <Button
+              aria-label="취소"
+              css={{ width: `60px`, height: `30px` }}
+              onClick={() => setEditMode(false)}
+            >
+              <Text>취소</Text>
+            </Button>
+          )}
+
           <Button
             aria-label={editMode ? `저장` : `수정`}
+            css={{ width: `60px`, height: `30px` }}
             onClick={() => (editMode ? saveProfile() : setEditMode(true))}
           >
             <Text color={Colors.primary}>{editMode ? `저장` : `수정`}</Text>
           </Button>
-
-          {editMode && (
-            <Button aria-label="취소" onClick={() => setEditMode(false)}>
-              <Text>취소</Text>
-            </Button>
-          )}
         </FlexView>
 
-        <FlexView gap={16}>
+        <FlexView>
           <FlexView css={{ height: `40px` }} items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `90px` : `120px` }}
+              small={isMobile}
+              semiBold
+            >
               아이디
             </Text>
 
-            <Text>{userInfo?.userId}</Text>
+            <Text small={isMobile}>{userInfo?.userId}</Text>
           </FlexView>
 
           <FlexView css={{ height: `40px` }} items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `90px` : `120px` }}
+              small={isMobile}
+              semiBold
+            >
               이메일
             </Text>
 
-            <Text>{userInfo?.email}</Text>
+            <Text small={isMobile}>{userInfo?.email}</Text>
           </FlexView>
 
           <FlexView css={{ height: `40px` }} items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `90px` : `120px` }}
+              small={isMobile}
+              semiBold
+            >
               도톨 레벨
             </Text>
 
-            <Text>{userInfo?.grade}</Text>
+            <Text small={isMobile}>{userInfo?.grade}</Text>
           </FlexView>
 
           <FlexView css={{ height: `40px` }} items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `90px` : `120px` }}
+              small={isMobile}
+              semiBold
+            >
               도톨 포인트
             </Text>
 
-            <Text>{userInfo?.point}</Text>
+            <Text small={isMobile}>{userInfo?.point}</Text>
           </FlexView>
 
           <FlexView css={{ height: `40px` }} items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `90px` : `120px` }}
+              small={isMobile}
+              semiBold
+            >
               대표 캐릭터
             </Text>
 
-            <Text>{userInfo?.mainCharacter}</Text>
+            <Text small={isMobile}>{userInfo?.mainCharacter}</Text>
           </FlexView>
 
           <FlexView css={{ height: `40px` }} items="center" row>
-            <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
+            <Text
+              css={{ minWidth: isMobile ? `90px` : `120px` }}
+              small={isMobile}
+              semiBold
+            >
               오픈 카톡
             </Text>
 
@@ -126,15 +155,18 @@ export default () => {
               <Input
                 aria-label="오픈톡 주소"
                 height={40}
+                isMobile={isMobile}
                 value={userInfo?.openTalk}
                 onChange={inputOpenTalk}
               />
             ) : (
-              <Text>{userInfo?.openTalk}</Text>
+              <Text css={{ letterSpacing: 0 }} small={isMobile}>
+                {userInfo?.openTalk}
+              </Text>
             )}
           </FlexView>
 
-          <FlexView
+          {/* <FlexView
             css={{ minHeight: `40px` }}
             items={editMode ? `center` : `start`}
             row
@@ -162,10 +194,10 @@ export default () => {
               </FlexView>
               // <Image />
             )}
-          </FlexView>
+          </FlexView> */}
         </FlexView>
 
-        <FlexView content="end" css={{ marginTop: `20px` }} row>
+        <FlexView content="end" css={{ margin: `0 10px` }} row>
           <Button
             aria-label="회원 탈퇴"
             color={Colors.red}

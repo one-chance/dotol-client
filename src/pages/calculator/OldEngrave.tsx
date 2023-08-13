@@ -21,7 +21,7 @@ export default () => {
 
   const RATIOS: { [key: string]: number } = {
     능력치: 0,
-    방어도: -0.32,
+    방어도: 0.32,
     방어도무시: 0.32,
     방어구관통: 0.1,
     공격력증가: 0.08,
@@ -108,10 +108,18 @@ export default () => {
 
   return (
     <FlexView
-      css={{ margin: isMobile ? `20px auto` : `40px auto` }}
+      css={{
+        margin: isMobile ? `20px auto` : `40px auto`,
+        width: isMobile ? `100%` : undefined,
+      }}
       gap={isMobile ? 20 : 40}
     >
-      <FlexView content="between" items="center" row>
+      <FlexView
+        content="between"
+        css={{ margin: isMobile ? `0 10px` : undefined }}
+        items="center"
+        row
+      >
         <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
           각인 수치 변환
         </Text>

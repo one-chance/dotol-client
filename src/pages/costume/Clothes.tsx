@@ -10,7 +10,7 @@ export default () => {
   return (
     <FlexView
       css={{ margin: isMobile ? `0 auto 20px auto` : `40px auto` }}
-      gap={40}
+      gap={isMobile ? 20 : 40}
     >
       <MenuTab isMobile={isMobile} menus={COSTUME_TABS} />
 

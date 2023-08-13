@@ -149,7 +149,7 @@ export default () => {
                     css={{
                       width: `100px`,
                       height: `40px`,
-                      padding: `8px 12px 8px 20px`,
+                      padding: `10px 12px 10px 18px`,
                       display: `flex`,
                       justifyContent: `center`,
                       gap: `4px`,
@@ -162,7 +162,7 @@ export default () => {
                       css={{
                         width: `45px`,
                         letterSpacing: `-1px`,
-                        lineHeight: 1.5,
+                        // lineHeight: 1.5,
                       }}
                       medium
                     >

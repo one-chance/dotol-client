@@ -7,8 +7,8 @@ export type IUser = {
   point: number;
   mainCharacter: string;
   openTalk: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type NewUser = {

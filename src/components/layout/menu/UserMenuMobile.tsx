@@ -64,7 +64,12 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           비밀번호 변경
         </Link>
 
-        <Link aria-label="대표 캐릭터" css={linkCSS} to="/" onClick={close}>
+        <Link
+          aria-label="대표 캐릭터"
+          css={linkCSS}
+          to="/user/character"
+          onClick={close}
+        >
           대표 캐릭터
         </Link>
 

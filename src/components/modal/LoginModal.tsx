@@ -72,13 +72,13 @@ export default ({ close }: ModalProps) => {
   return (
     <Modal
       closePortal={close}
-      height={isMobile ? 396 : 464}
+      height={isMobile ? 356 : 464}
       width={isMobile ? 300 : 440}
     >
       <FlexView
         color={Colors.white}
         css={{
-          padding: isMobile ? `60px 30px` : `80px 40px`,
+          padding: isMobile ? `40px 30px` : `80px 40px`,
           borderRadius: `4px`,
         }}
       >
@@ -121,6 +121,11 @@ export default ({ close }: ModalProps) => {
               value={password || ``}
               width={isMobile ? 240 : 360}
               onChange={inputPassword}
+              onKeyDown={e => {
+                if (e.key === `Enter`) {
+                  login();
+                }
+              }}
             />
           </FlexView>
 
@@ -150,6 +155,7 @@ export default ({ close }: ModalProps) => {
                   lineHeight: 1,
                 }}
                 to="/user/forgot-userId"
+                onClick={close}
               >
                 아이디
               </Link>
@@ -168,6 +174,7 @@ export default ({ close }: ModalProps) => {
                   lineHeight: 1,
                 }}
                 to="/user/forgot-password"
+                onClick={close}
               >
                 비밀번호 찾기
               </Link>

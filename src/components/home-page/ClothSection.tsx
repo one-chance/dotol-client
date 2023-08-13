@@ -9,7 +9,7 @@ export default () => {
       css={{
         border: `1px solid lightgray`,
         borderRadius: `4px`,
-        padding: `12px`,
+        padding: isMobile ? `8px` : `12px`,
         margin: isMobile ? `0 5px` : undefined,
       }}
       fill={!isMobile}
@@ -19,9 +19,9 @@ export default () => {
         <Text small={isMobile} bold>
           8월 신규 치장
         </Text>
-        <Text small={!isMobile} xSmall={isMobile}>
+        {/* <Text small={!isMobile} xSmall={isMobile}>
           입어보기
-        </Text>
+        </Text> */}
       </FlexView>
 
       <FlexView gap={10} fill>
@@ -40,7 +40,7 @@ export default () => {
             의상수선가위 - 이매망량
           </Text>
           <FlexView center fill row wrap>
-            <Image css={{ maxHeight: `160px` }} src="/3.png" />
+            <Image css={{ maxWidth: `332px` }} src="/3.png" />
           </FlexView>
         </FlexView>
       </FlexView>

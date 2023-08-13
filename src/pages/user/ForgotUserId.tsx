@@ -12,7 +12,7 @@ export default () => {
 
   const [email, setEmail] = useState(``);
   const [isEmailFormat, setIsEmailForamt] = useState(false);
-  const [userId, setUserId] = useState(`quwieo`);
+  const [userId, setUserId] = useState(``);
   const [notFoundError, setNotFoundError] = useState(false);
 
   const checkEmailFormat = (_email: string) => {

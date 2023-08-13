@@ -93,7 +93,7 @@ export default () => {
       css={{
         border: `1px solid lightgray`,
         borderRadius: `4px`,
-        padding: `12px`,
+        padding: isMobile ? `8px` : `12px`,
         margin: isMobile ? `0 5px` : undefined,
       }}
       fill={!isMobile}
@@ -104,7 +104,7 @@ export default () => {
       >
         게시판 최신글
       </Link>
-      <FlexView>
+      {/* <FlexView>
         {postList.map((post: IPost, index: number) => (
           <FlexView
             key={post.index}
@@ -114,16 +114,11 @@ export default () => {
                 borderBottom: `1px solid lightgray`,
               }),
             }}
-            // onClick={() =>
-            //   navigate(`/board/free/post/${post.index}`, { state: { page: 1 } })
-            // }
           >
             <Link state={{ page: 1 }} to={`/board/free/post/${post.index}`}>
               {post.title} [{post.commentCount}]
             </Link>
-            {/* <Text small={isMobile}>
-              
-            </Text> */}
+
             <FlexView gap={4} items="center" row>
               <Text small={!isMobile} xSmall={isMobile}>
                 {post.writer.character}
@@ -140,7 +135,7 @@ export default () => {
             </FlexView>
           </FlexView>
         ))}
-      </FlexView>
+      </FlexView> */}
     </FlexView>
   );
 };
