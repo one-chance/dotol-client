@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { isDuplicatedEmail, sendOTPCode } from '@apis/users';
+import { createUser, isDuplicatedEmail, sendOTPCode } from '@apis/users';
 import {
   Button,
   Checkbox,
@@ -12,12 +12,13 @@ import {
 import { TermsModal } from '@components/modal';
 import { Toast } from '@components/toast';
 import { CSSObject } from '@emotion/react';
-import { NewUser } from '@interfaces/users';
+import { newUserState } from '@states/user';
 import { Colors } from '@styles/system';
+import { useRecoilValue } from 'recoil';
 
 type SignUpProps = {
   isMobile: boolean;
-  setPhase?: (info: Partial<NewUser>) => void;
+  setPhase: (_phase: 2 | 3) => void;
 };
 
 const btnCSS: CSSObject = {
@@ -34,6 +35,7 @@ const inputCSS: CSSObject = {
 
 export default ({ isMobile, setPhase }: SignUpProps) => {
   const INPUT_WIDTH = isMobile ? 180 : 240;
+  const newUserInfo = useRecoilValue(newUserState);
 
   const [email, setEmail] = useState(``);
   const [otp, setOTP] = useState(``);
@@ -41,7 +43,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   const [isCertified, setIsCertified] = useState(true);
   const [agreeTerms, setAgreeTerms] = useState(false);
-  const [agreePrivacy, setAgreePrivacy] = useState(false);
 
   const [showTerms, setShowTerms] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
@@ -98,7 +99,17 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   };
 
   const nextPhase = () => {
-    if (setPhase) setPhase({ email });
+    const newUser = {
+      userId: newUserInfo.userId,
+      password: newUserInfo.password,
+      email,
+    };
+
+    createUser(newUser).then(res => {
+      if (res.statusCode === 200) {
+        setPhase(3);
+      }
+    });
   };
 
   return (
@@ -174,18 +185,23 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         </Text>
 
         <FlexView content="center" gap={isMobile ? 20 : 40} row>
-          <FlexView gap={4} items="center" row>
-            <Checkbox onChange={() => setAgreeTerms(!agreeTerms)} />
-            <Button aria-label="서비스 이용약관" onClick={openTerms}>
-              <Text small={isMobile}>서비스 이용약관</Text>
-            </Button>
-          </FlexView>
+          <FlexView gap={8} items="center" row>
+            <Checkbox size={20} onChange={() => setAgreeTerms(!agreeTerms)} />
 
-          <FlexView gap={4} items="center" row>
-            <Checkbox onChange={() => setAgreePrivacy(!agreePrivacy)} />
-            <Button aria-label="개인정보 처리방침" onClick={openPrivacy}>
-              <Text small={isMobile}>개인정보 처리방침</Text>
-            </Button>
+            <Text>
+              <Button aria-label="서비스 이용약관" onClick={openTerms}>
+                <Text color={Colors.purple} small={isMobile}>
+                  서비스 이용약관
+                </Text>
+              </Button>
+              과&nbsp;
+              <Button aria-label="개인정보 처리방침" onClick={openPrivacy}>
+                <Text color={Colors.purple} small={isMobile}>
+                  개인정보 처리방침
+                </Text>
+              </Button>
+              에 동의합니다.
+            </Text>
           </FlexView>
         </FlexView>
       </FlexView>
@@ -197,7 +213,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           aria-label="가입하기"
           color="blue"
           css={{ width: `240px`, minHeight: `40px` }}
-          disabled={!isCertified || !agreeTerms || !agreePrivacy}
+          disabled={!isCertified || !agreeTerms}
           radius={20}
           onClick={nextPhase}
         >

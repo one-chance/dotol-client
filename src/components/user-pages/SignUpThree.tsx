@@ -10,7 +10,7 @@ export default ({ isMobile }: SignUpProps) => {
   const navigate = useNavigate();
 
   const goLogin = () => {
-    navigate(`/user/signin`);
+    navigate(`/`);
   };
 
   return (
@@ -23,13 +23,13 @@ export default ({ isMobile }: SignUpProps) => {
       </FlexView>
 
       <Button
-        aria-label="로그인"
+        aria-label="홈"
         color={Colors.primary}
         css={{ width: `160px`, height: `40px`, borderRadius: `4px` }}
         onClick={goLogin}
       >
         <Text color={Colors.white} semiBold>
-          로그인
+          홈으로
         </Text>
       </Button>
     </FlexView>

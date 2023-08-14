@@ -83,9 +83,9 @@ export default () => {
     // },
   };
 
-  useEffect(() => {
-    //
-  }, []);
+  // useEffect(() => {
+  //   //
+  // }, []);
 
   return (
     <FlexView
@@ -98,12 +98,16 @@ export default () => {
       }}
       fill={!isMobile}
     >
-      <Link
+      <Text small={isMobile} bold>
+        게시판 최신글
+      </Text>
+      {/* <Link
         css={{ fontWeight: 700, fontSize: isMobile ? `14px` : `16px` }}
         to="/board/free?page=1"
       >
         게시판 최신글
-      </Link>
+      </Link> */}
+
       {/* <FlexView>
         {postList.map((post: IPost, index: number) => (
           <FlexView

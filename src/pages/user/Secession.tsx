@@ -2,14 +2,18 @@ import { useState } from 'react';
 
 import { deleteUser } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 export default () => {
   const navigate = useNavigate();
   const isMobile = useResponsive(400);
   const [password, setPassword] = useState(``);
+  const setUserIdState = useSetRecoilState(userIdState);
+  const setIsLoggedInState = useSetRecoilState(isLoggedInState);
 
   const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
@@ -18,6 +22,9 @@ export default () => {
   const secesseUser = () => {
     deleteUser().then(res => {
       if (res.statusCode === 200) {
+        sessionStorage.removeItem(`accessToken`);
+        setIsLoggedInState(false);
+        setUserIdState(``);
         alert(`회원탈퇴가 완료되었습니다.`);
         navigate(`/`);
       }

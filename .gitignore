@@ -28,3 +28,5 @@ dist-ssr
 .env.local          
 .env.[mode]         
 .env.[mode].local
+.env.development
+.env.production

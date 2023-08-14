@@ -66,12 +66,12 @@ export const verifyOTPCode = async (email: string, OTPCode: string) => {
 };
 
 export const createUser = async (userInfo: NewUser) => {
-  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/users/register`, {
+  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/users/signup`, {
     method: `POST`,
     headers: {
       'Content-Type': `application/json`,
     },
-    body: JSON.stringify(userInfo),
+    body: JSON.stringify({ userInfo }),
   });
 
   const data = await res.json();

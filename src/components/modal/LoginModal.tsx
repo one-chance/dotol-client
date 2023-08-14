@@ -58,6 +58,7 @@ export default ({ close }: ModalProps) => {
     setToastMessge(``);
 
     verifyUser(userId, password).then(res => {
+      console.log(res);
       if (res.statusCode === 200) {
         sessionStorage.setItem(`accessToken`, res.data);
         setIsLoggedInState(true);

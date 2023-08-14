@@ -4,12 +4,13 @@ import { isDuplicatedUserId } from '@apis/users';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Toast } from '@components/toast';
 import { CSSObject } from '@emotion/react';
-import { NewUser } from '@interfaces/users';
+import { newUserState } from '@states/user';
 import { Colors } from '@styles/system';
+import { useSetRecoilState } from 'recoil';
 
 type SignUpProps = {
   isMobile: boolean;
-  setPhase?: (info: Partial<NewUser>) => void;
+  setPhase: (_phase: 2 | 3) => void;
 };
 
 const btnCSS: CSSObject = {
@@ -26,6 +27,7 @@ const inputCSS: CSSObject = {
 
 export default ({ isMobile, setPhase }: SignUpProps) => {
   const INPUT_WIDTH = isMobile ? 180 : 240;
+  const setNewUserInfo = useSetRecoilState(newUserState);
 
   const [userId, setUserId] = useState(``);
   const [password, setPassword] = useState(``);
@@ -65,7 +67,8 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   };
 
   const nextPhase = () => {
-    if (setPhase) setPhase({ userId, password });
+    setNewUserInfo({ userId, password });
+    setPhase(2);
   };
 
   return (
