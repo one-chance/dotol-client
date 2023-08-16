@@ -83,6 +83,12 @@ export const close = (color: string) => (
   </Svg>
 );
 
+export const reply = (color: string) => (
+  <Svg height={16} width={16}>
+    <path d="M.5 0v16M16 15.5H0" stroke={color} />
+  </Svg>
+);
+
 export const check = (color: string) => (
   <Svg height={16} width={16}>
     <rect
@@ -117,8 +123,13 @@ export const checked = (color: string) => (
   </Svg>
 );
 
-export const reply = (color: string) => (
+export const correct = (color: string) => (
   <Svg height={16} width={16}>
-    <path d="M.5 0v16M16 15.5H0" stroke={color} />
+    <path
+      clipRule="evenodd"
+      d="M15.017.898a1.5 1.5 0 01.085 2.12l-8.307 9a1.5 1.5 0 01-2.205 0l-3.692-4a1.5 1.5 0 012.204-2.035l2.59 2.806L12.898.983a1.5 1.5 0 012.12-.085z"
+      fill={color}
+      fillRule="evenodd"
+    />
   </Svg>
 );

@@ -18,7 +18,6 @@ export default forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const css: CSSObject = {
       borderColor: `red`,
-
       accentColor: Colors.purple,
       border: `1px solid  ${Colors.primary20}`,
       borderRadius: `4px`,

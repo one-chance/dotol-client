@@ -6,7 +6,7 @@ export { Icon } from './icon';
 export { Image } from './image';
 export { Checkbox, Input, type InputProps } from './input';
 export { Svg } from './svg';
-export { Text, TextArea, type TextProps } from './text';
+export { Text, TextArea, TextField, type TextProps } from './text';
 export {
   FlexView,
   type FlexViewProps,
