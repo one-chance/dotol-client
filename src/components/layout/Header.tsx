@@ -72,6 +72,8 @@ export default () => {
   useEffect(() => {
     const mainmenu = location.pathname.split(`/`)[1];
     setSelectedMenu(tab[mainmenu] ?? -1);
+    setShowLogin(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return (

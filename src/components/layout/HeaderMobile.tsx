@@ -4,14 +4,17 @@ import { Button, FlexView, Icon, Text, Link } from '@components/common';
 import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
+import { useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { TotalMenuMobile } from './menu';
 import UserMenuMobile from './menu/UserMenuMobile';
 
 export default () => {
+  const location = useLocation();
   const infoRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
+
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const [showLogin, setShowLogin] = useRecoilState(showLoginState);
 
@@ -55,6 +58,10 @@ export default () => {
     return () =>
       window.removeEventListener(`mousedown`, closeModal as EventListener);
   }, [showUserMenu]);
+
+  useEffect(() => {
+    setShowTotalMenu(false);
+  }, [location.pathname]);
 
   return (
     <header

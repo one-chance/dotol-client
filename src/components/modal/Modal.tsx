@@ -10,6 +10,7 @@ interface ModalProps {
   width: number;
   height: number;
   close?: boolean;
+  isLogin?: boolean;
   children: ReactNode;
   closePortal: (param: any) => void;
 }
@@ -18,6 +19,7 @@ export default ({
   width,
   height,
   close,
+  isLogin,
   children,
   closePortal,
 }: ModalProps) => {
@@ -71,7 +73,11 @@ export default ({
 
   return container
     ? createPortal(
-        <FlexView css={modalCSS} center>
+        <FlexView
+          content={isLogin ? `start` : `center`}
+          css={modalCSS}
+          items="center"
+        >
           <FlexView
             css={backgoundCSS}
             role="presentation"
