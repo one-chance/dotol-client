@@ -11,6 +11,7 @@ type TextFieldProps = {
   onChange: (text: string) => void;
   width?: number;
   isMobile?: boolean;
+  autoComplete?: boolean;
   readOnly?: boolean;
   password?: boolean;
   error?: boolean;
@@ -25,6 +26,7 @@ export default ({
   onChange,
   width,
   isMobile,
+  autoComplete,
   readOnly,
   password,
   error,
@@ -72,6 +74,7 @@ export default ({
         </Label>
         <Input
           aria-label={label}
+          autoComplete={autoComplete ? `on` : `off`}
           autoFocus={isFocused}
           css={{
             border: `none`,
@@ -103,7 +106,7 @@ export default ({
       {text !== `` && error && (
         <Text
           color={Colors.red}
-          css={{ marginTop: `8px`, lineHeight: 1 }}
+          css={{ marginTop: `8px`, lineHeight: 1, minHeight: 0 }}
           small={!isMobile}
           xSmall={isMobile}
           semiBold

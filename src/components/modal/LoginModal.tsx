@@ -88,6 +88,7 @@ export default ({ close }: ModalProps) => {
               isMobile={isMobile}
               label="아이디"
               value={userId}
+              autoComplete
               onChange={inputUserId}
             />
 
@@ -97,6 +98,7 @@ export default ({ close }: ModalProps) => {
               isMobile={isMobile}
               label="비밀번호"
               value={password}
+              autoComplete
               password
               onChange={inputPassword}
               onKeyDown={login}

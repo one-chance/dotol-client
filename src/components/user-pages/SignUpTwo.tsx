@@ -38,9 +38,11 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   };
 
   const inputOTP = (_input: string) => {
-    const temp = _input.replace(/[^0-9]/g, ``);
+    setIsCorrectOTP(true);
 
+    const temp = _input.replace(/[^0-9]/g, ``);
     if (temp.length > 6) return;
+
     setOTP(temp);
   };
 
@@ -60,16 +62,13 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
     verifyOTPCode(email, otp).then(res => {
       if (res.statusCode === 200) {
         setIsCorrectOTP(true);
+        setEmailState(email);
+        setPhase(3);
       } else {
         setIsCorrectOTP(false);
         setOTPErrorMessage(`! ${res.message}`);
       }
     });
-  };
-
-  const nextPhase = () => {
-    setEmailState(email);
-    setPhase(3);
   };
 
   useEffect(() => {
@@ -126,19 +125,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
             {isSentOTP ? `OTP 인증` : `OTP 전송`}
           </Text>
         </Button>
-
-        {isCorrectOTP && (
-          <Button
-            color={Colors.purple}
-            css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
-            radius={4}
-            onClick={nextPhase}
-          >
-            <Text color={Colors.white} small={isMobile} semiBold>
-              가입하기
-            </Text>
-          </Button>
-        )}
       </FlexView>
     </FlexView>
   );

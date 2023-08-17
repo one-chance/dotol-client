@@ -49,6 +49,7 @@ export default () => {
   };
 
   const openLoginModal = () => {
+    closeTotalMenu();
     setShowLogin(true);
   };
 
@@ -195,6 +196,7 @@ export default () => {
                       borderBottomLeftRadius: `4px`,
                     }}
                     to="/user/signup"
+                    onClick={closeTotalMenu}
                   >
                     회원가입
                   </Link>

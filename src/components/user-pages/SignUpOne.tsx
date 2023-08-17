@@ -27,11 +27,21 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
       <FlexView gap={20}>
         <FlexView gap={8}>
-          <FlexView content="between" items="center" row>
+          <FlexView
+            content="between"
+            css={{ cursor: `pointer` }}
+            items="center"
+            row
+            onClick={() => setAgreeTerms(!agreeTerms)}
+          >
             <Text small={isMobile} semiBold>
               서비스 이용약관에 동의합니다.
             </Text>
-            <Checkbox size={20} onChange={() => setAgreeTerms(!agreeTerms)} />
+            <Checkbox
+              checked={agreeTerms}
+              size={20}
+              onChange={() => setAgreeTerms(!agreeTerms)}
+            />
           </FlexView>
 
           <FlexView
@@ -48,11 +58,21 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         </FlexView>
 
         <FlexView gap={8}>
-          <FlexView content="between" items="center" row>
+          <FlexView
+            content="between"
+            css={{ cursor: `pointer` }}
+            items="center"
+            row
+            onClick={() => setAgreePolicy(!agreePolicy)}
+          >
             <Text small={isMobile} semiBold>
               개인정보 처리방침에 동의합니다.
             </Text>
-            <Checkbox size={20} onChange={() => setAgreePolicy(!agreePolicy)} />
+            <Checkbox
+              checked={agreePolicy}
+              size={20}
+              onChange={() => setAgreePolicy(!agreePolicy)}
+            />
           </FlexView>
 
           <FlexView

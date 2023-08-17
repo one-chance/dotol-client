@@ -108,7 +108,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         onClick={nextPhase}
       >
         <Text color={Colors.white} small={isMobile} semiBold>
-          다음
+          가입하기
         </Text>
       </Button>
     </FlexView>
