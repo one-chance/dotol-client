@@ -44,7 +44,7 @@ export default () => {
   };
 
   return (
-    <FlexView gap={20}>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
         content="between"
         css={{ padding: isMobile ? `0 4px` : undefined }}

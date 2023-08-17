@@ -20,7 +20,7 @@ export default ({ type, message, isMobile }: ToastProps) => {
   100% {
     top: ${isMobile ? `80px` : `120px`};
   }
-`;
+  `;
 
   const bgColor = {
     success: Colors.purple,
@@ -36,7 +36,7 @@ export default ({ type, message, isMobile }: ToastProps) => {
             zIndex: 99999,
             backgroundColor: bgColor[type],
             borderRadius: `4px`,
-            position: `absolute`,
+            position: `fixed`,
             left: `50%`,
             padding: `4px 16px`,
             width: `fit-content`,

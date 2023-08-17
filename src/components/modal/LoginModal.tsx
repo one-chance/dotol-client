@@ -1,9 +1,7 @@
 import { useState } from 'react';
 
 import { verifyUser } from '@apis/users';
-import { Button, FlexView, Input, Text } from '@components/common';
-import { Toast } from '@components/toast';
-import { CSSObject } from '@emotion/react';
+import { Button, FlexView, Text, TextField } from '@components/common';
 import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
 import { decodeJWT } from '@utils/common';
@@ -19,52 +17,38 @@ type ModalProps = {
 
 export default ({ close }: ModalProps) => {
   const isMobile = useResponsive(600);
+  const setUserIdState = useSetRecoilState(userIdState);
+  const setIsLoggedInState = useSetRecoilState(isLoggedInState);
 
   const [userId, setUserId] = useState(``);
   const [password, setPassword] = useState(``);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
-  const setIsLoggedInState = useSetRecoilState(isLoggedInState);
-  const setUserIdState = useSetRecoilState(userIdState);
 
-  const inputCSS: CSSObject = {
-    height: `40px`,
-    border: `none`,
-    borderRadius: 0,
-    borderBottom: `1px solid ${Colors.primary10}`,
-    padding: 0,
-    '::placeholder': {
-      color: Colors.primary30,
-    },
+  const [nonExistError, setNonExistError] = useState(false);
+  const [wrongPasswordError, setWrongPasswordError] = useState(false);
+
+  const inputUserId = (_input: string) => {
+    setNonExistError(false);
+    setUserId(_input);
   };
 
-  const openToast = (text: string) => {
-    setToastMessge(text);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
-  };
-
-  const inputUserId = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserId(e.target.value);
-  };
-
-  const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const inputPassword = (_input: string) => {
+    setWrongPasswordError(false);
+    setPassword(_input);
   };
 
   const login = () => {
-    setToastMessge(``);
+    if (userId.length < 6 || password.length < 8) return;
 
     verifyUser(userId, password).then(res => {
-      if (res.statusCode === 200) {
+      if (res.statusCode === 404) {
+        setNonExistError(true);
+      } else if (res.statusCode === 400) {
+        setWrongPasswordError(true);
+      } else if (res.statusCode === 200) {
         sessionStorage.setItem(`accessToken`, res.data);
         setIsLoggedInState(true);
         setUserIdState(decodeJWT(res.data).userId);
         close();
-      } else {
-        openToast(res.message);
       }
     });
   };
@@ -72,14 +56,14 @@ export default ({ close }: ModalProps) => {
   return (
     <Modal
       closePortal={close}
-      height={isMobile ? 356 : 464}
+      height={isMobile ? 385 : 445}
       isLogin={isMobile}
       width={isMobile ? 300 : 440}
     >
       <FlexView
         color={Colors.white}
         css={{
-          padding: isMobile ? `40px 30px` : `80px 40px`,
+          padding: isMobile ? `40px 30px` : `60px 40px`,
           borderRadius: `4px`,
         }}
       >
@@ -96,37 +80,26 @@ export default ({ close }: ModalProps) => {
           dotol
         </Text>
 
-        <FlexView
-          css={{ margin: isMobile ? `40px 0` : `40px 0 48px 0` }}
-          gap={16}
-        >
-          <FlexView gap={10}>
-            <Input
-              aria-label="아이디"
-              autoComplete="username"
-              css={inputCSS}
-              height={isMobile ? 40 : 42}
-              placeholder="아이디"
-              value={userId || ``}
-              width={isMobile ? 240 : 360}
+        <FlexView css={{ margin: `40px 0` }} gap={24}>
+          <FlexView gap={16}>
+            <TextField
+              error={nonExistError}
+              errorMessage="! 존재 하지 않는 아이디입니다."
+              isMobile={isMobile}
+              label="아이디"
+              value={userId}
               onChange={inputUserId}
             />
 
-            <Input
-              aria-label="비밀번호"
-              autoComplete="current-password"
-              css={inputCSS}
-              height={isMobile ? 40 : 42}
-              placeholder="비밀번호"
-              type="password"
-              value={password || ``}
-              width={isMobile ? 240 : 360}
+            <TextField
+              error={wrongPasswordError}
+              errorMessage="! 비밀번호가 일치하지 않습니다."
+              isMobile={isMobile}
+              label="비밀번호"
+              value={password}
+              password
               onChange={inputPassword}
-              onKeyDown={e => {
-                if (e.key === `Enter`) {
-                  login();
-                }
-              }}
+              onKeyDown={login}
             />
           </FlexView>
 
@@ -188,22 +161,14 @@ export default ({ close }: ModalProps) => {
           aria-label="로그인"
           color={Colors.purple}
           css={{ height: isMobile ? `44px` : `50px` }}
-          // disabled={userId.length < 6 || password.length < 8}
-          radius={24}
+          disabled={userId.length < 6 || password.length < 8}
+          radius={4}
           onClick={login}
         >
-          <Text
-            color={Colors.white}
-            css={{ fontSize: isMobile ? `16px` : `18px` }}
-            semiBold
-          >
+          <Text color={Colors.white} small={isMobile} semiBold>
             로그인
           </Text>
         </Button>
-
-        {showToast && (
-          <Toast isMobile={isMobile} message={toastMessage} type="error" />
-        )}
       </FlexView>
     </Modal>
   );

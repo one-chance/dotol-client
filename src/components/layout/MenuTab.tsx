@@ -12,9 +12,10 @@ type Menu = {
 type MenuTabProps = {
   menus: Menu[];
   isMobile?: boolean;
+  max?: number;
 };
 
-export default ({ menus, isMobile }: MenuTabProps) => {
+export default ({ menus, isMobile, max }: MenuTabProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState(``);

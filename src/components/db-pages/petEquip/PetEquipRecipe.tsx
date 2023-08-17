@@ -8,7 +8,7 @@ export default () => {
   const isMobile = useResponsive(580);
 
   return (
-    <FlexView gap={isMobile ? 10 : 20}>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
       <Text
         css={{ padding: isMobile ? `0 4px` : undefined }}
         xLarge={isMobile}

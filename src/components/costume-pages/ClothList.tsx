@@ -161,6 +161,7 @@ export default () => {
       </Text>
 
       <FlexView
+        content="center"
         css={{ margin: isMobile ? `0 4px` : 0 }}
         gap={20}
         items="start"
