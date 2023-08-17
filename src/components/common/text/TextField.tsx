@@ -7,6 +7,7 @@ import { Colors } from '@styles/system';
 type TextFieldProps = {
   label: string;
   value: string;
+  onKeyDown?: () => void;
   onChange: (text: string) => void;
   width?: number;
   isMobile?: boolean;
@@ -20,6 +21,7 @@ type TextFieldProps = {
 export default ({
   label,
   value,
+  onKeyDown,
   onChange,
   width,
   isMobile,
@@ -69,6 +71,7 @@ export default ({
           {label}
         </Label>
         <Input
+          aria-label={label}
           autoFocus={isFocused}
           css={{
             border: `none`,
@@ -80,6 +83,11 @@ export default ({
           type={password ? `password` : `text`}
           value={value}
           onChange={inputText}
+          onKeyDown={e => {
+            if (e.key === `Enter` && onKeyDown) {
+              onKeyDown();
+            }
+          }}
         />
 
         {correct && (
