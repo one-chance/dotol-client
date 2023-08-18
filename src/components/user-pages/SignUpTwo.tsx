@@ -115,7 +115,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           error={!isEmailForm || !isUniqueEmail}
           errorMessage={emailErrorMessage}
           label="이메일"
-          timer={isSentOTP ? timer : undefined}
           value={email}
           onChange={inputEmail}
           onKeyDown={sendOTP}
@@ -137,11 +136,11 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           <>
             <TextField
               autoComplete="off"
-              correct={isCorrectOTP}
               error={!isCorrectOTP}
               errorMessage={otpErrorMessage}
               isMobile={isMobile}
               label="OTP"
+              timer={timer}
               value={otp}
               onChange={inputOTP}
               onKeyDown={verifyOTP}

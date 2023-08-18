@@ -104,10 +104,10 @@ export default ({
           />
         )}
 
-        {correct && timer && (
+        {timer && (
           <Text
             color={Colors.red}
-            css={{ position: `absolute`, right: 20 }}
+            css={{ position: `absolute`, right: 0 }}
             semiBold
           >
             {timer}초
