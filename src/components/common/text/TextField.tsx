@@ -11,12 +11,13 @@ type TextFieldProps = {
   onChange: (text: string) => void;
   width?: number;
   isMobile?: boolean;
-  autoComplete?: boolean;
+  autoComplete?: string;
   readOnly?: boolean;
   password?: boolean;
   error?: boolean;
   errorMessage?: string;
   correct?: boolean;
+  timer?: number;
 };
 
 export default ({
@@ -32,6 +33,7 @@ export default ({
   error,
   errorMessage,
   correct,
+  timer,
 }: TextFieldProps) => {
   const [text, setText] = useState(``);
   const [isFocused, setIsFocused] = useState(false);
@@ -74,7 +76,7 @@ export default ({
         </Label>
         <Input
           aria-label={label}
-          autoComplete={autoComplete ? `on` : `off`}
+          autoComplete={autoComplete}
           autoFocus={isFocused}
           css={{
             border: `none`,
@@ -100,6 +102,16 @@ export default ({
             name="correct"
             size={16}
           />
+        )}
+
+        {correct && timer && (
+          <Text
+            color={Colors.red}
+            css={{ position: `absolute`, right: 20 }}
+            semiBold
+          >
+            {timer}초
+          </Text>
         )}
       </FlexView>
 

@@ -18,6 +18,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   const [email, setEmail] = useState(``);
   const [otp, setOTP] = useState(``);
+  const [timer, setTimer] = useState(300);
 
   const [isEmailForm, setIsEmailForm] = useState(false);
   const [isUniqueEmail, setIsUniqueEmail] = useState(false);
@@ -29,7 +30,6 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   const inputEmail = (_input: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     setEmailErrorMessage(`! 올바른 이메일 형식이 아닙니다.`);
     setEmail(_input);
 
@@ -48,6 +48,9 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   const sendOTP = () => {
     if (!isEmailForm || !isUniqueEmail) return;
+
+    setTimer(300);
+    setIsSentOTP(false);
 
     sendOTPCode(email).then(res => {
       if (res.statusCode === 200) {
@@ -72,6 +75,21 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
   };
 
   useEffect(() => {
+    if (timer === 0) {
+      setTimer(300);
+      setIsSentOTP(false);
+    }
+
+    if (isSentOTP && timer > 0) {
+      const interval = setInterval(() => {
+        setTimer(prevTime => prevTime - 1);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isSentOTP, timer]);
+
+  useEffect(() => {
     if (!isEmailForm) return;
 
     isDuplicatedEmail(email).then(res => {
@@ -92,39 +110,55 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
       <FlexView gap={24}>
         <TextField
+          autoComplete="off"
           correct={isEmailForm && isUniqueEmail}
           error={!isEmailForm || !isUniqueEmail}
           errorMessage={emailErrorMessage}
           label="이메일"
+          timer={isSentOTP ? timer : undefined}
           value={email}
           onChange={inputEmail}
           onKeyDown={sendOTP}
         />
-
-        {isSentOTP && (
-          <TextField
-            correct={isCorrectOTP}
-            error={!isCorrectOTP}
-            errorMessage={otpErrorMessage}
-            isMobile={isMobile}
-            label="OTP"
-            value={otp}
-            onChange={inputOTP}
-            onKeyDown={verifyOTP}
-          />
-        )}
 
         <Button
           color={Colors.purple}
           css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
           disabled={!isEmailForm || !isUniqueEmail}
           radius={4}
-          onClick={() => (isSentOTP ? verifyOTP() : sendOTP())}
+          onClick={sendOTP}
         >
           <Text color={Colors.white} semiBold>
-            {isSentOTP ? `OTP 인증` : `OTP 전송`}
+            OTP 전송
           </Text>
         </Button>
+
+        {isSentOTP && (
+          <>
+            <TextField
+              autoComplete="off"
+              correct={isCorrectOTP}
+              error={!isCorrectOTP}
+              errorMessage={otpErrorMessage}
+              isMobile={isMobile}
+              label="OTP"
+              value={otp}
+              onChange={inputOTP}
+              onKeyDown={verifyOTP}
+            />
+            <Button
+              color={Colors.purple}
+              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              disabled={otp.length !== 6}
+              radius={4}
+              onClick={verifyOTP}
+            >
+              <Text color={Colors.white} semiBold>
+                OTP 인증
+              </Text>
+            </Button>
+          </>
+        )}
       </FlexView>
     </FlexView>
   );

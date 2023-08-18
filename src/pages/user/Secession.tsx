@@ -1,7 +1,8 @@
+/* eslint-disable no-alert */
 import { useState } from 'react';
 
 import { deleteUser } from '@apis/users';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { Button, FlexView, Input, Text, TextField } from '@components/common';
 import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -10,13 +11,13 @@ import { useSetRecoilState } from 'recoil';
 
 export default () => {
   const navigate = useNavigate();
-  const isMobile = useResponsive(400);
+  const isMobile = useResponsive(500);
   const [password, setPassword] = useState(``);
   const setUserIdState = useSetRecoilState(userIdState);
   const setIsLoggedInState = useSetRecoilState(isLoggedInState);
 
-  const inputPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
+  const inputPassword = (_input: string) => {
+    setPassword(_input);
   };
 
   const secesseUser = () => {
@@ -32,55 +33,50 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `0` : `auto` }}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }}>
       <FlexView
         css={{
-          maxWidth: `600px`,
-          width: `100%`,
-          minWidth: `360px`,
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `4px`,
           padding: `20px`,
         }}
-        gap={40}
+        gap={isMobile ? 24 : 40}
       >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          회원탈퇴
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+          회원 탈퇴
         </Text>
 
         <FlexView gap={8}>
-          <Text color={Colors.red}>
-            회원탈퇴시 작성했던 게시물, 댓글은 자동으로 삭제되지 않습니다.
+          <Text color={Colors.red} small={isMobile}>
+            작성한 게시물, 댓글은 자동으로 삭제되지 않습니다.
           </Text>
-          <Text color={Colors.red}>
-            회원탈퇴시 개인정보가 삭제되어 추후 계정을 복구할 수 없습니다.
+          <Text color={Colors.red} small={isMobile}>
+            탈퇴하면 계정을 복구할 수 없습니다.
           </Text>
         </FlexView>
 
-        <FlexView gap={8}>
-          <Text small={isMobile} semiBold>
-            비밀번호 확인
-          </Text>
-          <FlexView gap={8} items="center" row>
-            <Input
-              aria-label="비밀번호"
-              css={{
-                height: `40px`,
-              }}
-              type="password"
-              onChange={inputPassword}
-            />
-            <Button
-              aria-label="탈퇴"
-              color={Colors.red}
-              css={{ width: `60px`, height: `40px` }}
-              disabled={password.length < 8}
-              radius={4}
-              onClick={secesseUser}
-            >
-              <Text color={Colors.white}>탈퇴</Text>
-            </Button>
-          </FlexView>
+        <FlexView gap={16}>
+          <TextField
+            autoComplete="current-password"
+            isMobile={isMobile}
+            label="비밀번호"
+            value={password}
+            password
+            onChange={inputPassword}
+          />
+
+          <Button
+            aria-label="탈퇴"
+            color={Colors.red}
+            css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+            disabled={password.length < 8}
+            radius={4}
+            onClick={secesseUser}
+          >
+            <Text color={Colors.white} small={isMobile} semiBold>
+              탈퇴하기
+            </Text>
+          </Button>
         </FlexView>
       </FlexView>
     </FlexView>

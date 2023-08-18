@@ -75,6 +75,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
       <FlexView gap={20}>
         <TextField
+          autoComplete="off"
           correct={isUniqueId && isUserIdForm}
           error={!isUserIdForm || !isUniqueId}
           errorMessage={errorMessage}
@@ -85,6 +86,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         />
 
         <TextField
+          autoComplete="new-password"
           correct={isPasswordForm}
           error={!isPasswordForm}
           errorMessage="! 최소 8자리 이상 (영문, 숫자, 특수문자의 조합)"

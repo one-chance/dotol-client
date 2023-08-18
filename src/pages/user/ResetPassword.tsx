@@ -1,7 +1,8 @@
+/* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
 import { resetPassword } from '@apis/users';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { Button, FlexView, Text, TextField } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -9,17 +10,18 @@ import { useLocation, useNavigate } from 'react-router-dom';
 export default () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isMobile = useResponsive(400);
+  const isMobile = useResponsive(500);
 
   const [token, setToken] = useState(``);
   const [newPassword, setNewPassword] = useState(``);
   const [isPasswordForm, setIsPasswordForm] = useState(false);
 
-  const inputNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewPassword(e.target.value);
-
+  const inputNewPassword = (_input: string) => {
     const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
-    if (pattern.test(e.target.value)) setIsPasswordForm(true);
+
+    setNewPassword(_input);
+
+    if (pattern.test(_input)) setIsPasswordForm(true);
     else setIsPasswordForm(false);
   };
 
@@ -38,46 +40,43 @@ export default () => {
   }, []);
 
   return (
-    <FlexView css={{ margin: isMobile ? `40px auto` : `auto` }}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }}>
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `4px`,
-          padding: isMobile ? 0 : `40px`,
+          padding: isMobile ? `20px 10px` : `40px 20px`,
         }}
-        gap={40}
+        gap={isMobile ? 24 : 40}
       >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
           비밀번호 변경
         </Text>
 
-        <FlexView gap={16}>
-          <Input
-            aria-label="새 비밀번호"
-            autoComplete="new-password"
-            height={40}
-            placeholder="문자, 숫자, 특수문자(8자리 이상)"
-            type="password"
-            value={newPassword || ``}
-            width={isMobile ? 300 : 360}
-            onChange={inputNewPassword}
-          />
+        <TextField
+          autoComplete="new-password"
+          correct={isPasswordForm}
+          error={!isPasswordForm}
+          errorMessage="! 최소 8자리 이상 (영문, 숫자, 특수문자의 조합)"
+          isMobile={isMobile}
+          label="새 비밀번호"
+          value={newPassword}
+          password
+          onChange={inputNewPassword}
+        />
 
-          <FlexView content="end" row>
-            <Button
-              aria-label="비밀번호 변경"
-              color={Colors.red}
-              css={{ width: isMobile ? `300px` : `360px`, height: `40px` }}
-              disabled={!isPasswordForm}
-              radius={4}
-              onClick={changePassword}
-            >
-              <Text color={Colors.white} small={isMobile} semiBold>
-                비밀번호 변경
-              </Text>
-            </Button>
-          </FlexView>
-        </FlexView>
+        <Button
+          aria-label="변경하기"
+          color={Colors.red}
+          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          disabled={!isPasswordForm}
+          radius={4}
+          onClick={changePassword}
+        >
+          <Text color={Colors.white} small={isMobile} semiBold>
+            변경하기
+          </Text>
+        </Button>
       </FlexView>
     </FlexView>
   );

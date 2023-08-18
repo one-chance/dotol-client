@@ -1,33 +1,27 @@
 import { useState } from 'react';
 
 import { forgotUserId } from '@apis/users';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { Button, FlexView, Text, TextField } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
 
 export default () => {
   const navigate = useNavigate();
-  const isMobile = useResponsive(400);
+  const isMobile = useResponsive(500);
 
   const [email, setEmail] = useState(``);
-  const [isEmailFormat, setIsEmailForamt] = useState(false);
   const [userId, setUserId] = useState(``);
-  const [notFoundError, setNotFoundError] = useState(false);
+  const [isEmailForm, setIsEmailForm] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState(``);
 
-  const checkEmailFormat = (_email: string) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+  const inputEmail = (_input: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setEmailErrorMessage(`! 올바른 이메일 형식이 아닙니다.`);
+    setEmail(_input);
 
-    if (emailRegex.test(_email)) {
-      setIsEmailForamt(true);
-    } else {
-      setIsEmailForamt(false);
-    }
-  };
-
-  const inputEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    checkEmailFormat(e.target.value);
-    setEmail(e.target.value);
+    if (emailRegex.test(_input)) setIsEmailForm(true);
+    else setIsEmailForm(false);
   };
 
   const findUserId = () => {
@@ -35,85 +29,75 @@ export default () => {
       if (res.statusCode === 200) {
         setUserId(res.data);
       } else if (res.statusCode === 404) {
-        setNotFoundError(true);
+        setEmailErrorMessage(`! 해당 이메일로 가입된 계정이 없습니다.`);
       }
     });
   };
 
   return (
-    <FlexView css={{ margin: `auto` }} gap={60}>
-      <FlexView gap={isMobile ? 24 : 40}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={60}>
+      <FlexView
+        css={{
+          border: isMobile ? `none` : `1px solid lightgray`,
+          borderRadius: `4px`,
+          padding: isMobile ? `20px 10px` : `40px 20px`,
+        }}
+        gap={isMobile ? 24 : 40}
+      >
         <Text large={isMobile} xxLarge={!isMobile} bold center>
           아이디 찾기
         </Text>
 
-        <Input
-          aria-label="이메일"
-          css={{
-            border: `none`,
-            borderBottom: `1px solid lightgray`,
-            borderRadius: 0,
-          }}
-          height={42}
-          placeholder="이메일"
-          width={isMobile ? 280 : 360}
-          onChange={inputEmail}
-        />
-
-        <Button
-          aria-label="찾기"
-          color={Colors.primary}
-          css={{ minHeight: `40px` }}
-          disabled={!isEmailFormat}
-          radius={20}
-          onClick={findUserId}
-        >
-          <Text color={Colors.white} small={isMobile} medium>
-            찾기
-          </Text>
-        </Button>
-      </FlexView>
-
-      <FlexView>
-        {userId !== `` && !notFoundError && (
+        {userId === `` ? (
           <FlexView gap={isMobile ? 24 : 40}>
-            <Text center>
-              해당 이메일로 가입된 아이디는
-              <br />
-              <Text bold>{userId}</Text>
-              입니다.
-            </Text>
+            <TextField
+              correct={isEmailForm}
+              error={!isEmailForm}
+              errorMessage={emailErrorMessage}
+              label="이메일"
+              value={email}
+              onChange={inputEmail}
+            />
 
-            <FlexView gap={10} items="center" row>
-              <Button
-                aria-label="비밀번호 찾기"
-                border={Colors.red}
-                css={{ width: isMobile ? `135px` : `175px`, height: `40px` }}
-                radius={4}
-                onClick={() => navigate(`/user/forgot-password`)}
-              >
-                <Text color={Colors.red} small={isMobile} semiBold>
-                  비밀번호 찾기
-                </Text>
-              </Button>
-
-              <Button
-                aria-label="로그인"
-                border={Colors.purple}
-                css={{ width: isMobile ? `135px` : `175px`, height: `40px` }}
-                radius={4}
-                onClick={() => navigate(`/user/signin`)}
-              >
-                <Text color={Colors.purple} small={isMobile} semiBold>
-                  로그인
-                </Text>
-              </Button>
-            </FlexView>
+            <Button
+              aria-label="확인"
+              color={Colors.purple}
+              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              disabled={!isEmailForm}
+              radius={4}
+              onClick={findUserId}
+            >
+              <Text color={Colors.white} small={isMobile} semiBold>
+                확인
+              </Text>
+            </Button>
           </FlexView>
-        )}
+        ) : (
+          <FlexView gap={isMobile ? 24 : 40}>
+            <FlexView>
+              <Text small={isMobile} center>
+                해당 이메일로 가입된 아이디는
+              </Text>
+              <Text small={isMobile} center>
+                <Text color={Colors.red} bold>
+                  {userId}
+                </Text>
+                입니다.
+              </Text>
+            </FlexView>
 
-        {notFoundError && (
-          <Text center>해당 이메일로 가입된 계정이 없습니다.</Text>
+            <Button
+              aria-label="비밀번호 찾기"
+              color={Colors.purple}
+              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              radius={4}
+              onClick={() => navigate(`/user/forgot-password`)}
+            >
+              <Text color={Colors.white} small={isMobile} semiBold>
+                비밀번호 찾기
+              </Text>
+            </Button>
+          </FlexView>
         )}
       </FlexView>
     </FlexView>

@@ -83,22 +83,22 @@ export default ({ close }: ModalProps) => {
         <FlexView css={{ margin: `40px 0` }} gap={24}>
           <FlexView gap={16}>
             <TextField
+              autoComplete="username"
               error={nonExistError}
               errorMessage="! 존재 하지 않는 아이디입니다."
               isMobile={isMobile}
               label="아이디"
               value={userId}
-              autoComplete
               onChange={inputUserId}
             />
 
             <TextField
+              autoComplete="current-password"
               error={wrongPasswordError}
               errorMessage="! 비밀번호가 일치하지 않습니다."
               isMobile={isMobile}
               label="비밀번호"
               value={password}
-              autoComplete
               password
               onChange={inputPassword}
               onKeyDown={login}

@@ -1,113 +1,98 @@
+/* eslint-disable no-alert */
 import { useState } from 'react';
 
 import { updatePassword } from '@apis/users';
-import { Button, FlexView, Input, Text } from '@components/common';
-import { Toast } from '@components/toast';
+import { Button, FlexView, Text, TextField } from '@components/common';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
+import { useNavigate } from 'react-router-dom';
 
 export default () => {
-  const isMobile = useResponsive(400);
+  const navigate = useNavigate();
+  const isMobile = useResponsive(500);
   const [oldPassword, setOldPassword] = useState(``);
   const [newPassword, setNewPassword] = useState(``);
+  const [isCorrectPassword, setIsCorrectPassword] = useState(false);
+  const [isPasswordForm, setIsPasswordForm] = useState(false);
 
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
-
-  const openToast = (message: string) => {
-    setToastMessge(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
+  const inputOldPassword = (_input: string) => {
+    setIsCorrectPassword(true);
+    setOldPassword(_input);
   };
 
-  const inputOldPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setOldPassword(e.target.value);
-  };
+  const inputNewPassword = (_input: string) => {
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@#$%^&+=!]).{8,}$/;
 
-  const inputNewPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewPassword(e.target.value);
+    setNewPassword(_input);
+
+    if (pattern.test(_input)) setIsPasswordForm(true);
+    else setIsPasswordForm(false);
   };
 
   const changePassword = () => {
+    if (oldPassword.length < 8 || newPassword.length < 8) return;
+
     updatePassword(oldPassword, newPassword).then(res => {
       if (res.statusCode === 200) {
         alert(`비밀번호가 변경되었습니다.`);
-        // 바뀐 비밀번호로 로그인 시켜야 함
+        navigate(`/`);
       } else if (res.statusCode === 400) {
-        openToast(`기존 비밀번호가 일치하지 않습니다.`);
+        setIsCorrectPassword(false);
       }
     });
   };
 
   return (
-    <FlexView
-      css={{
-        maxWidth: `600px`,
-        width: `100%`,
-        margin: isMobile ? `20px auto` : `auto`,
-      }}
-    >
+    <FlexView css={{ margin: isMobile ? `20px auto` : `auto` }}>
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `4px`,
           padding: isMobile ? `20px 10px` : `40px 20px`,
         }}
-        gap={40}
+        gap={isMobile ? 24 : 40}
       >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
           비밀번호 변경
         </Text>
 
-        <FlexView gap={32}>
-          <FlexView gap={16}>
-            <FlexView items="center" row>
-              <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
-                기존 비밀번호
-              </Text>
-              <Input
-                aria-label="기존 비밀번호"
-                height={40}
-                type="password"
-                value={oldPassword || ``}
-                onChange={inputOldPassword}
-              />
-            </FlexView>
+        <FlexView gap={16}>
+          <TextField
+            error={!isCorrectPassword}
+            errorMessage="! 비밀번호가 일치하지 않습니다."
+            label="기존 비밀번호"
+            value={oldPassword}
+            isMobile
+            password
+            onChange={inputOldPassword}
+          />
 
-            <FlexView items="center" row>
-              <Text css={{ minWidth: `120px` }} small={isMobile} semiBold>
-                새 비밀번호
-              </Text>
-              <Input
-                aria-label="새 비밀번호"
-                height={40}
-                type="password"
-                value={newPassword || ``}
-                onChange={inputNewPassword}
-              />
-            </FlexView>
-          </FlexView>
-
-          <FlexView content="end" row>
-            <Button
-              aria-label="변경하기"
-              color={Colors.red}
-              css={{ width: `160px`, height: `40px` }}
-              disabled={oldPassword.length < 8 || newPassword.length < 8}
-              radius={4}
-              onClick={changePassword}
-            >
-              <Text color={Colors.white} small={isMobile} medium>
-                변경하기
-              </Text>
-            </Button>
-          </FlexView>
+          <TextField
+            correct={isPasswordForm}
+            error={!isPasswordForm}
+            errorMessage="! 최소 8자리 이상 (영문, 숫자, 특수문자의 조합)"
+            label="새 비밀번호"
+            value={newPassword}
+            isMobile
+            password
+            onChange={inputNewPassword}
+            onKeyDown={changePassword}
+          />
         </FlexView>
-      </FlexView>
 
-      {showToast && <Toast message={toastMessage} type="error" />}
+        <Button
+          aria-label="변경하기"
+          color={Colors.red}
+          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          disabled={oldPassword.length < 8 || newPassword.length < 8}
+          radius={4}
+          onClick={changePassword}
+        >
+          <Text color={Colors.white} small={isMobile} semiBold>
+            변경하기
+          </Text>
+        </Button>
+      </FlexView>
     </FlexView>
   );
 };

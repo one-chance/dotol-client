@@ -205,7 +205,7 @@ export default () => {
             radius={4}
             onClick={() => navigate(`/user/secession`)}
           >
-            <Text color={Colors.white} medium>
+            <Text color={Colors.white} small={isMobile} semiBold>
               회원 탈퇴
             </Text>
           </Button>

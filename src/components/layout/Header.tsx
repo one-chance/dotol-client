@@ -158,15 +158,14 @@ export default () => {
                       gap: `4px`,
                     }}
                     radius={4}
-                    onClick={() => setShowUserMenu(!showUserMenu)}
+                    onClick={() => {
+                      closeTotalMenu();
+                      setShowUserMenu(!showUserMenu);
+                    }}
                   >
                     <Text
                       color={showUserMenu ? Colors.white : Colors.purple}
-                      css={{
-                        width: `45px`,
-                        letterSpacing: `-1px`,
-                        // lineHeight: 1.5,
-                      }}
+                      css={{ width: `45px`, letterSpacing: `-1px` }}
                       medium
                     >
                       내 정보

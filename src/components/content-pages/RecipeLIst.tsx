@@ -4,7 +4,6 @@ import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { BODY_REINFORCE_RECIPE } from '@constants/body';
 import { BodyRecipe } from '@interfaces/content';
-import { Colors } from '@styles/system';
 
 type RecipeListProps = {
   isMobile: boolean;
@@ -46,6 +45,7 @@ export default ({ isMobile }: RecipeListProps) => {
           />
         </Select>
       </FlexView>
+
       <FlexView>
         <FlexView
           color="lightgray"
@@ -145,14 +145,6 @@ export default ({ isMobile }: RecipeListProps) => {
           </FlexView>
         ))}
       </FlexView>
-
-      <Text
-        color={Colors.red}
-        css={{ marginLeft: isMobile ? `4px` : 0 }}
-        small={isMobile}
-      >
-        * 신발, 망토의 전표는 추후 업데이트 예정입니다.
-      </Text>
     </FlexView>
   );
 };
