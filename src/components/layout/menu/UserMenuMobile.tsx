@@ -70,7 +70,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           to="/user/character"
           onClick={close}
         >
-          대표 캐릭터
+          캐릭터 관리
         </Link>
 
         <Button
