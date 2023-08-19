@@ -228,8 +228,8 @@ export default () => {
 
           <FlexView
             css={{
-              maxHeight: `200px`,
-              minHeight: `100px`,
+              maxHeight: `151px`,
+              minHeight: `116px`,
               overflowY: `auto`,
               border: `1px solid lightgray`,
               borderRadius: `4px`,

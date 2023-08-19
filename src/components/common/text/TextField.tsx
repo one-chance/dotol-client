@@ -37,7 +37,7 @@ export default ({
 }: TextFieldProps) => {
   const [text, setText] = useState(``);
   const [isFocused, setIsFocused] = useState(false);
-  const [isEntered, setIsEntered] = useState(false);
+  const [isEntered, setIsEntered] = useState(value !== ``);
 
   const inputText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
@@ -57,7 +57,9 @@ export default ({
           position: `relative`,
         }}
         onBlur={() => setIsFocused(false)}
-        onClick={() => setIsFocused(true)}
+        onClick={() => {
+          if (!readOnly) setIsFocused(true);
+        }}
       >
         <Label
           css={{

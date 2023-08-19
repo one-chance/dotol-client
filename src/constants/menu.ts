@@ -87,3 +87,9 @@ export const BODY_REINFORCE_TABS = [
   { name: `신체강화 재료`, path: `/content/body-reinforce/recipe` },
   { name: `신체강화 보너스`, path: `/content/body-reinforce/bonus` },
 ];
+
+export const USER_MENU_TABS = [
+  { name: `프로필`, path: `/user/profile` },
+  { name: `비밀번호 변경`, path: `/user/change-password` },
+  { name: `회원 탈퇴`, path: `/user/withdrawal` },
+];

@@ -31,7 +31,7 @@ export default () => {
       <FlexView
         css={{
           border: isMobile ? 0 : `1px solid lightgray`,
-          borderRadius: `8px`,
+          borderRadius: `4px`,
           padding: isMobile ? `10px` : `40px`,
         }}
       >

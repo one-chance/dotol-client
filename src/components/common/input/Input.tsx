@@ -8,11 +8,20 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   width?: number;
   height?: number;
   isMobile?: boolean;
+  autoFocus?: boolean;
 };
 
 export default forwardRef<HTMLInputElement, InputProps>(
   (
-    { noBorder, center, width, height, isMobile, ...props }: InputProps,
+    {
+      noBorder,
+      center,
+      width,
+      height,
+      isMobile,
+      autoFocus,
+      ...props
+    }: InputProps,
     ref,
   ) => {
     const inputCSS: CSSObject = {
@@ -42,6 +51,6 @@ export default forwardRef<HTMLInputElement, InputProps>(
       ...(center && { textAlign: `center` }),
     };
 
-    return jsx(`input`, { ref, css: inputCSS, ...props });
+    return jsx(`input`, { ref, css: inputCSS, autoFocus, ...props });
   },
 );

@@ -37,7 +37,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
         css={{
           position: `absolute`,
           width: `160px`,
-          marginTop: `40px`,
+          marginTop: `36px`,
           borderRadius: `4px`,
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
@@ -55,14 +55,14 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           프로필
         </Link>
 
-        <Link
+        {/* <Link
           aria-label="비밀번호 변경"
           css={linkCSS}
           to="/user/change-password"
           onClick={close}
         >
           비밀번호 변경
-        </Link>
+        </Link> */}
 
         <Link
           aria-label="대표 캐릭터"

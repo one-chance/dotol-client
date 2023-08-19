@@ -14,7 +14,7 @@ export default () => {
   const [isEmailForm, setIsEmailForm] = useState(false);
   const [nonExistError, setNonExistError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState(``);
-  const [isSent, setIsSent] = useState(true);
+  const [isSent, setIsSent] = useState(false);
 
   const inputEmail = (_input: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

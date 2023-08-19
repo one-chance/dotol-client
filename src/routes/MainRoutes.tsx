@@ -44,7 +44,7 @@ import {
   ForgotUserId,
   Profile,
   ResetPassword,
-  Secession,
+  Withdrawal,
   SignUp,
 } from '@pages/user';
 import { isLoggedInState } from '@states/login';
@@ -77,8 +77,8 @@ const MainRoutes = () => {
         path="/user/profile"
       />
       <Route
-        element={isLoggedIn ? <Secession /> : <Navigate to="/" />}
-        path="/user/secession"
+        element={isLoggedIn ? <Withdrawal /> : <Navigate to="/" />}
+        path="/user/withdrawal"
       />
       <Route element={<ForgotPassword />} path="/user/forgot-password" />
       <Route element={<ForgotUserId />} path="/user/forgot-userid" />

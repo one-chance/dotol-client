@@ -2,7 +2,9 @@
 import { useState } from 'react';
 
 import { deleteUser } from '@apis/users';
-import { Button, FlexView, Input, Text, TextField } from '@components/common';
+import { Button, FlexView, Text, TextField } from '@components/common';
+import { MenuTab } from '@components/layout';
+import { USER_MENU_TABS } from '@constants/menu';
 import { isLoggedInState, userIdState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
@@ -20,7 +22,7 @@ export default () => {
     setPassword(_input);
   };
 
-  const secesseUser = () => {
+  const withdrawUser = () => {
     deleteUser().then(res => {
       if (res.statusCode === 200) {
         sessionStorage.removeItem(`accessToken`);
@@ -33,12 +35,20 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }}>
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : undefined,
+        margin: isMobile ? `0 0 40px 0` : `40px auto`,
+      }}
+      gap={isMobile ? 20 : 40}
+    >
+      <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
+
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `4px`,
-          padding: `20px`,
+          padding: isMobile ? `10px` : `40px`,
         }}
         gap={isMobile ? 24 : 40}
       >
@@ -55,29 +65,27 @@ export default () => {
           </Text>
         </FlexView>
 
-        <FlexView gap={16}>
-          <TextField
-            autoComplete="current-password"
-            isMobile={isMobile}
-            label="비밀번호"
-            value={password}
-            password
-            onChange={inputPassword}
-          />
+        <TextField
+          autoComplete="current-password"
+          isMobile={isMobile}
+          label="비밀번호"
+          value={password}
+          password
+          onChange={inputPassword}
+        />
 
-          <Button
-            aria-label="탈퇴"
-            color={Colors.red}
-            css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
-            disabled={password.length < 8}
-            radius={4}
-            onClick={secesseUser}
-          >
-            <Text color={Colors.white} small={isMobile} semiBold>
-              탈퇴하기
-            </Text>
-          </Button>
-        </FlexView>
+        <Button
+          aria-label="탈퇴"
+          color={Colors.red}
+          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          disabled={password.length < 8}
+          radius={4}
+          onClick={withdrawUser}
+        >
+          <Text color={Colors.white} small={isMobile} semiBold>
+            탈퇴하기
+          </Text>
+        </Button>
       </FlexView>
     </FlexView>
   );

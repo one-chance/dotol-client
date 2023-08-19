@@ -113,6 +113,7 @@ export default () => {
               {isLoggedIn ? `내 정보` : `로그인`}
             </Text>
           </Button>
+
           {showUserMenu && (
             <UserMenuMobile ref={userMenuRef} close={closeUserMenu} />
           )}

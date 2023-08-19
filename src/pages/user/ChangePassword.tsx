@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 import { updatePassword } from '@apis/users';
 import { Button, FlexView, Text, TextField } from '@components/common';
+import { MenuTab } from '@components/layout';
+import { USER_MENU_TABS } from '@constants/menu';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
@@ -43,12 +45,20 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `auto` }}>
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : undefined,
+        margin: isMobile ? `0 0 40px 0` : `40px auto`,
+      }}
+      gap={isMobile ? 20 : 40}
+    >
+      <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
+
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           borderRadius: `4px`,
-          padding: isMobile ? `20px 10px` : `40px 20px`,
+          padding: isMobile ? `10px` : `40px`,
         }}
         gap={isMobile ? 24 : 40}
       >

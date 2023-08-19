@@ -54,14 +54,14 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           프로필
         </Link>
 
-        <Link
+        {/* <Link
           aria-label="비밀번호 변경"
           css={linkCSS}
           to="/user/change-password"
           onClick={close}
         >
           비밀번호 변경
-        </Link>
+        </Link> */}
 
         <Link
           aria-label="캐릭터 관리"
