@@ -2,7 +2,7 @@ import { FlexView, Text, Link } from '@components/common';
 import { Colors } from '@styles/system';
 
 export default () => (
-  <footer>
+  <footer style={{ position: `absolute`, left: 0, right: 0, bottom: 0 }}>
     <FlexView
       color={Colors.primary}
       css={{

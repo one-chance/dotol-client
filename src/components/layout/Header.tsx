@@ -22,6 +22,7 @@ const tab: { [key: string]: string } = {
   content: `콘텐츠`,
   calculator: `계산기`,
   board: `게시판`,
+  user: ``,
 };
 
 export default () => {
@@ -74,7 +75,9 @@ export default () => {
     const mainmenu = location.pathname.split(`/`)[1];
     setSelectedMenu(mainmenu ?? ``);
 
-    document.title = `바람의나라 도톨 | ${tab[mainmenu]}`;
+    document.title = `바람의나라 도톨 ${
+      mainmenu === `user` ? `` : `| ${tab[mainmenu]}`
+    }`;
 
     setShowLogin(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
