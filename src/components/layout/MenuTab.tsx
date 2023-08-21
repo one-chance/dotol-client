@@ -12,10 +12,9 @@ type Menu = {
 type MenuTabProps = {
   menus: Menu[];
   isMobile?: boolean;
-  max?: number;
 };
 
-export default ({ menus, isMobile, max }: MenuTabProps) => {
+export default ({ menus, isMobile }: MenuTabProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState(``);
@@ -35,24 +34,16 @@ export default ({ menus, isMobile, max }: MenuTabProps) => {
     <FlexView
       color={Colors.primary}
       css={{
-        height: `48px`,
+        height: isMobile ? `36px` : `48px`,
         borderRadius: isMobile ? 0 : `4px`,
-        padding: isMobile ? `4px 10px` : `4px 20px`,
+        padding: isMobile ? `0 10px` : `0 20px`,
       }}
       gap={isMobile ? 24 : 32}
       items="center"
       row
     >
       {menus?.map(menu => (
-        <FlexView
-          key={menu.name}
-          content="center"
-          css={{
-            minHeight: `40px`,
-            borderBottom:
-              menu.name === selectedTab ? `1px solid white` : undefined,
-          }}
-        >
+        <FlexView key={menu.name} content="center">
           <Button aria-label="메뉴" onClick={() => selectTab(menu)}>
             <Text
               color={menu.name === selectedTab ? Colors.white : Colors.grey}

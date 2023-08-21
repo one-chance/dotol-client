@@ -40,26 +40,34 @@ export default () => {
   }, []);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
-      <FlexView content="between" gap={20} items="center" row wrap>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          업적 정보
-        </Text>
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `20px auto` : `40px auto`,
+      }}
+      items="center"
+    >
+      <FlexView gap={20}>
+        <FlexView content="between" gap={20} items="center" row wrap>
+          <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+            업적 정보
+          </Text>
 
-        <Select
-          isMobile={isMobile}
-          name={TAB_LIST[tab]}
-          width={isMobile ? 100 : 140}
-        >
-          <Option
-            selected={TAB_LIST[tab]}
-            values={TAB_LIST}
-            onSelect={selectTab}
-          />
-        </Select>
+          <Select
+            isMobile={isMobile}
+            name={TAB_LIST[tab]}
+            width={isMobile ? 100 : 140}
+          >
+            <Option
+              selected={TAB_LIST[tab]}
+              values={TAB_LIST}
+              onSelect={selectTab}
+            />
+          </Select>
+        </FlexView>
+
+        <AchievementList list={selectedList} />
       </FlexView>
-
-      <AchievementList list={selectedList} />
     </FlexView>
   );
 };

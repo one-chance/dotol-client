@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Button, FlexView, Icon, Text, Link } from '@components/common';
+import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
 import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
@@ -88,25 +88,27 @@ export default () => {
             <Icon name="menu" />
           </Button>
 
-          <Link
+          <Anchor
             aria-label="로고"
             css={{
+              color: Colors.primary,
               fontFamily: `Red Hat Display`,
               fontSize: `20px`,
               fontWeight: 700,
+              lineHeight: `24px`,
               letterSpacing: `-0.96px`,
-              lineHeight: 1,
             }}
-            to="/"
+            href="/"
           >
             dotol
-          </Link>
+          </Anchor>
         </FlexView>
 
         <FlexView items="end">
           <Button
             ref={infoRef}
-            aria-label={isLoggedIn ? `사용자` : `로그인`}
+            aria-label={isLoggedIn ? `내 정보` : `로그인`}
+            css={{ height: `24px` }}
             onClick={isLoggedIn ? openUserMenu : openLoginModal}
           >
             <Text color={isLoggedIn ? Colors.purple : Colors.black} semiBold>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react';
 
-import { Button, FlexView, Text, Link, Icon } from '@components/common';
+import { Anchor, Button, FlexView, Text, Icon } from '@components/common';
 import { LoginModal } from '@components/modal';
 import { MAIN_MENU } from '@constants/menu';
 import { CSSObject } from '@emotion/react';
@@ -16,12 +16,12 @@ const btnCSS: CSSObject = {
   height: `42px`,
 };
 
-const tab: { [key: string]: number } = {
-  dostume: 0,
-  db: 1,
-  content: 2,
-  calculator: 3,
-  board: 4,
+const tab: { [key: string]: string } = {
+  costume: `코디`,
+  db: `도감`,
+  content: `콘텐츠`,
+  calculator: `계산기`,
+  board: `게시판`,
 };
 
 export default () => {
@@ -32,7 +32,7 @@ export default () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const [showLogin, setShowLogin] = useRecoilState(showLoginState);
 
-  const [selectedMenu, setSelectedMenu] = useState(-1);
+  const [selectedMenu, setSelectedMenu] = useState(``);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showTotalMenu, setShowTotalMenu] = useState(false);
 
@@ -72,7 +72,10 @@ export default () => {
 
   useEffect(() => {
     const mainmenu = location.pathname.split(`/`)[1];
-    setSelectedMenu(tab[mainmenu] ?? -1);
+    setSelectedMenu(mainmenu ?? ``);
+
+    document.title = `바람의나라 도톨 | ${tab[mainmenu]}`;
+
     setShowLogin(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
@@ -99,25 +102,26 @@ export default () => {
         onMouseLeave={() => setShowTotalMenu(false)}
       >
         <FlexView css={{ height: `42px` }} center>
-          <Link
+          <Anchor
             aria-label="로고"
             css={{
               color: Colors.primary,
               fontFamily: `Red Hat Display`,
               fontSize: `32px`,
               fontWeight: 700,
+              lineHeight: `40px`,
               letterSpacing: `-0.96px`,
             }}
-            to="/"
+            href="/"
           >
             dotol
-          </Link>
+          </Anchor>
         </FlexView>
 
         <FlexView gap={10}>
           <FlexView content="between" gap={40} items="center" row>
             <FlexView gap={32} items="center" row>
-              {MAIN_MENU.map((menu, index) => (
+              {MAIN_MENU.map(menu => (
                 <FlexView
                   key={menu}
                   css={{
@@ -129,9 +133,7 @@ export default () => {
                   onMouseEnter={openTotalMenu}
                 >
                   <Text
-                    color={
-                      selectedMenu === index ? Colors.primary : Colors.grey
-                    }
+                    color={selectedMenu === menu ? Colors.primary : Colors.grey}
                     css={{ fontSize: `18px`, letterSpacing: `=1px` }}
                     medium
                   >
@@ -180,25 +182,24 @@ export default () => {
                 </FlexView>
               ) : (
                 <FlexView content="center" css={{ width: `180px` }} row>
-                  <Link
+                  <Anchor
                     aria-label="회원가입"
                     css={{
                       ...btnCSS,
-                      display: `flex`,
                       backgroundColor: Colors.background,
-                      justifyContent: `center`,
-                      alignItems: `center`,
+                      textAlign: `center`,
+                      lineHeight: `42px`,
                       color: Colors.primary,
                       letterSpacing: `-1px`,
                       fontWeight: 500,
                       borderTopLeftRadius: `4px`,
                       borderBottomLeftRadius: `4px`,
                     }}
-                    to="/user/signup"
+                    href="/user/signup"
                     onClick={closeTotalMenu}
                   >
                     회원가입
-                  </Link>
+                  </Anchor>
 
                   <Button
                     ref={infoRef}

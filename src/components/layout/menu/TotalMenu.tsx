@@ -1,4 +1,4 @@
-import { FlexView, Link } from '@components/common';
+import { Anchor, FlexView } from '@components/common';
 import { TOTAL_MENU } from '@constants/menu';
 import { Colors } from '@styles/system';
 
@@ -11,26 +11,21 @@ export default ({ onSelect }: MenuProps) => (
     {TOTAL_MENU.map(menus => (
       <FlexView key={menus.menu} gap={18}>
         {menus.sub.map(menu => (
-          <FlexView
+          <Anchor
             key={menu.name}
+            aria-label="메뉴"
             css={{
               width: `88px`,
-              height: `27px`,
+              lineHeight: `27px`,
+              textAlign: `center`,
+              color: `#486284`,
+              ':hover': { fontWeight: 700, color: Colors.purple },
             }}
-            center
+            href={menu.url}
+            onClick={onSelect}
           >
-            <Link
-              aria-label="메뉴"
-              css={{
-                color: `#486284`,
-                ':hover': { fontWeight: 700, color: Colors.purple },
-              }}
-              to={menu.url}
-              onClick={onSelect}
-            >
-              {menu.name}
-            </Link>
-          </FlexView>
+            {menu.name}
+          </Anchor>
         ))}
       </FlexView>
     ))}

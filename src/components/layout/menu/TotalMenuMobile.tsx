@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, FlexView, Link, Icon, Text } from '@components/common';
+import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
 import { TOTAL_MENU, MAIN_MENU } from '@constants/menu';
 import { Colors } from '@styles/system';
 import { useLocation } from 'react-router-dom';
@@ -27,20 +27,6 @@ export default ({ onClose }: MenuProps) => {
         <Button aria-label="닫기" onClick={onClose}>
           <Icon name="close" size={24} />
         </Button>
-
-        {/* <Link
-          aria-label="로고"
-          css={{
-            fontFamily: `Red Hat Display`,
-            fontSize: `20px`,
-            fontWeight: 700,
-            letterSpacing: `-0.96px`,
-            lineHeight: 1,
-          }}
-          to="/"
-        >
-          dotol
-        </Link> */}
       </FlexView>
 
       <FlexView
@@ -50,7 +36,7 @@ export default ({ onClose }: MenuProps) => {
           scrollbarWidth: `none`,
           '::-webkit-scrollbar': { display: `none` },
         }}
-        gap={40}
+        gap={24}
       >
         {MAIN_MENU.map((menu, index) => {
           const [showSubMenu, setShowSubMenu] = useState(false);
@@ -59,21 +45,16 @@ export default ({ onClose }: MenuProps) => {
             <FlexView
               key={menu}
               content="center"
-              gap={20}
+              gap={10}
               onClick={() => setShowSubMenu(!showSubMenu)}
             >
               <FlexView
                 content="between"
-                css={{ minHeight: `30px` }}
+                css={{ minHeight: `40px` }}
                 items="center"
                 row
               >
-                <Text
-                  bold={showSubMenu}
-                  color={Colors.primary}
-                  css={{ lineHeight: 1 }}
-                  xLarge
-                >
+                <Text bold={showSubMenu} color={Colors.primary} xLarge>
                   {menu}
                 </Text>
 
@@ -83,34 +64,27 @@ export default ({ onClose }: MenuProps) => {
               {showSubMenu && (
                 <FlexView gap={4}>
                   {TOTAL_MENU[index].sub.map(sub => (
-                    <FlexView
+                    <Anchor
                       key={sub.name}
-                      color={
-                        location.pathname === sub.url
-                          ? Colors.primary10
-                          : undefined
-                      }
-                      content="center"
-                      css={{ paddingLeft: `16px`, minHeight: `40px` }}
+                      aria-label="메뉴"
+                      css={{
+                        backgroundColor:
+                          location.pathname === sub.url
+                            ? Colors.primary10
+                            : `transparent`,
+                        color:
+                          location.pathname === sub.url
+                            ? Colors.primary
+                            : Colors.primary50,
+                        fontSize: `20px`,
+                        paddingLeft: `16px`,
+                        lineHeight: `40px`,
+                      }}
+                      href={sub.url}
+                      onClick={onClose}
                     >
-                      <Link
-                        key={sub.name}
-                        aria-label="메뉴"
-                        to={sub.url}
-                        onClick={onClose}
-                      >
-                        <Text
-                          color={
-                            location.pathname === sub.url
-                              ? Colors.primary
-                              : Colors.primary50
-                          }
-                          large
-                        >
-                          {sub.name}
-                        </Text>
-                      </Link>
-                    </FlexView>
+                      {sub.name}
+                    </Anchor>
                   ))}
                 </FlexView>
               )}
