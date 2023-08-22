@@ -76,7 +76,7 @@ export default () => {
   }, [isLoggedIn]);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={20}>
       <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
         장비/치장 룩북
       </Text>

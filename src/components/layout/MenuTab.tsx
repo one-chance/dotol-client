@@ -34,6 +34,7 @@ export default ({ menus, isMobile }: MenuTabProps) => {
     <FlexView
       color={Colors.primary}
       css={{
+        width: `100%`,
         height: isMobile ? `36px` : `48px`,
         borderRadius: isMobile ? 0 : `4px`,
         padding: isMobile ? `0 10px` : `0 20px`,

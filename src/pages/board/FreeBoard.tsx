@@ -54,7 +54,7 @@ export default () => {
       css={{
         maxWidth: `800px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `40px auto`,
+        margin: isMobile ? `20px auto` : `60px auto`,
       }}
     >
       <Text center={isMobile} xLarge={isMobile} xxLarge={!isMobile} bold>

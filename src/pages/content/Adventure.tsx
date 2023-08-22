@@ -33,39 +33,47 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={20}>
-      <FlexView
-        content="between"
-        css={{ padding: isMobile ? `0 4px` : undefined }}
-        gap={20}
-        items="center"
-        row
-        wrap
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          탐험일지 정보
-        </Text>
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `20px auto` : `60px auto`,
+      }}
+      items="center"
+    >
+      <FlexView gap={20}>
+        <FlexView
+          content="between"
+          css={{ padding: isMobile ? `0 4px` : undefined }}
+          gap={20}
+          items="center"
+          row
+          wrap
+        >
+          <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+            탐험일지 정보
+          </Text>
 
-        <FlexView gap={8} row>
-          <Select isMobile={isMobile} name={LOCATIONS[location]} width={100}>
-            <Option
-              selected={LOCATIONS[location]}
-              values={LOCATIONS}
-              onSelect={selectLocation}
-            />
-          </Select>
+          <FlexView gap={8} row>
+            <Select isMobile={isMobile} name={LOCATIONS[location]} width={100}>
+              <Option
+                selected={LOCATIONS[location]}
+                values={LOCATIONS}
+                onSelect={selectLocation}
+              />
+            </Select>
 
-          <Select isMobile={isMobile} name={TABS[tab]} width={80}>
-            <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
-          </Select>
+            <Select isMobile={isMobile} name={TABS[tab]} width={80}>
+              <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
+            </Select>
+          </FlexView>
         </FlexView>
-      </FlexView>
 
-      <AdventureList
-        isMobile={isMobile}
-        location={location}
-        tab={TABS[tab] as AdventureTab}
-      />
+        <AdventureList
+          isMobile={isMobile}
+          location={location}
+          tab={TABS[tab] as AdventureTab}
+        />
+      </FlexView>
     </FlexView>
   );
 };

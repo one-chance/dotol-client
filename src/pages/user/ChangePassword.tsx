@@ -47,61 +47,63 @@ export default () => {
   return (
     <FlexView
       css={{
-        width: isMobile ? `100%` : undefined,
-        margin: isMobile ? `0 0 40px 0` : `40px auto`,
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
       }}
-      gap={isMobile ? 20 : 40}
+      items="center"
     >
-      <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
+      <FlexView gap={isMobile ? 20 : 40}>
+        <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
 
-      <FlexView
-        css={{
-          border: isMobile ? `none` : `1px solid lightgray`,
-          borderRadius: `4px`,
-          padding: isMobile ? `10px` : `40px`,
-        }}
-        gap={isMobile ? 24 : 40}
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-          비밀번호 변경
-        </Text>
-
-        <FlexView gap={16}>
-          <TextField
-            error={!isCorrectPassword}
-            errorMessage="! 비밀번호가 일치하지 않습니다."
-            label="기존 비밀번호"
-            value={oldPassword}
-            isMobile
-            password
-            onChange={inputOldPassword}
-          />
-
-          <TextField
-            correct={isPasswordForm}
-            error={!isPasswordForm}
-            errorMessage="! 최소 8자리 이상 (영문, 숫자, 특수문자의 조합)"
-            label="새 비밀번호"
-            value={newPassword}
-            isMobile
-            password
-            onChange={inputNewPassword}
-            onKeyDown={changePassword}
-          />
-        </FlexView>
-
-        <Button
-          aria-label="변경하기"
-          color={Colors.red}
-          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
-          disabled={oldPassword.length < 8 || newPassword.length < 8}
-          radius={4}
-          onClick={changePassword}
+        <FlexView
+          css={{
+            border: isMobile ? `none` : `1px solid lightgray`,
+            borderRadius: `4px`,
+            padding: isMobile ? `10px` : `40px`,
+          }}
+          gap={isMobile ? 24 : 40}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
-            변경하기
+          <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+            비밀번호 변경
           </Text>
-        </Button>
+
+          <FlexView gap={16}>
+            <TextField
+              error={!isCorrectPassword}
+              errorMessage="! 비밀번호가 일치하지 않습니다."
+              label="기존 비밀번호"
+              value={oldPassword}
+              isMobile
+              password
+              onChange={inputOldPassword}
+            />
+
+            <TextField
+              correct={isPasswordForm}
+              error={!isPasswordForm}
+              errorMessage="! 최소 8자리 이상 (영문, 숫자, 특수문자의 조합)"
+              label="새 비밀번호"
+              value={newPassword}
+              isMobile
+              password
+              onChange={inputNewPassword}
+              onKeyDown={changePassword}
+            />
+          </FlexView>
+
+          <Button
+            aria-label="변경하기"
+            color={Colors.red}
+            css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+            disabled={oldPassword.length < 8 || newPassword.length < 8}
+            radius={4}
+            onClick={changePassword}
+          >
+            <Text color={Colors.white} small={isMobile} semiBold>
+              변경하기
+            </Text>
+          </Button>
+        </FlexView>
       </FlexView>
     </FlexView>
   );

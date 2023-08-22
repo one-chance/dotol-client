@@ -50,9 +50,8 @@ export default ({ location, tab, isMobile }: ListProps) => {
     <FlexView gap={10}>
       <FlexView
         css={{
-          maxWidth: isMobile ? `360px` : `540px`,
+          width: isMobile ? `352px` : `540px`,
           border: `1px solid lightgray`,
-          margin: `0 auto`,
         }}
       >
         {tab === `보상` ? (

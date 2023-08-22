@@ -51,6 +51,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
               maxHeight: `150px`,
               overflowY: `auto`,
               padding: `10px`,
+              '::-webkit-scrollbar': { display: `none` },
             }}
           >
             <Service isMobile />
@@ -82,6 +83,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
               maxHeight: `150px`,
               overflowY: `auto`,
               padding: `10px`,
+              '::-webkit-scrollbar': { display: `none` },
             }}
           >
             <Privacy isMobile />

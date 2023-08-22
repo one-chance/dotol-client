@@ -17,7 +17,7 @@ export default ({ list }: ListProps) => {
         content="center"
         css={{
           minHeight: `40px`,
-          padding: `0 8px`,
+          padding: isMobile ? `0 4px` : `0 8px`,
           width: isMobile ? `352px` : `480px`,
         }}
       >

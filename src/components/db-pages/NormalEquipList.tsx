@@ -235,6 +235,7 @@ export default () => {
               borderRadius: `4px`,
               padding: `10px`,
               alignContent: items.length === 0 ? `center` : `flex-start`,
+              '::-webkit-scrollbar': { display: `none` },
             }}
             gap={8}
             row

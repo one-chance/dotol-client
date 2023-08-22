@@ -7,7 +7,7 @@ export default () => {
   const isMobile = useResponsive(800);
 
   return (
-    <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `40px auto` }}>
+    <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `60px auto` }}>
       <FlexView gap={40} center>
         <Text bold center xxLarge>
           2023 세시마을 일정

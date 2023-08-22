@@ -75,7 +75,11 @@ export default () => {
     const mainmenu = location.pathname.split(`/`)[1];
     setSelectedMenu(menus[mainmenu]);
 
-    if (mainmenu !== ``) {
+    if (mainmenu === `terms-of-service`) {
+      document.title = `바람의나라 도톨 | 이용약관`;
+    } else if (mainmenu === `privacy-policy`) {
+      document.title = `바람의나라 도톨 | 개인정보처리방침`;
+    } else if (mainmenu !== ``) {
       document.title = `바람의나라 도톨 ${menus[mainmenu]}`;
     }
 
@@ -91,14 +95,18 @@ export default () => {
         top: 0,
         left: 0,
         right: 0,
+        borderBottom: `1px solid ${Colors.primary20}`,
       }}
     >
       <FlexView
         color={Colors.white}
         content="between"
         css={{
-          padding: `18.5px 60px`,
-          borderBottom: `1px solid ${Colors.primary20}}`,
+          maxWidth: `1280px`,
+          width: `100%`,
+          margin: `0 auto`,
+          padding: `18.5px 30px`,
+          // borderBottom: `1px solid ${Colors.primary20}`,
         }}
         items="start"
         row

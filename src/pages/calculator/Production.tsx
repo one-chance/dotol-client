@@ -9,7 +9,14 @@ export default () => {
   const isMobile = useResponsive(560);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={40}>
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+      }}
+      gap={40}
+      items="center"
+    >
       <ProductionCalculator />
 
       <ProductionGrade />

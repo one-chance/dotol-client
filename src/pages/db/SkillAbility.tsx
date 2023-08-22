@@ -1,12 +1,19 @@
 import { FlexView } from '@components/common';
-import { SkillAbility } from '@components/db-pages';
+import { SkillAbilityList } from '@components/db-pages';
+import { useResponsive } from '@utils/hooks';
 
 export default () => {
-  const a = 1;
+  const isMobile = useResponsive(500);
 
   return (
-    <FlexView css={{ margin: `40px auto` }}>
-      <SkillAbility />
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `20px auto` : `60px auto`,
+      }}
+      items="center"
+    >
+      <SkillAbilityList />
     </FlexView>
   );
 };

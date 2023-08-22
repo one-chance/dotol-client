@@ -41,121 +41,133 @@ export default () => {
   }, []);
 
   return (
-    <FlexView css={{ margin: isMobile ? `0 0 40px 0` : `40px auto` }} gap={20}>
-      <MenuTab isMobile={isMobile} menus={BODY_REINFORCE_TABS} />
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+      }}
+      items="center"
+    >
+      <FlexView gap={20}>
+        <MenuTab isMobile={isMobile} menus={BODY_REINFORCE_TABS} />
 
-      <FlexView
-        content="between"
-        css={{ margin: isMobile ? `0 4px` : undefined }}
-        gap={10}
-        items="center"
-        row
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          신체강화 능력치
-        </Text>
+        <FlexView
+          content="between"
+          css={{ margin: isMobile ? `0 4px` : undefined }}
+          gap={10}
+          items="center"
+          row
+        >
+          <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+            신체강화 능력치
+          </Text>
 
-        <Select name={PARTS[part]} width={100}>
-          <Option selected={PARTS[part]} values={PARTS} onSelect={selectPart} />
-        </Select>
-      </FlexView>
+          <Select name={PARTS[part]} width={100}>
+            <Option
+              selected={PARTS[part]}
+              values={PARTS}
+              onSelect={selectPart}
+            />
+          </Select>
+        </FlexView>
 
-      <FlexView gap={10}>
-        <FlexView>
-          <FlexView
-            color="lightgray"
-            css={{ minHeight: `40px` }}
-            items="center"
-            row
-          >
-            <Text
-              css={{ minWidth: isMobile ? `60px` : `80px` }}
-              small={isMobile}
-              bold
-              center
-            >
-              등급
-            </Text>
-            <Text
-              css={{ minWidth: isMobile ? `150px` : `160px` }}
-              small={isMobile}
-              bold
-              center
-            >
-              선택 능력
-            </Text>
-            <Text
-              css={{ minWidth: isMobile ? `150px` : `360px` }}
-              small={isMobile}
-              bold
-              center
-            >
-              기본 능력
-            </Text>
-          </FlexView>
-
-          {infoList?.[part].map((data: Ability) => (
+        <FlexView gap={10}>
+          <FlexView>
             <FlexView
-              key={data.등급}
-              css={{
-                padding: `4px 0`,
-                borderBottom: `1px solid lightgray`,
-                borderLeft: `1px solid lightgray`,
-                borderRight: `1px solid lightgray`,
-              }}
+              color="lightgray"
+              css={{ minHeight: `40px` }}
               items="center"
               row
             >
               <Text
                 css={{ minWidth: isMobile ? `60px` : `80px` }}
                 small={isMobile}
+                bold
                 center
               >
-                {data.등급}
+                등급
               </Text>
-
-              <FlexView
+              <Text
                 css={{ minWidth: isMobile ? `150px` : `160px` }}
-                gap={isMobile ? 2 : 8}
+                small={isMobile}
+                bold
+                center
               >
-                {data?.선택능력.map((ability: string) => (
-                  <Text
-                    key={ability}
-                    small={!isMobile}
-                    xSmall={isMobile}
-                    center
-                  >
-                    {ability}
-                  </Text>
-                ))}
-              </FlexView>
-
-              <FlexView
-                css={{
-                  width: isMobile ? `150px` : `360px`,
-                  padding: isMobile ? 0 : `0 10px`,
-                }}
-                gap={isMobile ? 2 : 8}
-                items="center"
-                row={!isMobile}
-                wrap
+                선택 능력
+              </Text>
+              <Text
+                css={{ minWidth: isMobile ? `150px` : `360px` }}
+                small={isMobile}
+                bold
+                center
               >
-                {data.기본능력.map((ability: string) => (
-                  <Text key={ability} small={!isMobile} xSmall={isMobile}>
-                    {ability}
-                  </Text>
-                ))}
-              </FlexView>
+                기본 능력
+              </Text>
             </FlexView>
-          ))}
+
+            {infoList?.[part].map((data: Ability) => (
+              <FlexView
+                key={data.등급}
+                css={{
+                  padding: `4px 0`,
+                  borderBottom: `1px solid lightgray`,
+                  borderLeft: `1px solid lightgray`,
+                  borderRight: `1px solid lightgray`,
+                }}
+                items="center"
+                row
+              >
+                <Text
+                  css={{ minWidth: isMobile ? `60px` : `80px` }}
+                  small={isMobile}
+                  center
+                >
+                  {data.등급}
+                </Text>
+
+                <FlexView
+                  css={{ minWidth: isMobile ? `150px` : `160px` }}
+                  gap={isMobile ? 2 : 8}
+                >
+                  {data?.선택능력.map((ability: string) => (
+                    <Text
+                      key={ability}
+                      small={!isMobile}
+                      xSmall={isMobile}
+                      center
+                    >
+                      {ability}
+                    </Text>
+                  ))}
+                </FlexView>
+
+                <FlexView
+                  css={{
+                    width: isMobile ? `150px` : `360px`,
+                    padding: isMobile ? 0 : `0 10px`,
+                  }}
+                  gap={isMobile ? 2 : 8}
+                  items="center"
+                  row={!isMobile}
+                  wrap
+                >
+                  {data.기본능력.map((ability: string) => (
+                    <Text key={ability} small={!isMobile} xSmall={isMobile}>
+                      {ability}
+                    </Text>
+                  ))}
+                </FlexView>
+              </FlexView>
+            ))}
+          </FlexView>
+          <Text
+            color={Colors.red}
+            css={{ marginLeft: isMobile ? `4px` : 0 }}
+            small={isMobile}
+          >
+            * 신발, 망토 부위 능력치는 추후 수정 예정입니다.
+          </Text>
         </FlexView>
-        <Text
-          color={Colors.red}
-          css={{ marginLeft: isMobile ? `4px` : 0 }}
-          small={isMobile}
-        >
-          * 신발, 망토 부위 능력치는 추후 수정 예정입니다.
-        </Text>
       </FlexView>
     </FlexView>
   );

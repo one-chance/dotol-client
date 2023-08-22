@@ -35,7 +35,7 @@ export default () => {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `40px auto` }} gap={60}>
+    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={60}>
       <FlexView
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,

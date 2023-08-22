@@ -12,7 +12,7 @@ export default () => {
       css={{
         maxWidth: `960px`,
         width: `100%`,
-        margin: isMobile ? `0 0 40px 0` : `40px auto`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
       }}
       gap={40}
     >

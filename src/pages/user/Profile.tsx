@@ -33,7 +33,7 @@ export default () => {
     <FlexView
       css={{
         width: isMobile ? `100%` : undefined,
-        margin: isMobile ? `0 0 40px 0` : `40px auto`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
       }}
       gap={isMobile ? 20 : 40}
     >

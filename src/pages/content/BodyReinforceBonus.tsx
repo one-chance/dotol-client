@@ -8,10 +8,18 @@ export default () => {
   const isMobile = useResponsive(610);
 
   return (
-    <FlexView css={{ margin: isMobile ? `0 0 40px 0` : `40px auto` }} gap={20}>
-      <MenuTab isMobile={isMobile} menus={BODY_REINFORCE_TABS} />
+    <FlexView
+      css={{
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+      }}
+      items="center"
+    >
+      <FlexView gap={20}>
+        <MenuTab isMobile={isMobile} menus={BODY_REINFORCE_TABS} />
 
-      <BonusList isMobile={isMobile} />
+        <BonusList isMobile={isMobile} />
+      </FlexView>
     </FlexView>
   );
 };

@@ -43,7 +43,7 @@ export default () => {
     <FlexView
       css={{
         width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `20px auto` : `40px auto`,
+        margin: isMobile ? `20px auto` : `60px auto`,
       }}
       items="center"
     >

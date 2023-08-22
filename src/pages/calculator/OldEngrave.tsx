@@ -109,285 +109,287 @@ export default () => {
   return (
     <FlexView
       css={{
-        margin: isMobile ? `20px auto` : `40px auto`,
-        width: isMobile ? `100%` : undefined,
+        width: isMobile ? `100%` : `960px`,
+        margin: isMobile ? `0 0 40px 0` : `60px auto`,
       }}
-      gap={isMobile ? 20 : 40}
+      items="center"
     >
-      <FlexView
-        content="between"
-        css={{ margin: isMobile ? `0 10px` : undefined }}
-        items="center"
-        row
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-          각인 수치 변환
-        </Text>
-
-        <Select
-          isMobile={isMobile}
-          name={ABILITIES[ability]}
-          width={isMobile ? 100 : 120}
+      <FlexView gap={isMobile ? 20 : 40}>
+        <FlexView
+          content="between"
+          css={{ margin: isMobile ? `0 10px` : undefined }}
+          items="center"
+          row
         >
-          <Option
-            selected={ABILITIES[ability]}
-            values={ABILITIES}
-            onSelect={selectAbility}
-          />
-        </Select>
-      </FlexView>
-
-      <FlexView gap={isMobile ? 20 : 40} items="center" row={!isMobile}>
-        <FlexView gap={12}>
-          <Text large={!isMobile} center>
-            현재 수치(%)
+          <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+            각인 수치 변환
           </Text>
-          <FlexView
-            css={{
-              border: `1px solid lightgray`,
-              borderRadius: `8px`,
-              padding: `20px`,
-            }}
-            gap={4}
+
+          <Select
+            isMobile={isMobile}
+            name={ABILITIES[ability]}
+            width={isMobile ? 100 : 120}
           >
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                주작
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                readOnly={ability === 0}
-                value={engraves.주작.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`주작`, `앞각`, e)}
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                readOnly={ability === 0}
-                value={engraves.주작.뒷각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`주작`, `뒷각`, e)}
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                백호
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                readOnly={ability === 0}
-                value={engraves.백호.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`백호`, `앞각`, e)}
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                readOnly={ability === 0}
-                value={engraves.백호.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`백호`, `뒷각`, e)}
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                청룡
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                readOnly={ability === 0}
-                value={engraves.청룡.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`청룡`, `앞각`, e)}
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                readOnly={ability === 0}
-                value={engraves.청룡.뒷각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`청룡`, `뒷각`, e)}
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                현무
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                readOnly={ability === 0}
-                value={engraves.현무.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`현무`, `앞각`, e)}
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                readOnly={ability === 0}
-                value={engraves.현무.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`현무`, `뒷각`, e)}
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                황룡
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                readOnly={ability === 0}
-                value={engraves.황룡.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`황룡`, `앞각`, e)}
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                readOnly={ability === 0}
-                value={engraves.황룡.앞각 || ``}
-                width={60}
-                center
-                onChange={e => inputEngrave(`황룡`, `뒷각`, e)}
-              />
-            </FlexView>
-            <Text css={{ marginTop: `10px` }} center semiBold>
-              합계: {total}%
-            </Text>
-          </FlexView>
+            <Option
+              selected={ABILITIES[ability]}
+              values={ABILITIES}
+              onSelect={selectAbility}
+            />
+          </Select>
         </FlexView>
 
-        <Icon name={isMobile ? `arrowDown` : `arrowRight`} size={32} />
-
-        <FlexView gap={12}>
-          <Text large={!isMobile} center>
-            과거 수치(+)
-          </Text>
-          <FlexView
-            css={{
-              border: `1px solid lightgray`,
-              borderRadius: `8px`,
-              padding: `20px`,
-            }}
-            gap={4}
-          >
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                주작
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                value={
-                  engraves.주작.앞각 !== ``
-                    ? Math.floor(Number(engraves.주작.앞각) / ratio)
-                    : ``
-                }
-                width={60}
-                center
-                readOnly
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                width={60}
-                center
-                readOnly
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                백호
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                width={60}
-                center
-                readOnly
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                width={60}
-                center
-                readOnly
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                청룡
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                width={60}
-                center
-                readOnly
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                width={60}
-                center
-                readOnly
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                현무
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                width={60}
-                center
-                readOnly
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                width={60}
-                center
-                readOnly
-              />
-            </FlexView>
-            <FlexView gap={4} items="center" row>
-              <Text css={{ minWidth: `40px` }} semiBold>
-                황룡
-              </Text>
-              <Input
-                aria-label="앞각"
-                placeholder="앞각"
-                width={60}
-                center
-                readOnly
-              />
-              <Input
-                aria-label="뒷각"
-                placeholder="뒷각"
-                width={60}
-                center
-                readOnly
-              />
-            </FlexView>
-            <Text css={{ marginTop: `10px` }} center semiBold>
-              합계: {Math.floor(total / ratio)}
+        <FlexView gap={isMobile ? 20 : 40} items="center" row={!isMobile}>
+          <FlexView gap={12}>
+            <Text large={!isMobile} center>
+              현재 수치(%)
             </Text>
+            <FlexView
+              css={{
+                border: `1px solid lightgray`,
+                borderRadius: `8px`,
+                padding: `20px`,
+              }}
+              gap={4}
+            >
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  주작
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  readOnly={ability === 0}
+                  value={engraves.주작.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`주작`, `앞각`, e)}
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  readOnly={ability === 0}
+                  value={engraves.주작.뒷각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`주작`, `뒷각`, e)}
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  백호
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  readOnly={ability === 0}
+                  value={engraves.백호.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`백호`, `앞각`, e)}
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  readOnly={ability === 0}
+                  value={engraves.백호.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`백호`, `뒷각`, e)}
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  청룡
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  readOnly={ability === 0}
+                  value={engraves.청룡.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`청룡`, `앞각`, e)}
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  readOnly={ability === 0}
+                  value={engraves.청룡.뒷각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`청룡`, `뒷각`, e)}
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  현무
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  readOnly={ability === 0}
+                  value={engraves.현무.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`현무`, `앞각`, e)}
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  readOnly={ability === 0}
+                  value={engraves.현무.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`현무`, `뒷각`, e)}
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  황룡
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  readOnly={ability === 0}
+                  value={engraves.황룡.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`황룡`, `앞각`, e)}
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  readOnly={ability === 0}
+                  value={engraves.황룡.앞각 || ``}
+                  width={60}
+                  center
+                  onChange={e => inputEngrave(`황룡`, `뒷각`, e)}
+                />
+              </FlexView>
+              <Text css={{ marginTop: `10px` }} center semiBold>
+                합계: {total}%
+              </Text>
+            </FlexView>
+          </FlexView>
+
+          <Icon name={isMobile ? `arrowDown` : `arrowRight`} size={32} />
+
+          <FlexView gap={12}>
+            <Text large={!isMobile} center>
+              과거 수치(+)
+            </Text>
+            <FlexView
+              css={{
+                border: `1px solid lightgray`,
+                borderRadius: `8px`,
+                padding: `20px`,
+              }}
+              gap={4}
+            >
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  주작
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  value={
+                    engraves.주작.앞각 !== ``
+                      ? Math.floor(Number(engraves.주작.앞각) / ratio)
+                      : ``
+                  }
+                  width={60}
+                  center
+                  readOnly
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  width={60}
+                  center
+                  readOnly
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  백호
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  width={60}
+                  center
+                  readOnly
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  width={60}
+                  center
+                  readOnly
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  청룡
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  width={60}
+                  center
+                  readOnly
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  width={60}
+                  center
+                  readOnly
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  현무
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  width={60}
+                  center
+                  readOnly
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  width={60}
+                  center
+                  readOnly
+                />
+              </FlexView>
+              <FlexView gap={4} items="center" row>
+                <Text css={{ minWidth: `40px` }} semiBold>
+                  황룡
+                </Text>
+                <Input
+                  aria-label="앞각"
+                  placeholder="앞각"
+                  width={60}
+                  center
+                  readOnly
+                />
+                <Input
+                  aria-label="뒷각"
+                  placeholder="뒷각"
+                  width={60}
+                  center
+                  readOnly
+                />
+              </FlexView>
+              <Text css={{ marginTop: `10px` }} center semiBold>
+                합계: {Math.floor(total / ratio)}
+              </Text>
+            </FlexView>
           </FlexView>
         </FlexView>
       </FlexView>

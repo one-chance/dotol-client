@@ -111,7 +111,7 @@ export default () => {
       css={{
         maxWidth: `1080px`,
         width: `100%`,
-        margin: `40px auto`,
+        margin: `60px auto`,
       }}
     >
       <FlexView gap={20}>
