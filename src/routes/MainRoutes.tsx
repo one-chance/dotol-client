@@ -1,7 +1,6 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
 
 import {
-  // FreeBoard,
   FreePost,
   ServerBoard,
   TipBoard,
@@ -37,22 +36,22 @@ import {
 } from '@pages/db';
 import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
-import {
-  ChangePassword,
-  // CharacterList,
-  ForgotPassword,
-  ForgotUserId,
-  Profile,
-  ResetPassword,
-  Withdrawal,
-  SignUp,
-} from '@pages/user';
 import { isLoggedInState } from '@states/login';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-const LazyCharacterList = React.lazy(() => import(`@pages/user/CharacterList`));
+// board 메뉴
 const LazyFreeBoard = lazy(() => import(`@pages/board/FreeBoard`));
+
+// user 메뉴
+const LazyChangePassword = lazy(() => import(`@pages/user/ChangePassword`));
+const LazyCharacterList = lazy(() => import(`@pages/user/CharacterList`));
+const LazyForgotPassword = lazy(() => import(`@pages/user/ForgotPassword`));
+const LazyForgotUserId = lazy(() => import(`@pages/user/ForgotUserId`));
+const LazyProfile = lazy(() => import(`@pages/user/Profile`));
+const LazyResetPassword = lazy(() => import(`@pages/user/ResetPassword`));
+const LazySignUp = lazy(() => import(`@pages/user/SignUp`));
+const LazyWithdrawal = lazy(() => import(`@pages/user/Withdrawal`));
 
 const MainRoutes = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -69,21 +68,61 @@ const MainRoutes = () => {
         path="/user/character"
       />
       <Route
-        element={isLoggedIn ? <ChangePassword /> : <Navigate to="/" />}
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            {isLoggedIn ? <LazyChangePassword /> : <Navigate to="/" />}
+          </Suspense>
+        }
         path="/user/change-password"
       />
       <Route
-        element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            {isLoggedIn ? <LazyProfile /> : <Navigate to="/" />}
+          </Suspense>
+        }
         path="/user/profile"
       />
       <Route
-        element={isLoggedIn ? <Withdrawal /> : <Navigate to="/" />}
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            {isLoggedIn ? <LazyWithdrawal /> : <Navigate to="/" />}
+          </Suspense>
+        }
         path="/user/withdrawal"
       />
-      <Route element={<ForgotPassword />} path="/user/forgot-password" />
-      <Route element={<ForgotUserId />} path="/user/forgot-userid" />
-      <Route element={<SignUp />} path="/user/signup" />
-      <Route element={<ResetPassword />} path="/user/reset-password/:token" />
+      <Route
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyForgotPassword />
+          </Suspense>
+        }
+        path="/user/forgot-password"
+      />
+      <Route
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyForgotUserId />
+          </Suspense>
+        }
+        path="/user/forgot-userid"
+      />
+      <Route
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazySignUp />
+          </Suspense>
+        }
+        path="/user/signup"
+      />
+      <Route
+        element={
+          <Suspense fallback={<div>Loading...</div>}>
+            <LazyResetPassword />
+          </Suspense>
+        }
+        path="/user/reset-password/:token"
+      />
 
       {/* 게시판 메뉴 */}
       <Route

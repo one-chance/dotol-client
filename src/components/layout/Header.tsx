@@ -16,12 +16,12 @@ const btnCSS: CSSObject = {
   height: `42px`,
 };
 
-const tab: { [key: string]: string } = {
-  costume: `코디`,
-  db: `도감`,
-  content: `콘텐츠`,
-  calculator: `계산기`,
-  board: `게시판`,
+const menus: { [key: string]: string } = {
+  costume: `| 코디`,
+  db: `| 도감`,
+  content: `| 콘텐츠`,
+  calculator: `| 계산기`,
+  board: `| 게시판`,
   user: ``,
 };
 
@@ -73,11 +73,11 @@ export default () => {
 
   useEffect(() => {
     const mainmenu = location.pathname.split(`/`)[1];
-    setSelectedMenu(mainmenu ?? ``);
+    setSelectedMenu(menus[mainmenu]);
 
-    document.title = `바람의나라 도톨 ${
-      mainmenu === `user` ? `` : `| ${tab[mainmenu]}`
-    }`;
+    if (mainmenu !== ``) {
+      document.title = `바람의나라 도톨 ${menus[mainmenu]}`;
+    }
 
     setShowLogin(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -136,7 +136,11 @@ export default () => {
                   onMouseEnter={openTotalMenu}
                 >
                   <Text
-                    color={selectedMenu === menu ? Colors.primary : Colors.grey}
+                    color={
+                      selectedMenu === `| ${menu}`
+                        ? Colors.primary
+                        : Colors.grey
+                    }
                     css={{ fontSize: `18px`, letterSpacing: `=1px` }}
                     medium
                   >

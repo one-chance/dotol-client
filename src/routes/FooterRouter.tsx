@@ -1,13 +1,13 @@
 import { Footer, FooterMobile } from '@components/layout';
-import { useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 import { Route, Routes } from 'react-router-dom';
 
 export default () => {
-  const { width } = useWindowSize();
+  const isMobile = useResponsive(400);
 
   return (
     <Routes>
-      <Route element={width > 400 ? <Footer /> : <FooterMobile />} path="/*" />
+      <Route element={isMobile ? <FooterMobile /> : <Footer />} path="/*" />
     </Routes>
   );
 };

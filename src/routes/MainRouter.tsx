@@ -1,16 +1,16 @@
-import { useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 
 import MainRoutes from './MainRoutes';
 
 const MainRouter = () => {
-  const { width } = useWindowSize();
+  const isMobile = useResponsive(1040);
 
   return (
     <main
       style={{
         display: `flex`,
-        marginTop: width > 1080 ? `80px` : `60px`,
-        minHeight: width > 1080 ? `calc(100vh - 128px)` : `calc(100vh - 108px)`,
+        marginTop: isMobile ? `60px` : `80px`,
+        flex: 1,
       }}
     >
       <MainRoutes />

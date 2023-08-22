@@ -1,16 +1,13 @@
 import { Header, HeaderMobile } from '@components/layout';
-import { useWindowSize } from '@utils/hooks';
+import { useResponsive } from '@utils/hooks';
 import { Route, Routes } from 'react-router-dom';
 
 export default () => {
-  const { width } = useWindowSize();
+  const isMobile = useResponsive(1040);
 
   return (
     <Routes>
-      <Route
-        element={width >= 1040 ? <Header /> : <HeaderMobile />}
-        path="/*"
-      />
+      <Route element={isMobile ? <HeaderMobile /> : <Header />} path="/*" />
     </Routes>
   );
 };
