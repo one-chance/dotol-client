@@ -1,13 +1,6 @@
 import { Suspense, lazy } from 'react';
 
-import {
-  FreePost,
-  ServerBoard,
-  TipBoard,
-  VideoBoard,
-  WritePost,
-  EditPost,
-} from '@pages/board';
+import { FlexView, Text } from '@components/common';
 import {
   Ability,
   Calendar,
@@ -36,22 +29,34 @@ import {
 } from '@pages/db';
 import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
 import { Auction, TradeBoard } from '@pages/trade';
+import {
+  ChangePassword,
+  CharacterList,
+  ForgotUserId,
+  ForgotPassword,
+  Profile,
+  ResetPassword,
+  SignUp,
+  Withdrawal,
+} from '@pages/user';
 import { isLoggedInState } from '@states/login';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 // board 메뉴
 const LazyFreeBoard = lazy(() => import(`@pages/board/FreeBoard`));
+const LazyFreePost = lazy(() => import(`@pages/board/FreePost`));
+const LazyTipBoard = lazy(() => import(`@pages/board/TipBoard`));
+const LazyServerBoard = lazy(() => import(`@pages/board/ServerBoard`));
+const LazyVideoBoard = lazy(() => import(`@pages/board/VideoBoard`));
+const LazyEditPost = lazy(() => import(`@pages/board/EditPost`));
+const LazyWritePost = lazy(() => import(`@pages/board/WritePost`));
 
-// user 메뉴
-const LazyChangePassword = lazy(() => import(`@pages/user/ChangePassword`));
-const LazyCharacterList = lazy(() => import(`@pages/user/CharacterList`));
-const LazyForgotPassword = lazy(() => import(`@pages/user/ForgotPassword`));
-const LazyForgotUserId = lazy(() => import(`@pages/user/ForgotUserId`));
-const LazyProfile = lazy(() => import(`@pages/user/Profile`));
-const LazyResetPassword = lazy(() => import(`@pages/user/ResetPassword`));
-const LazySignUp = lazy(() => import(`@pages/user/SignUp`));
-const LazyWithdrawal = lazy(() => import(`@pages/user/Withdrawal`));
+const LoadingFallback = () => (
+  <FlexView center>
+    <Text>Loading...</Text>
+  </FlexView>
+);
 
 const MainRoutes = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -60,87 +65,85 @@ const MainRoutes = () => {
     <Routes>
       {/* 사용자 메뉴 */}
       <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            {isLoggedIn ? <LazyCharacterList /> : <Navigate to="/" />}
-          </Suspense>
-        }
+        element={isLoggedIn ? <CharacterList /> : <Navigate to="/" />}
         path="/user/character"
       />
       <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            {isLoggedIn ? <LazyChangePassword /> : <Navigate to="/" />}
-          </Suspense>
-        }
+        element={isLoggedIn ? <ChangePassword /> : <Navigate to="/" />}
         path="/user/change-password"
       />
       <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            {isLoggedIn ? <LazyProfile /> : <Navigate to="/" />}
-          </Suspense>
-        }
+        element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
         path="/user/profile"
       />
       <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            {isLoggedIn ? <LazyWithdrawal /> : <Navigate to="/" />}
-          </Suspense>
-        }
+        element={isLoggedIn ? <Withdrawal /> : <Navigate to="/" />}
         path="/user/withdrawal"
       />
-      <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <LazyForgotPassword />
-          </Suspense>
-        }
-        path="/user/forgot-password"
-      />
-      <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <LazyForgotUserId />
-          </Suspense>
-        }
-        path="/user/forgot-userid"
-      />
-      <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <LazySignUp />
-          </Suspense>
-        }
-        path="/user/signup"
-      />
-      <Route
-        element={
-          <Suspense fallback={<div>Loading...</div>}>
-            <LazyResetPassword />
-          </Suspense>
-        }
-        path="/user/reset-password/:token"
-      />
+      <Route element={<ForgotPassword />} path="/user/forgot-password" />
+      <Route element={<ForgotUserId />} path="/user/forgot-userid" />
+      <Route element={<SignUp />} path="/user/signup" />
+      <Route element={<ResetPassword />} path="/user/reset-password/:token" />
 
       {/* 게시판 메뉴 */}
       <Route
         element={
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<LoadingFallback />}>
             <LazyFreeBoard />
           </Suspense>
         }
         path="/board/free"
       />
-      <Route element={<FreePost />} path="/board/free/post/:postId" />
-      <Route element={<TipBoard />} path="/board/tip" />
-      <Route element={<VideoBoard />} path="/board/video" />
-      <Route element={<TradeBoard />} path="/board/trade" />
-      <Route element={<ServerBoard />} path="/board/server" />
+      <Route
+        element={
+          <Suspense fallback={<LoadingFallback />}>
+            <LazyFreePost />
+          </Suspense>
+        }
+        path="/board/free/post/:postId"
+      />
+      <Route
+        element={
+          <Suspense fallback={<LoadingFallback />}>
+            <LazyTipBoard />
+          </Suspense>
+        }
+        path="/board/tip"
+      />
+      <Route
+        element={
+          <Suspense fallback={<LoadingFallback />}>
+            <LazyVideoBoard />
+          </Suspense>
+        }
+        path="/board/video"
+      />
 
-      <Route element={<WritePost />} path="/board/:boardId/write" />
-      <Route element={<EditPost />} path="/board/:boardId/edit/:postId" />
+      <Route
+        element={
+          <Suspense fallback={<LoadingFallback />}>
+            <LazyServerBoard />
+          </Suspense>
+        }
+        path="/board/server"
+      />
+      <Route element={<TradeBoard />} path="/board/trade" />
+      <Route
+        element={
+          <Suspense fallback={<LoadingFallback />}>
+            <LazyWritePost />
+          </Suspense>
+        }
+        path="/board/:boardId/write"
+      />
+      <Route
+        element={
+          <Suspense fallback={<LoadingFallback />}>
+            <LazyEditPost />
+          </Suspense>
+        }
+        path="/board/:boardId/edit/:postId"
+      />
 
       {/* 코디 메뉴 */}
       <Route element={<Clothes />} path="/costume/list" />
