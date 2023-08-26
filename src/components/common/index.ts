@@ -5,6 +5,7 @@ export { Form } from './form';
 export { Icon } from './icon';
 export { Image } from './image';
 export { Checkbox, Input, type InputProps } from './input';
+export { Spinner } from './spinner';
 export { Svg } from './svg';
 export { Text, TextArea, TextField, type TextProps } from './text';
 export {
