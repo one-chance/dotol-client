@@ -19,9 +19,6 @@ export default () => {
         <Text small={isMobile} bold>
           8월 신규 치장
         </Text>
-        {/* <Text small={!isMobile} xSmall={isMobile}>
-          입어보기
-        </Text> */}
       </FlexView>
 
       <FlexView gap={10} fill>
@@ -30,8 +27,8 @@ export default () => {
             멋진의상재봉틀 - 자체발광
           </Text>
           <FlexView content="center" items="end" fill row wrap>
-            <Image src="/1.gif" />
-            <Image src="/2.gif" />
+            <Image alt="이미지1" height={140} src="/1.gif" width={120} />
+            <Image alt="이미지2" height={140} src="/2.gif" width={120} />
           </FlexView>
         </FlexView>
 
@@ -40,7 +37,7 @@ export default () => {
             의상수선가위 - 이매망량
           </Text>
           <FlexView center fill row wrap>
-            <Image css={{ maxWidth: `332px` }} src="/3.png" />
+            <Image alt="이미지3" height={155} src="/3.png" width={332} />
           </FlexView>
         </FlexView>
       </FlexView>

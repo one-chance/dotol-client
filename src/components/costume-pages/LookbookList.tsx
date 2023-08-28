@@ -85,7 +85,12 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
         ))}
       </FlexView>
 
-      <FlexView content="end" gap={20} items="center" row>
+      <FlexView
+        content={isMobile ? `center` : `end`}
+        gap={20}
+        items="center"
+        row
+      >
         <Button
           aria-label="초기화"
           border={Colors.red}

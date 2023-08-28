@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 
-import { FlexView, Text } from '@components/common';
+import { Spinner } from '@components/common';
 import {
   Ability,
   Calendar,
@@ -43,7 +43,7 @@ import { isLoggedInState } from '@states/login';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
-// board 메뉴
+// 게시판 메뉴
 const LazyFreeBoard = lazy(() => import(`@pages/board/FreeBoard`));
 const LazyFreePost = lazy(() => import(`@pages/board/FreePost`));
 const LazyTipBoard = lazy(() => import(`@pages/board/TipBoard`));
@@ -52,11 +52,19 @@ const LazyVideoBoard = lazy(() => import(`@pages/board/VideoBoard`));
 const LazyEditPost = lazy(() => import(`@pages/board/EditPost`));
 const LazyWritePost = lazy(() => import(`@pages/board/WritePost`));
 
-const LoadingFallback = () => (
-  <FlexView center>
-    <Text>Loading...</Text>
-  </FlexView>
+// 콘텐츠 메뉴
+const LazyBodyReinforceAbility = lazy(
+  () => import(`@pages/content/BodyReinforceAbility`),
 );
+const LazyBodyReinforceBonus = lazy(
+  () => import(`@pages/content/BodyReinforceBonus`),
+);
+const LazyBodyReinforceRecipe = lazy(
+  () => import(`@pages/content/BodyReinforceRecipe`),
+);
+const LazyAdventure = lazy(() => import(`@pages/content/Adventure`));
+const LazyArcheology = lazy(() => import(`@pages/content/Archeology`));
+const LazyAchievement = lazy(() => import(`@pages/content/Achievement`));
 
 const MainRoutes = () => {
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -88,7 +96,7 @@ const MainRoutes = () => {
       {/* 게시판 메뉴 */}
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyFreeBoard />
           </Suspense>
         }
@@ -96,7 +104,7 @@ const MainRoutes = () => {
       />
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyFreePost />
           </Suspense>
         }
@@ -104,7 +112,7 @@ const MainRoutes = () => {
       />
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyTipBoard />
           </Suspense>
         }
@@ -112,7 +120,7 @@ const MainRoutes = () => {
       />
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyVideoBoard />
           </Suspense>
         }
@@ -121,7 +129,7 @@ const MainRoutes = () => {
 
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyServerBoard />
           </Suspense>
         }
@@ -130,7 +138,7 @@ const MainRoutes = () => {
       <Route element={<TradeBoard />} path="/board/trade" />
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyWritePost />
           </Suspense>
         }
@@ -138,7 +146,7 @@ const MainRoutes = () => {
       />
       <Route
         element={
-          <Suspense fallback={<LoadingFallback />}>
+          <Suspense fallback={<Spinner />}>
             <LazyEditPost />
           </Suspense>
         }
@@ -165,19 +173,52 @@ const MainRoutes = () => {
       <Route element={<SkillAbility />} path="/db/skill-ability" />
 
       {/* 콘텐츠 메뉴 */}
-      <Route element={<Achievement />} path="/content/achievement" />
-      <Route element={<Adventure />} path="/content/adventure" />
-      <Route element={<Archeology />} path="/content/archeology" />
       <Route
-        element={<BodyReinforceAbility />}
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LazyAchievement />
+          </Suspense>
+        }
+        path="/content/achievement"
+      />
+      <Route
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LazyAdventure />
+          </Suspense>
+        }
+        path="/content/adventure"
+      />
+      <Route
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LazyArcheology />
+          </Suspense>
+        }
+        path="/content/archeology"
+      />
+      <Route
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LazyBodyReinforceAbility />
+          </Suspense>
+        }
         path="/content/body-reinforce/ability"
       />
       <Route
-        element={<BodyReinforceBonus />}
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LazyBodyReinforceBonus />
+          </Suspense>
+        }
         path="/content/body-reinforce/bonus"
       />
       <Route
-        element={<BodyReinforceRecipe />}
+        element={
+          <Suspense fallback={<Spinner />}>
+            <LazyBodyReinforceRecipe />
+          </Suspense>
+        }
         path="/content/body-reinforce/recipe"
       />
 
