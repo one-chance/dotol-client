@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 import { Button, FlexView, Link, Text } from '@components/common';
 import { Board, IPost } from '@interfaces/board';
 import { Colors } from '@styles/system';
@@ -13,20 +11,12 @@ type PostSummaryProps = {
 };
 
 export default ({ post, page, board, isMobile }: PostSummaryProps) => {
-  const [showUserModal, setShowUserModal] = useState(false);
-
-  const openUserModal = () => setShowUserModal(true);
-  const closeUserModal = () => setShowUserModal(false);
-
   const desktop = (
     <FlexView
       content="between"
       css={{
         borderBottom: `1px solid lightgray`,
         minHeight: `40px`,
-        ':hover': {
-          backgroundColor: `#F4F4F4`,
-        },
       }}
       items="center"
       row
@@ -44,47 +34,51 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
           to={`/${board}/${post.index}`}
         >
           <FlexView gap={4} items="center" row>
+            <Text color={Colors.red} css={{ minWidth: `40px` }} semiBold small>
+              [공지]
+            </Text>
+
             <Text
+              color={Colors.red}
               css={{
                 maxWidth: `calc(100vw - 340px)`,
                 overflow: `hidden`,
                 whiteSpace: `nowrap`,
                 textOverflow: `ellipsis`,
                 wordBreak: `break-all`,
-                ':hover': {
-                  color: Colors.purple,
-                  textDecoration: `underline`,
-                  textUnderlinePosition: `under`,
-                },
               }}
               small
             >
               {post.title}
             </Text>
-
-            {post.commentCount !== 0 && (
-              <Text color={Colors.purple} semiBold small>
-                {`[${post.commentCount}]`}
-              </Text>
-            )}
           </FlexView>
         </Link>
       </FlexView>
 
-      <Button
+      <Link
         aria-label="작성자"
-        css={{ minWidth: `140px`, padding: `0 8px` }}
-        onClick={openUserModal}
+        css={{ minWidth: `140px`, padding: `0 8px`, textAlign: `center` }}
+        to="/freeboard?page=1&search=writer,띠용@GM"
       >
-        <Text center small>
+        <Text color={Colors.red} small>
           {post.writer.character}
         </Text>
-      </Button>
+      </Link>
 
-      <Text css={{ minWidth: `80px`, padding: `0 8px` }} center small>
+      <Text
+        color={Colors.red}
+        css={{ minWidth: `80px`, padding: `0 8px` }}
+        center
+        small
+      >
         {post.recommenders.length}
       </Text>
-      <Text css={{ minWidth: `80px`, padding: `0 8px` }} center small>
+      <Text
+        color={Colors.red}
+        css={{ minWidth: `80px`, padding: `0 8px` }}
+        center
+        small
+      >
         {convertDateFormat(post.createdAt)}
       </Text>
     </FlexView>
@@ -102,7 +96,12 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
     >
       <Link aria-label="게시물" state={{ page }} to={`/${board}/${post.index}`}>
         <FlexView gap={4} items="center" row>
+          <Text color={Colors.red} css={{ minWidth: `40px` }} semiBold small>
+            [공지]
+          </Text>
+
           <Text
+            color={Colors.red}
             css={{
               maxWidth: `calc(100vw - 60px)`,
               overflow: `hidden`,
@@ -115,22 +114,22 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
           >
             {post.title}
           </Text>
-
-          {post.commentCount !== 0 && (
-            <Text color={Colors.purple} semiBold small>
-              {`[${post.commentCount}]`}
-            </Text>
-          )}
         </FlexView>
       </Link>
 
       <FlexView gap={8} items="center" row>
         <Button aria-label="작성자">
-          <Text xSmall>{post.writer.character}</Text>
+          <Text color={Colors.red} xSmall>
+            {post.writer.character}
+          </Text>
         </Button>
 
-        <Text xSmall>추천{post.recommenders.length}</Text>
-        <Text xSmall>{convertDateFormat(post.createdAt)}</Text>
+        <Text color={Colors.red} xSmall>
+          추천{post.recommenders.length}
+        </Text>
+        <Text color={Colors.red} xSmall>
+          {convertDateFormat(post.createdAt)}
+        </Text>
       </FlexView>
     </FlexView>
   );

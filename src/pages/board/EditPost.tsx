@@ -11,14 +11,20 @@ import {
 } from '@apis/board';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Toast } from '@components/toast';
-import { Category, IPost } from '@interfaces/board';
+import { Board, IPost } from '@interfaces/board';
 import { Colors } from '@styles/system';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor } from '@toast-ui/react-editor';
 import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const CATEGORES = [`free`, `tip`, `video`, `sever`, `trade`];
+const CATEGORES = [
+  `freeboard`,
+  `tipboard`,
+  `videoboard`,
+  `severboard`,
+  `tradeboard`,
+];
 
 const toolbarItems = [
   [`heading`, `bold`, `italic`, `strike`],
@@ -31,7 +37,7 @@ export default () => {
   const navigate = useNavigate();
   const location = useLocation();
   const post = (location.state as IPost) ?? null;
-  const category = location.pathname.split(`/`)[2] as Category;
+  const board = location.pathname.split(`/`)[2] as Board;
 
   const isMobile = useResponsive(800);
   const contentRef = useRef<Editor>(null);
@@ -54,11 +60,11 @@ export default () => {
   };
 
   const uploadImage = async (blob: Blob) => {
-    const key = `image/${category}/${post._id}/${new Date().getTime()}.${
+    const key = `image/${board}/${post._id}/${new Date().getTime()}.${
       blob.type.split(`/`)[1]
     }`;
 
-    const res = await requestPreSignedPostUrl(category, key);
+    const res = await requestPreSignedPostUrl(board, key);
     if (res.statusCode === 200) {
       const upload = await uploadPreSignedPostUrl(
         res.data.url,
@@ -86,19 +92,19 @@ export default () => {
 
   const editPost = () => {
     updatePost(
-      category,
+      board,
       post.index,
       title,
       contentRef.current?.getInstance().getHTML() || ``,
     ).then(res => {
       if (res.statusCode === 200) {
-        navigate(`/board/free/post/postId`);
+        navigate(`/freeboard/postId`);
       }
     });
   };
 
   useEffect(() => {
-    if (!CATEGORES.includes(category) || post === null) {
+    if (!CATEGORES.includes(board) || post === null) {
       navigate(`/`);
     } else {
       setTitle(post.title);

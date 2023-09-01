@@ -21,9 +21,10 @@ export default ({ color, onSubmit }: CommentProps) => {
 
   return (
     <FlexView
-      css={{ padding: `10px`, backgroundColor: color || undefined }}
+      css={{ padding: `10px`, backgroundColor: color }}
       gap={4}
       items="center"
+      fill
       row
     >
       <FlexView fill>

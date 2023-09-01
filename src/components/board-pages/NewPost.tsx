@@ -11,8 +11,7 @@ import {
 } from '@apis/board';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Toast } from '@components/toast';
-import { CATEGORES } from '@constants/board';
-import { Category } from '@interfaces/board';
+import { Board } from '@interfaces/board';
 import { Colors } from '@styles/system';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor } from '@toast-ui/react-editor';
@@ -21,7 +20,7 @@ import ObjectId from 'bson-objectid';
 import { useNavigate } from 'react-router-dom';
 
 type NewPostProps = {
-  category: Category;
+  board: Board;
 };
 
 const postId = new ObjectId().toHexString();
@@ -33,7 +32,7 @@ const toolbarItems = [
   [`table`, `link`, `image`],
 ];
 
-export default ({ category }: NewPostProps) => {
+export default ({ board }: NewPostProps) => {
   const navigate = useNavigate();
   const isMobile = useResponsive(800);
   const contentRef = useRef<Editor>(null);
@@ -57,11 +56,11 @@ export default ({ category }: NewPostProps) => {
   };
 
   const uploadImage = async (blob: Blob) => {
-    const key = `image/${category}/${postId}/${new Date().getTime()}.${
+    const key = `image/${board}/${postId}/${new Date().getTime()}.${
       blob.type.split(`/`)[1]
     }`;
 
-    const res = await requestPreSignedPostUrl(category, key);
+    const res = await requestPreSignedPostUrl(board, key);
     if (res.statusCode === 200) {
       const upload = await uploadPreSignedPostUrl(
         res.data.url,
@@ -89,13 +88,13 @@ export default ({ category }: NewPostProps) => {
 
   const uploadPost = () => {
     createPost(
-      category,
+      board,
       postId,
       title,
       contentRef.current?.getInstance().getHTML() || ``,
     ).then(res => {
       if (res.statusCode === 200) {
-        navigate(`/board/free?page=1`);
+        navigate(`/freeboard?page=1`);
       }
     });
   };
@@ -103,7 +102,7 @@ export default ({ category }: NewPostProps) => {
   return (
     <FlexView gap={20}>
       <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-        [{CATEGORES[category]}] 게시물 작성
+        게시물 작성
       </Text>
 
       <FlexView gap={10}>

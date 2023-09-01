@@ -1,7 +1,8 @@
+import { Board } from '@interfaces/board';
 import { getAccessToken } from '@utils/common';
 
 export const getPostList = async (
-  category: string,
+  board: string,
   page: number,
   searchType: string,
   searchKeyword: string,
@@ -9,7 +10,7 @@ export const getPostList = async (
   const res = await fetch(
     `${
       import.meta.env.VITE_API_SERVER
-    }/${category}board/posts?page=${page}&search=${searchType},${searchKeyword}`,
+    }/${board}/posts?page=${page}&search=${searchType},${searchKeyword}`,
     {
       method: `GET`,
       headers: {
@@ -22,9 +23,24 @@ export const getPostList = async (
   return data;
 };
 
-export const getPost = async (category: string, postId: number) => {
+export const getAnnouncementList = async (board: string) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/posts/${postId}`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/announcements`,
+    {
+      method: `GET`,
+      headers: {
+        'Content-Type': `application/json`,
+      },
+    },
+  );
+
+  const data = await res.json();
+  return data;
+};
+
+export const getPost = async (board: string, postId: number) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}`,
     {
       method: `GET`,
       headers: {
@@ -38,39 +54,36 @@ export const getPost = async (category: string, postId: number) => {
 };
 
 export const createPost = async (
-  category: string,
+  board: string,
   _id: string,
   title: string,
   content: string,
 ) => {
-  const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/posts`,
-    {
-      method: `POST`,
-      headers: {
-        'Content-Type': `application/json`,
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-      body: JSON.stringify({
-        _id,
-        title,
-        content,
-      }),
+  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/${board}/posts`, {
+    method: `POST`,
+    headers: {
+      'Content-Type': `application/json`,
+      Authorization: `Bearer ${getAccessToken()}`,
     },
-  );
+    body: JSON.stringify({
+      _id,
+      title,
+      content,
+    }),
+  });
 
   const data = await res.json();
   return data;
 };
 
 export const updatePost = async (
-  category: string,
+  board: string,
   index: number,
   title: string,
   content: string,
 ) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/posts/${index}`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/posts/${index}`,
     {
       method: `PATCH`,
       headers: {
@@ -88,9 +101,9 @@ export const updatePost = async (
   return data;
 };
 
-export const deletePost = async (category: string, index: number) => {
+export const deletePost = async (board: string, index: number) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/posts/${index}`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/posts/${index}`,
     {
       method: `DELETE`,
       headers: {
@@ -104,16 +117,29 @@ export const deletePost = async (category: string, index: number) => {
   return data;
 };
 
-export const recommendPost = async (category: string, postId: number) => {
+export const recommendPost = async (board: string, postId: number) => {
   const res = await fetch(
-    `${
-      import.meta.env.VITE_API_SERVER
-    }/${category}board/posts/${postId}/recommend`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}/recommends`,
     {
       method: `PATCH`,
       headers: {
         'Content-Type': `application/json`,
         Authorization: `Bearer ${getAccessToken()}`,
+      },
+    },
+  );
+
+  const data = await res.json();
+  return data;
+};
+
+export const viewPost = async (board: string, postId: number) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/${board}/posts/${postId}/views`,
+    {
+      method: `PATCH`,
+      headers: {
+        'Content-Type': `application/json`,
       },
     },
   );
@@ -123,40 +149,14 @@ export const recommendPost = async (category: string, postId: number) => {
 };
 
 export const createComment = async (
-  category: string,
+  board: string,
   postId: number,
   content: string,
 ) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/${postId}/comments`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}/comments`,
     {
       method: `POST`,
-      headers: {
-        'Content-Type': `application/json`,
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-      body: JSON.stringify({
-        content,
-      }),
-    },
-  );
-
-  const data = await res.json();
-  return data;
-};
-
-export const updateComment = async (
-  category: string,
-  postId: number,
-  commentId: number,
-  content: string,
-) => {
-  const res = await fetch(
-    `${
-      import.meta.env.VITE_API_SERVER
-    }/${category}board/${postId}/comments/${commentId}`,
-    {
-      method: `PATCH`,
       headers: {
         'Content-Type': `application/json`,
         Authorization: `Bearer ${getAccessToken()}`,
@@ -172,42 +172,20 @@ export const updateComment = async (
 };
 
 export const deleteComment = async (
-  category: string,
+  board: string,
   postId: number,
   commentId: number,
 ) => {
   const res = await fetch(
-    `${
-      import.meta.env.VITE_API_SERVER
-    }/${category}board/${postId}/comments/${commentId}`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}/comments`,
     {
-      method: `DELETE`,
-      headers: {
-        'Content-Type': `application/json`,
-        Authorization: `Bearer ${getAccessToken()}`,
-      },
-    },
-  );
-
-  const data = await res.json();
-  return data;
-};
-
-export const createReply = async (
-  category: string,
-  postId: number,
-  content: string,
-) => {
-  const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/${postId}/replies`,
-    {
-      method: `POST`,
+      method: `PATCH`,
       headers: {
         'Content-Type': `application/json`,
         Authorization: `Bearer ${getAccessToken()}`,
       },
       body: JSON.stringify({
-        content,
+        commentId,
       }),
     },
   );
@@ -216,14 +194,49 @@ export const createReply = async (
   return data;
 };
 
-export const increaseViews = async (category: string, postId: number) => {
+export const createReply = async (
+  board: string,
+  postId: number,
+  commentId: number,
+  content: string,
+) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/posts/${postId}/views`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}/replies`,
+    {
+      method: `POST`,
+      headers: {
+        'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+      body: JSON.stringify({
+        content,
+        commentId,
+      }),
+    },
+  );
+
+  const data = await res.json();
+  return data;
+};
+
+export const deleteReply = async (
+  board: string,
+  postId: number,
+  commentId: number,
+  replyId: number,
+) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}/replies`,
     {
       method: `PATCH`,
       headers: {
         'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
+      body: JSON.stringify({
+        commentId,
+        replyId,
+      }),
     },
   );
 
@@ -232,11 +245,11 @@ export const increaseViews = async (category: string, postId: number) => {
 };
 
 export const requestPreSignedPostUrl = async (
-  category: string,
+  board: string,
   fileName: string,
 ) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${category}board/posts/presigned-url`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/presigned-url`,
     {
       method: `POST`,
       headers: {

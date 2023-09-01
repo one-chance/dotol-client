@@ -1,4 +1,9 @@
-export type Category = 'free' | 'tip' | 'video' | 'server' | 'trade';
+export type Board =
+  | 'freeboard'
+  | 'tipboard'
+  | 'videoboard'
+  | 'serverboard'
+  | 'tradeboard';
 
 export type IServer = '연' | '호동' | '하자' | '유리' | '무휼' | '진';
 
@@ -16,6 +21,7 @@ export interface IPost {
   updatedAt: string;
   server?: IServer;
   video?: string;
+  isPinned?: boolean;
 }
 
 export interface IWriter {

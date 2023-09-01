@@ -1,15 +1,13 @@
 import { useState } from 'react';
 
 import { createComment } from '@apis/board';
+import { CommentList, NewComment } from '@components/board-pages';
 import { FlexView } from '@components/common';
 import { Toast } from '@components/toast';
 import { IComment } from '@interfaces/board';
 import { showLoginState } from '@states/login';
 import { Colors } from '@styles/system';
 import { useSetRecoilState } from 'recoil';
-
-import Comment from './Comment';
-import NewComment from './NewComment';
 
 type PostCommentProps = {
   comments: IComment[];
@@ -18,6 +16,7 @@ type PostCommentProps = {
 export default ({ comments }: PostCommentProps) => {
   const [grade, setGrade] = useState(0);
   const setShowLogin = useSetRecoilState(showLoginState);
+
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessge] = useState(``);
 
@@ -43,16 +42,16 @@ export default ({ comments }: PostCommentProps) => {
   };
 
   return (
-    <>
-      <FlexView css={{ paddingTop: `10px` }}>
-        {comments?.map((comment: IComment) => (
-          <Comment key={comment.index} comment={comment} />
-        ))}
-      </FlexView>
-
+    <FlexView
+      css={{ border: `1px solid lightgray`, borderWidth: `1px 1px 0 1px` }}
+    >
       <NewComment color={Colors.whiteGrey} onSubmit={submitComment} />
 
+      {comments?.map((comment: IComment) => (
+        <CommentList key={comment.index} comment={comment} />
+      ))}
+
       {showToast && <Toast message={toastMessage} type="error" />}
-    </>
+    </FlexView>
   );
 };

@@ -1,26 +1,28 @@
 import { useEffect, useState } from 'react';
 
-import { getPostList } from '@apis/board';
-import { BoardButton, PostSummary } from '@components/board-pages';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { getAnnouncementList, getPostList } from '@apis/board';
+import { PostAnnouncement, PostSummary } from '@components/board-pages';
+import { Button, FlexView, Input, Link, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
 import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/board';
 import { IPost } from '@interfaces/board';
 import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const WIDTHS = [`60`, `auto`, `140`, `60`, `60`, `60`];
+const WIDTHS = [`auto`, `140`, `80`, `80`];
 
 export default () => {
   const navigate = useNavigate();
-  const isMobile = useResponsive(800);
+  const location = useLocation();
+  const isMobile = useResponsive(600);
 
   const [searchType, setSearchType] = useState(0);
   const [searchKeyword, setSearchKeyword] = useState(``);
 
   const [postList, setPostList] = useState<IPost[]>([]);
+  const [announcementList, setAnnouncementList] = useState<IPost[]>([]);
 
   const selectSearchType = (id: number) => {
     setSearchType(id);
@@ -32,19 +34,31 @@ export default () => {
 
   const searchArticle = () => {
     if (searchKeyword === ``) {
-      navigate(`/board/free?page=1`, { replace: true });
+      navigate(`/freeboard?page=1`, { replace: true });
       return;
     }
 
     navigate(
-      `/board/free?page=1&search=${SEARCH_TYPES_EN[searchType]},${searchKeyword}`,
+      `/freeboard?page=1&search=${SEARCH_TYPES_EN[searchType]},${searchKeyword}`,
     );
   };
 
   useEffect(() => {
-    getPostList(`free`, 1, ``, ``).then(res => {
+    //  url 변경되면 새로 데이터 받아와야 함 react-qeury
+  }, [location]);
+
+  useEffect(() => {
+    document.title = `바람의나라 도톨 | 자유게시판`;
+
+    getPostList(`freeboard`, 1, ``, ``).then(res => {
       if (res.statusCode === 200) {
         setPostList(res.data.data);
+      }
+    });
+
+    getAnnouncementList(`freeboard`).then(res => {
+      if (res.statusCode === 200) {
+        setAnnouncementList(res.data);
       }
     });
   }, []);
@@ -52,29 +66,39 @@ export default () => {
   return (
     <FlexView
       css={{
-        maxWidth: `800px`,
+        maxWidth: `720px`,
         width: `100%`,
         margin: isMobile ? `20px auto` : `60px auto`,
       }}
+      gap={12}
     >
-      <Text center={isMobile} xLarge={isMobile} xxLarge={!isMobile} bold>
-        자유 게시판
-      </Text>
+      <FlexView content="between" css={{ padding: `0 8px` }} items="center" row>
+        <Text large={!isMobile} bold>
+          자유 게시판
+        </Text>
+
+        <Link
+          css={{
+            color: Colors.purple,
+            fontWeight: 600,
+            fontSize: isMobile ? `14px` : `16px`,
+          }}
+          to="/freeboard/write"
+        >
+          글쓰기
+        </Link>
+      </FlexView>
 
       <FlexView
         css={{
           minHeight: `400px`,
-          marginTop: `20px`,
           borderTop: isMobile ? `1px solid lightgray` : undefined,
         }}
       >
         {!isMobile && (
           <FlexView
-            css={{
-              minHeight: `40px`,
-              borderTop: `1px solid ${Colors.lightGrey}`,
-              borderBottom: `1px solid ${Colors.lightGrey}`,
-            }}
+            color={Colors.primary10}
+            css={{ minHeight: `40px` }}
             items="center"
             row
           >
@@ -82,9 +106,10 @@ export default () => {
               <Text
                 key={title}
                 css={{ minWidth: `${WIDTHS[index]}px` }}
-                fill={index === 1}
+                fill={index === 0}
                 center
                 semiBold
+                small
               >
                 {title}
               </Text>
@@ -92,10 +117,20 @@ export default () => {
           </FlexView>
         )}
 
+        {announcementList?.map(announcement => (
+          <PostAnnouncement
+            key={announcement.index}
+            board="freeboard"
+            isMobile={isMobile}
+            page={1}
+            post={announcement}
+          />
+        ))}
+
         {postList?.map(post => (
           <PostSummary
             key={post.index}
-            category="free"
+            board="freeboard"
             isMobile={isMobile}
             page={1}
             post={post}
@@ -103,9 +138,7 @@ export default () => {
         ))}
       </FlexView>
 
-      <FlexView css={{ margin: `20px` }} gap={10}>
-        <BoardButton category="free" />
-
+      <FlexView gap={8}>
         <Pagination count={10} unit={10} />
 
         <FlexView gap={10} center row>

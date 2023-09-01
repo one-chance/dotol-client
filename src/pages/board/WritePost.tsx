@@ -3,15 +3,21 @@ import { useEffect } from 'react';
 
 import { NewPost } from '@components/board-pages';
 import { FlexView } from '@components/common';
-import { Category } from '@interfaces/board';
+import { Board } from '@interfaces/board';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const CATEGORES = [`free`, `tip`, `video`, `sever`, `trade`];
+const CATEGORES = [
+  `freeboard`,
+  `tipboard`,
+  `videoboard`,
+  `severboard`,
+  `tradeboard`,
+];
 
 export default () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const params = location.pathname.split(`/`)[2] as Category;
+  const params = location.pathname.split(`/`)[2] as Board;
 
   useEffect(() => {
     if (!CATEGORES.includes(params)) {
@@ -29,7 +35,7 @@ export default () => {
         margin: `60px auto`,
       }}
     >
-      <NewPost category={params} />
+      <NewPost board={params} />
     </FlexView>
   );
 };

@@ -1,16 +1,16 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import { getPostList, getPost, increaseViews } from '@apis/board';
+import { getPostList, getPost, viewPost } from '@apis/board';
 import {
   PostSummary,
-  PostButton,
   PostComment,
   PostContent,
   PostTitle,
 } from '@components/board-pages';
-import { FlexView } from '@components/common';
+import { FlexView, Text } from '@components/common';
 import { IPost } from '@interfaces/board';
+import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -23,6 +23,7 @@ export default () => {
   const location = useLocation();
   const isMobile = useResponsive(800);
   const { page } = (location.state as State) || 0;
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const [post, setPost] = useState<IPost>({
     index: 0,
@@ -42,7 +43,7 @@ export default () => {
   useEffect(() => {
     if (page === 0) return;
 
-    getPostList(`free`, page, ``, ``).then(res => {
+    getPostList(`freeboard`, page, ``, ``).then(res => {
       if (res.statusCode === 200) {
         setPostList(res.data.data);
       }
@@ -50,15 +51,15 @@ export default () => {
   }, [page]);
 
   useEffect(() => {
-    const seq = Number(location.pathname.split(`/`)[4]);
+    const seq = Number(location.pathname.split(`/`)[2]);
 
-    getPost(`free`, seq).then(res => {
+    getPost(`freeboard`, seq).then(res => {
       if (res.statusCode === 200) {
+        document.title = res.data.title;
         setPost(res.data);
-        increaseViews(`free`, res.data.index);
+        viewPost(`freeboard`, res.data.index);
       } else {
-        alert(`존재하지 않는 글입니다.`);
-        navigate(`/board/free?page=1`);
+        setIsDeleted(true);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -69,33 +70,48 @@ export default () => {
       css={{
         maxWidth: `960px`,
         width: `100%`,
-        margin: isMobile ? `auto` : `20px auto`,
+        margin: isMobile ? `0 0 40px auto` : `40px auto`,
       }}
     >
-      {post.index !== 0 && (
-        <>
-          <PostTitle category="free" isMobile={isMobile} post={post} />
-          <PostContent content={post?.content} />
-          <PostButton
-            category="free"
-            index={post.index}
-            isMobile={isMobile}
-            recommenders={post.recommenders}
-          />
+      {isDeleted && (
+        <FlexView css={{ border: `1px solid lightgray` }} center fill>
+          <Text color={Colors.grey} large={isMobile} xLarge={!isMobile} bold>
+            삭제된 게시물입니다.
+          </Text>
+        </FlexView>
+      )}
+
+      {post?.index !== 0 && (
+        <FlexView gap={20}>
+          <FlexView
+            css={{
+              border: `1px solid lightgray`,
+              borderWidth: `1px 1px 0 1px`,
+            }}
+          >
+            <PostTitle isMobile={isMobile} post={post} />
+            <PostContent board="freeboard" post={post} />
+          </FlexView>
+
           <PostComment comments={post.comments} />
 
-          <FlexView css={{ margin: `10px 0` }}>
+          <FlexView
+            css={{
+              border: `1px solid lightgray`,
+              borderWidth: `1px 1px 0 1px`,
+            }}
+          >
             {postList.map(preview => (
               <PostSummary
                 key={preview.index}
-                category="free"
+                board="freeboard"
                 isMobile={isMobile}
                 page={page}
                 post={preview}
               />
             ))}
           </FlexView>
-        </>
+        </FlexView>
       )}
     </FlexView>
   );

@@ -1,11 +1,11 @@
 export const CATEGORES = {
-  free: `자유`,
-  tip: `팁`,
-  video: `영상`,
-  server: `서버`,
-  trade: `거래`,
+  freeboard: `자유 게시판`,
+  tipboard: `팁 게시판`,
+  videoboard: `영상 게시판`,
+  serverboard: `서버 게시판`,
+  tradeboard: `거래 게시판`,
 };
 
-export const TITLES = [`번호`, `제목`, `작성자`, `조회`, `추천`, `작성일`];
+export const TITLES = [`제목`, `작성자`, `추천`, `작성일`];
 export const SEARCH_TYPES_KO = [`제목`, `내용`, `작성자`];
 export const SEARCH_TYPES_EN = [`title`, `content`, `writer`];
