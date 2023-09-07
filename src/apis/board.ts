@@ -83,7 +83,7 @@ export const updatePost = async (
   content: string,
 ) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${board}/posts/${index}`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${index}`,
     {
       method: `PATCH`,
       headers: {
@@ -103,7 +103,7 @@ export const updatePost = async (
 
 export const deletePost = async (board: string, index: number) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${board}/posts/${index}`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${index}`,
     {
       method: `DELETE`,
       headers: {
@@ -135,7 +135,7 @@ export const recommendPost = async (board: string, postId: number) => {
 
 export const viewPost = async (board: string, postId: number) => {
   const res = await fetch(
-    `${import.meta.env.VITE_API_SERVER}/${board}/posts/${postId}/views`,
+    `${import.meta.env.VITE_API_SERVER}/${board}/${postId}/views`,
     {
       method: `PATCH`,
       headers: {

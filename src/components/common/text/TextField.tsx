@@ -90,6 +90,7 @@ export default ({
           type={password ? `password` : `text`}
           value={value}
           onChange={inputText}
+          onFocus={() => setIsFocused(true)}
           onKeyDown={e => {
             if (e.key === `Enter` && onKeyDown) {
               onKeyDown();

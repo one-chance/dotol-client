@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
 import { deletePost, recommendPost } from '@apis/board';
