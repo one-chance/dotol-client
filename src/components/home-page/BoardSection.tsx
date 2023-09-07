@@ -103,7 +103,7 @@ export default () => {
       </Text>
       {/* <Link
         css={{ fontWeight: 700, fontSize: isMobile ? `14px` : `16px` }}
-        to="/board/free?page=1"
+        to="/freeboard?page=1"
       >
         게시판 최신글
       </Link> */}
@@ -119,7 +119,7 @@ export default () => {
               }),
             }}
           >
-            <Link state={{ page: 1 }} to={`/board/free/post/${post.index}`}>
+            <Link state={{ page: 1 }} to={`/freeboard/${post.index}`}>
               {post.title} [{post.commentCount}]
             </Link>
 

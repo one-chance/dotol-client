@@ -45,7 +45,7 @@ export const TOTAL_MENU = [
   //     { name: `팁 게시판`, url: `/board/tip?page=1` },
   //     {
   //       name: `자유 게시판`,
-  //       url: `/board/free?page=1`,
+  //       url: `/freeboard?page=1`,
   //     },
   //     {
   //       name: `영상 게시판`,

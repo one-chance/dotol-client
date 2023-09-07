@@ -12,8 +12,8 @@
 <url><loc>https://dotols.com/user/signup</loc></url>
 <url><loc>https://dotols.com/user/reset-password/:token</loc></url>
 
-<url><loc>https://dotols.com/board/free</loc></url>
-<url><loc>https://dotols.com/board/free/post/:postId</loc></url>
+<url><loc>https://dotols.com/freeboard</loc></url>
+<url><loc>https://dotols.com/freeboard/:postId</loc></url>
 <url><loc>https://dotols.com/board/tip</loc></url>
 <url><loc>https://dotols.com/board/video</loc></url>
 <url><loc>https://dotols.com/board/trade</loc></url>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { FlexView, Icon, Input, Text } from '@components/common';
 import { Option, Select } from '@components/select';
+import { Colors } from '@styles/system';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
@@ -47,17 +48,15 @@ export default () => {
 
   const [ability, setAbility] = useState(0);
   const [ratio, setRatio] = useState(0.32);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(`0`);
 
-  const [engraves, setEngraves] = useState<{
-    [key: string]: { 앞각: string; 뒷각: string };
-  }>({
-    주작: { 앞각: ``, 뒷각: `` },
-    백호: { 앞각: ``, 뒷각: `` },
-    청룡: { 앞각: ``, 뒷각: `` },
-    현무: { 앞각: ``, 뒷각: `` },
-    황룡: { 앞각: ``, 뒷각: `` },
-  });
+  const [engraves, setEngraves] = useState<{ 앞각: string; 뒷각: string }[]>([
+    { 앞각: ``, 뒷각: `` },
+    { 앞각: ``, 뒷각: `` },
+    { 앞각: ``, 뒷각: `` },
+    { 앞각: ``, 뒷각: `` },
+    { 앞각: ``, 뒷각: `` },
+  ]);
 
   const selectAbility = (idx: number) => {
     setAbility(idx);
@@ -65,8 +64,8 @@ export default () => {
   };
 
   const inputEngrave = (
-    type: string,
-    order: string,
+    type: number,
+    order: '앞각' | '뒷각',
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
     let temp = e.target.value.replace(/[^0-9.]/g, ``);
@@ -82,45 +81,40 @@ export default () => {
       temp = temp.slice(0, decimalIndex + 3);
     }
 
-    setEngraves({
-      ...engraves,
-      [type]: {
-        ...engraves[type],
-        [order]: temp,
-      },
-    });
+    engraves[type][order] = temp;
+    setEngraves([...engraves]);
   };
 
   useEffect(() => {
-    setTotal(
-      Number(engraves.주작.앞각) +
-        Number(engraves.주작.뒷각) +
-        Number(engraves.백호.앞각) +
-        Number(engraves.백호.뒷각) +
-        Number(engraves.청룡.앞각) +
-        Number(engraves.청룡.뒷각) +
-        Number(engraves.현무.앞각) +
-        Number(engraves.현무.뒷각) +
-        Number(engraves.황룡.앞각) +
-        Number(engraves.황룡.뒷각),
-    );
+    const tempPower =
+      Number(engraves[0].앞각) +
+      Number(engraves[0].뒷각) +
+      Number(engraves[1].앞각) +
+      Number(engraves[1].뒷각) +
+      Number(engraves[2].앞각) +
+      Number(engraves[2].뒷각) +
+      Number(engraves[3].앞각) +
+      Number(engraves[3].뒷각) +
+      Number(engraves[4].앞각) +
+      Number(engraves[4].뒷각);
+
+    setTotal(tempPower.toFixed(2));
   }, [engraves]);
 
   return (
     <FlexView
       css={{
         width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+        margin: isMobile ? `40px 0` : `60px auto`,
       }}
+      gap={20}
       items="center"
     >
-      <FlexView gap={isMobile ? 20 : 40}>
-        <FlexView
-          content="between"
-          css={{ margin: isMobile ? `0 10px` : undefined }}
-          items="center"
-          row
-        >
+      <FlexView
+        css={{ width: isMobile ? `340px` : `500px` }}
+        gap={isMobile ? 20 : 40}
+      >
+        <FlexView content="between" items="center" fill row>
           <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
             각인 수치 변환
           </Text>
@@ -159,19 +153,19 @@ export default () => {
                   aria-label="앞각"
                   placeholder="앞각"
                   readOnly={ability === 0}
-                  value={engraves.주작.앞각 || ``}
+                  value={engraves[0].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`주작`, `앞각`, e)}
+                  onChange={e => inputEngrave(0, `앞각`, e)}
                 />
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
                   readOnly={ability === 0}
-                  value={engraves.주작.뒷각 || ``}
+                  value={engraves[0].뒷각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`주작`, `뒷각`, e)}
+                  onChange={e => inputEngrave(0, `뒷각`, e)}
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
@@ -182,19 +176,19 @@ export default () => {
                   aria-label="앞각"
                   placeholder="앞각"
                   readOnly={ability === 0}
-                  value={engraves.백호.앞각 || ``}
+                  value={engraves[1].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`백호`, `앞각`, e)}
+                  onChange={e => inputEngrave(1, `앞각`, e)}
                 />
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
                   readOnly={ability === 0}
-                  value={engraves.백호.앞각 || ``}
+                  value={engraves[1].뒷각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`백호`, `뒷각`, e)}
+                  onChange={e => inputEngrave(1, `뒷각`, e)}
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
@@ -205,19 +199,19 @@ export default () => {
                   aria-label="앞각"
                   placeholder="앞각"
                   readOnly={ability === 0}
-                  value={engraves.청룡.앞각 || ``}
+                  value={engraves[2].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`청룡`, `앞각`, e)}
+                  onChange={e => inputEngrave(2, `앞각`, e)}
                 />
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
                   readOnly={ability === 0}
-                  value={engraves.청룡.뒷각 || ``}
+                  value={engraves[2].뒷각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`청룡`, `뒷각`, e)}
+                  onChange={e => inputEngrave(2, `뒷각`, e)}
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
@@ -228,19 +222,19 @@ export default () => {
                   aria-label="앞각"
                   placeholder="앞각"
                   readOnly={ability === 0}
-                  value={engraves.현무.앞각 || ``}
+                  value={engraves[3].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`현무`, `앞각`, e)}
+                  onChange={e => inputEngrave(3, `앞각`, e)}
                 />
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
                   readOnly={ability === 0}
-                  value={engraves.현무.앞각 || ``}
+                  value={engraves[3].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`현무`, `뒷각`, e)}
+                  onChange={e => inputEngrave(3, `뒷각`, e)}
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
@@ -251,19 +245,19 @@ export default () => {
                   aria-label="앞각"
                   placeholder="앞각"
                   readOnly={ability === 0}
-                  value={engraves.황룡.앞각 || ``}
+                  value={engraves[4].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`황룡`, `앞각`, e)}
+                  onChange={e => inputEngrave(4, `앞각`, e)}
                 />
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
                   readOnly={ability === 0}
-                  value={engraves.황룡.앞각 || ``}
+                  value={engraves[4].앞각 || ``}
                   width={60}
                   center
-                  onChange={e => inputEngrave(`황룡`, `뒷각`, e)}
+                  onChange={e => inputEngrave(4, `뒷각`, e)}
                 />
               </FlexView>
               <Text css={{ marginTop: `10px` }} center semiBold>
@@ -293,11 +287,7 @@ export default () => {
                 <Input
                   aria-label="앞각"
                   placeholder="앞각"
-                  value={
-                    engraves.주작.앞각 !== ``
-                      ? Math.floor(Number(engraves.주작.앞각) / ratio)
-                      : ``
-                  }
+                  value={Math.floor(Number(engraves[0].앞각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -305,6 +295,7 @@ export default () => {
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
+                  value={Math.floor(Number(engraves[0].뒷각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -317,6 +308,7 @@ export default () => {
                 <Input
                   aria-label="앞각"
                   placeholder="앞각"
+                  value={Math.floor(Number(engraves[1].앞각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -324,6 +316,7 @@ export default () => {
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
+                  value={Math.floor(Number(engraves[1].뒷각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -336,6 +329,7 @@ export default () => {
                 <Input
                   aria-label="앞각"
                   placeholder="앞각"
+                  value={Math.floor(Number(engraves[2].앞각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -343,6 +337,7 @@ export default () => {
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
+                  value={Math.floor(Number(engraves[2].뒷각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -355,6 +350,7 @@ export default () => {
                 <Input
                   aria-label="앞각"
                   placeholder="앞각"
+                  value={Math.floor(Number(engraves[3].앞각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -362,6 +358,7 @@ export default () => {
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
+                  value={Math.floor(Number(engraves[3].뒷각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -374,6 +371,7 @@ export default () => {
                 <Input
                   aria-label="앞각"
                   placeholder="앞각"
+                  value={Math.floor(Number(engraves[4].앞각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
@@ -381,18 +379,23 @@ export default () => {
                 <Input
                   aria-label="뒷각"
                   placeholder="뒷각"
+                  value={Math.floor(Number(engraves[4].앞각) / ratio) || ``}
                   width={60}
                   center
                   readOnly
                 />
               </FlexView>
               <Text css={{ marginTop: `10px` }} center semiBold>
-                합계: {Math.floor(total / ratio)}
+                합계: {Math.floor(Number(total) / ratio)}
               </Text>
             </FlexView>
           </FlexView>
         </FlexView>
       </FlexView>
+
+      <Text color={Colors.red} small={isMobile}>
+        * 능력치 종류를 선택해야 수치를 입력할 수 있습니다.
+      </Text>
     </FlexView>
   );
 };

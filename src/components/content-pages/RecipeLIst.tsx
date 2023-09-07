@@ -36,7 +36,7 @@ export default ({ isMobile }: RecipeListProps) => {
         <Select
           isMobile={isMobile}
           name={PARTS[parts]}
-          width={isMobile ? 110 : 140}
+          width={isMobile ? 120 : 140}
         >
           <Option
             selected={PARTS[parts]}

@@ -2,12 +2,13 @@ export const GOLD_POWER: { [key: string]: { power: number; max: number } } = {
   '황금돋보기 능력치': { power: 0, max: 0 },
   '방어도무시/방어도(%)': { power: 1, max: 5 },
   '체력/마력(%)': { power: 1, max: 5 },
-  '힘/민/지(%)': { power: 0.715, max: 7 },
+  '힘/민첩/지력(%)': { power: 0.715, max: 7 },
   '명중회피(%)': { power: 0.556, max: 9 },
   '방관/마치/공증/마증(%)': { power: 0.417, max: 12 },
   '타흡/마흡/피흡(%)': { power: 0.417, max: 12 },
   '시향/회향/직타(%)': { power: 0.417, max: 12 },
   '명중률/타격치/재생력(%)': { power: 0.417, max: 12 },
+  '마법수준향상(%)': { power: 0.417, max: 12 },
 };
 
 export const GOLD_POWER2: { [key: string]: { power: number; max: number } } = {

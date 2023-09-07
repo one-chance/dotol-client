@@ -35,6 +35,5 @@ export interface IComment {
   content: string;
   isDeleted: boolean;
   createdAt: string;
-  updatedAt: string;
   replies?: IComment[];
 }

@@ -12,6 +12,8 @@ export default () => {
   const [totalVisitor, setTotalVisitor] = useState(0);
 
   useEffect(() => {
+    document.title = `바람의나라 도톨`;
+
     getTodayVisitor().then(res => {
       setTodayVisitor(res);
     });

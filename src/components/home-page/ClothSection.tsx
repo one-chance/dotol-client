@@ -17,27 +17,28 @@ export default () => {
     >
       <FlexView content="between" row>
         <Text small={isMobile} bold>
-          8월 신규 치장
+          9월 신규 치장
         </Text>
       </FlexView>
 
       <FlexView gap={10} fill>
         <FlexView fill>
           <Text small={!isMobile} xSmall={isMobile} semiBold>
-            멋진의상재봉틀 - 자체발광
+            멋진의상재봉틀 - 야옹집사 의상
           </Text>
           <FlexView content="center" items="end" fill row wrap>
-            <Image alt="이미지1" height={140} src="/1.gif" width={120} />
-            <Image alt="이미지2" height={140} src="/2.gif" width={120} />
+            <Image alt="이미지1" height={150} src="/1.gif" width={150} />
+            <Image alt="이미지2" height={150} src="/2.gif" width={150} />
           </FlexView>
         </FlexView>
 
         <FlexView fill>
           <Text semiBold small>
-            의상수선가위 - 이매망량
+            의상수선가위 - 향긋한정원 의상
           </Text>
           <FlexView center fill row wrap>
-            <Image alt="이미지3" height={155} src="/3.png" width={332} />
+            <Image alt="이미지3" height={180} src="/3.gif" width={180} />
+            <Image alt="이미지3" height={180} src="/4.gif" width={180} />
           </FlexView>
         </FlexView>
       </FlexView>

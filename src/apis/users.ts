@@ -94,14 +94,21 @@ export const verifyUser = async (userId: string, password: string) => {
   return data;
 };
 
-export const deleteUser = async () => {
-  const res = await fetch(`${import.meta.env.VITE_API_SERVER}/users/me`, {
-    method: `DELETE`,
-    headers: {
-      'Content-Type': `application/json`,
-      Authorization: `Bearer ${getAccessToken()}`,
+export const deleteUser = async (email: string, password: string) => {
+  const res = await fetch(
+    `${import.meta.env.VITE_API_SERVER}/users/withdrawal`,
+    {
+      method: `POST`,
+      headers: {
+        'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
     },
-  });
+  );
 
   const data = await res.json();
   return data;

@@ -8,14 +8,6 @@ import {
   Power,
   Production,
 } from '@pages/calculator';
-import {
-  Achievement,
-  Adventure,
-  Archeology,
-  BodyReinforceAbility,
-  BodyReinforceBonus,
-  BodyReinforceRecipe,
-} from '@pages/content';
 import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
 import {
   AntiquityEquipList,
@@ -100,7 +92,7 @@ const MainRoutes = () => {
             <LazyFreeBoard />
           </Suspense>
         }
-        path="/board/free"
+        path="/freeboard"
       />
       <Route
         element={
@@ -108,7 +100,7 @@ const MainRoutes = () => {
             <LazyFreePost />
           </Suspense>
         }
-        path="/board/free/post/:postId"
+        path="/freeboard/:postId"
       />
       <Route
         element={

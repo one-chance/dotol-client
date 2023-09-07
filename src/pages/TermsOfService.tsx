@@ -1,9 +1,15 @@
+import { useEffect } from 'react';
+
 import { FlexView } from '@components/common';
 import { Service } from '@components/terms';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(400);
+
+  useEffect(() => {
+    document.title = `도톨 | 이용약관`;
+  }, []);
 
   return (
     <FlexView

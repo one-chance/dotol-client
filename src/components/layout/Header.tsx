@@ -17,12 +17,11 @@ const btnCSS: CSSObject = {
 };
 
 const menus: { [key: string]: string } = {
-  costume: `| 코디`,
-  db: `| 도감`,
-  content: `| 콘텐츠`,
-  calculator: `| 계산기`,
-  board: `| 게시판`,
-  user: ``,
+  costume: `코디`,
+  db: `도감`,
+  content: `콘텐츠`,
+  calculator: `계산기`,
+  board: `게시판`,
 };
 
 export default () => {
@@ -74,15 +73,6 @@ export default () => {
   useEffect(() => {
     const mainmenu = location.pathname.split(`/`)[1];
     setSelectedMenu(menus[mainmenu]);
-
-    if (mainmenu === `terms-of-service`) {
-      document.title = `바람의나라 도톨 | 이용약관`;
-    } else if (mainmenu === `privacy-policy`) {
-      document.title = `바람의나라 도톨 | 개인정보처리방침`;
-    } else if (mainmenu !== ``) {
-      document.title = `바람의나라 도톨 ${menus[mainmenu]}`;
-    }
-
     setShowLogin(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
@@ -144,11 +134,7 @@ export default () => {
                   onMouseEnter={openTotalMenu}
                 >
                   <Text
-                    color={
-                      selectedMenu === `| ${menu}`
-                        ? Colors.primary
-                        : Colors.grey
-                    }
+                    color={selectedMenu === menu ? Colors.primary : Colors.grey}
                     css={{ fontSize: `18px`, letterSpacing: `=1px` }}
                     medium
                   >

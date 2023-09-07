@@ -1,9 +1,15 @@
+import { useEffect } from 'react';
+
 import { FlexView } from '@components/common';
 import { Privacy } from '@components/terms';
 import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(400);
+
+  useEffect(() => {
+    document.title = `도톨 | 개인정보처리방침`;
+  }, []);
 
   return (
     <FlexView
