@@ -74,7 +74,7 @@ export default () => {
             fontWeight: 700,
             textAlign: `center`,
           }}
-          href="https://open.kakao.com/o/sRRmgFkd"
+          href="https://open.kakao.com/me/dotols"
           target="_blank"
         >
           1:1 문의
