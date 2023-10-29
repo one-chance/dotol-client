@@ -1,7 +1,6 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import { IPost } from '@interfaces/board';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getPostList, getPost, viewPost } from '@apis/index';
@@ -13,6 +12,7 @@ import {
 } from '@components/board-pages';
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
+import { IPost } from '@interfaces/index';
 import { Colors } from '@styles/system';
 
 type State = {

@@ -1,5 +1,4 @@
-import { IUser, NewUser } from '@interfaces/users';
-
+import { IUser, NewUser } from '@interfaces/index';
 import { getAccessToken } from '@utils/index';
 
 export const isDuplicatedUserId = async (userId: string) => {

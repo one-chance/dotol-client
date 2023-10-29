@@ -1,5 +1,5 @@
 import { FlexView, Image, Text } from '@components/common';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(400);

@@ -1,7 +1,7 @@
 import { AchievementAccordion } from '@components/accordion';
 import { FlexView, Text } from '@components/common';
-import { Mission } from '@interfaces/content';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
+import { Mission } from '@interfaces/index';
 
 type ListProps = {
   list: Mission[];

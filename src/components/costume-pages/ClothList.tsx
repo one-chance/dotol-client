@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
-import { getClothesList } from '@apis/costumes';
-import { getMyInfo } from '@apis/users';
+import { IClothes } from '@interfaces/costumes';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { getClothesList, getMyInfo } from '@apis/index';
 import { Mannequin } from '@components/avatar';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
 import { Toast } from '@components/toast';
-import { IClothes } from '@interfaces/costumes';
-import { isLoggedInState, showLoginState } from '@states/login';
+import { useResponsive } from '@hooks/index';
+import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 const CLOTHES_PARTS = [
   `착용 부위`,

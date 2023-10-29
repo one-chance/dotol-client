@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef, MouseEvent } from 'react';
 
+import { CSSObject } from '@emotion/react';
+import { useLocation } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+
 import { Anchor, Button, FlexView, Text, Icon } from '@components/common';
 import { LoginModal } from '@components/modal';
 import { MAIN_MENU } from '@constants/menu';
-import { CSSObject } from '@emotion/react';
-import { isLoggedInState, showLoginState } from '@states/login';
+import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useLocation } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { TotalMenu, UserMenu } from './menu';
 

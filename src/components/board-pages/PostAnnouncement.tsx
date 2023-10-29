@@ -1,7 +1,7 @@
 import { Button, FlexView, Link, Text } from '@components/common';
-import { Board, IPost } from '@interfaces/board';
+import { Board, IPost } from '@interfaces/index';
 import { Colors } from '@styles/system';
-import { convertDateFormat } from '@utils/common';
+import { convertDateFormat } from '@utils/index';
 
 type PostSummaryProps = {
   post: IPost;

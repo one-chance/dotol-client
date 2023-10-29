@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { createComment } from '@apis/board';
+import { IComment } from '@interfaces/board';
+import { useSetRecoilState } from 'recoil';
+
 import { CommentList, NewComment } from '@components/board-pages';
 import { FlexView } from '@components/common';
 import { Toast } from '@components/toast';
-import { IComment } from '@interfaces/board';
-import { showLoginState } from '@states/login';
+import { showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useSetRecoilState } from 'recoil';
 
 type PostCommentProps = {
   comments: IComment[];

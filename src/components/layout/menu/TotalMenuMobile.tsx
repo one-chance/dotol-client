@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
+import { useLocation } from 'react-router-dom';
+
 import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
 import { TOTAL_MENU, MAIN_MENU } from '@constants/menu';
 import { Colors } from '@styles/system';
-import { useLocation } from 'react-router-dom';
 
 type MenuProps = {
   onClose: () => void;

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
-import { LoginModal } from '@components/modal';
-import { isLoggedInState, showLoginState } from '@states/login';
-import { Colors } from '@styles/system';
 import { useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
+
+import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
+import { LoginModal } from '@components/modal';
+import { isLoggedInState, showLoginState } from '@states/index';
+import { Colors } from '@styles/system';
 
 import { TotalMenuMobile } from './menu';
 import UserMenuMobile from './menu/UserMenuMobile';

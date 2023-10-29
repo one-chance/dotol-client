@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const TYPES = [`환수 종류`, `황룡`, `청룡`, `주작`, `백호`, `현무`];
 const TYPES_ACC: { [key: string]: number } = {

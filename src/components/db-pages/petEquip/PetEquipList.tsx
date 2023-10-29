@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
 import EQUIP_DATA from '@data/pet-equip.json';
 import { CSSObject } from '@emotion/react';
+
+import { FlexView, Text } from '@components/common';
+import { Select, Option } from '@components/select';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const EQUIP_TYPES = [
   `황룡 장비`,

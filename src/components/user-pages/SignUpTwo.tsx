@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { isDuplicatedEmail, sendOTPCode, verifyOTPCode } from '@apis/users';
-import { Button, FlexView, Text, TextField } from '@components/common';
-import { emailState } from '@states/user';
-import { Colors } from '@styles/system';
 import { useSetRecoilState } from 'recoil';
+
+import { isDuplicatedEmail, sendOTPCode, verifyOTPCode } from '@apis/index';
+import { Button, FlexView, Text, TextField } from '@components/common';
+import { emailState } from '@states/index';
+import { Colors } from '@styles/system';
 
 type Phase = 1 | 2 | 3 | 4;
 

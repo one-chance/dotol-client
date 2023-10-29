@@ -1,11 +1,11 @@
 import { useState } from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { NewComment } from '@components/board-pages';
 import { Button, FlexView, Icon, Text } from '@components/common';
-import { IComment } from '@interfaces/board';
-import { userIdState } from '@states/login';
+import { IComment } from '@interfaces/index';
+import { userIdState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useRecoilValue } from 'recoil';
 
 type CommentProps = {
   comment: IComment;

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { BODY_REINFORCE_RECIPE } from '@constants/body';
-import { BodyRecipe } from '@interfaces/content';
+import { BodyRecipe } from '@interfaces/index';
 
 type RecipeListProps = {
   isMobile: boolean;

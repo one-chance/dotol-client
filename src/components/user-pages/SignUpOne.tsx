@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Button, Checkbox, FlexView, Text } from '@components/common';
-import { Privacy, Service } from '@components/terms';
+import { Privacy, Service } from '@components/terms-page';
 import { Colors } from '@styles/system';
 
 type Phase = 1 | 2 | 3 | 4;

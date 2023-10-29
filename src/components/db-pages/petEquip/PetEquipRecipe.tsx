@@ -1,6 +1,7 @@
-import { FlexView, Text } from '@components/common';
 import EQUIP_RECIPE from '@data/pet-recipe.json';
-import { useResponsive } from '@utils/hooks';
+
+import { FlexView, Text } from '@components/common';
+import { useResponsive } from '@hooks/index';
 
 const recipeData = EQUIP_RECIPE;
 

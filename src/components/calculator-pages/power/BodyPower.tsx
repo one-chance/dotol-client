@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 const PARTS = [
   `무기`,

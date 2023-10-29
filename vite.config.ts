@@ -10,7 +10,7 @@ const folderNames = [
   `constants`,
   `data`,
   `hooks`,
-  `interfaces`,
+  'interfaces',
   `locales`,
   `pages`,
   `routes`,

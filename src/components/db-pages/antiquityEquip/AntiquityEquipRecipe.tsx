@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import DATA from '@data/antiquity-recipe.json';
+
 import { Button, FlexView, Input, Text } from '@components/common';
 import { AntiquityEquipModal } from '@components/modal';
 import { Option, Select } from '@components/select';
-import DATA from '@data/antiquity-recipe.json';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 const EQUIP_PARTS = [`무기`, `투구`, `갑옷`, `명경`, `장갑`, `보주`];
 const TITLES = [`장비`, `필요레벨`, `재료`, `금전`, `기본확률`];

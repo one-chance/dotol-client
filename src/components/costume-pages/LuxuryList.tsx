@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { Button, FlexView, Image, Text } from '@components/common';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const NAMES = [
   `마법학교`,

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getSkillAbilityList } from '@apis/skill';
 import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 const JOBS = [
   `전사`,

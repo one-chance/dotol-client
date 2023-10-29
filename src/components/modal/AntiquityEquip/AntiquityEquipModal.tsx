@@ -1,8 +1,8 @@
 import { FlexView, Text } from '@components/common';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
-import Modal from './Modal';
-import ModalM from './ModalM';
+import Modal from '../Modal';
+import ModalM from '../ModalM';
 
 type ModalProps = {
   close: () => void;

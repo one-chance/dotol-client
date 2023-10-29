@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { getProductionItems } from '@apis/production';
+import { useSetRecoilState } from 'recoil';
+
+import { getProductionItems } from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import { itemState } from '@states/production';
+import { useResponsive } from '@hooks/index';
+import { itemState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useSetRecoilState } from 'recoil';
 
 const SKILLS = [
   `종류`,

@@ -4,20 +4,21 @@ import '@toast-ui/editor/dist/i18n/ko-kr';
 
 import { useRef, useState } from 'react';
 
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import { Editor } from '@toast-ui/react-editor';
+import { Board } from '@interfaces/board';
+import ObjectId from 'bson-objectid';
+import { useNavigate } from 'react-router-dom';
+
 import {
   createPost,
   requestPreSignedPostUrl,
   uploadPreSignedPostUrl,
-} from '@apis/board';
+} from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Toast } from '@components/toast';
-import { Board } from '@interfaces/board';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
-import { Editor } from '@toast-ui/react-editor';
-import { useResponsive } from '@utils/hooks';
-import ObjectId from 'bson-objectid';
-import { useNavigate } from 'react-router-dom';
 
 type NewPostProps = {
   board: Board;

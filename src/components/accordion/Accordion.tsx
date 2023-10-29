@@ -1,7 +1,8 @@
 import { ReactNode, useState } from 'react';
 
-import { FlexView, Icon, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
+
+import { FlexView, Icon, Text } from '@components/common';
 
 type AccordionProps = {
   title: string;

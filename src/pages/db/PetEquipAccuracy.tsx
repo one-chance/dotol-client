@@ -1,6 +1,5 @@
-import { PetEquipAccuracy } from '@components/db-pages/petEquip';
-
 import { FlexView } from '@components/common';
+import { PetEquipAccuracy } from '@components/db-pages';
 import { MenuTab } from '@components/layout';
 import { PET_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';

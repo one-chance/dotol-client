@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { IUser } from '@interfaces/users';
-
 import { getMyInfo, updateMyInfo } from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { USER_MENU_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
+import { IUser } from '@interfaces/index';
 import { Colors } from '@styles/system';
 
 export default () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getBodyReinforceBonusList } from '@apis/content';
+import { getBodyReinforceBonusList } from '@apis/index';
 import { FlexView, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { Colors } from '@styles/system';

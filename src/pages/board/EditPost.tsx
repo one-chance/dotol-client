@@ -4,7 +4,6 @@ import '@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-sy
 import '@toast-ui/editor/dist/i18n/ko-kr';
 import { useEffect, useRef, useState } from 'react';
 
-import { Board, IPost } from '@interfaces/board';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor } from '@toast-ui/react-editor';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -17,6 +16,7 @@ import {
 import { Button, FlexView, Input, Text } from '@components/common';
 import { Toast } from '@components/toast';
 import { useResponsive } from '@hooks/index';
+import { Board, IPost } from '@interfaces/index';
 import { Colors } from '@styles/system';
 
 const CATEGORES = [

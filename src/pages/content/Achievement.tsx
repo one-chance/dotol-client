@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { Achievement, Mission } from '@interfaces/content';
-
 import { getAchievementList } from '@apis/index';
 import { FlexView, Text } from '@components/common';
 import { AchievementList } from '@components/content-pages';
 import { Select, Option } from '@components/select';
 import { useResponsive } from '@hooks/index';
+import { Achievement, Mission } from '@interfaces/index';
 
 const TAB_LIST = [
   `탐험일지`,

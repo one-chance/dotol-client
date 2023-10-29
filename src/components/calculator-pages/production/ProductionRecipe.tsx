@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { getProductionRecipe } from '@apis/production';
+import { useRecoilValue } from 'recoil';
+
+import { getProductionRecipe } from '@apis/index';
 import { Chip } from '@components/chip';
 import { FlexView } from '@components/common';
-import { itemState } from '@states/production';
-import { useRecoilValue } from 'recoil';
+import { itemState } from '@states/index';
 
 type Recipe = {
   [key: string]: {

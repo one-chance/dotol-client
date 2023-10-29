@@ -1,15 +1,16 @@
 import { useState } from 'react';
 
-import { verifyUser } from '@apis/users';
-import { Button, FlexView, Text, TextField } from '@components/common';
-import { isLoggedInState, userIdState } from '@states/login';
-import { Colors } from '@styles/system';
-import { decodeJWT } from '@utils/common';
-import { useResponsive } from '@utils/hooks';
 import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import Modal from './Modal';
+import { verifyUser } from '@apis/index';
+import { Button, FlexView, Text, TextField } from '@components/common';
+import { useResponsive } from '@hooks/index';
+import { isLoggedInState, userIdState } from '@states/index';
+import { Colors } from '@styles/system';
+import { decodeJWT } from '@utils/index';
+
+import Modal from '../Modal';
 
 type ModalProps = {
   close: () => void;

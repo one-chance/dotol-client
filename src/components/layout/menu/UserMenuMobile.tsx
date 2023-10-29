@@ -1,10 +1,11 @@
 import { forwardRef } from 'react';
 
-import { Button, FlexView, Link, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
-import { isLoggedInState, userIdState } from '@states/login';
-import { Colors } from '@styles/system';
 import { useSetRecoilState } from 'recoil';
+
+import { Button, FlexView, Link, Text } from '@components/common';
+import { isLoggedInState, userIdState } from '@states/index';
+import { Colors } from '@styles/system';
 
 const linkCSS: CSSObject = {
   fontSize: `14px`,

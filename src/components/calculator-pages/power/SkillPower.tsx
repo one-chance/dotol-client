@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getSkillAbilityList } from '@apis/skill';
+import { getSkillAbilityList } from '@apis/index';
 import { FlexView, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { SKILL_POWER } from '@constants/power';

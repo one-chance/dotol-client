@@ -1,5 +1,5 @@
 import { FlexView, Text } from '@components/common';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 import ProductionList from './ProductionList';
 import ProductionRecipe from './ProductionRecipe';

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
 import HOLY_EQUIP_DATA from '@data/antiquity-equip-holy.json';
 import EQUIP_DATA from '@data/antiquity-equip.json';
 import { CSSObject } from '@emotion/react';
-import { useResponsive } from '@utils/hooks';
+
+import { FlexView, Text } from '@components/common';
+import { Select, Option } from '@components/select';
+import { useResponsive } from '@hooks/index';
 
 const TITLES = [
   [

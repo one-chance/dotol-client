@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Button, FlexView, Image, Text } from '@components/common';
 import { Select, Option } from '@components/select';
 import { EQUIP_SET_INDEX, EQUIP_SET_LIST } from '@constants/equip';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const ITEM_TYPES = [
   `장비 종류`,

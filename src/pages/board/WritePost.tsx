@@ -1,10 +1,11 @@
 /* eslint-disable no-alert */
 import { useEffect } from 'react';
 
-import { NewPost } from '@components/board-pages';
-import { FlexView } from '@components/common';
 import { Board } from '@interfaces/board';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { NewPost } from '@components/board-pages';
+import { FlexView } from '@components/common';
 
 const CATEGORES = [
   `freeboard`,

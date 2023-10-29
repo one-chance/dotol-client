@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { FlexView } from '@components/common';
-import { Privacy } from '@components/terms';
+import { Privacy } from '@components/terms-page';
 import { useResponsive } from '@hooks/index';
 
 export default () => {

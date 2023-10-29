@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { FlexView, Link, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
 import { IPost } from '@interfaces/board';
-import { convertDateFormat } from '@utils/common';
-import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
+
+import { FlexView, Link, Text } from '@components/common';
+import { useResponsive } from '@hooks/index';
+import { convertDateFormat } from '@utils/index';
 
 export default () => {
   const navigate = useNavigate();

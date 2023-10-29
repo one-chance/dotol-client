@@ -1,5 +1,4 @@
-import { PetEquipList } from '@components/db-pages/petEquip';
-
+import { PetEquipList } from '@components/db-pages';
 import { FlexView } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { PET_EQUIP_TABS } from '@constants/menu';

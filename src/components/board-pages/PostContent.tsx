@@ -1,17 +1,17 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import { deletePost, recommendPost } from '@apis/board';
-import { getMyInfo } from '@apis/users';
-import { Button, FlexView, Text } from '@components/common';
-import { Toast } from '@components/toast';
-import { Board, IPost } from '@interfaces/board';
-import { showLoginState, userIdState } from '@states/login';
-import { Colors } from '@styles/system';
 import { Viewer } from '@toast-ui/react-editor';
-import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { deletePost, recommendPost, getMyInfo } from '@apis/index';
+import { Button, FlexView, Text } from '@components/common';
+import { Toast } from '@components/toast';
+import { useResponsive } from '@hooks/index';
+import { Board, IPost } from '@interfaces/index';
+import { showLoginState, userIdState } from '@states/index';
+import { Colors } from '@styles/system';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 type PostContentProps = {

@@ -1,4 +1,4 @@
-import { EquipOption } from '@interfaces/equip';
+import { EquipOption } from '@interfaces/index';
 
 export const getEquipByName = async (name: string) => {
   const res = await fetch(

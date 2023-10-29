@@ -1,9 +1,8 @@
+import { FlexView } from '@components/common';
 import {
   ProductionCalculator,
   ProductionGrade,
-} from '@components/calculator-pages/production';
-
-import { FlexView } from '@components/common';
+} from '@components/calculator-pages';
 import { useResponsive } from '@hooks/index';
 
 export default () => {

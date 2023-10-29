@@ -1,6 +1,7 @@
-import { FlexView, Text } from '@components/common';
 import DATA from '@data/adventure.json';
 import { AdventureTab } from '@interfaces/content';
+
+import { FlexView, Text } from '@components/common';
 import { Colors } from '@styles/system';
 
 type DETAIL = {

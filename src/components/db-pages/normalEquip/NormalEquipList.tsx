@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { getEquipByName, getEquipByOption } from '@apis/equip';
+import { getEquipByName, getEquipByOption } from '@apis/index';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Select, Option } from '@components/select';
-import { IEquip } from '@interfaces/equip';
+import { useResponsive } from '@hooks/index';
+import { IEquip } from '@interfaces/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const ITEM_TYPES = [
   `장비 종류`,

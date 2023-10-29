@@ -11,8 +11,7 @@ import {
   NormalEquipPower,
   PetEquipPower,
   SkillPower,
-} from '@components/calculator-pages/power';
-
+} from '@components/calculator-pages';
 import { FlexView, Text } from '@components/common';
 import { Option, Select } from '@components/select';
 import { useResponsive } from '@hooks/index';
