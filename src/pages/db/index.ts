@@ -1,5 +1,6 @@
 export { default as AntiquityEquipList } from './AntiquityEquipList';
 export { default as AntiquityEquipRecipe } from './AntiquityEquipRecipe';
+export { default as EquipSkill } from './EquipSkill';
 export { default as NormalEquipList } from './NormalEquipList';
 export { default as NormalEquipSet } from './NormalEquipSet';
 export { default as PetEquipAccuracy } from './PetEquipAccuracy';

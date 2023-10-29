@@ -137,7 +137,7 @@ export default () => {
 
   return (
     <FlexView gap={20}>
-      <Text bold xxLarge>
+      <Text bold xxLarge={!isMobile} large={isMobile}>
         일반장비 도감
       </Text>
       <FlexView gap={20}>

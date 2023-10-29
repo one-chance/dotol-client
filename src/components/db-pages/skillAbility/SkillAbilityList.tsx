@@ -56,7 +56,7 @@ export default () => {
         row
         wrap
       >
-        <Text large={isMobile} xLarge={!isMobile} bold>
+        <Text large={isMobile} xxLarge={!isMobile} bold>
           기술능력 도감
         </Text>
 

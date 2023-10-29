@@ -93,3 +93,8 @@ export const USER_MENU_TABS = [
   { name: `비밀번호 변경`, path: `/user/change-password` },
   { name: `회원 탈퇴`, path: `/user/withdrawal` },
 ];
+
+export const SKILL_TABS = [
+  { name: `기술능력`, path: `/db/skill-ability` },
+  { name: `장비마법`, path: `/db/equip-skill` },
+];
