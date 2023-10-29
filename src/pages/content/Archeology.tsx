@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
 
+import DATA from '@data/archeology.json';
+
 import { ArcheologyAccordion } from '@components/accordion';
 import { Button, FlexView, Input, Text } from '@components/common';
-import DATA from '@data/archeology.json';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const TITLES = [`아이템`, `위치`, `사용 방법`, `수량`, `보상`];
 const WIDTHS = [160, 100, 400, 40, 260];

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import {
   deleteCharacter,
   getCharacterList,
   registerCharacter,
   updateMainCharacter,
-} from '@apis/characters';
-import { getMyInfo } from '@apis/users';
+  getMyInfo,
+} from '@apis/index';
 import {
   Button,
   FlexView,
@@ -16,9 +18,8 @@ import {
   Divider,
 } from '@components/common';
 import { Toast } from '@components/toast';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(510);

@@ -1,15 +1,16 @@
 /* eslint-disable no-alert */
 import { useState } from 'react';
 
-import { deleteUser, getMyInfo } from '@apis/users';
+import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+
+import { deleteUser } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { USER_MENU_TABS } from '@constants/menu';
-import { isLoggedInState, userIdState } from '@states/login';
+import { useResponsive } from '@hooks/index';
+import { isLoggedInState, userIdState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
 
 export default () => {
   const navigate = useNavigate();

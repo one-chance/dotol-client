@@ -1,8 +1,9 @@
-import { Header, HeaderMobile } from '@components/layout';
-import { useResponsive } from '@utils/hooks';
 import { Route, Routes } from 'react-router-dom';
 
-export default () => {
+import { Header, HeaderMobile } from '@components/layout';
+import { useResponsive } from '@hooks/index';
+
+const HeaderRouter = () => {
   const isMobile = useResponsive(1040);
 
   return (
@@ -11,3 +12,5 @@ export default () => {
     </Routes>
   );
 };
+
+export default HeaderRouter;

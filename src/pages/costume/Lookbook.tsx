@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import { getLookbookCount, decreaseLookbookCount } from '@apis/costumes';
-import { getMyInfo } from '@apis/users';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import {
+  getLookbookCount,
+  decreaseLookbookCount,
+  getMyInfo,
+} from '@apis/index';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { LookbookList } from '@components/costume-pages';
 import { Toast } from '@components/toast';
-import { isLoggedInState, showLoginState } from '@states/login';
+import { useResponsive } from '@hooks/index';
+import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { useResponsive } from '@utils/hooks';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default () => {
   const isMobile = useResponsive(980);

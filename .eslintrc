@@ -46,19 +46,33 @@
     "import/order": [
       "warn",
       {
-        "groups": ["builtin", "external", ["parent", "sibling"], "index"],
-        "pathGroups": [
-          { "pattern": "react", "group": "builtin", "position": "after" },
-          { "pattern": "react-dom", "group": "builtin", "position": "after" }
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          ["parent", "sibling"],
+          "index"
         ],
-        "pathGroupsExcludedImportTypes": ["react", "react-dom"],
+        "pathGroups": [
+          {
+            "pattern": "{react,react-dom}",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "{@apis/*,@assets/*,@components/*,@constants/*,@hooks/*,@locales/*,@pages/*,@routes/*,@states/*,@styles/*,@utils/*}",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [],
         "alphabetize": {
           "order": "asc",
           "caseInsensitive": true
         },
         "newlines-between": "always"
       }
-    ], // import 순서 및 예외 처리
+    ],
     "import/prefer-default-export": "off",
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-use-before-define": [0],

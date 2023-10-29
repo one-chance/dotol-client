@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-import { forgotUserId } from '@apis/users';
-import { Button, FlexView, Text, TextField } from '@components/common';
-import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 import { useNavigate } from 'react-router-dom';
+
+import { forgotUserId } from '@apis/index';
+import { Button, FlexView, Text, TextField } from '@components/common';
+import { useResponsive } from '@hooks/index';
+import { Colors } from '@styles/system';
 
 export default () => {
   const navigate = useNavigate();

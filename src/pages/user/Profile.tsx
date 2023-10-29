@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { getMyInfo, updateMyInfo } from '@apis/users';
+import { IUser } from '@interfaces/users';
+
+import { getMyInfo, updateMyInfo } from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { USER_MENU_TABS } from '@constants/menu';
-import { IUser } from '@interfaces/users';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(400);

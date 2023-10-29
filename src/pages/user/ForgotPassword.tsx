@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { forgotPassword } from '@apis/users';
+import { forgotPassword } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(500);

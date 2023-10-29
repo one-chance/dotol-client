@@ -2,7 +2,7 @@ import { FlexView } from '@components/common';
 import { NormalEquipSet } from '@components/db-pages';
 import { MenuTab } from '@components/layout';
 import { NORMAL_EQUIP_TABS } from '@constants/menu';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(980);

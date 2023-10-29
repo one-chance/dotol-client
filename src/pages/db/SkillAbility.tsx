@@ -1,6 +1,6 @@
 import { FlexView } from '@components/common';
 import { SkillAbilityList } from '@components/db-pages';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(500);

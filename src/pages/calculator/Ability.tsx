@@ -1,6 +1,6 @@
 import { AbilityCalculator } from '@components/calculator-pages';
 import { FlexView, Text } from '@components/common';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(580);

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 
 import { FlexView, Icon, Input, Text } from '@components/common';
 import { Option, Select } from '@components/select';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 export default () => {
   const isMobile = useResponsive(600);

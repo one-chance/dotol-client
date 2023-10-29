@@ -1,28 +1,4 @@
-export function decodeJWT(token: string) {
-  const base64Url = token.split(`.`)[1];
-  const base64 = base64Url.replace(/-/g, `+`).replace(/_/g, `/`);
-  const jsonPayload = decodeURIComponent(
-    window
-      .atob(base64)
-      .split(``)
-      .map(c => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
-      .join(``),
-  );
-
-  return JSON.parse(jsonPayload);
-}
-
-export function getAccessToken() {
-  const token = sessionStorage.getItem(`accessToken`);
-
-  if (!token) {
-    return null;
-  }
-
-  return token;
-}
-
-export function convertDateFormat(inputDate: string) {
+export const convertDateFormat = (inputDate: string) => {
   const utcDate = new Date(inputDate);
   const timezoneOffset = new Date().getTimezoneOffset() * 60000;
   const date = new Date(utcDate.getTime() - timezoneOffset);
@@ -52,4 +28,4 @@ export function convertDateFormat(inputDate: string) {
       .getMinutes()
       .toString()
       .padStart(2, `0`)}`;
-}
+};

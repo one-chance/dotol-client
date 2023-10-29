@@ -1,5 +1,6 @@
-import { decodeJWT, getAccessToken } from '@utils/common';
 import { atom } from 'recoil';
+
+import { decodeJWT, getAccessToken } from '@utils/index';
 
 export const isLoggedInState = atom<boolean>({
   key: `isLoggedInState`,

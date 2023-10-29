@@ -1,8 +1,9 @@
-import { FlexView } from '@components/common';
 import { AntiquityEquipList } from '@components/db-pages/antiquityEquip';
+
+import { FlexView } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { ANTIQUITY_EQUIP_TABS } from '@constants/menu';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(620);

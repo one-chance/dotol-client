@@ -7,7 +7,7 @@ import {
   SignUpThree,
   SignUpFour,
 } from '@components/user-pages';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 type Phase = 1 | 2 | 3 | 4;
 

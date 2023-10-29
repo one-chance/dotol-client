@@ -1,4 +1,4 @@
-import { getAccessToken } from '@utils/common';
+import { getAccessToken } from '@utils/index';
 
 export const getCharacterList = async () => {
   const res = await fetch(`${import.meta.env.VITE_API_SERVER}/characters`, {

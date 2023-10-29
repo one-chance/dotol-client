@@ -12,10 +12,11 @@ import {
   PetEquipPower,
   SkillPower,
 } from '@components/calculator-pages/power';
+
 import { FlexView, Text } from '@components/common';
 import { Option, Select } from '@components/select';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const TYPES = [
   `레벨`,

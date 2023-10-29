@@ -1,5 +1,4 @@
-import { Board } from '@interfaces/board';
-import { getAccessToken } from '@utils/common';
+import { getAccessToken } from '@utils/index';
 
 export const getPostList = async (
   board: string,

@@ -1,13 +1,14 @@
 /* eslint-disable no-alert */
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { updatePassword } from '@apis/users';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { USER_MENU_TABS } from '@constants/menu';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useNavigate } from 'react-router-dom';
 
 export default () => {
   const navigate = useNavigate();

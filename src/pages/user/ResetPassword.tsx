@@ -1,11 +1,12 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import { resetPassword } from '@apis/users';
-import { Button, FlexView, Text, TextField } from '@components/common';
-import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { resetPassword } from '@apis/index';
+import { Button, FlexView, Text, TextField } from '@components/common';
+import { useResponsive } from '@hooks/index';
+import { Colors } from '@styles/system';
 
 export default () => {
   const location = useLocation();

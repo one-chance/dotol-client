@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { FlexView } from '@components/common';
 import { Privacy } from '@components/terms';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(400);

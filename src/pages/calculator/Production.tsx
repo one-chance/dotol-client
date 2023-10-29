@@ -2,8 +2,9 @@ import {
   ProductionCalculator,
   ProductionGrade,
 } from '@components/calculator-pages/production';
+
 import { FlexView } from '@components/common';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 export default () => {
   const isMobile = useResponsive(560);

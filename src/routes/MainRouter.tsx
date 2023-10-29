@@ -1,4 +1,4 @@
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 import MainRoutes from './MainRoutes';
 

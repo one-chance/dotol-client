@@ -1,8 +1,9 @@
-import { Footer, FooterMobile } from '@components/layout';
-import { useResponsive } from '@utils/hooks';
 import { Route, Routes } from 'react-router-dom';
 
-export default () => {
+import { Footer, FooterMobile } from '@components/layout';
+import { useResponsive } from '@hooks/index';
+
+const FooterRouter = () => {
   const isMobile = useResponsive(400);
 
   return (
@@ -11,3 +12,5 @@ export default () => {
     </Routes>
   );
 };
+
+export default FooterRouter;

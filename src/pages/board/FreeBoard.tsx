@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
 
-import { getAnnouncementList, getPostList } from '@apis/board';
+import { IPost } from '@interfaces/board';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { getAnnouncementList, getPostList } from '@apis/index';
 import { PostAnnouncement, PostSummary } from '@components/board-pages';
 import { Button, FlexView, Input, Link, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
 import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/board';
-import { IPost } from '@interfaces/board';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 const WIDTHS = [`auto`, `140`, `80`, `80`];
 

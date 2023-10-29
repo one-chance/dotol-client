@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { getBodyReinforceAbilityList } from '@apis/content';
+import { getBodyReinforceAbilityList } from '@apis/index';
 import { FlexView, Text } from '@components/common';
 import { MenuTab } from '@components/layout';
 import { Option, Select } from '@components/select';
 import { BODY_REINFORCE_TABS } from '@constants/menu';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
 
 const PARTS = [
   `무기`,

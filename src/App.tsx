@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 
-import { checkNewVisitor, getIPAddress } from '@apis/visit';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import { checkNewVisitor, getIPAddress } from '@apis/index';
 import { FlexView } from '@components/common';
 import { FooterRouter, HeaderRouter, MainRouter } from '@routes/index';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export default () => {
   const queryClient = new QueryClient();

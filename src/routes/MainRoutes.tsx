@@ -1,5 +1,8 @@
 import { Suspense, lazy } from 'react';
 
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+
 import { Spinner } from '@components/common';
 import {
   Ability,
@@ -31,9 +34,7 @@ import {
   SignUp,
   Withdrawal,
 } from '@pages/user';
-import { isLoggedInState } from '@states/login';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
+import { isLoggedInState } from '@states/index';
 
 // 게시판 메뉴
 const LazyFreeBoard = lazy(() => import(`@pages/board/FreeBoard`));

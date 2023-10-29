@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 
-import { getMyInfo } from '@apis/users';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import { getMyInfo } from '@apis/index';
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { TanningList } from '@components/costume-pages';
 import { Toast } from '@components/toast';
-import { isLoggedInState, showLoginState } from '@states/login';
+import { useResponsive } from '@hooks/index';
+import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 export default () => {
   const isMobile = useResponsive(980);

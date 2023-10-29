@@ -1,7 +1,10 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import { getPostList, getPost, viewPost } from '@apis/board';
+import { IPost } from '@interfaces/board';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { getPostList, getPost, viewPost } from '@apis/index';
 import {
   PostSummary,
   PostComment,
@@ -9,10 +12,8 @@ import {
   PostTitle,
 } from '@components/board-pages';
 import { FlexView, Text } from '@components/common';
-import { IPost } from '@interfaces/board';
+import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-import { useResponsive } from '@utils/hooks';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 type State = {
   page: number;

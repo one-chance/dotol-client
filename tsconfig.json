@@ -23,12 +23,12 @@
       "@components/*": ["components/*"],
       "@constants/*": ["constants/*"],
       "@data/*": ["data/*"],
+      "@hooks/*": ["hooks/*"],
       "@interfaces/*": ["interfaces/*"],
       "@locales/*": ["locales/*"],
       "@models/*": ["models/*"],
       "@pages/*": ["pages/*"],
       "@routes/*": ["routes/*"],
-      "@services/*": ["services/*"],
       "@states/*": ["states/*"],
       "@styles/*": ["styles/*"],
       "@utils/*": ["utils/*"]

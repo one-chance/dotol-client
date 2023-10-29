@@ -1,7 +1,8 @@
-import ScrollToTop from '@routes/ScrollToTop';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+
+import ScrollToTop from '@routes/ScrollToTop';
 
 import App from './App';
 

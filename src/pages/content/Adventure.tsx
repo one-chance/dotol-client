@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
+import { AdventureTab } from '@interfaces/content';
+
 import { FlexView, Text } from '@components/common';
 import { AdventureList } from '@components/content-pages';
 import { Select, Option } from '@components/select';
-import { AdventureTab } from '@interfaces/content';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 const LOCATIONS = [
   `환상의섬`,

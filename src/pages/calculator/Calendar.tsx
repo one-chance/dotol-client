@@ -1,6 +1,6 @@
 import { FlexView, Text } from '@components/common';
 import { SCHEDULES } from '@constants/calendar';
-import { useResponsive } from '@utils/hooks';
+import { useResponsive } from '@hooks/index';
 
 // myData[11].end가 지나면 다음 년도로 교체해야 함
 export default () => {
