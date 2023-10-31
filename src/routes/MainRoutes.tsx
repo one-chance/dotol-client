@@ -13,13 +13,13 @@ import { Auction, TradeBoard } from '@pages/trade';
 import { isLoggedInState } from '@states/index';
 
 // 게시판 메뉴
-const FreeBoardPage = lazy(() => import(`@pages/board/FreeBoard`));
-const FreePostPage = lazy(() => import(`@pages/board/FreePost`));
-const TipBoardPage = lazy(() => import(`@pages/board/TipBoard`));
-const ServerBoardPage = lazy(() => import(`@pages/board/ServerBoard`));
-const VideoBoardPage = lazy(() => import(`@pages/board/VideoBoard`));
-const EditPostPage = lazy(() => import(`@pages/board/EditPost`));
-const WritePostPage = lazy(() => import(`@pages/board/WritePost`));
+const FreeBoardPage = lazy(() => import(`@pages/board/FreeBoardPage`));
+const FreePostPage = lazy(() => import(`@pages/board/FreePostPage`));
+const TipBoardPage = lazy(() => import(`@pages/board/TipBoardPage`));
+const ServerBoardPage = lazy(() => import(`@pages/board/ServerBoardPage`));
+const VideoBoardPage = lazy(() => import(`@pages/board/VideoBoardPage`));
+const EditPostPage = lazy(() => import(`@pages/board/EditPostPage`));
+const WritePostPage = lazy(() => import(`@pages/board/WritePostPage`));
 
 // 콘텐츠 메뉴
 const BodyReinforceAbilityPage = lazy(
