@@ -1,7 +1,9 @@
 import { FlexView, Text } from '@components/common';
 
-export default () => (
+const TradeBoard = () => (
   <FlexView>
     <Text>123</Text>
   </FlexView>
 );
+
+export default TradeBoard;

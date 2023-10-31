@@ -34,7 +34,7 @@ const toolbarItems = [
   [`table`, `link`, `image`],
 ];
 
-export default () => {
+const EditPostPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const post = (location.state as IPost) ?? null;
@@ -178,3 +178,5 @@ export default () => {
     </FlexView>
   );
 };
+
+export default EditPostPage;

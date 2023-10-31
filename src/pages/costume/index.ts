@@ -1,4 +1,4 @@
-export { default as Clothes } from './Clothes';
-export { default as LuxurySeries } from './LuxurySeries';
-export { default as Lookbook } from './Lookbook';
-export { default as Tanning } from './Tanning';
+export { default as CostumeListPage } from './CostumeListPage';
+export { default as LuxuryListPage } from './LuxuryListPage';
+export { default as LookbookPage } from './LookbookPage';
+export { default as TanningPage } from './TanningPage';

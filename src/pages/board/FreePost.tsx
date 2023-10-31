@@ -19,7 +19,7 @@ type State = {
   page: number;
 };
 
-export default () => {
+const FreePostPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useResponsive(800);
@@ -117,3 +117,5 @@ export default () => {
     </FlexView>
   );
 };
+
+export default FreePostPage;

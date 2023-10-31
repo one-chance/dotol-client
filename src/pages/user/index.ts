@@ -1,8 +1,8 @@
-export { default as ChangePassword } from './ChangePassword';
-export { default as CharacterList } from './CharacterList';
-export { default as ForgotPassword } from './ForgotPassword';
-export { default as ForgotUserId } from './ForgotUserId';
-export { default as Profile } from './Profile';
-export { default as ResetPassword } from './ResetPassword';
-export { default as SignUp } from './SignUp';
-export { default as Withdrawal } from './Withdrawal';
+export { default as ChangePasswordPage } from './ChangePasswordPage';
+export { default as CharacterListPage } from './CharacterListPage';
+export { default as ForgotPasswordPage } from './ForgotPasswordPage';
+export { default as ForgotUserIdPage } from './ForgotUserIdPage';
+export { default as ProfilePage } from './ProfilePage';
+export { default as ResetPasswordPage } from './ResetPasswordPage';
+export { default as SignUpPage } from './SignUpPage';
+export { default as WithdrawalPage } from './WithdrawalPage';

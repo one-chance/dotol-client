@@ -1,7 +1,9 @@
 import { FlexView, Text } from '@components/common';
 
-export default () => (
+const Auction = () => (
   <FlexView>
     <Text>123</Text>
   </FlexView>
 );
+
+export default Auction;
