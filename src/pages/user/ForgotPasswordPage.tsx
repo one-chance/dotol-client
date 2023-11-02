@@ -5,7 +5,7 @@ import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const ForgotPasswordPage = () => {
+export default function ForgotPasswordPage() {
   const isMobile = useResponsive(500);
 
   const [userId, setUserId] = useState(``);
@@ -96,6 +96,4 @@ const ForgotPasswordPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default ForgotPasswordPage;
+}

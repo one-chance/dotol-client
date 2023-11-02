@@ -1,7 +1,7 @@
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
-const TipBoardPage = () => {
+export default function TipBoardPage() {
   const isMobile = useResponsive(800);
 
   return (
@@ -15,6 +15,4 @@ const TipBoardPage = () => {
       <Text>팁 게시판</Text>
     </FlexView>
   );
-};
-
-export default TipBoardPage;
+}

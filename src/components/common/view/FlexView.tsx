@@ -38,7 +38,7 @@ const fixedCSS: CSSObject = {
   bottom: `3rem`,
 };
 
-export default forwardRef<HTMLDivElement, FlexViewProps>(
+const FlexView = forwardRef<HTMLDivElement, FlexViewProps>(
   (
     {
       fit,
@@ -72,3 +72,5 @@ export default forwardRef<HTMLDivElement, FlexViewProps>(
     return jsx(`div`, { css, ref, ...props });
   },
 );
+
+export default FlexView;

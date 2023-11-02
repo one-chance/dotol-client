@@ -6,7 +6,7 @@ import { checkNewVisitor, getIPAddress } from '@apis/index';
 import { FlexView } from '@components/common';
 import { FooterRouter, HeaderRouter, MainRouter } from '@routes/index';
 
-const App = () => {
+export default function App() {
   const queryClient = new QueryClient();
 
   const visitor = async () => {
@@ -26,6 +26,4 @@ const App = () => {
       </QueryClientProvider>
     </FlexView>
   );
-};
-
-export default App;
+}

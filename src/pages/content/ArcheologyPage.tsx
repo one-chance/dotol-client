@@ -10,7 +10,7 @@ import { Colors } from '@styles/system';
 const TITLES = [`아이템`, `위치`, `사용 방법`, `수량`, `보상`];
 const WIDTHS = [160, 100, 400, 40, 260];
 
-const ArcheologyPage = () => {
+export default function ArcheologyPage() {
   const myData = DATA;
   const isMobile = useResponsive(960);
   const itemRef = useRef<HTMLDivElement[]>([]);
@@ -192,6 +192,4 @@ const ArcheologyPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default ArcheologyPage;
+}

@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { BODY_REINFORCE_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const BodyReinforceRecipePage = () => {
+export default function BodyReinforceRecipePage() {
   const isMobile = useResponsive(610);
 
   return (
@@ -22,6 +22,4 @@ const BodyReinforceRecipePage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default BodyReinforceRecipePage;
+}

@@ -49,7 +49,7 @@ const createRoutes = (pages: PageRoute[]) =>
     <Route element={page.element} key={page.path} path={page.path} />
   ));
 
-const MainRoutes = () => {
+export default function MainRoutes() {
   const isLoggedIn = useRecoilValue(isLoggedInState);
 
   const boardPages = [
@@ -197,6 +197,4 @@ const MainRoutes = () => {
       {createRoutes(mainPages)}
     </Routes>
   );
-};
-
-export default MainRoutes;
+}

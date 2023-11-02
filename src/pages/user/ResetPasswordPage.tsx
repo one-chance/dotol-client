@@ -8,7 +8,7 @@ import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const ResetPasswordPage = () => {
+export default function ResetPasswordPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useResponsive(500);
@@ -81,6 +81,4 @@ const ResetPasswordPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default ResetPasswordPage;
+}

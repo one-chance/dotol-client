@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { SKILL_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const SkillAbilityPage = () => {
+export default function SkillAbilityPage() {
   const isMobile = useResponsive(860);
 
   return (
@@ -22,6 +22,4 @@ const SkillAbilityPage = () => {
       <SkillAbilityList />
     </FlexView>
   );
-};
-
-export default SkillAbilityPage;
+}

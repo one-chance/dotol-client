@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import { useEffect, useState } from 'react';
 
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { getPostList, getPost, viewPost } from '@apis/index';
 import {
@@ -19,8 +19,7 @@ type State = {
   page: number;
 };
 
-const FreePostPage = () => {
-  const navigate = useNavigate();
+export default function FreePostPage() {
   const location = useLocation();
   const isMobile = useResponsive(800);
   const { page } = (location.state as State) || 0;
@@ -116,6 +115,4 @@ const FreePostPage = () => {
       )}
     </FlexView>
   );
-};
-
-export default FreePostPage;
+}

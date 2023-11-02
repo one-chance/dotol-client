@@ -41,7 +41,7 @@ const skillImgs: { [key: string]: string[] } = {
   "청룡마령참'환": ['a41'],
 };
 
-const EquipSkill = () => {
+export default function EquipSkill() {
   const isMobile = useResponsive(860);
   const [skill, setSkill] = useState('');
 
@@ -115,6 +115,4 @@ const EquipSkill = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default EquipSkill;
+}

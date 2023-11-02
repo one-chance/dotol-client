@@ -6,7 +6,7 @@ import { BoardSection, ClothSection } from '@components/home-page';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const HomePage = () => {
+export default function HomePage() {
   const isMobile = useResponsive(980);
   const [todayVisitor, setTodayVisitor] = useState(0);
   const [totalVisitor, setTotalVisitor] = useState(0);
@@ -105,6 +105,4 @@ const HomePage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default HomePage;
+}

@@ -4,7 +4,7 @@ import { FlexView } from '@components/common';
 import { Privacy } from '@components/terms-page';
 import { useResponsive } from '@hooks/index';
 
-const PrivacyPolicyPage = () => {
+export default function PrivacyPolicyPage() {
   const isMobile = useResponsive(400);
 
   useEffect(() => {
@@ -22,6 +22,4 @@ const PrivacyPolicyPage = () => {
       <Privacy isMobile={isMobile} />
     </FlexView>
   );
-};
-
-export default PrivacyPolicyPage;
+}

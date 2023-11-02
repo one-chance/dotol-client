@@ -2,7 +2,7 @@ import { useResponsive } from '@hooks/index';
 
 import MainRoutes from './MainRoutes';
 
-const MainRouter = () => {
+export default function MainRouter() {
   const isMobile = useResponsive(1040);
 
   return (
@@ -16,6 +16,4 @@ const MainRouter = () => {
       <MainRoutes />
     </main>
   );
-};
-
-export default MainRouter;
+}

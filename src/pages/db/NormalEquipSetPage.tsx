@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { NORMAL_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const NormalEquipSetPage = () => {
+export default function NormalEquipSetPage() {
   const isMobile = useResponsive(980);
 
   return (
@@ -21,6 +21,4 @@ const NormalEquipSetPage = () => {
       <NormalEquipSet />
     </FlexView>
   );
-};
-
-export default NormalEquipSetPage;
+}

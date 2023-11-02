@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { ANTIQUITY_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const AntiquityEquipListPage = () => {
+export default function AntiquityEquipListPage() {
   const isMobile = useResponsive(620);
 
   return (
@@ -22,6 +22,4 @@ const AntiquityEquipListPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default AntiquityEquipListPage;
+}

@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { COSTUME_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const CostumeList = () => {
+export default function CostumeList() {
   const isMobile = useResponsive(960);
 
   return (
@@ -17,6 +17,4 @@ const CostumeList = () => {
       <ClothList />
     </FlexView>
   );
-};
-
-export default CostumeList;
+}

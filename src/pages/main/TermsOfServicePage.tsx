@@ -4,7 +4,7 @@ import { FlexView } from '@components/common';
 import { Service } from '@components/terms-page';
 import { useResponsive } from '@hooks/index';
 
-const TermsOfServicePage = () => {
+export default function TermsOfServicePage() {
   const isMobile = useResponsive(400);
 
   useEffect(() => {
@@ -22,6 +22,4 @@ const TermsOfServicePage = () => {
       <Service isMobile={isMobile} />
     </FlexView>
   );
-};
-
-export default TermsOfServicePage;
+}

@@ -11,7 +11,7 @@ import { useResponsive } from '@hooks/index';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
 
-const TanningPage = () => {
+export default function TanningPage() {
   const isMobile = useResponsive(980);
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const setShowLogin = useSetRecoilState(showLoginState);
@@ -86,6 +86,4 @@ const TanningPage = () => {
       {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
-};
-
-export default TanningPage;
+}

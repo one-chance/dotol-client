@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { COSTUME_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const LuxuryListPage = () => {
+export default function LuxuryListPage() {
   const isMobile = useResponsive(960);
 
   return (
@@ -20,6 +20,4 @@ const LuxuryListPage = () => {
       <LuxuryList />
     </FlexView>
   );
-};
-
-export default LuxuryListPage;
+}

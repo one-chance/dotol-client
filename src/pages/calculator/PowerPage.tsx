@@ -51,7 +51,7 @@ const explanations: { [key: number]: string[] } = {
   8: [`[모든 능력 증가] 능력치가 최종 전투력에 반영되지 않는다.`],
 };
 
-const PowerPage = () => {
+export default function PowerPage() {
   const isMobile = useResponsive(600);
   const [type, setType] = useState(0);
 
@@ -124,6 +124,4 @@ const PowerPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default PowerPage;
+}

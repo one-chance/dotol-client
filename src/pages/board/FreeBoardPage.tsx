@@ -14,7 +14,7 @@ import { Colors } from '@styles/system';
 
 const WIDTHS = [`auto`, `140`, `80`, `80`];
 
-const FreeBoardPage = () => {
+export default function FreeBoardPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const isMobile = useResponsive(600);
@@ -179,6 +179,4 @@ const FreeBoardPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default FreeBoardPage;
+}

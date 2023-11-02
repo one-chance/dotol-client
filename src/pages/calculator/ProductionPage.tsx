@@ -5,7 +5,7 @@ import {
 } from '@components/calculator-pages';
 import { useResponsive } from '@hooks/index';
 
-const ProductionPage = () => {
+export default function ProductionPage() {
   const isMobile = useResponsive(560);
 
   return (
@@ -22,6 +22,4 @@ const ProductionPage = () => {
       <ProductionGrade />
     </FlexView>
   );
-};
-
-export default ProductionPage;
+}

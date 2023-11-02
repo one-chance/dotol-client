@@ -8,7 +8,7 @@ import { useResponsive } from '@hooks/index';
 import { IUser } from '@interfaces/index';
 import { Colors } from '@styles/system';
 
-const ProfilePage = () => {
+export default function ProfilePage() {
   const isMobile = useResponsive(400);
   const [editMode, setEditMode] = useState(false);
   const [userInfo, setUserInfo] = useState<IUser | undefined>();
@@ -190,6 +190,4 @@ const ProfilePage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default ProfilePage;
+}

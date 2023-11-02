@@ -25,7 +25,7 @@ type Ability = {
   기본능력: string[];
 };
 
-const BodyReinforceAbilityPage = () => {
+export default function BodyReinforceAbilityPage() {
   const isMobile = useResponsive(610);
   const [part, setPart] = useState(0);
   const [infoList, setInfoList] = useState<Ability[][]>([[]]);
@@ -171,6 +171,4 @@ const BodyReinforceAbilityPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default BodyReinforceAbilityPage;
+}

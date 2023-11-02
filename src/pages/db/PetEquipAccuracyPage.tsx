@@ -4,7 +4,7 @@ import { MenuTab } from '@components/layout';
 import { PET_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-const PetEquipAccuracyPage = () => {
+export default function PetEquipAccuracyPage() {
   const isMobile = useResponsive(580);
 
   return (
@@ -22,6 +22,4 @@ const PetEquipAccuracyPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default PetEquipAccuracyPage;
+}

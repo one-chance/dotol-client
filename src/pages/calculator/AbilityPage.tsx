@@ -2,7 +2,7 @@ import { AbilityCalculator } from '@components/calculator-pages';
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
-const AbilityPage = () => {
+export default function AbilityPage() {
   const isMobile = useResponsive(580);
 
   return (
@@ -21,6 +21,4 @@ const AbilityPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default AbilityPage;
+}

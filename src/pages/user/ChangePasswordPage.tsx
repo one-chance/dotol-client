@@ -10,7 +10,7 @@ import { USER_MENU_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const ChangePasswordPage = () => {
+export default function ChangePasswordPage() {
   const navigate = useNavigate();
   const isMobile = useResponsive(500);
   const [oldPassword, setOldPassword] = useState(``);
@@ -108,6 +108,4 @@ const ChangePasswordPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default ChangePasswordPage;
+}

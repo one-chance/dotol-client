@@ -15,7 +15,7 @@ const CATEGORES = [
   `tradeboard`,
 ];
 
-const WritePostPage = () => {
+export default function WritePostPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const params = location.pathname.split(`/`)[2] as Board;
@@ -39,6 +39,4 @@ const WritePostPage = () => {
       <NewPost board={params} />
     </FlexView>
   );
-};
-
-export default WritePostPage;
+}

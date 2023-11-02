@@ -12,7 +12,7 @@ import { useResponsive } from '@hooks/index';
 import { isLoggedInState, userIdState } from '@states/index';
 import { Colors } from '@styles/system';
 
-const WithdrawalPage = () => {
+export default function WithdrawalPage() {
   const navigate = useNavigate();
   const isMobile = useResponsive(500);
   const setUserIdState = useSetRecoilState(userIdState);
@@ -127,6 +127,4 @@ const WithdrawalPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default WithdrawalPage;
+}

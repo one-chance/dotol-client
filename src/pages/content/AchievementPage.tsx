@@ -19,7 +19,7 @@ const TAB_LIST = [
   `그 외`,
 ];
 
-const AchievementPage = () => {
+export default function AchievementPage() {
   const isMobile = useResponsive(600);
   const [tab, setTab] = useState(0);
   const [infoList, setInfoList] = useState<Achievement[]>([]);
@@ -70,6 +70,4 @@ const AchievementPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default AchievementPage;
+}

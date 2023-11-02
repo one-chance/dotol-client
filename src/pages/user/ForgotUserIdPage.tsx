@@ -7,7 +7,7 @@ import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const ForgotUserIdPage = () => {
+export default function ForgotUserIdPage() {
   const navigate = useNavigate();
   const isMobile = useResponsive(500);
 
@@ -103,6 +103,4 @@ const ForgotUserIdPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default ForgotUserIdPage;
+}

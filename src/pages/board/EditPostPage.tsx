@@ -34,7 +34,7 @@ const toolbarItems = [
   [`table`, `link`, `image`],
 ];
 
-const EditPostPage = () => {
+export default function EditPostPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const post = (location.state as IPost) ?? null;
@@ -177,6 +177,4 @@ const EditPostPage = () => {
       {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
-};
-
-export default EditPostPage;
+}

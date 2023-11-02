@@ -19,11 +19,10 @@ const LOCATIONS = [
 ];
 const TABS = [`괴수`, `물품`, `임무`, `탐방`, `보상`];
 
-const AdventurePage = () => {
+export default function AdventurePage() {
   const isMobile = useResponsive(600);
   const [tab, setTab] = useState(0); // 탐험 탭
   const [location, setLocation] = useState(0); // 탐험 지역
-  const [infoList, setInfoList] = useState<string[][]>([[]]);
 
   const selectLocation = (idx: number) => {
     setLocation(idx);
@@ -77,6 +76,4 @@ const AdventurePage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default AdventurePage;
+}

@@ -5,7 +5,7 @@ import { Option, Select } from '@components/select';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const OldEngrave = () => {
+export default function OldEngrave() {
   const isMobile = useResponsive(600);
   const ABILITIES = [
     `능력치`,
@@ -398,6 +398,4 @@ const OldEngrave = () => {
       </Text>
     </FlexView>
   );
-};
-
-export default OldEngrave;
+}

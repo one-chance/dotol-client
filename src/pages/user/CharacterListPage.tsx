@@ -21,7 +21,7 @@ import { Toast } from '@components/toast';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
-const CharacterListPage = () => {
+export default function CharacterListPage() {
   const isMobile = useResponsive(510);
   const queryClient = useQueryClient();
   const [newCharacter, setNewCharacter] = useState(``);
@@ -209,6 +209,4 @@ const CharacterListPage = () => {
       {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
-};
-
-export default CharacterListPage;
+}

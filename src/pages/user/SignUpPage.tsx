@@ -11,7 +11,7 @@ import { useResponsive } from '@hooks/index';
 
 type Phase = 1 | 2 | 3 | 4;
 
-const SignUpPage = () => {
+export default function SignUpPage() {
   const isMobile = useResponsive(600);
   const [phase, setPhase] = useState<Phase>(1);
 
@@ -45,6 +45,4 @@ const SignUpPage = () => {
       </FlexView>
     </FlexView>
   );
-};
-
-export default SignUpPage;
+}

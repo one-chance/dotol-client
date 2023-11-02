@@ -16,7 +16,7 @@ import { useResponsive } from '@hooks/index';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
 
-const LookbookPage = () => {
+export default function LookbookPage() {
   const isMobile = useResponsive(980);
   const queryClient = useQueryClient();
   const isLoggedIn = useRecoilValue(isLoggedInState);
@@ -111,6 +111,4 @@ const LookbookPage = () => {
       {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
-};
-
-export default LookbookPage;
+}
