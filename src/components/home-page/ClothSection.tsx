@@ -24,21 +24,31 @@ export default () => {
       <FlexView gap={10} fill>
         <FlexView fill>
           <Text small={!isMobile} xSmall={isMobile} semiBold>
-            멋진의상재봉틀 - 풍월요괴고 의상
+            멋진의상재봉틀 - 레서판다 의상
           </Text>
           <FlexView content="center" items="end" fill row wrap>
-            <Image alt="이미지1" height={160} src="/1.png" width={120} />
-            <Image alt="이미지2" height={160} src="/2.png" width={120} />
+            <Image alt="이미지1" height={140} src="/1.gif" width={190} />
+            <Image alt="이미지2" height={140} src="/2.gif" width={190} />
           </FlexView>
         </FlexView>
 
         <FlexView fill>
           <Text semiBold small>
-            의상수선가위 - 고스트헌터 의상
+            의상수선가위 - 주말오후 의상
           </Text>
           <FlexView center fill row wrap>
-            <Image alt="이미지3" height={180} src="/3.gif" width={180} />
-            <Image alt="이미지3" height={180} src="/4.gif" width={180} />
+            <Image alt="이미지3" height={160} src="/3.gif" width={280} />
+            <Image alt="이미지4" height={160} src="/4.gif" width={280} />
+          </FlexView>
+        </FlexView>
+
+        <FlexView fill>
+          <Text semiBold small>
+            의상수선가위 - 스마트/엘리트교복 & 귀여운판다 의상
+          </Text>
+          <FlexView center fill row wrap>
+            <Image alt="이미지5" height={170} src="/5.gif" width={170} />
+            <Image alt="이미지6" height={170} src="/6.gif" width={170} />
           </FlexView>
         </FlexView>
       </FlexView>
