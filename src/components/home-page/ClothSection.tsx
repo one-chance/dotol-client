@@ -17,7 +17,7 @@ export default () => {
     >
       <FlexView content="between" row>
         <Text small={isMobile} bold>
-          10월 신규 치장
+          11월 신규 치장
         </Text>
       </FlexView>
 
