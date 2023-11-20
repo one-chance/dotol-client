@@ -15,6 +15,7 @@ export const getClothesList = async (
       method: `GET`,
       headers: {
         'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     },
   );

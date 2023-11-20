@@ -72,7 +72,8 @@ export default function CharacterListPage() {
   });
 
   const inputCharacter = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewCharacter(e.target.value);
+    const noSpace = e.target.value.replace(/\s/g, ``);
+    setNewCharacter(noSpace);
   };
 
   useEffect(() => {
