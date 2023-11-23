@@ -11,9 +11,9 @@ import {
 import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
 import { LookbookList } from '@components/costume-pages';
-import { Toast } from '@components/toast';
+
 import { useResponsive } from '@hooks/index';
-import { isLoggedInState, showLoginState } from '@states/index';
+import { isLoggedInState, showLoginState, toastState } from '@states/index';
 import { Colors } from '@styles/system';
 
 export default function LookbookPage() {
@@ -21,41 +21,34 @@ export default function LookbookPage() {
   const queryClient = useQueryClient();
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const setShowLogin = useSetRecoilState(showLoginState);
+  const openToast = useSetRecoilState(toastState);
 
   const [grade, setGrade] = useState(0);
   const [mainCharacter, setMainCharacter] = useState(``);
   const [equipList, setEquipList] = useState(``);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
 
-  const { data: lookbookCount } = useQuery<number>(
-    [`lookbookCount`],
-    () => (isLoggedIn ? getLookbookCount().then(res => res.data) : 0),
-    { initialData: 0, enabled: isLoggedIn },
-  );
+  const { data: lookbookCount } = useQuery<number>({
+    queryKey: [`lookbookCount`],
+    queryFn: () => (isLoggedIn ? getLookbookCount().then(res => res.data) : 0),
+  });
 
-  const decreaseCount = useMutation(decreaseLookbookCount, {
+  const decreaseCount = useMutation({
+    mutationFn: decreaseLookbookCount,
     onSuccess: () => {
-      queryClient.invalidateQueries([`lookbookCount`]);
+      queryClient.invalidateQueries({ queryKey: [`lookbookCount`] });
     },
   });
 
-  const openToast = (message: string) => {
-    setToastMessge(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
-  };
-
   const equipItem = (_items: string) => {
     if (grade === 0) {
-      setShowLogin(true);
-      return;
+      return setShowLogin(true);
     }
-    if (grade < 2) {
-      openToast(`대표 캐릭터를 인증해주세요.`);
-      return;
+    if (grade === 1) {
+      return openToast({
+        open: true,
+        message: `대표 캐릭터를 인증해주세요.`,
+        type: 'error',
+      });
     }
 
     if (lookbookCount === 0) return;
@@ -107,8 +100,6 @@ export default function LookbookPage() {
           * 벗은 상태에서 투구를 착용할 수 없는 버그가 있습니다.
         </Text>
       </FlexView>
-
-      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 }

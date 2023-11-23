@@ -9,9 +9,8 @@ import { Mannequin } from '@components/avatar';
 import { Button, FlexView, Image, Input, Text } from '@components/common';
 import { Pagination } from '@components/pagination';
 import { Select, Option } from '@components/select';
-import { Toast } from '@components/toast';
 import { useResponsive } from '@hooks/index';
-import { isLoggedInState, showLoginState } from '@states/index';
+import { isLoggedInState, showLoginState, toastState } from '@states/index';
 import { Colors } from '@styles/system';
 
 const CLOTHES_PARTS = [
@@ -36,6 +35,7 @@ export default () => {
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const setShowLogin = useSetRecoilState(showLoginState);
+  const openToast = useSetRecoilState(toastState);
 
   const [grade, setGrade] = useState(0);
   const [mainCharacter, setMainCharacter] = useState(``);
@@ -50,21 +50,11 @@ export default () => {
 
   const [clothesList, setClothesList] = useState<IClothes[]>([]);
   const [itemCount, setItemCount] = useState(1);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
 
   const Gender: { [key: number]: string } = {
     0: `공용`,
     1: `남성`,
     2: `여성`,
-  };
-
-  const openToast = (message: string) => {
-    setToastMessge(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
   };
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,12 +74,14 @@ export default () => {
 
   const searchList = (part: number, page: number) => {
     if (grade === 0) {
-      setShowLogin(true);
-      return;
+      return setShowLogin(true);
     }
-    if (grade < 2) {
-      openToast(`대표 캐릭터를 인증해주세요.`);
-      return;
+    if (grade === 1) {
+      return openToast({
+        open: true,
+        message: `대표 캐릭터를 인증해주세요.`,
+        type: 'error',
+      });
     }
 
     navigate(`${location.pathname}?page=${page}`, { replace: true });
@@ -106,12 +98,14 @@ export default () => {
 
   const selectPart = (part: number) => {
     if (grade === 0) {
-      setShowLogin(true);
-      return;
+      return setShowLogin(true);
     }
-    if (grade < 2) {
-      openToast(`대표 캐릭터를 인증해주세요.`);
-      return;
+    if (grade === 1) {
+      return openToast({
+        open: true,
+        message: `대표 캐릭터를 인증해주세요.`,
+        type: 'error',
+      });
     }
 
     setSelectedPart(part);
@@ -330,14 +324,11 @@ export default () => {
           <FlexView>
             <Text color={Colors.red} small>
               * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
-            </Text>
-            <Text color={Colors.red} small>
-              * 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
+              <br />* 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
             </Text>
           </FlexView>
         </FlexView>
       </FlexView>
-      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

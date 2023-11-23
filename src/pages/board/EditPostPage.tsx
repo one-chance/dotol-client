@@ -14,10 +14,12 @@ import {
   uploadPreSignedPostUrl,
 } from '@apis/board';
 import { Button, FlexView, Input, Text } from '@components/common';
-import { Toast } from '@components/toast';
+
 import { useResponsive } from '@hooks/index';
 import { Board, IPost } from '@interfaces/index';
 import { Colors } from '@styles/system';
+import { useSetRecoilState } from 'recoil';
+import { toastState } from '@states/toast';
 
 const CATEGORES = [
   `freeboard`,
@@ -42,18 +44,9 @@ export default function EditPostPage() {
 
   const isMobile = useResponsive(800);
   const contentRef = useRef<Editor>(null);
+  const openToast = useSetRecoilState(toastState);
 
   const [title, setTitle] = useState(``);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
-
-  const openToast = (message: string) => {
-    setToastMessge(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
-  };
 
   const inputTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value.length > 30) return;
@@ -81,8 +74,11 @@ export default function EditPostPage() {
 
   const convertImage = async (blob: Blob, callback: CallableFunction) => {
     if (blob.size > 1024 * 1024 * 10) {
-      openToast(`이미지는 10MB 이하만 가능합니다.`);
-      return;
+      return openToast({
+        open: true,
+        type: 'error',
+        message: `이미지는 10MB 이하만 가능합니다.`,
+      });
     }
 
     const url = await uploadImage(blob);
@@ -173,8 +169,6 @@ export default function EditPostPage() {
           </Button>
         </FlexView>
       </FlexView>
-
-      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 }
