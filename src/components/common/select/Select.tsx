@@ -1,31 +1,27 @@
 import { ReactNode, useEffect, useState, useRef, HTMLAttributes } from 'react';
 
-import { FlexView, Text, Icon } from '@components/common';
 import { CSSObject } from '@emotion/react';
+import { FlexView, Text, Icon } from '@components/common';
 
 type SelectProps = HTMLAttributes<HTMLDivElement> & {
-  name: string;
+  label: string;
   width: number;
   height?: number;
   children: ReactNode;
   disabled?: boolean;
   error?: boolean;
-  max?: number;
   square?: boolean;
-  leftSquare?: boolean;
   isMobile?: boolean;
 };
 
 export default ({
-  name,
+  label,
   width,
   height,
   children,
   disabled,
   error,
-  max,
   square,
-  leftSquare,
   isMobile,
   ...props
 }: SelectProps) => {
@@ -35,6 +31,7 @@ export default ({
 
   const wrapperCSS: CSSObject = {
     width: width ? `${width}px` : `100%`,
+    position: `relative`,
     userSelect: `none`,
   };
 
@@ -49,24 +46,17 @@ export default ({
     ...(error && { border: `1px solid red` }),
     ...(disabled && { filter: `opacity(50%)`, pointerEvents: `none` }),
     ...(square && { borderRadius: 0 }),
-    ...(leftSquare && { borderRadius: `4px 0 0 4px`, borderRight: `none` }),
   };
 
   const optionListCSS: CSSObject = {
     position: `absolute`,
     zIndex: 1000,
+    width: `100%`,
     marginTop: height || `40px`,
     cursor: `pointer`,
     backgroundColor: `#FFF`,
     borderRadius: `4px`,
     boxShadow: `0 0 2px rgba(0, 0, 0, 0.3)`,
-    ...(max && {
-      maxHeight: `${max}px`,
-      overflowY: `scroll`,
-      scrollbarWidth: `none`,
-      '::-webkit-scrollbar': { display: `none` },
-    }),
-    ...(width ? { width: `${width}px` } : { flex: 1 }),
   };
 
   useEffect(() => {
@@ -89,15 +79,15 @@ export default ({
 
   return (
     <FlexView
+      content="start"
       ref={selectRef}
       css={wrapperCSS}
       onClick={() => {
         if (!disabled) setShowOption(!showOption);
       }}
-      {...props}
     >
-      <FlexView content="between" css={selectCSS} items="center" row>
-        <Text small={isMobile}>{name}</Text>
+      <FlexView content="between" css={selectCSS} items="center" row {...props}>
+        <Text>{label}</Text>
         <Icon name={showOption ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 

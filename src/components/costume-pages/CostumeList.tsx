@@ -1,19 +1,26 @@
 import { useEffect, useState } from 'react';
 
-import { IClothes } from '@interfaces/costumes';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { getClothesList, getMyInfo } from '@apis/index';
-import { Mannequin } from '@components/avatar';
-import { Button, FlexView, Image, Input, Text } from '@components/common';
+import { Costume, Mannequin } from '@components/costume-pages';
+import {
+  Button,
+  FlexView,
+  Input,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { Pagination } from '@components/pagination';
-import { Select, Option } from '@components/select';
 import { useResponsive } from '@hooks/index';
+import { ICostume } from '@interfaces/costumes';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';
 import { Colors } from '@styles/system';
+import { useQuery } from '@tanstack/react-query';
 
-const CLOTHES_PARTS = [
+const COSTUME_PARTS = [
   `착용 부위`,
   `목/어깨장식`,
   `투구`,
@@ -27,11 +34,10 @@ const CLOTHES_PARTS = [
   `세트옷`,
 ];
 
-export default () => {
+export default function CostumeList() {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useResponsive(980);
-  const basicUrl = `https://avatar.baram.nexon.com/Profile/itemRender.aspx?inm=`;
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const setShowLogin = useSetRecoilState(showLoginState);
@@ -41,21 +47,22 @@ export default () => {
   const [mainCharacter, setMainCharacter] = useState(``);
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [selectedPart, setSelectedPart] = useState(0);
-  const [selectedItem, setSelectedItem] = useState<IClothes>({
+  const [selectedItem, setSelectedItem] = useState<ICostume>({
+    index: 0,
     name: `착용 아이템`,
     part: 0,
     gender: 0,
     luxury: false,
   });
 
-  const [clothesList, setClothesList] = useState<IClothes[]>([]);
-  const [itemCount, setItemCount] = useState(1);
+  const { data: testList = [] } = useQuery({
+    queryKey: [`testList`],
+    queryFn: () =>
+      getClothesList(searchKeyword, selectedPart, 1).then(res => res.data.list),
+  });
 
-  const Gender: { [key: number]: string } = {
-    0: `공용`,
-    1: `남성`,
-    2: `여성`,
-  };
+  const [itemList, setClothesList] = useState<ICostume[]>([]);
+  const [itemCount, setItemCount] = useState(1);
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -65,6 +72,7 @@ export default () => {
     setClothesList([]);
     setItemCount(1);
     setSelectedItem({
+      index: 0,
       name: `착용 아이템`,
       part: 0,
       gender: 0,
@@ -112,7 +120,7 @@ export default () => {
     searchList(part, 1);
   };
 
-  const selectItem = (_item: IClothes) => {
+  const selectItem = (_item: ICostume) => {
     setSelectedItem(_item);
   };
 
@@ -170,7 +178,7 @@ export default () => {
 
           <FlexView css={{ paddingBottom: `20px` }} gap={4}>
             <Text color={Colors.red} center small>
-              {CLOTHES_PARTS[selectedItem.part]}
+              {COSTUME_PARTS[selectedItem.part]}
             </Text>
             <Text color={Colors.red} center small>
               {selectedItem.name}
@@ -200,12 +208,12 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={CLOTHES_PARTS[selectedPart]}
+                label={COSTUME_PARTS[selectedPart]}
                 width={isMobile ? 110 : 140}
               >
                 <Option
-                  selected={CLOTHES_PARTS[selectedPart]}
-                  values={CLOTHES_PARTS}
+                  selected={COSTUME_PARTS[selectedPart]}
+                  values={COSTUME_PARTS}
                   onSelect={selectPart}
                 />
               </Select>
@@ -237,83 +245,22 @@ export default () => {
             </FlexView>
 
             <FlexView
+              row
+              wrap
+              gap={8}
               css={{
                 minHeight: `450px`,
                 padding: isMobile ? `0 10px` : `0 20px`,
               }}
             >
-              <FlexView
-                content={isMobile ? `center` : `start`}
-                gap={8}
-                row
-                wrap
-              >
-                {clothesList?.map(cloth => (
-                  <FlexView key={cloth.name}>
-                    <FlexView
-                      color="#E6E5E5"
-                      css={{
-                        width: `160px`,
-                        minHeight: `90px`,
-                      }}
-                      items="center"
-                    >
-                      {cloth.name !== `` && (
-                        <Image
-                          css={{ margin: `auto` }}
-                          src={`${basicUrl}${encodeURI(cloth.name)}`}
-                        />
-                      )}
-                    </FlexView>
-
-                    <FlexView
-                      color="#EBE7E2"
-                      content="between"
-                      css={{ width: `160px`, padding: `4px` }}
-                      items="center"
-                      row
-                    >
-                      <Text color={Colors.purple} xSmall>
-                        {Gender[cloth.gender]}
-                      </Text>
-
-                      {cloth.luxury && (
-                        <Text color={Colors.red} xSmall>
-                          명품
-                        </Text>
-                      )}
-                    </FlexView>
-                    <FlexView
-                      css={{
-                        width: `160px`,
-                        minHeight: `28px`,
-                        padding: `4px`,
-                      }}
-                      gap={4}
-                      center
-                    >
-                      <Button
-                        aria-label="치장 아이템"
-                        css={{ userSelect: `text` }}
-                        onClick={() => selectItem(cloth)}
-                      >
-                        <Text
-                          color={
-                            cloth.name === selectedItem.name
-                              ? Colors.red
-                              : Colors.primary
-                          }
-                          small
-                          start
-                        >
-                          {cloth.name}
-                        </Text>
-                      </Button>
-                    </FlexView>
-                  </FlexView>
-                ))}
-              </FlexView>
-              <FlexView fill />
+              {itemList?.map(item => (
+                <Costume
+                  item={item}
+                  key={item.index}
+                  isSelected={selectedItem.name === item.name}
+                  onSelect={selectItem}
+                />
+              ))}
             </FlexView>
 
             <FlexView css={{ minHeight: `40px` }}>
@@ -331,4 +278,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

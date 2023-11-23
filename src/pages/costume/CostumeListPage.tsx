@@ -1,10 +1,10 @@
 import { FlexView } from '@components/common';
-import { ClothList } from '@components/costume-pages';
+import { CostumeList } from '@components/costume-pages';
 import { MenuTab } from '@components/layout';
 import { COSTUME_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
-export default function CostumeList() {
+export default function CostumeListPage() {
   const isMobile = useResponsive(960);
 
   return (
@@ -14,7 +14,7 @@ export default function CostumeList() {
     >
       <MenuTab isMobile={isMobile} menus={COSTUME_TABS} />
 
-      <ClothList />
+      <CostumeList />
     </FlexView>
   );
 }

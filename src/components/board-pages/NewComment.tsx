@@ -38,7 +38,8 @@ export default ({ color, onSubmit }: CommentProps) => {
       <Button
         aria-label="등록"
         color={Colors.purple}
-        css={{ width: `60px`, height: `80px`, borderRadius: `4px` }}
+        radius={4}
+        css={{ width: `60px`, height: `80px` }}
         onClick={submitValue}
       >
         <Text color={Colors.white} semiBold small>

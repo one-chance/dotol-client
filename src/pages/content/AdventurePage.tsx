@@ -2,9 +2,8 @@ import { useState } from 'react';
 
 import { AdventureTab } from '@interfaces/content';
 
-import { FlexView, Text } from '@components/common';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { AdventureList } from '@components/content-pages';
-import { Select, Option } from '@components/select';
 import { useResponsive } from '@hooks/index';
 
 const LOCATIONS = [
@@ -54,7 +53,7 @@ export default function AdventurePage() {
           </Text>
 
           <FlexView gap={8} row>
-            <Select isMobile={isMobile} name={LOCATIONS[location]} width={100}>
+            <Select isMobile={isMobile} label={LOCATIONS[location]} width={100}>
               <Option
                 selected={LOCATIONS[location]}
                 values={LOCATIONS}
@@ -62,7 +61,7 @@ export default function AdventurePage() {
               />
             </Select>
 
-            <Select isMobile={isMobile} name={TABS[tab]} width={80}>
+            <Select isMobile={isMobile} label={TABS[tab]} width={80}>
               <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
             </Select>
           </FlexView>

@@ -44,9 +44,9 @@ export default function ForgotPasswordPage() {
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }}>
       <FlexView
+        radius={4}
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
-          borderRadius: `4px`,
           padding: isMobile ? `20px 10px` : `40px 20px`,
         }}
         gap={isMobile ? 24 : 40}

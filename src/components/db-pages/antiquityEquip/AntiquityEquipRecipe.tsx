@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 
 import DATA from '@data/antiquity-recipe.json';
 
-import { Button, FlexView, Input, Text } from '@components/common';
+import { FlexView, Input, Text, Select, Option } from '@components/common';
 import { AntiquityEquipModal } from '@components/modal';
-import { Option, Select } from '@components/select';
 import { useResponsive } from '@hooks/index';
 
 const EQUIP_PARTS = [`무기`, `투구`, `갑옷`, `명경`, `장갑`, `보주`];
@@ -76,7 +75,7 @@ export default () => {
           신수유물 강화재료
         </Text>
 
-        <Select name={selectedPart} width={100}>
+        <Select label={selectedPart} width={100}>
           <Option
             selected={selectedPart}
             values={EQUIP_PARTS}
@@ -97,7 +96,7 @@ export default () => {
           <Select
             height={36}
             isMobile={isMobile}
-            name={defaultPercentage}
+            label={defaultPercentage}
             width={isMobile ? 80 : 100}
           >
             <Option

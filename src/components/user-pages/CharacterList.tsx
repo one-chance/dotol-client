@@ -58,11 +58,11 @@ export default function CharacterList({ isMobile, list }: CharacterListProps) {
 
   return (
     <FlexView
+      radius={4}
       css={{
         minWidth: '380px',
         minHeight: '390px',
         padding: '20px',
-        borderRadius: '4px',
         border: isMobile ? undefined : '1px solid lightgray',
       }}
       gap={20}

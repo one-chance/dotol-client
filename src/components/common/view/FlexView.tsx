@@ -10,6 +10,8 @@ export type FlexViewProps = HTMLAttributes<HTMLDivElement> & {
   wrap?: boolean;
   fixed?: boolean;
   gap?: number;
+  border?: string;
+  radius?: number;
   content?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
   items?: 'start' | 'end' | 'center';
   color?: string;
@@ -50,6 +52,8 @@ const FlexView = forwardRef<HTMLDivElement, FlexViewProps>(
       fixed,
       wrap,
       gap,
+      border,
+      radius,
       color,
       ...props
     }: FlexViewProps,
@@ -67,6 +71,8 @@ const FlexView = forwardRef<HTMLDivElement, FlexViewProps>(
       ...(wrap && { flexWrap: `wrap` }),
       ...(gap && { gap: `${gap}px` }),
       ...(color && { backgroundColor: color }),
+      ...(border && { border: `1px solid ${border}` }),
+      ...(radius && { borderRadius: `${radius}px` }),
     };
 
     return jsx(`div`, { css, ref, ...props });

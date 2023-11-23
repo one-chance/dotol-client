@@ -90,10 +90,10 @@ export default () => {
 
   return (
     <FlexView
+      border="lightgray"
+      radius={4}
       content="between"
       css={{
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
         padding: isMobile ? `8px` : `12px`,
         margin: isMobile ? `0 5px` : undefined,
       }}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getBodyReinforceBonusList } from '@apis/index';
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { Colors } from '@styles/system';
 
 type BonusListProps = {
@@ -52,7 +51,7 @@ export default ({ isMobile }: BonusListProps) => {
           신체강화 보너스
         </Text>
 
-        <Select name={PARTS[part]} width={120}>
+        <Select label={PARTS[part]} width={120}>
           <Option selected={PARTS[part]} values={PARTS} onSelect={selectPart} />
         </Select>
       </FlexView>

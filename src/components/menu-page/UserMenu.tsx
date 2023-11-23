@@ -34,11 +34,11 @@ export default forwardRef<HTMLDivElement, MenuProps>(
       <FlexView
         ref={ref}
         color={Colors.primary}
+        radius={4}
         css={{
           position: `absolute`,
           width: `160px`,
           marginTop: `50px`,
-          borderRadius: `4px`,
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
       >

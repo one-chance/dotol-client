@@ -1,7 +1,13 @@
 import { useState } from 'react';
 
-import { Button, FlexView, Image, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import {
+  Button,
+  FlexView,
+  Image,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { EQUIP_SET_INDEX, EQUIP_SET_LIST } from '@constants/equip';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
@@ -72,7 +78,7 @@ export default () => {
         <Select
           height={36}
           isMobile={isMobile}
-          name={ITEM_TYPES[equipType]}
+          label={ITEM_TYPES[equipType]}
           width={isMobile ? 112 : 130}
         >
           <Option
@@ -84,9 +90,9 @@ export default () => {
       </FlexView>
 
       <FlexView
+        border="lightgray"
+        radius={4}
         css={{
-          border: `1px solid lightgray`,
-          borderRadius: `4px`,
           padding: `10px`,
           minHeight: isMobile ? `74px` : `78px`,
           margin: isMobile ? `0 4px` : undefined,
@@ -123,10 +129,10 @@ export default () => {
       </FlexView>
 
       <FlexView
+        border="lightgray"
+        radius={4}
         content={isMobile ? `start` : `center`}
         css={{
-          border: `1px solid lightgray`,
-          borderRadius: `4px`,
           padding: `8px`,
         }}
         gap={isMobile ? 20 : 40}

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 import { FlexView, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';

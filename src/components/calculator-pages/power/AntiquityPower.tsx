@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Select, Option, Text } from '@components/common';
 import {
   ANTIQUITY_GLASSES,
   ANTIQUITY_WEAPONS,
@@ -76,11 +75,11 @@ export default () => {
 
   return (
     <FlexView
+      border="lightgray"
+      radius={4}
       css={{
         minWidth: `300px`,
         width: `100%`,
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
         padding: `20px`,
       }}
       gap={16}
@@ -89,8 +88,7 @@ export default () => {
       <FlexView gap={16}>
         <FlexView gap={20} center row>
           <Select
-            max={200}
-            name={ANTIQUITY_GLASSES[equips.glasses]}
+            label={ANTIQUITY_GLASSES[equips.glasses]}
             width={SELECT_WIDTH}
           >
             <Option
@@ -100,11 +98,7 @@ export default () => {
             />
           </Select>
 
-          <Select
-            max={200}
-            name={ANTIQUITY_WEAPONS[equips.weapon]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={ANTIQUITY_WEAPONS[equips.weapon]} width={SELECT_WIDTH}>
             <Option
               selected={ANTIQUITY_WEAPONS[equips.weapon]}
               values={ANTIQUITY_WEAPONS}
@@ -114,11 +108,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select
-            max={200}
-            name={ANTIQUITY_ARMORS[equips.armor]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={ANTIQUITY_ARMORS[equips.armor]} width={SELECT_WIDTH}>
             <Option
               selected={ANTIQUITY_ARMORS[equips.armor]}
               values={ANTIQUITY_ARMORS}
@@ -126,11 +116,7 @@ export default () => {
             />
           </Select>
 
-          <Select
-            max={200}
-            name={ANTIQUITY_HELMETS[equips.helmet]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={ANTIQUITY_HELMETS[equips.helmet]} width={SELECT_WIDTH}>
             <Option
               selected={ANTIQUITY_HELMETS[equips.helmet]}
               values={ANTIQUITY_HELMETS}
@@ -141,7 +127,7 @@ export default () => {
 
         <FlexView gap={20} center row>
           <Select
-            name={ANTIQUITY_GLOVES[equips.leftGlove]}
+            label={ANTIQUITY_GLOVES[equips.leftGlove]}
             width={SELECT_WIDTH}
           >
             <Option
@@ -152,7 +138,7 @@ export default () => {
           </Select>
 
           <Select
-            name={ANTIQUITY_GLOVES[equips.rightGlove]}
+            label={ANTIQUITY_GLOVES[equips.rightGlove]}
             width={SELECT_WIDTH}
           >
             <Option
@@ -164,7 +150,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select name={ANTIQUITY_ORBS[equips.leftOrb]} width={SELECT_WIDTH}>
+          <Select label={ANTIQUITY_ORBS[equips.leftOrb]} width={SELECT_WIDTH}>
             <Option
               selected={ANTIQUITY_ORBS[equips.leftOrb]}
               values={ANTIQUITY_ORBS}
@@ -172,7 +158,7 @@ export default () => {
             />
           </Select>
 
-          <Select name={ANTIQUITY_ORBS[equips.rightOrb]} width={SELECT_WIDTH}>
+          <Select label={ANTIQUITY_ORBS[equips.rightOrb]} width={SELECT_WIDTH}>
             <Option
               selected={ANTIQUITY_ORBS[equips.rightOrb]}
               values={ANTIQUITY_ORBS}

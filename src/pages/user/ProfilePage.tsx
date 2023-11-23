@@ -40,9 +40,9 @@ export default function ProfilePage() {
       <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
 
       <FlexView
+        radius={4}
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
-          borderRadius: `4px`,
           padding: isMobile ? `10px` : `40px`,
         }}
         gap={isMobile ? 40 : 60}

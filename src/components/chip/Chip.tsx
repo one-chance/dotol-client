@@ -3,7 +3,6 @@ import { Button, FlexView, Text } from '@components/common';
 type ChipProps = {
   text: string;
   color?: string;
-  textColor?: string;
   radius?: number;
   clickable?: boolean;
   onClick: () => void;
@@ -13,7 +12,6 @@ type ChipProps = {
 export default ({
   text,
   color,
-  textColor,
   radius,
   clickable,
   onClick,
@@ -25,11 +23,10 @@ export default ({
       <FlexView
         color={color || `#FFFFFF`}
         content="between"
+        radius={radius || 8}
+        border={clickable ? 'blue' : 'gray'}
         css={{
           cursor: !clickable ? `default` : `pointer`,
-          border: `1px solid lightgray`,
-          borderColor: clickable ? `blue` : `gray`,
-          borderRadius: radius ? `${radius}px` : `8px`,
           padding: `0 8px`,
           height: `30px`,
         }}

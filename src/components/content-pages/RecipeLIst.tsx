@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { BODY_REINFORCE_RECIPE } from '@constants/body';
 import { BodyRecipe } from '@interfaces/index';
 
@@ -35,7 +34,7 @@ export default ({ isMobile }: RecipeListProps) => {
 
         <Select
           isMobile={isMobile}
-          name={PARTS[parts]}
+          label={PARTS[parts]}
           width={isMobile ? 120 : 140}
         >
           <Option

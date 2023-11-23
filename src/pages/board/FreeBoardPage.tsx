@@ -5,9 +5,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getAnnouncementList, getPostList } from '@apis/index';
 import { PostAnnouncement, PostSummary } from '@components/board-pages';
-import { Button, FlexView, Input, Link, Text } from '@components/common';
+import {
+  Button,
+  FlexView,
+  Input,
+  Link,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { Pagination } from '@components/pagination';
-import { Select, Option } from '@components/select';
 import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/board';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
@@ -143,7 +150,7 @@ export default function FreeBoardPage() {
         <Pagination count={10} unit={10} />
 
         <FlexView gap={10} center row>
-          <Select height={36} name={SEARCH_TYPES_KO[searchType]} width={100}>
+          <Select height={36} label={SEARCH_TYPES_KO[searchType]} width={100}>
             <Option
               selected={SEARCH_TYPES_KO[searchType]}
               values={SEARCH_TYPES_KO}

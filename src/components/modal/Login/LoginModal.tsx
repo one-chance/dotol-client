@@ -62,10 +62,10 @@ export default ({ close }: ModalProps) => {
       width={isMobile ? 300 : 440}
     >
       <FlexView
+        radius={4}
         color={Colors.white}
         css={{
           padding: isMobile ? `40px 30px` : `60px 40px`,
-          borderRadius: `4px`,
         }}
       >
         <Text

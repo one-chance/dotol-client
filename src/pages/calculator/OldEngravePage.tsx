@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { FlexView, Icon, Input, Text } from '@components/common';
-import { Option, Select } from '@components/select';
+import {
+  FlexView,
+  Icon,
+  Input,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
@@ -121,7 +127,7 @@ export default function OldEngrave() {
 
           <Select
             isMobile={isMobile}
-            name={ABILITIES[ability]}
+            label={ABILITIES[ability]}
             width={isMobile ? 100 : 120}
           >
             <Option
@@ -138,9 +144,9 @@ export default function OldEngrave() {
               현재 수치(%)
             </Text>
             <FlexView
+              border="lightgray"
+              radius={8}
               css={{
-                border: `1px solid lightgray`,
-                borderRadius: `8px`,
                 padding: `20px`,
               }}
               gap={4}
@@ -273,9 +279,9 @@ export default function OldEngrave() {
               과거 수치(+)
             </Text>
             <FlexView
+              border="lightgray"
+              radius={8}
               css={{
-                border: `1px solid lightgray`,
-                borderRadius: `8px`,
                 padding: `20px`,
               }}
               gap={4}

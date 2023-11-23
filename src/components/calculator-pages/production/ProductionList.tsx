@@ -3,8 +3,14 @@ import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 import { getProductionItems } from '@apis/index';
-import { Button, FlexView, Input, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import {
+  Button,
+  FlexView,
+  Input,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { itemState } from '@states/index';
 import { Colors } from '@styles/system';
@@ -90,7 +96,7 @@ export default () => {
   return (
     <FlexView content="between" gap={16} items="center" row wrap>
       <FlexView gap={8} items="center" row>
-        <Select isMobile={isMobile} name={SKILLS[skill]} width={80}>
+        <Select isMobile={isMobile} label={SKILLS[skill]} width={80}>
           <Option
             selected={SKILLS[skill]}
             values={SKILLS}
@@ -101,7 +107,7 @@ export default () => {
         <Select
           disabled={skill === 0}
           isMobile={isMobile}
-          name={GRADES[grade]}
+          label={GRADES[grade]}
           width={isMobile ? 90 : 100}
         >
           <Option
@@ -114,7 +120,7 @@ export default () => {
         <Select
           disabled={grade === 0}
           isMobile={isMobile}
-          name={selectedItem}
+          label={selectedItem}
           width={isMobile ? 155 : 185}
         >
           <Option

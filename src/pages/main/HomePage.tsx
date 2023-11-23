@@ -26,12 +26,12 @@ export default function HomePage() {
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={20}>
       <FlexView
+        border="lightgray"
+        radius={4}
         css={{
-          width: isMobile ? `350px` : `900px`,
+          maxWidth: '900px',
           maxHeight: `200px`,
           overflowY: `auto`,
-          border: `1px solid lightgray`,
-          borderRadius: `4px`,
           padding: isMobile ? `8px` : `12px`,
           margin: isMobile ? `0 5px` : `0 auto`,
         }}

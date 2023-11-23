@@ -4,8 +4,7 @@ import HOLY_EQUIP_DATA from '@data/antiquity-equip-holy.json';
 import EQUIP_DATA from '@data/antiquity-equip.json';
 import { CSSObject } from '@emotion/react';
 
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
 const TITLES = [
@@ -97,7 +96,7 @@ export default () => {
           신수유물 도감
         </Text>
 
-        <Select name={selectedParts} width={100}>
+        <Select label={selectedParts} width={100}>
           <Option
             selected={selectedParts}
             values={EQUIP_PARTS}

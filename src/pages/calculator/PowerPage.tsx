@@ -12,8 +12,7 @@ import {
   PetEquipPower,
   SkillPower,
 } from '@components/calculator-pages';
-import { FlexView, Text } from '@components/common';
-import { Option, Select } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
@@ -97,7 +96,7 @@ export default function PowerPage() {
 
           <Select
             isMobile={isMobile}
-            name={TYPES[type]}
+            label={TYPES[type]}
             width={isMobile ? 120 : 140}
           >
             <Option

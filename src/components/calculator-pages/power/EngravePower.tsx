@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { FlexView, Input, Text } from '@components/common';
-import { Option, Select } from '@components/select';
+import { FlexView, Input, Select, Option, Text } from '@components/common';
 
 const ENGRAVES = [
   `방어구관통`,
@@ -54,17 +53,15 @@ export default () => {
 
   return (
     <FlexView
-      css={{
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
-        padding: `20px`,
-      }}
+      border="lightgray"
+      radius={4}
+      css={{ padding: `20px` }}
       gap={16}
       items="center"
     >
       <FlexView gap={8}>
         <FlexView gap={8} items="center" row>
-          <Select name={engrave.one} width={120} disabled>
+          <Select label={engrave.one} width={120} disabled>
             <Option
               selected={engrave.one}
               values={ENGRAVES}
@@ -85,7 +82,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={8} items="center" row>
-          <Select name={engrave.two} width={120} disabled>
+          <Select label={engrave.two} width={120} disabled>
             <Option
               selected={engrave.two}
               values={ENGRAVES}

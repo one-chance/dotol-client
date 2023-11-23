@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { FlexView, Input, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Input, Select, Option, Text } from '@components/common';
 import { GOLD_POWER } from '@constants/power';
 
 const ABILITIES = [
@@ -75,16 +74,14 @@ export default () => {
 
   return (
     <FlexView
-      css={{
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
-        padding: `20px`,
-      }}
+      border="lightgray"
+      radius={4}
+      css={{ padding: `20px` }}
       gap={16}
       items="center"
     >
       <FlexView gap={10} items="center" row>
-        <Select max={210} name={ability.one} width={210}>
+        <Select label={ability.one} width={210}>
           <Option
             selected={ability.one}
             values={ABILITIES}
@@ -105,7 +102,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={10} items="center" row>
-        <Select max={210} name={ability.two} width={210}>
+        <Select label={ability.two} width={210}>
           <Option
             selected={ability.two}
             values={ABILITIES}
@@ -126,7 +123,7 @@ export default () => {
       </FlexView>
 
       <FlexView gap={10} items="center" row>
-        <Select max={210} name={ability.three} width={210}>
+        <Select label={ability.three} width={210}>
           <Option
             selected={ability.three}
             values={ABILITIES}

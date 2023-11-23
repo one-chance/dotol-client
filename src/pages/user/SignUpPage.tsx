@@ -35,9 +35,9 @@ export default function SignUpPage() {
       items="center"
     >
       <FlexView
+        radius={4}
         css={{
           border: isMobile ? 0 : `1px solid lightgray`,
-          borderRadius: `4px`,
           padding: isMobile ? `10px` : `40px`,
         }}
       >

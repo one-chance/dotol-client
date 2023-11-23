@@ -68,11 +68,11 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
         <Button
           aria-label="벗기"
           color={isNaked === `y` ? `blue` : `transparent`}
+          radius={4}
           css={{
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
-            borderRadius: `4px`,
           }}
           onClick={() => setIsNaked(`y`)}
         >

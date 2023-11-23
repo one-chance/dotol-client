@@ -1,6 +1,13 @@
 import { registerCharacter } from '@apis/characters';
-import { Button, FlexView, Image, Input, Text } from '@components/common';
-import { Option, Select } from '@components/select';
+import {
+  Button,
+  FlexView,
+  Image,
+  Input,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { toastState } from '@states/toast';
 import { Colors } from '@styles/system';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -44,10 +51,10 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
 
   return (
     <FlexView
+      radius={4}
       css={{
         padding: `20px`,
         border: isMobile ? undefined : `1px solid lightgray`,
-        borderRadius: `4px`,
       }}
       gap={16}
     >
@@ -77,7 +84,7 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
           onChange={inputCharacterName}
         />
 
-        <Select name={server} width={80} height={36}>
+        <Select label={server} width={80} height={36}>
           <Option values={SERVERS} selected={server} onSelect={selectServer} />
         </Select>
       </FlexView>

@@ -48,11 +48,9 @@ export default () => {
 
   return (
     <FlexView
-      css={{
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
-        padding: `20px`,
-      }}
+      border="lightgray"
+      radius={4}
+      css={{ padding: `20px` }}
       gap={16}
       items="center"
     >

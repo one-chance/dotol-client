@@ -70,14 +70,12 @@ export default function EquipSkill() {
             #기술서
           </Text>
           <FlexView
+            border="lightgray"
             row
             wrap
             gap={16}
-            css={{
-              padding: '20px',
-              border: '1px solid',
-              borderRadius: '8px',
-            }}
+            radius={8}
+            css={{ padding: '20px' }}
           >
             {SKILL_BOOKS.map(name => (
               <Button key={name} onClick={() => changeSkill(name)}>
@@ -95,11 +93,11 @@ export default function EquipSkill() {
             wrap
             center
             gap={16}
+            radius={8}
             color="lightgray"
             css={{
               padding: '10px',
               minHeight: '240px',
-              borderRadius: '8px',
             }}
           >
             {skillImgs[skill].map(img => (

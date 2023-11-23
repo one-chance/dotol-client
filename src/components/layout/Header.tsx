@@ -5,12 +5,11 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { Anchor, Button, FlexView, Text, Icon } from '@components/common';
+import { TotalMenu, UserMenu } from '@components/menu-page';
 import { LoginModal } from '@components/modal';
 import { MAIN_MENU } from '@constants/menu';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
-
-import { TotalMenu, UserMenu } from './menu';
 
 const btnCSS: CSSObject = {
   width: `90px`,

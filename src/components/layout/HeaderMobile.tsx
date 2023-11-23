@@ -8,8 +8,7 @@ import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
 
-import { TotalMenuMobile } from './menu';
-import UserMenuMobile from './menu/UserMenuMobile';
+import { TotalMenuMobile, UserMenuMobile } from '@components/menu-page';
 
 export default () => {
   const location = useLocation();

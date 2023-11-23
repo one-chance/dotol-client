@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getIngredients } from '@apis/index';
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
 const SKILLS = [
@@ -58,7 +57,7 @@ export default () => {
         <Text large={isMobile} xLarge={!isMobile} bold>
           생산 단계업 재료
         </Text>
-        <Select name={SKILLS[selectedSkill]} width={100}>
+        <Select label={SKILLS[selectedSkill]} width={100}>
           <Option
             selected={SKILLS[selectedSkill]}
             values={SKILLS}

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { FlexView, Input, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Input, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
@@ -196,7 +195,7 @@ export default () => {
           row
           wrap
         >
-          <Select isMobile={isMobile} name={names.type} width={100}>
+          <Select isMobile={isMobile} label={names.type} width={100}>
             <Option
               selected={names.type}
               values={TYPES}
@@ -204,14 +203,14 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.grade} width={100}>
+          <Select isMobile={isMobile} label={names.grade} width={100}>
             <Option
               selected={names.grade}
               values={GRADES}
               onSelect={selectGrade}
             />
           </Select>
-          <Select isMobile={isMobile} name={names.weapon} width={100}>
+          <Select isMobile={isMobile} label={names.weapon} width={100}>
             <Option
               selected={names.weapon}
               values={WEAPONS}
@@ -219,7 +218,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.helmet} width={100}>
+          <Select isMobile={isMobile} label={names.helmet} width={100}>
             <Option
               selected={names.helmet}
               values={HELMETS}
@@ -227,7 +226,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.armor} width={100}>
+          <Select isMobile={isMobile} label={names.armor} width={100}>
             <Option
               selected={names.armor}
               values={ARMORS}
@@ -235,7 +234,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.gloves1} width={100}>
+          <Select isMobile={isMobile} label={names.gloves1} width={100}>
             <Option
               selected={names.gloves1}
               values={GLOVES}
@@ -243,7 +242,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.gloves2} width={100}>
+          <Select isMobile={isMobile} label={names.gloves2} width={100}>
             <Option
               selected={names.gloves2}
               values={GLOVES}
@@ -251,7 +250,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.shield} width={100}>
+          <Select isMobile={isMobile} label={names.shield} width={100}>
             <Option
               selected={names.shield}
               values={SHIELDS}
@@ -259,7 +258,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.necklace} width={100}>
+          <Select isMobile={isMobile} label={names.necklace} width={100}>
             <Option
               selected={names.necklace}
               values={NECKLACES}
@@ -267,7 +266,7 @@ export default () => {
             />
           </Select>
 
-          <Select isMobile={isMobile} name={names.face} width={100}>
+          <Select isMobile={isMobile} label={names.face} width={100}>
             <Option
               selected={names.face}
               values={FACES}

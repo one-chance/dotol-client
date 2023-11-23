@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getAchievementList } from '@apis/index';
-import { FlexView, Text } from '@components/common';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { AchievementList } from '@components/content-pages';
-import { Select, Option } from '@components/select';
 import { useResponsive } from '@hooks/index';
 import { Achievement, Mission } from '@interfaces/index';
 
@@ -55,7 +54,7 @@ export default function AchievementPage() {
 
           <Select
             isMobile={isMobile}
-            name={TAB_LIST[tab]}
+            label={TAB_LIST[tab]}
             width={isMobile ? 100 : 140}
           >
             <Option

@@ -3,8 +3,7 @@ import { useState } from 'react';
 import EQUIP_DATA from '@data/pet-equip.json';
 import { CSSObject } from '@emotion/react';
 
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
 
@@ -56,7 +55,7 @@ export default () => {
           환수장비 도감
         </Text>
 
-        <Select name={EQUIP_TYPES[selectedType]} width={isMobile ? 120 : 140}>
+        <Select label={EQUIP_TYPES[selectedType]} width={isMobile ? 120 : 140}>
           <Option
             selected={EQUIP_TYPES[selectedType]}
             values={EQUIP_TYPES}

@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { getMyInfo } from '@apis/index';
-import { Avatar } from '@components/avatar';
 import { FlexView, Text } from '@components/common';
-import { TanningList } from '@components/costume-pages';
+import { Avatar, TanningList } from '@components/costume-pages';
 
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';

@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getBodyReinforceAbilityList } from '@apis/index';
-import { FlexView, Text } from '@components/common';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { MenuTab } from '@components/layout';
-import { Option, Select } from '@components/select';
 import { BODY_REINFORCE_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
@@ -62,7 +61,7 @@ export default function BodyReinforceAbilityPage() {
             신체강화 능력치
           </Text>
 
-          <Select name={PARTS[part]} width={100}>
+          <Select label={PARTS[part]} width={100}>
             <Option
               selected={PARTS[part]}
               values={PARTS}

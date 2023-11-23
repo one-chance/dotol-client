@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 
-import { Checkbox, FlexView, Input, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import {
+  Checkbox,
+  FlexView,
+  Input,
+  Select,
+  Option,
+  Text,
+} from '@components/common';
 import {
   PET_GRADES,
   PET_EQUIP_NECKLACES,
@@ -124,11 +130,11 @@ export default () => {
 
   return (
     <FlexView
+      border="lightgray"
+      radius={4}
       css={{
         minWidth: `300px`,
         width: `100%`,
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
         padding: `20px`,
       }}
       gap={16}
@@ -136,11 +142,7 @@ export default () => {
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
-          <Select
-            max={200}
-            name={PET_GRADES[equips.grade]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={PET_GRADES[equips.grade]} width={SELECT_WIDTH}>
             <Option
               selected={PET_GRADES[equips.weapon]}
               values={PET_GRADES}
@@ -161,11 +163,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select
-            max={200}
-            name={PET_EQUIP_WEAPONS[equips.weapon]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={PET_EQUIP_WEAPONS[equips.weapon]} width={SELECT_WIDTH}>
             <Option
               selected={PET_EQUIP_WEAPONS[equips.weapon]}
               values={PET_EQUIP_WEAPONS}
@@ -200,11 +198,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} items="center" row>
-          <Select
-            max={200}
-            name={PET_EQUIP_HELMETS[equips.helmet]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={PET_EQUIP_HELMETS[equips.helmet]} width={SELECT_WIDTH}>
             <Option
               selected={PET_EQUIP_HELMETS[equips.helmet]}
               values={PET_EQUIP_HELMETS}
@@ -228,11 +222,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} center row>
-          <Select
-            max={200}
-            name={PET_EQUIP_ARMORS[equips.armor]}
-            width={SELECT_WIDTH}
-          >
+          <Select label={PET_EQUIP_ARMORS[equips.armor]} width={SELECT_WIDTH}>
             <Option
               selected={PET_EQUIP_ARMORS[equips.armor]}
               values={PET_EQUIP_ARMORS}
@@ -257,7 +247,7 @@ export default () => {
 
         <FlexView gap={20} items="center" row>
           <Select
-            name={PET_EQUIP_GLOVES[equips.leftGlove]}
+            label={PET_EQUIP_GLOVES[equips.leftGlove]}
             width={SELECT_WIDTH}
           >
             <Option
@@ -284,7 +274,7 @@ export default () => {
 
         <FlexView gap={20} items="center" row>
           <Select
-            name={PET_EQUIP_GLOVES[equips.rightGlove]}
+            label={PET_EQUIP_GLOVES[equips.rightGlove]}
             width={SELECT_WIDTH}
           >
             <Option
@@ -310,7 +300,7 @@ export default () => {
         </FlexView>
 
         <FlexView gap={20} items="center" row>
-          <Select name={PET_EQUIP_SHIELDS[equips.shield]} width={SELECT_WIDTH}>
+          <Select label={PET_EQUIP_SHIELDS[equips.shield]} width={SELECT_WIDTH}>
             <Option
               selected={PET_EQUIP_SHIELDS[equips.shield]}
               values={PET_EQUIP_SHIELDS}
@@ -328,7 +318,7 @@ export default () => {
         </FlexView>
 
         <Select
-          name={PET_EQUIP_NECKLACES[equips.necklace]}
+          label={PET_EQUIP_NECKLACES[equips.necklace]}
           width={SELECT_WIDTH}
         >
           <Option
@@ -338,7 +328,7 @@ export default () => {
           />
         </Select>
 
-        <Select name={PET_EQUIP_FACES[equips.face]} width={SELECT_WIDTH}>
+        <Select label={PET_EQUIP_FACES[equips.face]} width={SELECT_WIDTH}>
           <Option
             selected={PET_EQUIP_FACES[equips.face]}
             values={PET_EQUIP_FACES}
@@ -346,7 +336,7 @@ export default () => {
           />
         </Select>
 
-        <Select name={PET_EQUIP_CLOTHES[equips.clothes]} width={SELECT_WIDTH}>
+        <Select label={PET_EQUIP_CLOTHES[equips.clothes]} width={SELECT_WIDTH}>
           <Option
             selected={PET_EQUIP_CLOTHES[equips.clothes]}
             values={PET_EQUIP_CLOTHES}

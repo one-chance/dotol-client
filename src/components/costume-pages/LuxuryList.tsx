@@ -168,11 +168,11 @@ export default () => {
 
       <FlexView gap={8}>
         <FlexView
+          border="lightgray"
+          radius={4}
           css={{
             margin: isMobile ? `0 4px` : 0,
             padding: `10px`,
-            border: `1px solid lightgray`,
-            borderRadius: `4px`,
           }}
           gap={16}
           row
@@ -198,12 +198,12 @@ export default () => {
         {series !== 0 && (
           <>
             <FlexView
+              border="lightgray"
+              radius={4}
               css={{
                 minHeight: `40px`,
                 margin: isMobile ? `0 4px` : 0,
                 padding: `10px`,
-                border: `1px solid lightgray`,
-                borderRadius: `4px`,
               }}
               gap={8}
               row
