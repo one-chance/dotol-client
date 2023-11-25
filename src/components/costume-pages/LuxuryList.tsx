@@ -156,89 +156,65 @@ export default () => {
   };
 
   return (
-    <FlexView gap={isMobile ? 10 : 20}>
-      <Text
-        css={{ margin: isMobile ? `0 10px` : 0 }}
-        xLarge={isMobile}
-        xxLarge={!isMobile}
-        bold
+    <FlexView gap={8} css={{ maxWidth: '720px' }}>
+      <FlexView
+        border="lightgray"
+        radius={4}
+        css={{ padding: `10px` }}
+        gap={16}
+        row
+        wrap
       >
-        명품의 도감
-      </Text>
-
-      <FlexView gap={8}>
-        <FlexView
-          border="lightgray"
-          radius={4}
-          css={{
-            margin: isMobile ? `0 4px` : 0,
-            padding: `10px`,
-          }}
-          gap={16}
-          row
-          wrap
-        >
-          {NAMES.map((name, index) => (
-            <Button
+        {NAMES.map((name, index) => (
+          <Button
+            key={name}
+            aria-label="기수"
+            onClick={() => selectSeries(index + 1)}
+          >
+            <Text
               key={name}
-              aria-label="기수"
-              onClick={() => selectSeries(index + 1)}
+              small={isMobile}
+              bold={NAMES[series - 1] === name}
+              color={NAMES[series - 1] === name ? Colors.red : Colors.black}
             >
-              <Text
-                key={name}
-                bold={NAMES[series - 1] === name}
-                color={NAMES[series - 1] === name ? Colors.red : Colors.primary}
-              >
-                {index + 1}기 {name}
-              </Text>
-            </Button>
-          ))}
-        </FlexView>
-
-        {series !== 0 && (
-          <>
-            <FlexView
-              border="lightgray"
-              radius={4}
-              css={{
-                minHeight: `40px`,
-                margin: isMobile ? `0 4px` : 0,
-                padding: `10px`,
-              }}
-              gap={8}
-              row
-              wrap
-            >
-              {PARTS[series].map(part => (
-                <Text key={part} small>
-                  {part}
-                </Text>
-              ))}
-            </FlexView>
-
-            <FlexView
-              css={{
-                border: isMobile ? `none` : `1px solid lightgray`,
-                borderRadius: isMobile ? 0 : `4px`,
-                padding: isMobile ? 0 : `10px`,
-              }}
-              center
-            >
-              <FlexView
-                css={{
-                  maxWidth: isMobile ? `352px` : `fit-content`,
-                }}
-              >
-                {series !== 0 && <Image src={`${basicURL}${series}.png`} />}
-              </FlexView>
-            </FlexView>
-
-            <Text color={Colors.red} css={{ margin: isMobile ? `0 4px` : 0 }}>
-              * 6부위 전용 이펙트가 적용된 이미지입니다.
+              {index + 1}기 {name}
             </Text>
-          </>
-        )}
+          </Button>
+        ))}
       </FlexView>
+
+      {series !== 0 && (
+        <>
+          <FlexView radius={4} center>
+            <Image
+              src={`${basicURL}${series}.png`}
+              css={{
+                maxWidth: isMobile ? `350px` : `fit-content`,
+                borderRadius: '4px',
+              }}
+            />
+          </FlexView>
+
+          <FlexView
+            border="lightgray"
+            radius={4}
+            css={{ padding: `10px` }}
+            gap={8}
+            row
+            wrap
+          >
+            {PARTS[series].map(part => (
+              <Text key={part} small>
+                {part}
+              </Text>
+            ))}
+          </FlexView>
+
+          <Text small={isMobile} color={Colors.red}>
+            ● 6부위 전용 이펙트가 적용된 이미지입니다.
+          </Text>
+        </>
+      )}
     </FlexView>
   );
 };

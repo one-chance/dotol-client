@@ -72,9 +72,9 @@ export default function LookbookPage() {
   }, [isLoggedIn]);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={20}>
-      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-        장비/치장 룩북
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <Text large={isMobile} xLarge={!isMobile} bold>
+        캐릭터 룩북
       </Text>
 
       <FlexView
@@ -91,14 +91,10 @@ export default function LookbookPage() {
         <LookbookList applyPreview={equipItem} isMobile={isMobile} />
       </FlexView>
 
-      <FlexView css={{ margin: `0 4px` }}>
-        <Text color={Colors.red} small={isMobile} medium>
-          * 게임에서 세트옷을 착용하지 않아야 룩북이 적용됩니다.
-        </Text>
-        <Text color={Colors.red} small={isMobile} medium>
-          * 벗은 상태에서 투구를 착용할 수 없는 버그가 있습니다.
-        </Text>
-      </FlexView>
+      <Text color={Colors.red} small>
+        ● 인게임에서 세트옷을 보이지 않게 해야 합니다.
+        <br />● 벗은 상태로 투구를 착용할 수 없는 버그가 있습니다.
+      </Text>
     </FlexView>
   );
 }

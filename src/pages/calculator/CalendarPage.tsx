@@ -7,20 +7,13 @@ export default function CalendarPage() {
   const isMobile = useResponsive(800);
 
   return (
-    <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `60px auto` }}>
+    <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `0 auto` }}>
       <FlexView gap={40} center>
-        <Text bold center xxLarge>
+        <Text bold center large={isMobile} xLarge={!isMobile}>
           2023 세시마을 일정
         </Text>
 
-        <FlexView
-          css={{
-            maxWidth: `732px`,
-          }}
-          gap={20}
-          row={!isMobile}
-          wrap
-        >
+        <FlexView css={{ maxWidth: `732px` }} gap={20} row={!isMobile} wrap>
           {SCHEDULES.map(data => (
             <FlexView key={data.event} gap={16} items="center" row>
               <Text

@@ -6,8 +6,6 @@ import { useSetRecoilState } from 'recoil';
 
 import { deleteUser } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
-import { MenuTab } from '@components/layout';
-import { USER_MENU_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, userIdState } from '@states/index';
 import { Colors } from '@styles/system';
@@ -57,73 +55,61 @@ export default function WithdrawalPage() {
   };
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
-      }}
-      items="center"
-    >
-      <FlexView gap={isMobile ? 20 : 40}>
-        <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <FlexView
+        border="lightgray"
+        radius={4}
+        css={{ padding: `20px` }}
+        gap={20}
+      >
+        <Text large={isMobile} xLarge={!isMobile} bold center>
+          회원 탈퇴
+        </Text>
 
-        <FlexView
-          radius={4}
-          css={{
-            border: isMobile ? `none` : `1px solid lightgray`,
-            padding: isMobile ? `10px` : `40px`,
-          }}
-          gap={isMobile ? 24 : 40}
-        >
-          <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-            회원 탈퇴
+        <FlexView gap={8}>
+          <Text color={Colors.red} small={isMobile}>
+            작성한 게시물, 댓글은 자동으로 삭제되지 않습니다.
           </Text>
-
-          <FlexView gap={8}>
-            <Text color={Colors.red} small={isMobile}>
-              작성한 게시물, 댓글은 자동으로 삭제되지 않습니다.
-            </Text>
-            <Text color={Colors.red} small={isMobile}>
-              탈퇴하면 계정을 복구할 수 없습니다.
-            </Text>
-          </FlexView>
-
-          <FlexView gap={12}>
-            <TextField
-              autoComplete="email"
-              correct={isEmailForm}
-              error={!isEmailForm}
-              errorMessage={emailErrorMessage}
-              label="이메일"
-              value={email}
-              onChange={inputEmail}
-            />
-
-            <TextField
-              autoComplete="current-password"
-              error={!isCorrectPassword}
-              errorMessage={passwordErrorMessage}
-              isMobile={isMobile}
-              label="비밀번호"
-              value={password}
-              password
-              onChange={inputPassword}
-            />
-          </FlexView>
-
-          <Button
-            aria-label="탈퇴"
-            color={Colors.red}
-            css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
-            disabled={password.length < 8 || !isEmailForm}
-            radius={4}
-            onClick={withdrawUser}
-          >
-            <Text color={Colors.white} small={isMobile} semiBold>
-              탈퇴하기
-            </Text>
-          </Button>
+          <Text color={Colors.red} small={isMobile}>
+            탈퇴하면 계정을 복구할 수 없습니다.
+          </Text>
         </FlexView>
+
+        <FlexView gap={12}>
+          <TextField
+            autoComplete="email"
+            correct={isEmailForm}
+            error={!isEmailForm}
+            errorMessage={emailErrorMessage}
+            label="이메일"
+            value={email}
+            onChange={inputEmail}
+          />
+
+          <TextField
+            autoComplete="current-password"
+            error={!isCorrectPassword}
+            errorMessage={passwordErrorMessage}
+            isMobile={isMobile}
+            label="비밀번호"
+            value={password}
+            password
+            onChange={inputPassword}
+          />
+        </FlexView>
+
+        <Button
+          aria-label="탈퇴"
+          color={Colors.red}
+          css={{ width: isMobile ? `308px` : `440px`, height: `40px` }}
+          disabled={password.length < 8 || !isEmailForm}
+          radius={4}
+          onClick={withdrawUser}
+        >
+          <Text color={Colors.white} small={isMobile} semiBold>
+            탈퇴하기
+          </Text>
+        </Button>
       </FlexView>
     </FlexView>
   );

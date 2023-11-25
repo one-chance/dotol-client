@@ -1,20 +1,9 @@
-import { useState } from 'react';
-
 import EQUIP_DATA from '@data/pet-equip.json';
 import { CSSObject } from '@emotion/react';
 
 import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
-
-const EQUIP_TYPES = [
-  `황룡 장비`,
-  `청룡 장비`,
-  `주작 장비`,
-  `백호 장비`,
-  `현무 장비`,
-  `공통 장비`,
-];
 
 const EQUIP_PARTS = [
   `장비`,
@@ -27,10 +16,14 @@ const EQUIP_PARTS = [
   `마치`,
 ];
 
-export default () => {
+interface PetEquipListProps {
+  type: number;
+}
+
+export default ({ type }: PetEquipListProps) => {
   const isMobile = useResponsive(580);
-  const [selectedType, setSelectedType] = useState(0);
-  const myData = EQUIP_DATA[selectedType];
+
+  const myData = EQUIP_DATA[type];
 
   const cellCSS: CSSObject = {
     width: isMobile ? `44px` : `70px`,
@@ -39,31 +32,8 @@ export default () => {
     letterSpacing: isMobile ? -1 : 0,
   };
 
-  const selectType = (idx: number) => {
-    setSelectedType(idx);
-  };
-
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <FlexView
-        content="between"
-        css={{ padding: isMobile ? `0 4px` : undefined }}
-        items="center"
-        row
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} semiBold>
-          환수장비 도감
-        </Text>
-
-        <Select label={EQUIP_TYPES[selectedType]} width={isMobile ? 120 : 140}>
-          <Option
-            selected={EQUIP_TYPES[selectedType]}
-            values={EQUIP_TYPES}
-            onSelect={selectType}
-          />
-        </Select>
-      </FlexView>
-
       <FlexView
         css={{
           borderLeft: `1px solid lightgray`,

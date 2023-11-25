@@ -1,25 +1,17 @@
 import { PetEquipRecipe } from '@components/db-pages';
-import { FlexView } from '@components/common';
-import { MenuTab } from '@components/layout';
-import { PET_EQUIP_TABS } from '@constants/menu';
+import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
 export default function PetEquipRecipePage() {
   const isMobile = useResponsive(580);
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
-      }}
-      items="center"
-    >
-      <FlexView gap={isMobile ? 20 : 40}>
-        <MenuTab isMobile={isMobile} menus={PET_EQUIP_TABS} />
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <Text large={isMobile} xLarge={!isMobile} bold>
+        환수장비 강화재료
+      </Text>
 
-        <PetEquipRecipe />
-      </FlexView>
+      <PetEquipRecipe />
     </FlexView>
   );
 }

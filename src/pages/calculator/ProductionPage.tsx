@@ -11,11 +11,10 @@ export default function ProductionPage() {
   return (
     <FlexView
       css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+        maxWidth: isMobile ? `100%` : `960px`,
+        margin: `0 auto`,
       }}
       gap={40}
-      items="center"
     >
       <ProductionCalculator />
 

@@ -177,16 +177,12 @@ export default () => {
   }, [names, extra]);
 
   return (
-    <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <Text xLarge={isMobile} xxLarge={!isMobile} semiBold>
-        환수 명중률 계산기
-      </Text>
-
+    <FlexView gap={10}>
       <FlexView
         css={{
-          width: isMobile ? `352px` : `560px`,
-          border: isMobile ? 0 : `1px solid lightgrey`,
-          padding: isMobile ? `0 20px` : `20px`,
+          width: isMobile ? `350px` : `560px`,
+          border: `1px solid lightgrey`,
+          padding: `20px`,
         }}
       >
         <FlexView
@@ -283,7 +279,7 @@ export default () => {
             onChange={inputExtra}
           />
 
-          <FlexView css={{ width: `100px` }} center>
+          <FlexView fill center>
             <Text color={Colors.primary} large={!isMobile} semiBold>
               명중률: {accuracy}
             </Text>
@@ -291,12 +287,12 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <FlexView css={{ padding: isMobile ? `0 4px` : undefined }}>
-        <Text color={Colors.red} small={isMobile}>
-          * 사신수는 등급별 시동 명중률이 포함됩니다.
+      <FlexView>
+        <Text color={Colors.red} small>
+          ● 사신수는 등급별 시동 명중률이 포함됩니다.
         </Text>
-        <Text color={Colors.red} small={isMobile}>
-          * 모든 장비는 강화석이 최대로 적용되어 계산됩니다.
+        <Text color={Colors.red} small>
+          ● 모든 장비는 강화석이 최대로 적용되어 계산됩니다.
         </Text>
       </FlexView>
     </FlexView>

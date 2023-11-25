@@ -1,7 +1,5 @@
-import { FlexView } from '@components/common';
+import { FlexView, Text } from '@components/common';
 import { NormalEquipList } from '@components/db-pages';
-import { MenuTab } from '@components/layout';
-import { NORMAL_EQUIP_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
 export default function NormalEquipListPage() {
@@ -12,11 +10,13 @@ export default function NormalEquipListPage() {
       css={{
         maxWidth: `960px`,
         width: `100%`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+        margin: `0 auto`,
       }}
-      gap={40}
+      gap={20}
     >
-      <MenuTab isMobile={isMobile} menus={NORMAL_EQUIP_TABS} />
+      <Text bold xLarge={!isMobile} large={isMobile}>
+        일반장비 도감
+      </Text>
 
       <NormalEquipList />
     </FlexView>

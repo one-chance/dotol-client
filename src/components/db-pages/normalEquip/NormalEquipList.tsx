@@ -144,19 +144,9 @@ export default () => {
 
   return (
     <FlexView gap={20}>
-      <Text bold xxLarge={!isMobile} large={isMobile}>
-        일반장비 도감
-      </Text>
       <FlexView gap={20}>
         <FlexView gap={20}>
-          <FlexView
-            content="between"
-            css={{ padding: `0 4px` }}
-            gap={20}
-            items="center"
-            row
-            wrap
-          >
+          <FlexView content="between" gap={20} items="center" row wrap>
             <FlexView row>
               <Input
                 css={{

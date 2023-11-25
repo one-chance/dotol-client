@@ -39,34 +39,26 @@ export default function AchievementPage() {
   }, []);
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `20px auto` : `60px auto`,
-      }}
-      items="center"
-    >
-      <FlexView gap={20}>
-        <FlexView content="between" gap={20} items="center" row wrap>
-          <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-            업적 정보
-          </Text>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <FlexView content="between" gap={20} items="center" row wrap>
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+          업적 정보
+        </Text>
 
-          <Select
-            isMobile={isMobile}
-            label={TAB_LIST[tab]}
-            width={isMobile ? 100 : 140}
-          >
-            <Option
-              selected={TAB_LIST[tab]}
-              values={TAB_LIST}
-              onSelect={selectTab}
-            />
-          </Select>
-        </FlexView>
-
-        <AchievementList list={selectedList} />
+        <Select
+          isMobile={isMobile}
+          label={TAB_LIST[tab]}
+          width={isMobile ? 100 : 140}
+        >
+          <Option
+            selected={TAB_LIST[tab]}
+            values={TAB_LIST}
+            onSelect={selectTab}
+          />
+        </Select>
       </FlexView>
+
+      <AchievementList list={selectedList} />
     </FlexView>
   );
 }

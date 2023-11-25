@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 
 import { getMyInfo, updateMyInfo } from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
-import { MenuTab } from '@components/layout';
-import { USER_MENU_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 import { IUser } from '@interfaces/index';
 import { Colors } from '@styles/system';
@@ -30,28 +28,18 @@ export default function ProfilePage() {
   }, []);
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : undefined,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
-      }}
-      gap={isMobile ? 20 : 40}
-    >
-      <MenuTab isMobile={isMobile} menus={USER_MENU_TABS} />
-
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
         radius={4}
-        css={{
-          border: isMobile ? `none` : `1px solid lightgray`,
-          padding: isMobile ? `10px` : `40px`,
-        }}
-        gap={isMobile ? 40 : 60}
+        border="lightgray"
+        css={{ padding: '20px' }}
+        gap={20}
       >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        <Text large={isMobile} xLarge={!isMobile} bold center>
           프로필
         </Text>
 
-        <FlexView gap={8}>
+        <FlexView radius={4}>
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
@@ -137,7 +125,6 @@ export default function ProfilePage() {
                 autoFocus={editMode}
                 isMobile={isMobile}
                 value={userInfo?.openTalk}
-                width={isMobile ? 230 : 320}
                 onChange={inputOpenTalk}
               />
             ) : (
@@ -149,11 +136,11 @@ export default function ProfilePage() {
         </FlexView>
 
         {editMode ? (
-          <FlexView gap={isMobile ? 10 : 20} items="center" row>
+          <FlexView gap={isMobile ? 8 : 20} items="center" row>
             <Button
               aria-label="취소"
               border={Colors.purple}
-              css={{ width: isMobile ? `155px` : `210px`, height: `40px` }}
+              css={{ width: isMobile ? `150px` : `210px`, height: `40px` }}
               radius={4}
               onClick={() => setEditMode(false)}
             >
@@ -165,7 +152,7 @@ export default function ProfilePage() {
             <Button
               aria-label="저장하기"
               color={Colors.purple}
-              css={{ width: isMobile ? `155px` : `210px`, height: `40px` }}
+              css={{ width: isMobile ? `150px` : `210px`, height: `40px` }}
               radius={4}
               onClick={saveProfile}
             >
@@ -178,7 +165,7 @@ export default function ProfilePage() {
           <Button
             aria-label="수정하기"
             color={Colors.purple}
-            css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+            css={{ width: isMobile ? `308px` : `440px`, height: `40px` }}
             radius={4}
             onClick={() => setEditMode(true)}
           >

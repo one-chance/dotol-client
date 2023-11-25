@@ -8,7 +8,8 @@ export default function HeaderRouter() {
 
   return (
     <Routes>
-      <Route element={isMobile ? <HeaderMobile /> : <Header />} path="/*" />
+      {/* <Route element={isMobile ? <HeaderMobile /> : <Header />} path="/*" /> */}
+      {isMobile && <Route element={<HeaderMobile />} path="/*" />}
     </Routes>
   );
 }

@@ -108,14 +108,7 @@ export default function OldEngrave() {
   }, [engraves]);
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `40px 0` : `60px auto`,
-      }}
-      gap={20}
-      items="center"
-    >
+    <FlexView css={{ margin: `0  auto` }} gap={20}>
       <FlexView
         css={{ width: isMobile ? `340px` : `500px` }}
         gap={isMobile ? 20 : 40}
@@ -400,7 +393,7 @@ export default function OldEngrave() {
       </FlexView>
 
       <Text color={Colors.red} small={isMobile}>
-        * 능력치 종류를 선택해야 수치를 입력할 수 있습니다.
+        ● 능력치 종류를 선택해야 수치를 입력할 수 있습니다.
       </Text>
     </FlexView>
   );

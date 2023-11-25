@@ -76,50 +76,36 @@ export default function PowerPage() {
   };
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `20px 0 40px 0` : `60px auto`,
-      }}
-      items="center"
-    >
-      <FlexView gap={isMobile ? 20 : 40}>
-        <FlexView
-          content="between"
-          css={{ margin: isMobile ? `0 10px` : 0 }}
-          items="center"
-          row
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <FlexView
+        content="between"
+        css={{ margin: isMobile ? `0 10px` : 0 }}
+        items="center"
+        row
+      >
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+          전투력 계산기
+        </Text>
+
+        <Select
+          isMobile={isMobile}
+          label={TYPES[type]}
+          width={isMobile ? 120 : 140}
         >
-          <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-            전투력 계산기
+          <Option selected={TYPES[type]} values={TYPES} onSelect={selectType} />
+        </Select>
+      </FlexView>
+
+      <FlexView css={{ width: isMobile ? `340px` : `440px`, margin: `0 10px` }}>
+        {calculator[type]}
+      </FlexView>
+
+      <FlexView css={{ margin: `0 10px` }} gap={4}>
+        {explanations[type].map(text => (
+          <Text key={text} color={Colors.red} small={isMobile}>
+            {text}
           </Text>
-
-          <Select
-            isMobile={isMobile}
-            label={TYPES[type]}
-            width={isMobile ? 120 : 140}
-          >
-            <Option
-              selected={TYPES[type]}
-              values={TYPES}
-              onSelect={selectType}
-            />
-          </Select>
-        </FlexView>
-
-        <FlexView
-          css={{ width: isMobile ? `340px` : `440px`, margin: `0 10px` }}
-        >
-          {calculator[type]}
-        </FlexView>
-
-        <FlexView css={{ margin: `0 10px` }} gap={4}>
-          {explanations[type].map(text => (
-            <Text key={text} color={Colors.red} small={isMobile}>
-              {text}
-            </Text>
-          ))}
-        </FlexView>
+        ))}
       </FlexView>
     </FlexView>
   );

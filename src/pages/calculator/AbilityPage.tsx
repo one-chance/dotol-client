@@ -8,17 +8,14 @@ export default function AbilityPage() {
   return (
     <FlexView
       css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+        margin: `0 auto`,
       }}
-      items="center"
+      gap={20}
     >
-      <FlexView gap={20}>
-        <Text bold center xxLarge>
-          능력치 계산기
-        </Text>
-        <AbilityCalculator />
-      </FlexView>
+      <Text bold xxLarge={!isMobile} xLarge={isMobile}>
+        능력치 계산기
+      </Text>
+      <AbilityCalculator />
     </FlexView>
   );
 }

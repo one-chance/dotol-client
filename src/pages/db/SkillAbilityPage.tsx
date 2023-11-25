@@ -1,7 +1,5 @@
 import { FlexView } from '@components/common';
 import { SkillAbilityList } from '@components/db-pages';
-import { MenuTab } from '@components/layout';
-import { SKILL_TABS } from '@constants/menu';
 import { useResponsive } from '@hooks/index';
 
 export default function SkillAbilityPage() {
@@ -17,8 +15,6 @@ export default function SkillAbilityPage() {
       items="center"
       gap={40}
     >
-      <MenuTab isMobile={isMobile} menus={SKILL_TABS} />
-
       <SkillAbilityList />
     </FlexView>
   );

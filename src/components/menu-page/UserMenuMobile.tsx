@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { CSSObject } from '@emotion/react';
 import { useSetRecoilState } from 'recoil';
 
-import { Button, FlexView, Link, Text } from '@components/common';
+import { FlexView, Link, Text } from '@components/common';
 import { isLoggedInState, userIdState } from '@states/index';
 import { Colors } from '@styles/system';
 
@@ -56,17 +56,17 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           프로필
         </Link>
 
-        {/* <Link
+        <Link
           aria-label="비밀번호 변경"
           css={linkCSS}
           to="/user/change-password"
           onClick={close}
         >
           비밀번호 변경
-        </Link> */}
+        </Link>
 
         <Link
-          aria-label="대표 캐릭터"
+          aria-label="캐릭터 관리"
           css={linkCSS}
           to="/user/character"
           onClick={close}
@@ -74,8 +74,17 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           캐릭터 관리
         </Link>
 
-        <Button
-          aria-label="로그아웃"
+        <Link
+          aria-label="회원 탈퇴"
+          css={linkCSS}
+          to="/user/withdrawal"
+          onClick={close}
+        >
+          회원 탈퇴
+        </Link>
+
+        <FlexView
+          content="center"
           css={{
             height: `40px`,
             borderBottomLeftRadius: `4px`,
@@ -84,10 +93,10 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           }}
           onClick={signout}
         >
-          <Text color={Colors.white} fill small start>
+          <Text color={Colors.white} small>
             로그아웃
           </Text>
-        </Button>
+        </FlexView>
       </FlexView>
     );
   },

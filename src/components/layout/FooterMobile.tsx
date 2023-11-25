@@ -4,7 +4,7 @@ import { Colors } from '@styles/system';
 export default () => (
   <footer>
     <FlexView
-      color={Colors.primary}
+      color={Colors.grey}
       css={{
         height: `3rem`,
         padding: `0 10px`,

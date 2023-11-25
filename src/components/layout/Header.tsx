@@ -144,7 +144,7 @@ export default () => {
               ))}
             </FlexView>
 
-            <FlexView items="end">
+            <FlexView items="end" css={{ position: 'relative' }}>
               {isLoggedIn ? (
                 <FlexView content="end" css={{ width: `180px` }} row>
                   <Button

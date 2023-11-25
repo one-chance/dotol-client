@@ -58,17 +58,13 @@ export default function CharacterList({ isMobile, list }: CharacterListProps) {
 
   return (
     <FlexView
+      border="lightgray"
       radius={4}
-      css={{
-        minWidth: '380px',
-        minHeight: '390px',
-        padding: '20px',
-        border: isMobile ? undefined : '1px solid lightgray',
-      }}
+      css={{ minWidth: '350px', padding: '20px' }}
       gap={20}
     >
       <Text bold center xLarge>
-        캐릭터 목록 {mainCharacter}
+        캐릭터 목록
       </Text>
 
       {list?.length === 0 ? (

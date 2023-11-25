@@ -51,18 +51,16 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
 
   return (
     <FlexView
+      border="lightgray"
       radius={4}
-      css={{
-        padding: `20px`,
-        border: isMobile ? undefined : `1px solid lightgray`,
-      }}
+      css={{ padding: '20px 10px' }}
       gap={16}
     >
       <Text bold center xLarge>
         캐릭터 인증
       </Text>
 
-      <Image css={{ width: `338px`, height: '115px' }} src="/auth.png" />
+      <Image css={{ width: `328px`, height: '115px' }} src="/auth.png" />
 
       <FlexView gap={4}>
         <Text color={Colors.red} small css={{ lineHeight: '150%' }}>
@@ -94,9 +92,7 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
         radius={4}
         aria-label="인증"
         color={Colors.primary}
-        css={{
-          height: `36px`,
-        }}
+        css={{ height: `36px` }}
         onClick={() => addCharacter.mutate(`${name}@${server}`)}
       >
         <Text semiBold color={Colors.white}>

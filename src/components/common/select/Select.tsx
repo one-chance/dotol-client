@@ -87,7 +87,7 @@ export default ({
       }}
     >
       <FlexView content="between" css={selectCSS} items="center" row {...props}>
-        <Text>{label}</Text>
+        <Text small>{label}</Text>
         <Icon name={showOption ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 

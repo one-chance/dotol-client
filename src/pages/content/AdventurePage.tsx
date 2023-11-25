@@ -32,47 +32,32 @@ export default function AdventurePage() {
   };
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `20px auto` : `60px auto`,
-      }}
-      items="center"
-    >
-      <FlexView gap={20}>
-        <FlexView
-          content="between"
-          css={{ padding: isMobile ? `0 4px` : undefined }}
-          gap={20}
-          items="center"
-          row
-          wrap
-        >
-          <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-            탐험일지 정보
-          </Text>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <FlexView content="between" items="center" row wrap>
+        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+          탐험일지 정보
+        </Text>
 
-          <FlexView gap={8} row>
-            <Select isMobile={isMobile} label={LOCATIONS[location]} width={100}>
-              <Option
-                selected={LOCATIONS[location]}
-                values={LOCATIONS}
-                onSelect={selectLocation}
-              />
-            </Select>
+        <FlexView gap={8} row>
+          <Select isMobile={isMobile} label={LOCATIONS[location]} width={100}>
+            <Option
+              selected={LOCATIONS[location]}
+              values={LOCATIONS}
+              onSelect={selectLocation}
+            />
+          </Select>
 
-            <Select isMobile={isMobile} label={TABS[tab]} width={80}>
-              <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
-            </Select>
-          </FlexView>
+          <Select isMobile={isMobile} label={TABS[tab]} width={80}>
+            <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
+          </Select>
         </FlexView>
-
-        <AdventureList
-          isMobile={isMobile}
-          location={location}
-          tab={TABS[tab] as AdventureTab}
-        />
       </FlexView>
+
+      <AdventureList
+        isMobile={isMobile}
+        location={location}
+        tab={TABS[tab] as AdventureTab}
+      />
     </FlexView>
   );
 }

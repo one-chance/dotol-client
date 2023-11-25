@@ -3,15 +3,15 @@ import { forwardRef } from 'react';
 import { CSSObject } from '@emotion/react';
 import { useSetRecoilState } from 'recoil';
 
-import { Button, FlexView, Link, Text } from '@components/common';
+import { FlexView, Link, Text } from '@components/common';
 import { isLoggedInState, userIdState } from '@states/index';
 import { Colors } from '@styles/system';
 
 const linkCSS: CSSObject = {
   lineHeight: `40px`,
   padding: `0 20px`,
-  color: Colors.white,
-  ':hover': { backgroundColor: Colors.primary80 },
+  color: Colors.primary,
+  ':hover': { backgroundColor: Colors.background },
 };
 
 type MenuProps = {
@@ -33,12 +33,12 @@ export default forwardRef<HTMLDivElement, MenuProps>(
     return (
       <FlexView
         ref={ref}
-        color={Colors.primary}
+        color={Colors.white}
         radius={4}
         css={{
           position: `absolute`,
-          width: `160px`,
-          marginTop: `50px`,
+          width: `100%`,
+          marginTop: `42px`,
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
       >
@@ -55,14 +55,14 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           프로필
         </Link>
 
-        {/* <Link
+        <Link
           aria-label="비밀번호 변경"
           css={linkCSS}
           to="/user/change-password"
           onClick={close}
         >
           비밀번호 변경
-        </Link> */}
+        </Link>
 
         <Link
           aria-label="캐릭터 관리"
@@ -73,20 +73,19 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           캐릭터 관리
         </Link>
 
-        <Button
-          aria-label="로그아웃"
+        <FlexView
+          content="center"
           css={{
             height: `40px`,
             borderBottomLeftRadius: `4px`,
             borderBottomRightRadius: `4px`,
+            cursor: 'pointer',
             ...linkCSS,
           }}
           onClick={signout}
         >
-          <Text color={Colors.white} fill start>
-            로그아웃
-          </Text>
-        </Button>
+          <Text color={Colors.primary}>로그아웃</Text>
+        </FlexView>
       </FlexView>
     );
   },

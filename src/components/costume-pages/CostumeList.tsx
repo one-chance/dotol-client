@@ -152,128 +152,110 @@ export default function CostumeList() {
   }, [isLoggedIn]);
 
   return (
-    <FlexView gap={20}>
-      <Text
-        css={{ margin: isMobile ? `0 10px` : 0 }}
-        xLarge={isMobile}
-        xxLarge={!isMobile}
-        bold
-      >
-        치장 미리보기
-      </Text>
-
+    <FlexView content="center" gap={20} items="start" row wrap>
       <FlexView
         content="center"
-        css={{ margin: isMobile ? `0 4px` : 0 }}
-        gap={20}
-        items="start"
-        row
-        wrap
+        css={{ border: `1px solid lightgray`, margin: `0 auto` }}
       >
-        <FlexView
-          content="center"
-          css={{ border: `1px solid lightgray`, margin: `0 auto` }}
-        >
-          <Mannequin character={mainCharacter} equip={selectedItem.name} />
+        <Mannequin character={mainCharacter} equip={selectedItem.name} />
 
-          <FlexView css={{ paddingBottom: `20px` }} gap={4}>
-            <Text color={Colors.red} center small>
-              {COSTUME_PARTS[selectedItem.part]}
-            </Text>
-            <Text color={Colors.red} center small>
-              {selectedItem.name}
-            </Text>
+        <FlexView css={{ paddingBottom: `20px` }} gap={4}>
+          <Text color={Colors.red} center small>
+            {COSTUME_PARTS[selectedItem.part]}
+          </Text>
+          <Text color={Colors.red} center small>
+            {selectedItem.name}
+          </Text>
+        </FlexView>
+      </FlexView>
+
+      <FlexView gap={12}>
+        <FlexView
+          content="between"
+          css={{
+            width: isMobile ? `350px` : `718px`,
+            border: `1px solid lightgray`,
+          }}
+          gap={20}
+        >
+          <FlexView
+            css={{
+              padding: isMobile ? `10px` : `10px 20px`,
+              borderBottom: `1px solid lightgray`,
+            }}
+            gap={8}
+            center
+            row
+            wrap
+          >
+            <Select
+              height={36}
+              isMobile={isMobile}
+              label={COSTUME_PARTS[selectedPart]}
+              width={isMobile ? 110 : 140}
+            >
+              <Option
+                selected={COSTUME_PARTS[selectedPart]}
+                values={COSTUME_PARTS}
+                onSelect={selectPart}
+              />
+            </Select>
+
+            <Input
+              aria-label="검색어"
+              placeholder="치장 이름"
+              value={searchKeyword || ``}
+              width={isMobile ? 110 : 160}
+              onChange={inputSearchKeyword}
+              onKeyDown={e => {
+                if (e.key === `Enter`) {
+                  searchList(selectedPart, 1);
+                }
+              }}
+            />
+            <Button
+              aria-label="검색"
+              color={Colors.purple}
+              css={{
+                width: isMobile ? `48px` : `60px`,
+                height: `36px`,
+              }}
+              radius={4}
+              onClick={() => searchList(selectedPart, 1)}
+            >
+              <Text color={Colors.white}>검색</Text>
+            </Button>
+          </FlexView>
+
+          <FlexView
+            row
+            wrap
+            gap={8}
+            css={{
+              minHeight: `450px`,
+              padding: isMobile ? `0 10px` : `0 20px`,
+            }}
+          >
+            {itemList?.map(item => (
+              <Costume
+                item={item}
+                key={item.index}
+                isSelected={selectedItem.name === item.name}
+                onSelect={selectItem}
+              />
+            ))}
+          </FlexView>
+
+          <FlexView css={{ minHeight: `40px` }}>
+            <Pagination count={itemCount} unit={12} />
           </FlexView>
         </FlexView>
 
-        <FlexView gap={12}>
-          <FlexView
-            content="between"
-            css={{
-              width: isMobile ? `352px` : `718px`,
-              border: `1px solid lightgray`,
-            }}
-            gap={20}
-          >
-            <FlexView
-              css={{
-                padding: isMobile ? `10px` : `10px 20px`,
-                borderBottom: `1px solid lightgray`,
-              }}
-              gap={8}
-              center
-              row
-              wrap
-            >
-              <Select
-                height={36}
-                isMobile={isMobile}
-                label={COSTUME_PARTS[selectedPart]}
-                width={isMobile ? 110 : 140}
-              >
-                <Option
-                  selected={COSTUME_PARTS[selectedPart]}
-                  values={COSTUME_PARTS}
-                  onSelect={selectPart}
-                />
-              </Select>
-
-              <Input
-                aria-label="검색어"
-                placeholder="치장 이름"
-                value={searchKeyword || ``}
-                width={isMobile ? 110 : 160}
-                onChange={inputSearchKeyword}
-                onKeyDown={e => {
-                  if (e.key === `Enter`) {
-                    searchList(selectedPart, 1);
-                  }
-                }}
-              />
-              <Button
-                aria-label="검색"
-                color={Colors.purple}
-                css={{
-                  width: isMobile ? `48px` : `60px`,
-                  height: `36px`,
-                }}
-                radius={4}
-                onClick={() => searchList(selectedPart, 1)}
-              >
-                <Text color={Colors.white}>검색</Text>
-              </Button>
-            </FlexView>
-
-            <FlexView
-              row
-              wrap
-              gap={8}
-              css={{
-                minHeight: `450px`,
-                padding: isMobile ? `0 10px` : `0 20px`,
-              }}
-            >
-              {itemList?.map(item => (
-                <Costume
-                  item={item}
-                  key={item.index}
-                  isSelected={selectedItem.name === item.name}
-                  onSelect={selectItem}
-                />
-              ))}
-            </FlexView>
-
-            <FlexView css={{ minHeight: `40px` }}>
-              <Pagination count={itemCount} unit={12} />
-            </FlexView>
-          </FlexView>
-
-          <FlexView>
-            <Text color={Colors.red} small>
-              * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
-              <br />* 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
-            </Text>
-          </FlexView>
+        <FlexView>
+          <Text color={Colors.red} small>
+            * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
+            <br />* 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
+          </Text>
         </FlexView>
       </FlexView>
     </FlexView>

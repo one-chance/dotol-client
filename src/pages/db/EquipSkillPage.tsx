@@ -1,6 +1,5 @@
 import { Button, FlexView, Image, Text } from '@components/common';
-import { MenuTab } from '@components/layout';
-import { SKILL_TABS } from '@constants/menu';
+
 import { useResponsive } from '@hooks/useResponsive';
 import { Colors } from '@styles/system';
 import { useState } from 'react';
@@ -58,59 +57,55 @@ export default function EquipSkill() {
       }}
       gap={40}
     >
-      <MenuTab isMobile={isMobile} menus={SKILL_TABS} />
+      <Text xxLarge={!isMobile} large={isMobile} bold>
+        장비 마법
+      </Text>
 
-      <FlexView gap={20} css={{ padding: '0 10px' }}>
-        <Text xxLarge={!isMobile} large={isMobile} bold>
-          장비 마법
+      <FlexView gap={10}>
+        <Text large semiBold>
+          #기술서
         </Text>
-
-        <FlexView gap={10}>
-          <Text large semiBold>
-            #기술서
-          </Text>
-          <FlexView
-            border="lightgray"
-            row
-            wrap
-            gap={16}
-            radius={8}
-            css={{ padding: '20px' }}
-          >
-            {SKILL_BOOKS.map(name => (
-              <Button key={name} onClick={() => changeSkill(name)}>
-                <Text color={name === skill ? Colors.red : Colors.black}>
-                  {name}
-                </Text>
-              </Button>
-            ))}
-          </FlexView>
+        <FlexView
+          border="lightgray"
+          row
+          wrap
+          gap={16}
+          radius={8}
+          css={{ padding: '20px' }}
+        >
+          {SKILL_BOOKS.map(name => (
+            <Button key={name} onClick={() => changeSkill(name)}>
+              <Text color={name === skill ? Colors.red : Colors.black}>
+                {name}
+              </Text>
+            </Button>
+          ))}
         </FlexView>
-
-        {skill !== '' && (
-          <FlexView
-            row
-            wrap
-            center
-            gap={16}
-            radius={8}
-            color="lightgray"
-            css={{
-              padding: '10px',
-              minHeight: '240px',
-            }}
-          >
-            {skillImgs[skill].map(img => (
-              <Image
-                key={img}
-                src={`https://asset.dotols.com/image/equip-skill/${img}.png`}
-                alt="skill"
-                width={260}
-              />
-            ))}
-          </FlexView>
-        )}
       </FlexView>
+
+      {skill !== '' && (
+        <FlexView
+          row
+          wrap
+          center
+          gap={16}
+          radius={8}
+          color="lightgray"
+          css={{
+            padding: '10px',
+            minHeight: '240px',
+          }}
+        >
+          {skillImgs[skill].map(img => (
+            <Image
+              key={img}
+              src={`https://asset.dotols.com/image/equip-skill/${img}.png`}
+              alt="skill"
+              width={260}
+            />
+          ))}
+        </FlexView>
+      )}
     </FlexView>
   );
 }

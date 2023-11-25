@@ -8,10 +8,11 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   color?: string;
   border?: string;
   radius?: number;
+  flex?: boolean;
 };
 
 export default forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ type, fit, color, border, radius, ...props }: ButtonProps, ref) => {
+  ({ type, fit, color, border, radius, flex, ...props }: ButtonProps, ref) => {
     const css: CSSObject = {
       alignItems: `center`,
       backgroundColor: `unset`,
@@ -39,6 +40,7 @@ export default forwardRef<HTMLButtonElement, ButtonProps>(
       },
       ...(fit && { width: `fit-content` }),
       ...(color && { backgroundColor: color }),
+      ...(flex && { flex: 1 }),
     };
 
     return jsx(`button`, { type: type || `button`, ref, css, ...props });

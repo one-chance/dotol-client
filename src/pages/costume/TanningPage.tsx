@@ -51,13 +51,12 @@ export default function TanningPage() {
   }, [isLoggedIn]);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={20}>
-      <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
-        태닝 미리보기
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <Text large={isMobile} xLarge={!isMobile} bold>
+        태닝 목록
       </Text>
 
       <FlexView
-        css={{ margin: isMobile ? `0 4px` : `0 auto` }}
         gap={20}
         items={isMobile ? `center` : undefined}
         row={!isMobile}
@@ -67,13 +66,8 @@ export default function TanningPage() {
         <TanningList selectSkin={changeSkin} skinColor={skinNumber} />
       </FlexView>
 
-      <Text
-        color={Colors.red}
-        css={{ margin: `0 4px` }}
-        small={isMobile}
-        medium
-      >
-        * 착용 중인 장비를 벗은 상태로 확인해보세요.
+      <Text color={Colors.red} small>
+        ● 착용 중인 장비를 벗은 상태로 확인해보세요.
       </Text>
     </FlexView>
   );

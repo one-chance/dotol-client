@@ -24,7 +24,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={20}>
+    <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
         border="lightgray"
         radius={4}
