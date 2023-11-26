@@ -68,12 +68,6 @@ export const TOTAL_MENU = [
   // },
 ];
 
-export const USER_MENU_TABS = [
-  { name: `프로필`, path: `/user/profile` },
-  { name: `비밀번호 변경`, path: `/user/change-password` },
-  { name: `회원 탈퇴`, path: `/user/withdrawal` },
-];
-
 export const SIDE_MENUS = [
   {
     menu: `코디`,

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
-import { TOTAL_MENU, MAIN_MENU } from '@constants/menu';
+import { SIDE_MENUS } from '@constants/menu';
 import { Colors } from '@styles/system';
 
 type MenuProps = {
@@ -15,7 +15,7 @@ export default ({ onClose }: MenuProps) => {
 
   return (
     <FlexView
-      color={Colors.background}
+      color={Colors.primary}
       css={{ position: `fixed`, top: 0, left: 0, right: 0, bottom: 0 }}
       gap={40}
     >
@@ -26,7 +26,7 @@ export default ({ onClose }: MenuProps) => {
         row
       >
         <Button aria-label="닫기" onClick={onClose}>
-          <Icon name="close" size={24} />
+          <Icon name="close" size={24} color={Colors.secondary} />
         </Button>
       </FlexView>
 
@@ -39,35 +39,34 @@ export default ({ onClose }: MenuProps) => {
         }}
         gap={24}
       >
-        {MAIN_MENU.map((menu, index) => {
+        {SIDE_MENUS.map(menus => {
           const [showSubMenu, setShowSubMenu] = useState(false);
 
           return (
-            <FlexView
-              key={menu}
-              content="center"
-              gap={10}
-              onClick={() => setShowSubMenu(!showSubMenu)}
-            >
+            <FlexView key={menus.menu} gap={24}>
               <FlexView
-                content="between"
-                css={{ minHeight: `40px` }}
-                items="center"
                 row
+                content="between"
+                onClick={() => setShowSubMenu(!showSubMenu)}
               >
-                <Text bold={showSubMenu} color={Colors.primary} xLarge>
-                  {menu}
-                </Text>
+                <FlexView row gap={12}>
+                  <Icon name={menus.icon} size={24} color={Colors.secondary} />
+                  <Text bold={showSubMenu} xLarge color={Colors.secondary}>
+                    {menus.menu}
+                  </Text>
+                </FlexView>
 
-                <Icon name={showSubMenu ? `arrowUp` : `arrowDown`} size={24} />
+                <Icon
+                  name={showSubMenu ? `arrowUp` : `arrowDown`}
+                  size={24}
+                  color={Colors.secondary}
+                />
               </FlexView>
 
               {showSubMenu && (
                 <FlexView gap={4}>
-                  {TOTAL_MENU[index].sub.map(sub => (
+                  {menus.sub.map(sub => (
                     <Anchor
-                      key={sub.name}
-                      aria-label="메뉴"
                       css={{
                         backgroundColor:
                           location.pathname === sub.url
@@ -76,9 +75,9 @@ export default ({ onClose }: MenuProps) => {
                         color:
                           location.pathname === sub.url
                             ? Colors.primary
-                            : Colors.primary50,
+                            : Colors.secondary,
                         fontSize: `20px`,
-                        paddingLeft: `16px`,
+                        paddingLeft: `30px`,
                         lineHeight: `40px`,
                       }}
                       href={sub.url}

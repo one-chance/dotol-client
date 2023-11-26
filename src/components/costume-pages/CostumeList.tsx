@@ -14,7 +14,6 @@ import {
   Option,
 } from '@components/common';
 import { Pagination } from '@components/pagination';
-import { useResponsive } from '@hooks/index';
 import { ICostume } from '@interfaces/costumes';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';
 import { Colors } from '@styles/system';
@@ -34,10 +33,13 @@ const COSTUME_PARTS = [
   `세트옷`,
 ];
 
-export default function CostumeList() {
+interface CostumeListProps {
+  isMobile: boolean;
+}
+
+export default function CostumeList({ isMobile }: CostumeListProps) {
   const location = useLocation();
   const navigate = useNavigate();
-  const isMobile = useResponsive(980);
 
   const isLoggedIn = useRecoilValue(isLoggedInState);
   const setShowLogin = useSetRecoilState(showLoginState);
@@ -152,11 +154,14 @@ export default function CostumeList() {
   }, [isLoggedIn]);
 
   return (
-    <FlexView content="center" gap={20} items="start" row wrap>
-      <FlexView
-        content="center"
-        css={{ border: `1px solid lightgray`, margin: `0 auto` }}
-      >
+    <FlexView
+      content="center"
+      gap={20}
+      items={isMobile ? 'center' : 'start'}
+      row={!isMobile}
+      wrap
+    >
+      <FlexView content="center" border="lightgray">
         <Mannequin character={mainCharacter} equip={selectedItem.name} />
 
         <FlexView css={{ paddingBottom: `20px` }} gap={4}>
@@ -169,18 +174,21 @@ export default function CostumeList() {
         </FlexView>
       </FlexView>
 
-      <FlexView gap={12}>
+      <FlexView gap={10}>
         <FlexView
+          border="lightgray"
           content="between"
           css={{
-            width: isMobile ? `350px` : `718px`,
-            border: `1px solid lightgray`,
+            width: isMobile ? `350px` : `538px`,
+            // minWidth: `350px`,
+            // maxWidth: '538px',
+            // width: '100%',
           }}
           gap={20}
         >
           <FlexView
             css={{
-              padding: isMobile ? `10px` : `10px 20px`,
+              padding: `10px`,
               borderBottom: `1px solid lightgray`,
             }}
             gap={8}
@@ -235,6 +243,7 @@ export default function CostumeList() {
               minHeight: `450px`,
               padding: isMobile ? `0 10px` : `0 20px`,
             }}
+            content="center"
           >
             {itemList?.map(item => (
               <Costume

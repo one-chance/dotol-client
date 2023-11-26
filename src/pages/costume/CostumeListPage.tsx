@@ -3,7 +3,7 @@ import { CostumeList } from '@components/costume-pages';
 import { useResponsive } from '@hooks/index';
 
 export default function CostumeListPage() {
-  const isMobile = useResponsive(960);
+  const isMobile = useResponsive(650);
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
@@ -11,7 +11,7 @@ export default function CostumeListPage() {
         치장 목록
       </Text>
 
-      <CostumeList />
+      <CostumeList isMobile={isMobile} />
     </FlexView>
   );
 }
