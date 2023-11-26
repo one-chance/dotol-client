@@ -1,16 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 
-import { Footer, FooterMobile } from '@components/layout';
-import { useResponsive } from '@hooks/index';
+import { Footer } from '@components/layout';
 
-const FooterRouter = () => {
-  const isMobile = useResponsive(400);
-
+export default function FooterRouter() {
   return (
     <Routes>
-      <Route element={isMobile ? <FooterMobile /> : <Footer />} path="/*" />
+      <Route element={<Footer />} path="/*" />
     </Routes>
   );
-};
-
-export default FooterRouter;
+}

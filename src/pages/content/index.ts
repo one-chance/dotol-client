@@ -1,6 +1,6 @@
-export { default as Achievement } from './Achievement';
-export { default as Adventure } from './Adventure';
-export { default as Archeology } from './Archeology';
-export { default as BodyReinforceAbility } from './BodyReinforceAbility';
-export { default as BodyReinforceBonus } from './BodyReinforceBonus';
-export { default as BodyReinforceRecipe } from './BodyReinforceRecipe';
+export { default as AchievementPage } from './AchievementPage';
+export { default as AdventurePage } from './AdventurePage';
+export { default as ArcheologyPage } from './ArcheologyPage';
+export { default as BodyReinforceAbilityPage } from './BodyReinforceAbilityPage';
+export { default as BodyReinforceBonusPage } from './BodyReinforceBonusPage';
+export { default as BodyReinforceRecipePage } from './BodyReinforceRecipePage';

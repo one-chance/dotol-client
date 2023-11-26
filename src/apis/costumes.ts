@@ -5,8 +5,6 @@ export const getClothesList = async (
   part: number,
   page: number,
 ) => {
-  const tempKeyword = keyword !== `` ? `&keyword=${keyword}` : ``;
-
   const res = await fetch(
     `${
       import.meta.env.VITE_API_SERVER
@@ -15,6 +13,7 @@ export const getClothesList = async (
       method: `GET`,
       headers: {
         'Content-Type': `application/json`,
+        Authorization: `Bearer ${getAccessToken()}`,
       },
     },
   );

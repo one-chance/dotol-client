@@ -1,8 +1,15 @@
 import { useState } from 'react';
 
 import { getEquipByName, getEquipByOption } from '@apis/index';
-import { Button, FlexView, Image, Input, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import {
+  Button,
+  FlexView,
+  Image,
+  Input,
+  Text,
+  Select,
+  Option,
+} from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { IEquip } from '@interfaces/index';
 import { Colors } from '@styles/system';
@@ -137,19 +144,9 @@ export default () => {
 
   return (
     <FlexView gap={20}>
-      <Text bold xxLarge={!isMobile} large={isMobile}>
-        일반장비 도감
-      </Text>
       <FlexView gap={20}>
         <FlexView gap={20}>
-          <FlexView
-            content="between"
-            css={{ padding: `0 4px` }}
-            gap={20}
-            items="center"
-            row
-            wrap
-          >
+          <FlexView content="between" gap={20} items="center" row wrap>
             <FlexView row>
               <Input
                 css={{
@@ -179,7 +176,7 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={ITEM_TYPES[searchOption.type]}
+                label={ITEM_TYPES[searchOption.type]}
                 width={isMobile ? 112 : 130}
               >
                 <Option
@@ -192,7 +189,7 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={ITEM_PARTS[searchOption.part]}
+                label={ITEM_PARTS[searchOption.part]}
                 width={isMobile ? 112 : 130}
               >
                 <Option
@@ -205,7 +202,7 @@ export default () => {
               <Select
                 height={36}
                 isMobile={isMobile}
-                name={JOBS[searchOption.job]}
+                label={JOBS[searchOption.job]}
                 width={isMobile ? 66 : 80}
               >
                 <Option
@@ -227,12 +224,12 @@ export default () => {
           </FlexView>
 
           <FlexView
+            radius={4}
+            border="lightgray"
             css={{
               maxHeight: `151px`,
               minHeight: `116px`,
               overflowY: `auto`,
-              border: `1px solid lightgray`,
-              borderRadius: `4px`,
               padding: `10px`,
               alignContent: items.length === 0 ? `center` : `flex-start`,
               '::-webkit-scrollbar': { display: `none` },
@@ -267,10 +264,10 @@ export default () => {
         </FlexView>
 
         <FlexView
+          border="lihggray"
+          radius={4}
           content={isMobile ? `start` : `center`}
           css={{
-            border: `1px solid lightgray`,
-            borderRadius: `4px`,
             padding: `8px`,
           }}
           gap={isMobile ? 20 : 10}

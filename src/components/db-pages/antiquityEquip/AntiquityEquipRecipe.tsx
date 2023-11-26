@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 
 import DATA from '@data/antiquity-recipe.json';
 
-import { Button, FlexView, Input, Text } from '@components/common';
-import { AntiquityEquipModal } from '@components/modal';
-import { Option, Select } from '@components/select';
+import { FlexView, Input, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
 const EQUIP_PARTS = [`무기`, `투구`, `갑옷`, `명경`, `장갑`, `보주`];
@@ -22,19 +20,19 @@ const PERCENTAGES = [
 ];
 const PERCENTAGE_VALUES = [0, 100, 90, 60, 30, 15, 8, 4, 2];
 
-export default () => {
+interface AntiquityEquipRecipeProps {
+  part: number;
+}
+
+export default function AntiquityEquipRecipe({
+  part,
+}: AntiquityEquipRecipeProps) {
   const isMobile = useResponsive(620);
-  const [selectedPart, setSelectedPart] = useState(EQUIP_PARTS[0]);
-  const myData = DATA[EQUIP_PARTS.indexOf(selectedPart)];
+  const myData = DATA[part];
   const [defaultPercentage, setDefaultPercentage] = useState(PERCENTAGES[0]);
 
   const [extraPercentage, setExtraPercentage] = useState(``);
   const [totalPercentage, setTotalPercentage] = useState(0);
-  const [showModal, setShowModal] = useState(false);
-
-  const selectPart = (id: number) => {
-    setSelectedPart(EQUIP_PARTS[id]);
-  };
 
   const selectPercentage = (id: number) => {
     setDefaultPercentage(PERCENTAGES[id]);
@@ -45,14 +43,6 @@ export default () => {
     const regex = /^(\d{0,3}(\.\d{0,3})?)?$/;
 
     if (regex.test(value)) setExtraPercentage(value);
-  };
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
   };
 
   useEffect(() => {
@@ -66,38 +56,12 @@ export default () => {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <FlexView
-        content="between"
-        css={{ padding: isMobile ? `0 10px` : undefined }}
-        items="center"
-        row
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          신수유물 강화재료
-        </Text>
-
-        <Select name={selectedPart} width={100}>
-          <Option
-            selected={selectedPart}
-            values={EQUIP_PARTS}
-            onSelect={selectPart}
-          />
-        </Select>
-      </FlexView>
-
-      <FlexView
-        content="between"
-        css={{ padding: isMobile ? `0 10px` : undefined }}
-        gap={16}
-        items="center"
-        row
-        wrap
-      >
+      <FlexView content="between" gap={16} items="center" row wrap>
         <FlexView items="center" row>
           <Select
             height={36}
             isMobile={isMobile}
-            name={defaultPercentage}
+            label={defaultPercentage}
             width={isMobile ? 80 : 100}
           >
             <Option
@@ -126,12 +90,6 @@ export default () => {
             &nbsp;= 최종 성공률: {totalPercentage}%
           </Text>
         </FlexView>
-
-        {/* <Button aria-label="설명" onClick={openModal}>
-          <Text color="blue" small>
-            제작확률 증가?
-          </Text>
-        </Button> */}
       </FlexView>
 
       <FlexView>
@@ -144,7 +102,7 @@ export default () => {
           {TITLES.map(title => (
             <Text
               key={title}
-              css={{ width: isMobile ? `72px` : `120px` }}
+              css={{ width: isMobile ? `70px` : `120px` }}
               center
               semiBold
             >
@@ -183,8 +141,6 @@ export default () => {
           </FlexView>
         ))}
       </FlexView>
-
-      {showModal && <AntiquityEquipModal close={closeModal} />}
     </FlexView>
   );
-};
+}

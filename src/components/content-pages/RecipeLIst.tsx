@@ -1,150 +1,113 @@
-import { useState } from 'react';
-
 import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
 import { BODY_REINFORCE_RECIPE } from '@constants/body';
-import { BodyRecipe } from '@interfaces/index';
 
 type RecipeListProps = {
   isMobile: boolean;
+  part: number;
 };
 
-const PARTS = [`무기 ~ 오른손`, `목/어깨`, `신발, 망토`];
-
-export default ({ isMobile }: RecipeListProps) => {
-  const [parts, setParts] = useState(0);
-  const [ingredient, setIngredient] = useState<BodyRecipe[]>(
-    BODY_REINFORCE_RECIPE[0],
-  );
-  const selectPart = (index: number) => {
-    setParts(index);
-    setIngredient(BODY_REINFORCE_RECIPE[index]);
-  };
+export default ({ isMobile, part }: RecipeListProps) => {
+  const data = BODY_REINFORCE_RECIPE[part];
 
   return (
-    <FlexView gap={20}>
+    <FlexView>
       <FlexView
-        content="between"
-        css={{ margin: isMobile ? `0 4px` : undefined }}
+        color="lightgray"
+        css={{ height: isMobile ? `36px` : `40px` }}
         items="center"
         row
       >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
-          신체강화 재료
-        </Text>
-
-        <Select
-          isMobile={isMobile}
-          name={PARTS[parts]}
-          width={isMobile ? 120 : 140}
+        <Text
+          css={{ width: isMobile ? `58px` : `100px` }}
+          small={isMobile}
+          bold
+          center
         >
-          <Option
-            selected={PARTS[parts]}
-            values={PARTS}
-            onSelect={selectPart}
-          />
-        </Select>
+          등급
+        </Text>
+        <Text
+          css={{ width: isMobile ? `65px` : `100px` }}
+          small={isMobile}
+          bold
+          center
+        >
+          강화비약
+        </Text>
+        <Text
+          css={{ width: isMobile ? `80px` : `100px` }}
+          small={isMobile}
+          bold
+          center
+        >
+          전표
+        </Text>
+        <Text
+          css={{ width: isMobile ? `65px` : `100px` }}
+          small={isMobile}
+          bold
+          center
+        >
+          누적 비약
+        </Text>
+        <Text
+          css={{ width: isMobile ? `80px` : `100px` }}
+          small={isMobile}
+          bold
+          center
+        >
+          누적 전표
+        </Text>
       </FlexView>
 
-      <FlexView>
+      {data?.map((item, index) => (
         <FlexView
-          color="lightgray"
-          css={{ height: isMobile ? `36px` : `40px` }}
+          key={item.강화비약}
+          css={{
+            height: isMobile ? `30px` : `36px`,
+            borderBottom: `1px solid lightgray`,
+            borderLeft: `1px solid lightgray`,
+            borderRight: `1px solid lightgray`,
+          }}
           items="center"
           row
         >
           <Text
-            css={{ width: isMobile ? `58px` : `120px` }}
+            css={{ width: isMobile ? `58px` : `100px` }}
             small={isMobile}
-            bold
             center
           >
-            등급
+            {index + 1}등급
           </Text>
           <Text
-            css={{ width: isMobile ? `70px` : `120px` }}
+            css={{ width: isMobile ? `65px` : `100px` }}
             small={isMobile}
-            bold
             center
           >
-            강화비약
+            {item.강화비약}
           </Text>
           <Text
-            css={{ width: isMobile ? `80px` : `120px` }}
+            css={{ width: isMobile ? `80px` : `100px` }}
             small={isMobile}
-            bold
             center
           >
-            전표
+            {item.전표}
           </Text>
           <Text
-            css={{ width: isMobile ? `70px` : `120px` }}
+            css={{ width: isMobile ? `65px` : `100px` }}
             small={isMobile}
-            bold
             center
           >
-            누적 비약
+            {item.누적비약}
           </Text>
           <Text
-            css={{ width: isMobile ? `80px` : `120px` }}
+            css={{ width: isMobile ? `80px` : `100px` }}
             small={isMobile}
-            bold
             center
           >
-            누적 전표
+            {item.누적전표}
           </Text>
         </FlexView>
-
-        {ingredient?.map((item, index) => (
-          <FlexView
-            key={item.강화비약}
-            css={{
-              height: isMobile ? `30px` : `36px`,
-              borderBottom: `1px solid lightgray`,
-              borderLeft: `1px solid lightgray`,
-              borderRight: `1px solid lightgray`,
-            }}
-            items="center"
-            row
-          >
-            <Text
-              css={{ width: isMobile ? `58px` : `119px` }}
-              small={isMobile}
-              center
-            >
-              {index + 1}등급
-            </Text>
-            <Text
-              css={{ width: isMobile ? `70px` : `120px` }}
-              small={isMobile}
-              center
-            >
-              {item.강화비약}
-            </Text>
-            <Text
-              css={{ width: isMobile ? `80px` : `120px` }}
-              small={isMobile}
-              center
-            >
-              {item.전표}
-            </Text>
-            <Text
-              css={{ width: isMobile ? `70px` : `120px` }}
-              small={isMobile}
-              center
-            >
-              {item.누적비약}
-            </Text>
-            <Text
-              css={{ width: isMobile ? `80px` : `119px` }}
-              small={isMobile}
-              center
-            >
-              {item.누적전표}
-            </Text>
-          </FlexView>
-        ))}
-      </FlexView>
+      ))}
     </FlexView>
   );
 };

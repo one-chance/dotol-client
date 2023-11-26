@@ -1,8 +1,7 @@
-export { default as TipBoard } from './TipBoard';
-export { default as FreeBoard } from './FreeBoard';
-export { default as FreePost } from './FreePost';
-export { default as ServerBoard } from './ServerBoard';
-export { default as VideoBoard } from './VideoBoard';
-
-export { default as WritePost } from './WritePost';
-export { default as EditPost } from './EditPost';
+export { default as TipBoardPage } from './TipBoardPage';
+export { default as FreeBoardPage } from './FreeBoardPage';
+export { default as FreePostPage } from './FreePostPage';
+export { default as ServerBoardPage } from './ServerBoardPage';
+export { default as VideoBoardPage } from './VideoBoardPage';
+export { default as WritePostPage } from './WritePostPage';
+export { default as EditPostPage } from './EditPostPage';

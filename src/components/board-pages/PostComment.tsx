@@ -5,8 +5,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { CommentList, NewComment } from '@components/board-pages';
 import { FlexView } from '@components/common';
-import { Toast } from '@components/toast';
-import { showLoginState } from '@states/index';
+import { showLoginState, toastState } from '@states/index';
 import { Colors } from '@styles/system';
 
 type PostCommentProps = {
@@ -16,25 +15,18 @@ type PostCommentProps = {
 export default ({ comments }: PostCommentProps) => {
   const [grade, setGrade] = useState(0);
   const setShowLogin = useSetRecoilState(showLoginState);
-
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
-
-  const openToast = (message: string) => {
-    setToastMessge(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
-  };
+  const openToast = useSetRecoilState(toastState);
 
   const submitComment = (_comment: string) => {
     if (grade === 0) {
-      setShowLogin(true);
-      return;
+      return setShowLogin(true);
     }
-    if (grade < 2) {
-      openToast(`대표 캐릭터를 인증해주세요.`);
+    if (grade === 1) {
+      return openToast({
+        open: true,
+        message: `대표 캐릭터를 인증해주세요.`,
+        type: 'error',
+      });
     }
 
     // createComment
@@ -50,8 +42,6 @@ export default ({ comments }: PostCommentProps) => {
       {comments?.map((comment: IComment) => (
         <CommentList key={comment.index} comment={comment} />
       ))}
-
-      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

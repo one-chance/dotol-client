@@ -8,8 +8,7 @@ import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/system';
 
-import { TotalMenuMobile } from './menu';
-import UserMenuMobile from './menu/UserMenuMobile';
+import { TotalMenuMobile, UserMenuMobile } from '@components/menu-page';
 
 export default () => {
   const location = useLocation();
@@ -78,7 +77,7 @@ export default () => {
         color={Colors.white}
         content="between"
         css={{
-          padding: `20px 12px 16px 12px`,
+          padding: `20px 12px 15px 12px`,
           borderBottom: `1px solid ${Colors.primary20}}`,
         }}
         items="center"

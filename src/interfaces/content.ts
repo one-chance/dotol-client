@@ -10,10 +10,3 @@ export type Mission = {
   score: number;
   condition: string;
 };
-
-export type BodyRecipe = {
-  강화비약: number;
-  전표: number;
-  누적비약: number;
-  누적전표: number;
-};

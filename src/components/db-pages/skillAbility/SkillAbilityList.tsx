@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getSkillAbilityList } from '@apis/skill';
-import { FlexView, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
 const JOBS = [
@@ -63,7 +62,7 @@ export default () => {
         <FlexView gap={isMobile ? 8 : 16} items="center" row>
           <Select
             isMobile={isMobile}
-            name={JOBS[job]}
+            label={JOBS[job]}
             width={isMobile ? 80 : 100}
           >
             <Option selected={JOBS[job]} values={JOBS} onSelect={selectJob} />
@@ -71,7 +70,7 @@ export default () => {
 
           <Select
             isMobile={isMobile}
-            name={EQUIP_PARTS[parts]}
+            label={EQUIP_PARTS[parts]}
             width={isMobile ? 100 : 120}
           >
             <Option

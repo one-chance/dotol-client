@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { FlexView, Icon, Input, Text } from '@components/common';
-import { Label } from '@components/text';
+import { Label } from '@components/common';
 import { Colors } from '@styles/system';
 
 type TextFieldProps = {

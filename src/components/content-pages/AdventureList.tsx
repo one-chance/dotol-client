@@ -32,15 +32,15 @@ const SUB_TAB: Record<AdventureTab, string[]> = {
 
 const messages: Record<AdventureTab, string[]> = {
   괴수: [
-    `괴수 탐험도는 5단계로 나뉘어 단계마다 탐험도를 획득합니다.`,
-    `1N = 발견(1점), 도전(2점), 미숙(3점), 숙련(4점), 정복(5점)`,
+    `괴수 탐험도는 달성 단계마다 탐험도를 획득합니다.`,
+    `1N = 발견(1), 도전(2), 미숙(3), 숙련(4), 정복(5)`,
   ],
-  물품: [`인벤토리에서 해당하는 아이템을 사용하면 탐험도를 획득합니다.`],
+  물품: [`인벤토리의 아이템을 사용하면 탐험도를 획득합니다.`],
   임무: [`임무를 완료하면 탐험도를 획득합니다.`],
   탐방: [`해당 지역에 방문하여 거닐다보면 탐험도를 획득합니다.`],
   보상: [
-    `부여/국내주막의 탐험일지연구가가 원하는 장비로 교환해줍니다.`,
-    `교환시 100만전이 필요하고, 장비는 전속 상태로 지급됩니다.`,
+    `부여/국내주막 탐험일지연구가가 장비를 교환해줍니다.`,
+    `100만전이 필요하고, 장비는 전속 상태로 지급됩니다.`,
   ],
 };
 
@@ -51,7 +51,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
     <FlexView gap={10}>
       <FlexView
         css={{
-          width: isMobile ? `352px` : `540px`,
+          width: isMobile ? `350px` : `540px`,
           border: `1px solid lightgray`,
         }}
       >
@@ -235,15 +235,10 @@ export default ({ location, tab, isMobile }: ListProps) => {
         )}
       </FlexView>
 
-      <FlexView css={{ padding: `0 5px` }} gap={4} wrap>
+      <FlexView gap={4} wrap>
         {messages[tab].map(message => (
-          <Text
-            key={message}
-            color={Colors.red}
-            small={!isMobile}
-            xSmall={isMobile}
-          >
-            * {message}
+          <Text key={message} color={Colors.red} small>
+            ● {message}
           </Text>
         ))}
       </FlexView>

@@ -1,39 +1,51 @@
 import { FlexView, Text, Link } from '@components/common';
+import { useResponsive } from '@hooks/useResponsive';
 import { Colors } from '@styles/system';
 
-export default () => (
-  <footer>
-    <FlexView
-      color={Colors.primary}
-      css={{
-        height: `3rem`,
-        padding: `0 10%`,
-      }}
-      gap={8}
-      items="center"
-      row
-    >
-      <Link
-        aria-label="이용 약관"
-        css={{ lineHeight: `15px` }}
-        to="/terms-of-service"
+export default function Footer() {
+  const isMobile = useResponsive(1040);
+
+  return (
+    <footer>
+      <FlexView
+        color={Colors.background}
+        css={{
+          marginTop: '40px',
+          padding: isMobile ? `10px` : `10px 40px`,
+        }}
+        gap={8}
       >
-        <Text color={Colors.white} small>
-          이용 약관
-        </Text>
-      </Link>
-      <Text color={Colors.white} noDrag>
-        /
-      </Text>
-      <Link
-        aria-label="개인정보 처리방침"
-        css={{ lineHeight: `15px` }}
-        to="/privacy-policy"
-      >
-        <Text color={Colors.white} small>
-          개인정보 처리방침
-        </Text>
-      </Link>
-    </FlexView>
-  </footer>
-);
+        <FlexView row gap={8} items="center">
+          <Link
+            aria-label="이용 약관"
+            css={{ fontSize: isMobile ? `12px` : '14px', color: Colors.grey }}
+            to="/terms-of-service"
+          >
+            이용 약관
+          </Link>
+          <Text color={Colors.grey} small={!isMobile} xSmall={isMobile} noDrag>
+            /
+          </Text>
+          <Link
+            aria-label="개인정보 처리방침"
+            css={{ fontSize: isMobile ? `12px` : '14px', color: Colors.grey }}
+            to="/privacy-policy"
+          >
+            개인정보 처리방침
+          </Link>
+        </FlexView>
+
+        <FlexView>
+          <Text
+            color={Colors.grey}
+            small={!isMobile}
+            xSmall={isMobile}
+            center={!isMobile}
+          >
+            © 2021. 바람의나라 도톨. All rights reserved.
+          </Text>
+        </FlexView>
+      </FlexView>
+    </footer>
+  );
+}

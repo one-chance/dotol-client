@@ -7,10 +7,9 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { deletePost, recommendPost, getMyInfo } from '@apis/index';
 import { Button, FlexView, Text } from '@components/common';
-import { Toast } from '@components/toast';
 import { useResponsive } from '@hooks/index';
 import { Board, IPost } from '@interfaces/index';
-import { showLoginState, userIdState } from '@states/index';
+import { showLoginState, toastState, userIdState } from '@states/index';
 import { Colors } from '@styles/system';
 import '@toast-ui/editor/dist/toastui-editor.css';
 
@@ -27,10 +26,9 @@ export default ({ board, post }: PostContentProps) => {
   const isMobile = useResponsive(960);
   const userId = useRecoilValue(userIdState);
   const setShowLogin = useSetRecoilState(showLoginState);
+  const openToast = useSetRecoilState(toastState);
 
   const [grade, setGrade] = useState(0);
-  const [showToast, setShowToast] = useState(false);
-  const [toastMessage, setToastMessge] = useState(``);
 
   const copyUrl = () => {
     navigator.clipboard.writeText(basicUrl + location.pathname);
@@ -52,22 +50,16 @@ export default ({ board, post }: PostContentProps) => {
     }
   };
 
-  const openToast = (message: string) => {
-    setToastMessge(message);
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 1500);
-  };
-
   const thumbUpAndDown = () => {
     if (grade === 0) {
-      setShowLogin(true);
-      return;
+      return setShowLogin(true);
     }
-    if (grade < 2) {
-      openToast(`대표 캐릭터를 인증해주세요.`);
-      return;
+    if (grade === 1) {
+      return openToast({
+        open: true,
+        message: `대표 캐릭터를 인증해주세요.`,
+        type: 'error',
+      });
     }
 
     recommendPost(board, post.index).then(res => {
@@ -156,8 +148,6 @@ export default ({ board, post }: PostContentProps) => {
           </Text>
         </Button>
       </FlexView>
-
-      {showToast && <Toast message={toastMessage} type="error" />}
     </FlexView>
   );
 };

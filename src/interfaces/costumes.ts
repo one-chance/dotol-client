@@ -1,4 +1,5 @@
-export type IClothes = {
+export type ICostume = {
+  index: number;
   name: string;
   part: number;
   gender: number;

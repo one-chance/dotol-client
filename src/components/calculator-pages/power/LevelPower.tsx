@@ -31,10 +31,10 @@ export default () => {
 
   return (
     <FlexView
+      border="lightgray"
+      radius={4}
       css={{
         minWidth: `300px`,
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
         padding: `20px`,
       }}
       gap={16}

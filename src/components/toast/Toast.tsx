@@ -1,16 +1,21 @@
 import { createPortal } from 'react-dom';
+import { keyframes } from '@emotion/react';
 
 import { FlexView, Text } from '@components/common';
-import { keyframes } from '@emotion/react';
 import { Colors } from '@styles/system';
+import { ToastType } from '@interfaces/index';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { toastState } from '@states/toast';
 
 type ToastProps = {
-  type: 'success' | 'error' | 'warning';
+  type: ToastType;
   message: string;
   isMobile?: boolean;
 };
 
-export default ({ type, message, isMobile }: ToastProps) => {
+export default function Toast({ type, message, isMobile }: ToastProps) {
+  const [toast, setToast] = useRecoilState(toastState);
   const container = document.getElementById(`root-modal`) as HTMLElement;
 
   const slideUpAnimation = keyframes`
@@ -27,6 +32,14 @@ export default ({ type, message, isMobile }: ToastProps) => {
     error: Colors.red,
     warning: Colors.secondary,
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setToast({ ...toast, open: false });
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [toast, setToast]);
 
   return container
     ? createPortal(
@@ -57,4 +70,4 @@ export default ({ type, message, isMobile }: ToastProps) => {
         container,
       )
     : null;
-};
+}

@@ -65,13 +65,13 @@ export default ({ isMobile }: RecipeProps) => {
 
   return (
     <FlexView
+      radius={4}
+      border="lightgray"
       css={{
         alignContent: `flex-start`,
         maxWidth: `540px`,
         minHeight: `200px`,
         padding: isMobile ? `5px` : `10px`,
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
       }}
       gap={4}
       row

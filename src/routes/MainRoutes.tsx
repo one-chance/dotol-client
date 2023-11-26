@@ -1,239 +1,200 @@
-import { Suspense, lazy } from 'react';
+import { ReactNode, Suspense, lazy } from 'react';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { Spinner } from '@components/common';
-import {
-  Ability,
-  Calendar,
-  OldEngrave,
-  Power,
-  Production,
-} from '@pages/calculator';
-import { Clothes, Lookbook, LuxurySeries, Tanning } from '@pages/costume';
-import {
-  AntiquityEquipList,
-  AntiquityEquipRecipe,
-  EquipSkill,
-  NormalEquipList,
-  NormalEquipSet,
-  PetEquipAccuracy,
-  PetEquipList,
-  PetEquipRecipe,
-  SkillAbility,
-} from '@pages/db';
-import { Home, NoMatch, PrivacyPolicy, TermsOfService } from '@pages/index';
+import * as Calculator from '@pages/calculator';
+import * as Costume from '@pages/costume';
+import * as DB from '@pages/db';
+import * as Main from '@pages/main';
+import * as User from '@pages/user';
 import { Auction, TradeBoard } from '@pages/trade';
-import {
-  ChangePassword,
-  CharacterList,
-  ForgotUserId,
-  ForgotPassword,
-  Profile,
-  ResetPassword,
-  SignUp,
-  Withdrawal,
-} from '@pages/user';
 import { isLoggedInState } from '@states/index';
 
 // 게시판 메뉴
-const LazyFreeBoard = lazy(() => import(`@pages/board/FreeBoard`));
-const LazyFreePost = lazy(() => import(`@pages/board/FreePost`));
-const LazyTipBoard = lazy(() => import(`@pages/board/TipBoard`));
-const LazyServerBoard = lazy(() => import(`@pages/board/ServerBoard`));
-const LazyVideoBoard = lazy(() => import(`@pages/board/VideoBoard`));
-const LazyEditPost = lazy(() => import(`@pages/board/EditPost`));
-const LazyWritePost = lazy(() => import(`@pages/board/WritePost`));
+const FreeBoardPage = lazy(() => import(`@pages/board/FreeBoardPage`));
+const FreePostPage = lazy(() => import(`@pages/board/FreePostPage`));
+const TipBoardPage = lazy(() => import(`@pages/board/TipBoardPage`));
+const ServerBoardPage = lazy(() => import(`@pages/board/ServerBoardPage`));
+const VideoBoardPage = lazy(() => import(`@pages/board/VideoBoardPage`));
+const EditPostPage = lazy(() => import(`@pages/board/EditPostPage`));
+const WritePostPage = lazy(() => import(`@pages/board/WritePostPage`));
 
 // 콘텐츠 메뉴
-const LazyBodyReinforceAbility = lazy(
-  () => import(`@pages/content/BodyReinforceAbility`),
+const BodyReinforceAbilityPage = lazy(
+  () => import(`@pages/content/BodyReinforceAbilityPage`),
 );
-const LazyBodyReinforceBonus = lazy(
-  () => import(`@pages/content/BodyReinforceBonus`),
+const BodyReinforceBonusPage = lazy(
+  () => import(`@pages/content/BodyReinforceBonusPage`),
 );
-const LazyBodyReinforceRecipe = lazy(
-  () => import(`@pages/content/BodyReinforceRecipe`),
+const BodyReinforceRecipePage = lazy(
+  () => import(`@pages/content/BodyReinforceRecipePage`),
 );
-const LazyAdventure = lazy(() => import(`@pages/content/Adventure`));
-const LazyArcheology = lazy(() => import(`@pages/content/Archeology`));
-const LazyAchievement = lazy(() => import(`@pages/content/Achievement`));
+const AchievementPage = lazy(() => import(`@pages/content/AchievementPage`));
+const AdventurePage = lazy(() => import(`@pages/content/AdventurePage`));
+const ArcheologyPage = lazy(() => import(`@pages/content/ArcheologyPage`));
 
-const MainRoutes = () => {
+interface PageRoute {
+  element: ReactNode;
+  path: string;
+}
+
+const withSuspense = (Component: ReactNode) => (
+  <Suspense fallback={<Spinner />}>{Component}</Suspense>
+);
+
+const createRoutes = (pages: PageRoute[]) =>
+  pages.map(page => (
+    <Route element={page.element} key={page.path} path={page.path} />
+  ));
+
+export default function MainRoutes() {
   const isLoggedIn = useRecoilValue(isLoggedInState);
+
+  const boardPages = [
+    { element: <FreeBoardPage />, path: `/freeboard` },
+    { element: <FreePostPage />, path: `/freeboard/:postId` },
+    { element: <TipBoardPage />, path: `/tipboard` },
+    { element: <ServerBoardPage />, path: `/serverboard` },
+    { element: <VideoBoardPage />, path: `/videoboard` },
+    { element: <EditPostPage />, path: `/:boardId/edit/:postId` },
+    { element: <WritePostPage />, path: `/:boardId/write` },
+  ];
+
+  const costumePages = [
+    { element: <Costume.CostumeListPage />, path: `/costume/list` },
+    { element: <Costume.LuxuryListPage />, path: `/costume/luxury` },
+    { element: <Costume.LookbookPage />, path: `/costume/lookbook` },
+    { element: <Costume.TanningPage />, path: `/costume/tanning` },
+  ];
+
+  const contentPages = [
+    {
+      element: <AchievementPage />,
+      path: '/content/achievement',
+    },
+    {
+      element: <AdventurePage />,
+      path: '/content/adventure',
+    },
+    {
+      element: <ArcheologyPage />,
+      path: '/content/archeology',
+    },
+    {
+      element: <BodyReinforceAbilityPage />,
+      path: '/content/body-reinforce/ability',
+    },
+    {
+      element: <BodyReinforceBonusPage />,
+      path: '/content/body-reinforce/bonus',
+    },
+    {
+      element: <BodyReinforceRecipePage />,
+      path: '/content/body-reinforce/recipe',
+    },
+  ];
+
+  const calculatorPages = [
+    { element: <Calculator.AbilityPage />, path: `/calculator/ability` },
+    { element: <Calculator.CalendarPage />, path: `/calculator/calendar` },
+    { element: <Calculator.OldEngravePage />, path: `/calculator/engrave` },
+    { element: <Calculator.PowerPage />, path: `/calculator/power` },
+    { element: <Calculator.ProductionPage />, path: `/calculator/production` },
+  ];
+
+  const dbPages = [
+    {
+      element: <DB.AntiquityEquipListPage />,
+      path: `/db/antiquity-equip/list`,
+    },
+    {
+      element: <DB.AntiquityEquipRecipePage />,
+      path: `/db/antiquity-equip/recipe`,
+    },
+    { element: <DB.EquipSkillPage />, path: `/db/equip-skill` },
+    { element: <DB.NormalEquipListPage />, path: `/db/normal-equip/list` },
+    { element: <DB.NormalEquipSetPage />, path: `/db/normal-equip/set` },
+    { element: <DB.PetEquipAccuracyPage />, path: `/db/pet-equip/accuracy` },
+    { element: <DB.PetEquipListPage />, path: `/db/pet-equip/list` },
+    { element: <DB.PetEquipRecipePage />, path: `/db/pet-equip/recipe` },
+    { element: <DB.SkillAbilityPage />, path: `/db/skill-ability` },
+  ];
+
+  const tradePages = [
+    { element: <TradeBoard />, path: `/tradeboard` },
+    { element: <Auction />, path: `/trade/auction` },
+  ];
+
+  const userPages = [
+    {
+      element: isLoggedIn ? <User.CharacterListPage /> : <Navigate to="/" />,
+      path: `/user/character`,
+    },
+    {
+      element: isLoggedIn ? <User.ChangePasswordPage /> : <Navigate to="/" />,
+      path: `/user/change-password`,
+    },
+    { element: <User.ForgotPasswordPage />, path: `/user/forgot-password` },
+    { element: <User.ForgotUserIdPage />, path: `/user/forgot-userid` },
+    {
+      element: isLoggedIn ? <User.ProfilePage /> : <Navigate to="/" />,
+      path: `/user/profile`,
+    },
+    {
+      element: <User.ResetPasswordPage />,
+      path: `/user/reset-password/:token`,
+    },
+    { element: <User.SignUpPage />, path: `/user/signup` },
+    {
+      element: isLoggedIn ? <User.WithdrawalPage /> : <Navigate to="/" />,
+      path: `/user/withdrawal`,
+    },
+  ];
+
+  const mainPages = [
+    { element: <Main.HomePage />, path: `/` },
+    { element: <Main.PrivacyPolicyPage />, path: `/privacy-policy` },
+    { element: <Main.TermsOfServicePage />, path: `/terms-of-service` },
+    { element: <Main.NoMatchPage />, path: `*` },
+  ];
 
   return (
     <Routes>
       {/* 사용자 메뉴 */}
-      <Route
-        element={isLoggedIn ? <CharacterList /> : <Navigate to="/" />}
-        path="/user/character"
-      />
-      <Route
-        element={isLoggedIn ? <ChangePassword /> : <Navigate to="/" />}
-        path="/user/change-password"
-      />
-      <Route
-        element={isLoggedIn ? <Profile /> : <Navigate to="/" />}
-        path="/user/profile"
-      />
-      <Route
-        element={isLoggedIn ? <Withdrawal /> : <Navigate to="/" />}
-        path="/user/withdrawal"
-      />
-      <Route element={<ForgotPassword />} path="/user/forgot-password" />
-      <Route element={<ForgotUserId />} path="/user/forgot-userid" />
-      <Route element={<SignUp />} path="/user/signup" />
-      <Route element={<ResetPassword />} path="/user/reset-password/:token" />
+      {createRoutes(userPages)}
 
       {/* 게시판 메뉴 */}
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyFreeBoard />
-          </Suspense>
-        }
-        path="/freeboard"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyFreePost />
-          </Suspense>
-        }
-        path="/freeboard/:postId"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyTipBoard />
-          </Suspense>
-        }
-        path="/board/tip"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyVideoBoard />
-          </Suspense>
-        }
-        path="/board/video"
-      />
-
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyServerBoard />
-          </Suspense>
-        }
-        path="/board/server"
-      />
-      <Route element={<TradeBoard />} path="/board/trade" />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyWritePost />
-          </Suspense>
-        }
-        path="/board/:boardId/write"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyEditPost />
-          </Suspense>
-        }
-        path="/board/:boardId/edit/:postId"
-      />
+      {createRoutes(
+        boardPages.map(page => ({
+          ...page,
+          element: withSuspense(page.element),
+        })),
+      )}
 
       {/* 코디 메뉴 */}
-      <Route element={<Clothes />} path="/costume/list" />
-      <Route element={<LuxurySeries />} path="/costume/luxury" />
-      <Route element={<Lookbook />} path="/costume/lookbook" />
-      <Route element={<Tanning />} path="/costume/tanning" />
+      {createRoutes(costumePages)}
 
       {/* 도감 메뉴 */}
-      <Route element={<AntiquityEquipList />} path="/db/antiquity-equip/list" />
-      <Route
-        element={<AntiquityEquipRecipe />}
-        path="/db/antiquity-equip/recipe"
-      />
-      <Route element={<EquipSkill />} path="/db/equip-skill" />
-      <Route element={<NormalEquipList />} path="/db/normal-equip/list" />
-      <Route element={<NormalEquipSet />} path="/db/normal-equip/set" />
-      <Route element={<PetEquipAccuracy />} path="/db/pet-equip/accuracy" />
-      <Route element={<PetEquipList />} path="/db/pet-equip/list" />
-      <Route element={<PetEquipRecipe />} path="/db/pet-equip/recipe" />
-      <Route element={<SkillAbility />} path="/db/skill-ability" />
+      {createRoutes(dbPages)}
 
       {/* 콘텐츠 메뉴 */}
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyAchievement />
-          </Suspense>
-        }
-        path="/content/achievement"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyAdventure />
-          </Suspense>
-        }
-        path="/content/adventure"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyArcheology />
-          </Suspense>
-        }
-        path="/content/archeology"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyBodyReinforceAbility />
-          </Suspense>
-        }
-        path="/content/body-reinforce/ability"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyBodyReinforceBonus />
-          </Suspense>
-        }
-        path="/content/body-reinforce/bonus"
-      />
-      <Route
-        element={
-          <Suspense fallback={<Spinner />}>
-            <LazyBodyReinforceRecipe />
-          </Suspense>
-        }
-        path="/content/body-reinforce/recipe"
-      />
+      {createRoutes(
+        contentPages.map(page => ({
+          ...page,
+          element: withSuspense(page.element),
+        })),
+      )}
 
       {/* 계산기 메뉴 */}
-      <Route element={<Ability />} path="/calculator/ability" />
-      <Route element={<Calendar />} path="/calculator/calendar" />
-      <Route element={<OldEngrave />} path="/calculator/engrave" />
-      <Route element={<Power />} path="/calculator/power" />
-      <Route element={<Production />} path="/calculator/production" />
+      {createRoutes(calculatorPages)}
 
       {/* 거래소 메뉴 */}
-      <Route element={<Auction />} path="/trade/auction" />
+      {createRoutes(tradePages)}
 
       {/* 기본 메뉴 */}
-      <Route element={<Home />} path="/" />
-      <Route element={<PrivacyPolicy />} path="/privacy-policy" />
-      <Route element={<TermsOfService />} path="/terms-of-service" />
-      <Route element={<NoMatch />} path="*" />
+      {createRoutes(mainPages)}
     </Routes>
   );
-};
-
-export default MainRoutes;
+}

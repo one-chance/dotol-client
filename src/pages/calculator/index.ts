@@ -1,5 +1,5 @@
-export { default as Ability } from './Ability';
-export { default as Calendar } from './Calendar';
-export { default as OldEngrave } from './OldEngrave';
-export { default as Power } from './Power';
-export { default as Production } from './Production';
+export { default as AbilityPage } from './AbilityPage';
+export { default as CalendarPage } from './CalendarPage';
+export { default as OldEngravePage } from './OldEngravePage';
+export { default as PowerPage } from './PowerPage';
+export { default as ProductionPage } from './ProductionPage';

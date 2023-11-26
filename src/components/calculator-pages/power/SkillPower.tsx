@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getSkillAbilityList } from '@apis/index';
-import { FlexView, Input, Text } from '@components/common';
-import { Select, Option } from '@components/select';
+import { FlexView, Input, Select, Option, Text } from '@components/common';
 import { SKILL_POWER } from '@constants/power';
 
 const JOBS = [
@@ -105,20 +104,20 @@ export default () => {
 
   return (
     <FlexView
+      border="lightgray"
+      radius={4}
       css={{
-        border: `1px solid lightgray`,
-        borderRadius: `4px`,
         padding: `20px`,
       }}
       gap={16}
       items="center"
     >
       <FlexView gap={16} items="center" row>
-        <Select name={JOBS[job]} width={120}>
+        <Select label={JOBS[job]} width={120}>
           <Option selected={JOBS[job]} values={JOBS} onSelect={selectJob} />
         </Select>
 
-        <Select name={EQUIP_PARTS[parts]} width={120}>
+        <Select label={EQUIP_PARTS[parts]} width={120}>
           <Option
             selected={EQUIP_PARTS[parts]}
             values={EQUIP_PARTS}
@@ -127,7 +126,7 @@ export default () => {
         </Select>
       </FlexView>
 
-      <Select max={300} name={selectedSkill} width={256}>
+      <Select label={selectedSkill} width={256}>
         <Option
           selected={selectedSkill}
           values={skillList}
