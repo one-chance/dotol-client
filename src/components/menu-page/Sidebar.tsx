@@ -15,6 +15,7 @@ import { isLoggedInState, showLoginState } from '@states/login';
 import { UserMenu } from '@components/menu-page';
 import { Colors } from '@styles/system';
 import { LoginModal } from '@components/modal';
+import { getTodayVisitor, getTotalVisitor } from '@apis/visit';
 
 export default function Sidebar() {
   const infoRef = useRef<HTMLButtonElement>(null);
@@ -51,6 +52,16 @@ export default function Sidebar() {
     return () =>
       window.removeEventListener(`mousedown`, closeModal as EventListener);
   }, [showUserMenu]);
+
+  useEffect(() => {
+    getTodayVisitor().then(res => {
+      setTodayVisitor(res);
+    });
+
+    getTotalVisitor().then(res => {
+      setTotalVisitor(res);
+    });
+  }, []);
 
   return (
     <FlexView

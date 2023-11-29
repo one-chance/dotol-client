@@ -42,7 +42,7 @@ export default function Footer() {
             xSmall={isMobile}
             center={!isMobile}
           >
-            © 2021. 바람의나라 도톨. All rights reserved.
+            © 2023. 바람의나라 도톨. All rights reserved.
           </Text>
         </FlexView>
       </FlexView>

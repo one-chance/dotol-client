@@ -102,6 +102,9 @@ export default () => {
       <Text small={isMobile} bold>
         게시판 최신글
       </Text>
+      <FlexView fill center>
+        <Text>데이터 복구 예정입니다.</Text>
+      </FlexView>
       {/* <Link
         css={{ fontWeight: 700, fontSize: isMobile ? `14px` : `16px` }}
         to="/freeboard?page=1"

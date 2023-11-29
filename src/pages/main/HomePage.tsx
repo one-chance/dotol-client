@@ -1,30 +1,16 @@
-import { useEffect, useState } from 'react';
-
-import { getTotalVisitor, getTodayVisitor } from '@apis/index';
 import { Anchor, FlexView, Text } from '@components/common';
 import { BoardSection, ClothSection } from '@components/home-page';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/system';
+import { AutoInput } from '@components/costume-pages';
 
 export default function HomePage() {
   const isMobile = useResponsive(980);
-  const [todayVisitor, setTodayVisitor] = useState(0);
-  const [totalVisitor, setTotalVisitor] = useState(0);
-
-  useEffect(() => {
-    document.title = `바람의나라 도톨`;
-
-    getTodayVisitor().then(res => {
-      setTodayVisitor(res);
-    });
-
-    getTotalVisitor().then(res => {
-      setTotalVisitor(res);
-    });
-  }, []);
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
+      <AutoInput />
+
       <FlexView
         border="lightgray"
         radius={4}
@@ -37,6 +23,15 @@ export default function HomePage() {
         }}
         gap={10}
       >
+        <Text bold>공지사항 - 개발자 노트 1127(사이드 메뉴)</Text>
+        <Text>
+          상단 전체 메뉴를 왼쪽 사이드 메뉴로 변경했습니다. 기존 구조에서는 상위
+          메뉴만 바로 이동할 수 있고, 그 내부에서 서브 메뉴를 선택하는 탭을
+          사용하는 구조였습니다. 굳이 2번 이동하는 것도 불편하고, 메뉴가
+          늘어날수록 탭도 길어지기 때문에 사이드에 전체 메뉴를 두고 한 번에
+          이동하게끔 변경하였습니다.
+        </Text>
+        <br />
         <Text bold>공지사항 - 개발자 노트 1029(장비 마법)</Text>
         <Text>
           9~10월은 개인 스케줄 때문에 신규 치장 외엔 업데이트가 없었는데, 이제
@@ -48,10 +43,6 @@ export default function HomePage() {
           등) 관련 데이터를 업데이트 하려고 했었는데, 바람 패치로 변경되거나
           새로 추가된 데이터를 일부 구하지 못해서 일단 기술서부터 업데이트
           하였습니다.
-          <br />
-          <br />
-          버그 신고나 개발을 건의하고 싶은 기능이 있다면 1:1 문의를 통해
-          알려주세요.
         </Text>
         <br />
         <Text bold>공지사항 - 개발자 노트 0813(사이트 리뉴얼)</Text>
@@ -97,11 +88,6 @@ export default function HomePage() {
         <ClothSection />
 
         <BoardSection />
-      </FlexView>
-
-      <FlexView gap={16} center row>
-        <Text semiBold>Today: {todayVisitor}</Text>
-        <Text semiBold>Total: {totalVisitor}</Text>
       </FlexView>
     </FlexView>
   );
