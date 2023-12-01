@@ -60,7 +60,7 @@
             "position": "before"
           },
           {
-            "pattern": "{@apis/*,@assets/*,@components/*,@constants/*,@hooks/*,@interfaces/*,@locales/*,@pages/*,@routes/*,@states/*,@styles/*,@utils/*}",
+            "pattern": "{@apis/*,@assets/*,@components/*,@constants/*,@hooks/*,@interfaces/*,@pages/*,@routes/*,@states/*,@styles/*,@utils/*}",
             "group": "internal",
             "position": "after"
           }

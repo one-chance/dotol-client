@@ -7,7 +7,6 @@ import { ScrollToTop } from '@routes/index';
 import App from './App';
 
 import './main.css';
-import './locales/index';
 
 ReactDOM.createRoot(document.getElementById(`root`) as HTMLElement).render(
   <BrowserRouter>
