@@ -35,7 +35,7 @@ export default function Modal({ children, closePortal }: ModalProps) {
 
   return container
     ? createPortal(
-        <FlexView css={modalCSS} items="center" center fixed>
+        <FlexView css={modalCSS} center fixed>
           <FlexView
             css={backgoundCSS}
             role="presentation"

@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
 import { TotalMenuMobile, UserMenuMobile } from '@components/menu-page';
-import { LoginModal } from '@components/modal';
+import { LoginMobileModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/index';
 
@@ -126,7 +126,7 @@ export default function HeaderMobile() {
 
       {showTotalMenu && <TotalMenuMobile onClose={closeTotalMenu} />}
 
-      {showLogin && <LoginModal close={closeLoginModal} />}
+      {showLogin && <LoginMobileModal close={closeLoginModal} />}
     </header>
   );
 }
