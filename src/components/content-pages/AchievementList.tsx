@@ -1,5 +1,5 @@
-import { AchievementAccordion } from '@components/accordion';
 import { FlexView, Text } from '@components/common';
+import { AchievementAccordion } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
 import { Mission } from '@interfaces/index';
 

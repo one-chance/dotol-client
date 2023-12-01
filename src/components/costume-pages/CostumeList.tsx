@@ -10,11 +10,11 @@ import {
   FlexView,
   Input,
   Text,
-  Select,
   Option,
+  Pagination,
+  Select,
 } from '@components/common';
 import { Costume, Mannequin } from '@components/costume-pages';
-import { Pagination } from '@components/pagination';
 import { ICostume } from '@interfaces/index';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';
 import { Colors } from '@styles/index';

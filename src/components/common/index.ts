@@ -6,6 +6,7 @@ export * from './form';
 export * from './icon';
 export * from './image';
 export * from './input';
+export * from './pagination';
 export * from './spinner';
 export * from './svg';
 export * from './select';

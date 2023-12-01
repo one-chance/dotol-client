@@ -12,8 +12,8 @@ import {
   Text,
   Select,
   Option,
+  Pagination,
 } from '@components/common';
-import { Pagination } from '@components/pagination';
 import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/index';
 import { useResponsive } from '@hooks/index';
 import { IPost } from '@interfaces/index';

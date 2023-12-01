@@ -2,8 +2,8 @@ import { useState, useRef } from 'react';
 
 import DATA from '@data/archeology.json';
 
-import { ArcheologyAccordion } from '@components/accordion';
 import { Button, FlexView, Input, Text } from '@components/common';
+import { ArcheologyAccordion } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/index';
 
