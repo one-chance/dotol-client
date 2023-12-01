@@ -14,7 +14,7 @@ type SignUpProps = {
   setPhase: (_phase: Partial<Phase>) => void;
 };
 
-export default ({ isMobile, setPhase }: SignUpProps) => {
+export default function SignUpThree({ isMobile, setPhase }: SignUpProps) {
   const email = useRecoilValue(emailState);
   const [userId, setUserId] = useState(``);
   const [password, setPassword] = useState(``);
@@ -120,4 +120,4 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       </Button>
     </FlexView>
   );
-};
+}

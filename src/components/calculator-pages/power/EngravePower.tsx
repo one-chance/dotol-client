@@ -12,7 +12,7 @@ const ENGRAVES = [
   `공격력증가`,
 ];
 
-export default () => {
+export default function EngravePower() {
   const [engrave, setEngrave] = useState({
     one: ENGRAVES[0],
     two: ENGRAVES[0],
@@ -106,4 +106,4 @@ export default () => {
       <Text weight="semiBold">각인 전투력: {engravePower}</Text>
     </FlexView>
   );
-};
+}

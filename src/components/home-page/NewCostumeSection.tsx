@@ -1,17 +1,13 @@
 import { FlexView, Image, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
-
-export default () => {
+export default function NewCostumeSection() {
   const isMobile = useResponsive(400);
 
   return (
     <FlexView
       border="lightgray"
-      css={{
-        padding: isMobile ? `8px` : `12px`,
-        margin: isMobile ? `0 5px` : undefined,
-      }}
+      css={{ padding: isMobile ? `8px` : `12px` }}
       fill={!isMobile}
       gap={5}
       radius={4}
@@ -55,4 +51,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

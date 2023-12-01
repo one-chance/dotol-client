@@ -101,6 +101,7 @@
     "react/prop-types": "off",
     "react/require-default-props": "off",
     "react/react-in-jsx-scope": "off", // 맨 위에 React 선언 안해도 됨
+    "react-hooks/rules-of-hooks": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-shadow": "off",

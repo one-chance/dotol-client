@@ -14,7 +14,7 @@ const PARTS = [
   `신발`,
 ];
 
-export default () => {
+export default function BodyPower() {
   const isMobile = useResponsive(580);
   const [bodyPower, setBodyPower] = useState(0);
   const [value, setValue] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
@@ -89,4 +89,4 @@ export default () => {
       <Text weight="semiBold">신체강화 전투력: {bodyPower}</Text>
     </FlexView>
   );
-};
+}

@@ -7,7 +7,7 @@ type ListProps = {
   list: Mission[];
 };
 
-export default ({ list }: ListProps) => {
+export default function AchievementList({ list }: ListProps) {
   const isMobile = useResponsive(480);
 
   return (
@@ -42,4 +42,4 @@ export default ({ list }: ListProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

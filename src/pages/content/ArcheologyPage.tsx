@@ -46,7 +46,7 @@ export default function ArcheologyPage() {
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" gap={20} items="center" row>
         <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
-          고고학 유물
+          고고학 정보
         </Text>
 
         {!isMobile && (

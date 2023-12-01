@@ -13,7 +13,12 @@ interface ModalProps {
   close?: boolean;
 }
 
-export default ({ children, closePortal, color, close }: ModalProps) => {
+export default function ModalM({
+  children,
+  closePortal,
+  color,
+  close,
+}: ModalProps) {
   const container = document.getElementById(`root-modal`);
 
   const contentCSS: CSSObject = {
@@ -50,4 +55,4 @@ export default ({ children, closePortal, color, close }: ModalProps) => {
         container,
       )
     : null;
-};
+}

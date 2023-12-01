@@ -1,7 +1,10 @@
 import { useState } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
+
+import { getAdventureList } from '@apis/index';
 import { FlexView, Text, Select, Option } from '@components/common';
-import { AdventureList } from '@components/content-pages';
+import { AdventureList, AdventureReward } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
 import { AdventureTab } from '@interfaces/index';
 
@@ -18,9 +21,14 @@ const LOCATIONS = [
 const TABS = [`괴수`, `물품`, `임무`, `탐방`, `보상`];
 
 export default function AdventurePage() {
-  const isMobile = useResponsive(600);
+  const isMobile = useResponsive(500);
   const [tab, setTab] = useState(0); // 탐험 탭
   const [location, setLocation] = useState(0); // 탐험 지역
+
+  const { data: adventureList = [] } = useQuery({
+    queryKey: [`adeventureList`],
+    queryFn: () => getAdventureList(),
+  });
 
   const selectLocation = (idx: number) => {
     setLocation(idx);
@@ -38,7 +46,11 @@ export default function AdventurePage() {
         </Text>
 
         <FlexView gap={8} row>
-          <Select isMobile={isMobile} label={LOCATIONS[location]} width={100}>
+          <Select
+            isMobile={isMobile}
+            label={LOCATIONS[location]}
+            width={isMobile ? 80 : 100}
+          >
             <Option
               selected={LOCATIONS[location]}
               values={LOCATIONS}
@@ -46,17 +58,28 @@ export default function AdventurePage() {
             />
           </Select>
 
-          <Select isMobile={isMobile} label={TABS[tab]} width={80}>
+          <Select
+            isMobile={isMobile}
+            label={TABS[tab]}
+            width={isMobile ? 60 : 80}
+          >
             <Option selected={TABS[tab]} values={TABS} onSelect={selectTab} />
           </Select>
         </FlexView>
       </FlexView>
 
-      <AdventureList
-        isMobile={isMobile}
-        location={location}
-        tab={TABS[tab] as AdventureTab}
-      />
+      {TABS[tab] === `보상` ? (
+        <AdventureReward
+          isMobile={isMobile}
+          list={adventureList[location]?.보상}
+        />
+      ) : (
+        <AdventureList
+          isMobile={isMobile}
+          list={adventureList[location]?.[TABS[tab]]}
+          tab={TABS[tab] as AdventureTab}
+        />
+      )}
     </FlexView>
   );
 }

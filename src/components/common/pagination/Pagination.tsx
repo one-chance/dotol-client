@@ -16,7 +16,7 @@ const buttonCSS: CSSObject = {
   lineHeight: 1,
 };
 
-export default ({ count, unit }: PaginationProps) => {
+export default function Pagination({ count, unit }: PaginationProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const [pageList, setPageList] = useState<number[]>([1, 2, 3, 4, 5]);
@@ -95,4 +95,4 @@ export default ({ count, unit }: PaginationProps) => {
       )}
     </FlexView>
   );
-};
+}

@@ -63,7 +63,7 @@ const JOBS = [
   `차사`,
   `살수`,
 ];
-export default () => {
+export default function NormalEquipList() {
   const isMobile = useResponsive(960);
   const basicUrl = `https://asset.dotols.com/image/equip/`;
 
@@ -349,4 +349,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

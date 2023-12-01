@@ -1,7 +1,7 @@
 import EQUIP_DATA from '@data/pet-equip.json';
 import { CSSObject } from '@emotion/react';
 
-import { FlexView, Text, Select, Option } from '@components/common';
+import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/index';
 
@@ -20,7 +20,7 @@ interface PetEquipListProps {
   type: number;
 }
 
-export default ({ type }: PetEquipListProps) => {
+export default function PetEquipList({ type }: PetEquipListProps) {
   const isMobile = useResponsive(580);
 
   const myData = EQUIP_DATA[type];
@@ -91,13 +91,9 @@ export default ({ type }: PetEquipListProps) => {
         </FlexView>
       </FlexView>
 
-      <Text
-        color={Colors.red}
-        css={{ letterSpacing: -0.5 }}
-        size={isMobile ? `small` : `normal`}
-      >
-        * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
+      <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
+        ● 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
       </Text>
     </FlexView>
   );
-};
+}

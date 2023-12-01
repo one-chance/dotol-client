@@ -15,14 +15,14 @@ interface ModalProps {
   closePortal: (param: any) => void;
 }
 
-export default ({
+export default function Modal({
   width,
   height,
   close,
   isLogin,
   children,
   closePortal,
-}: ModalProps) => {
+}: ModalProps) {
   const container = document.getElementById(`root-modal`) as HTMLElement;
 
   const modalCSS: CSSObject = {
@@ -50,17 +50,11 @@ export default ({
   };
 
   const contentCSS: CSSObject = {
-    // maxWidth: `calc(100% - 80px)`,
     width: `${width}px`,
     height: `${height}px`,
-    // padding: `40px`,
     backgroundColor: `#FFFFFF`,
     borderRadius: `4px`,
-    // border: `1px solid ${Colors.secondary10}`,
     zIndex: 1001,
-    // overflowY: `auto`,
-    // scrollbarWidth: `none`,
-    // '::-webkit-scrollbar': { display: `none` },
   };
 
   useEffect(() => {
@@ -98,4 +92,4 @@ export default ({
         container,
       )
     : null;
-};
+}

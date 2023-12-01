@@ -14,7 +14,7 @@ interface AvatarProps {
 
 type Naked = 'n' | 'y';
 
-export default ({ character, count, skin, equip }: AvatarProps) => {
+export default function Avatar({ character, count, skin, equip }: AvatarProps) {
   const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${character}&is=1`;
 
   const [direction, setDirecrtion] = useState(2);
@@ -94,4 +94,4 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

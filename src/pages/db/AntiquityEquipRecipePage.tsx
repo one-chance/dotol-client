@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 import { FlexView, Option, Select, Text } from '@components/common';
 import { AntiquityEquipRecipe } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';

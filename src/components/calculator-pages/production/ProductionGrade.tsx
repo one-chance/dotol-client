@@ -29,7 +29,7 @@ const GRADES = [
   `전설장인`,
 ];
 
-export default () => {
+export default function ProductionGrade() {
   const isMobile = useResponsive(600);
 
   const [data, setData] = useState([[[]]]);
@@ -131,4 +131,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

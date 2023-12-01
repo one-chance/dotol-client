@@ -7,7 +7,7 @@ type SignUpProps = {
   isMobile: boolean;
 };
 
-export default ({ isMobile }: SignUpProps) => {
+export default function SignUpFour({ isMobile }: SignUpProps) {
   const navigate = useNavigate();
 
   const goLogin = () => {
@@ -46,4 +46,4 @@ export default ({ isMobile }: SignUpProps) => {
       </Button>
     </FlexView>
   );
-};
+}

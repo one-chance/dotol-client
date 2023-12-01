@@ -7,7 +7,10 @@ type TanningListProps = {
   selectSkin: (skin: number) => void;
 };
 
-export default ({ skinColor, selectSkin }: TanningListProps) => {
+export default function TanningList({
+  skinColor,
+  selectSkin,
+}: TanningListProps) {
   const changeSkin = (_skin: number) => {
     selectSkin(_skin);
   };
@@ -55,4 +58,4 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

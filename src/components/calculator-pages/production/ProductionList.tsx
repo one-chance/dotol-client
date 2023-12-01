@@ -42,7 +42,7 @@ const GRADES = [
   `전설장인`,
 ];
 
-export default () => {
+export default function ProductionList() {
   const isMobile = useResponsive(560);
   const setRecipe = useSetRecoilState(itemState);
 
@@ -60,7 +60,6 @@ export default () => {
 
   const selectGrade = (idx: number) => {
     setGrade(idx);
-
     setSelectedItem(`품목`);
     setRecipe({ name: ``, amount: 0 });
     setQuantity(0);
@@ -158,4 +157,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

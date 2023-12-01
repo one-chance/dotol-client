@@ -98,7 +98,7 @@ const FACES_ACC: { [key: string]: number } = {
   "문양'진": 20,
 };
 
-export default () => {
+export default function PetEquipAccuracy() {
   const isMobile = useResponsive(580);
   const [accuracy, setAccuracy] = useState(0);
   const [extra, setExtra] = useState(0);
@@ -301,4 +301,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

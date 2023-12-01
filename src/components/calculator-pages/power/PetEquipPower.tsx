@@ -21,7 +21,7 @@ import {
   PET_EQUIP_POWER,
 } from '@constants/index';
 
-export default () => {
+export default function PetEquipPower() {
   const SELECT_WIDTH = 140;
 
   const [reinforce, setReinforce] = useState<{ [key: string]: number }>({
@@ -348,4 +348,4 @@ export default () => {
       <Text weight="semiBold">환수장비 전투력: {petEquipPower}</Text>
     </FlexView>
   );
-};
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { FlexView, Input, Text } from '@components/common';
 
-export default () => {
+export default function LevelPower() {
   const [level, setLevel] = useState(0);
   const [levelPower, setLevelPower] = useState(0);
 
@@ -50,4 +50,4 @@ export default () => {
       <Text weight="semiBold">{`레벨 전투력: ${levelPower}`}</Text>
     </FlexView>
   );
-};
+}

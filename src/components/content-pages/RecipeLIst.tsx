@@ -6,7 +6,7 @@ type RecipeListProps = {
   part: number;
 };
 
-export default ({ isMobile, part }: RecipeListProps) => {
+export default function RecipeList({ isMobile, part }: RecipeListProps) {
   const data = BODY_REINFORCE_RECIPE[part];
 
   return (
@@ -110,4 +110,4 @@ export default ({ isMobile, part }: RecipeListProps) => {
       ))}
     </FlexView>
   );
-};
+}

@@ -6,7 +6,7 @@ type PostTitleProps = {
   isMobile?: boolean;
 };
 
-export default ({ post, isMobile }: PostTitleProps) => {
+export default function PostTitle({ post, isMobile }: PostTitleProps) {
   const desktop = (
     <FlexView
       css={{
@@ -76,4 +76,4 @@ export default ({ post, isMobile }: PostTitleProps) => {
   );
 
   return isMobile ? mobile : desktop;
-};
+}

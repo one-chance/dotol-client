@@ -15,7 +15,7 @@ type Bonus = {
   목록?: string[];
 };
 
-export default ({ isMobile, part }: BonusListProps) => {
+export default function BonusList({ isMobile, part }: BonusListProps) {
   const [infoList, setInfoList] = useState<Bonus[][]>([[]]);
 
   useEffect(() => {
@@ -99,4 +99,4 @@ export default ({ isMobile, part }: BonusListProps) => {
       )}
     </FlexView>
   );
-};
+}

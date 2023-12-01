@@ -5,7 +5,7 @@ import { useResponsive } from '@hooks/index';
 
 const recipeData = EQUIP_RECIPE;
 
-export default () => {
+export default function PetEquipRecipe() {
   const isMobile = useResponsive(580);
 
   return (
@@ -78,4 +78,4 @@ export default () => {
       ))}
     </FlexView>
   );
-};
+}

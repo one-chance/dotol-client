@@ -10,7 +10,12 @@ type PostSummaryProps = {
   isMobile?: boolean;
 };
 
-export default ({ post, page, board, isMobile }: PostSummaryProps) => {
+export default function PostAnnouncement({
+  post,
+  page,
+  board,
+  isMobile,
+}: PostSummaryProps) {
   const desktop = (
     <FlexView
       content="between"
@@ -145,4 +150,4 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
   );
 
   return isMobile ? mobile : desktop;
-};
+}

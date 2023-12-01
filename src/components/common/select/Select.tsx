@@ -15,7 +15,7 @@ type SelectProps = HTMLAttributes<HTMLDivElement> & {
   isMobile?: boolean;
 };
 
-export default ({
+export default function Select({
   label,
   width,
   height,
@@ -25,7 +25,7 @@ export default ({
   square,
   isMobile,
   ...props
-}: SelectProps) => {
+}: SelectProps) {
   const selectRef = useRef<HTMLDivElement>(null);
   const optionListRef = useRef<HTMLDivElement>(null);
   const [showOption, setShowOption] = useState(false);
@@ -99,4 +99,4 @@ export default ({
       )}
     </FlexView>
   );
-};
+}

@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { Button, FlexView, Text, TextArea } from '@components/common';
 import { Colors } from '@styles/index';
 
-type CommentProps = {
+type NewCommentProps = {
   color?: string;
   onSubmit: (e: string) => void;
 };
 
-export default ({ color, onSubmit }: CommentProps) => {
+export default function NewComment({ color, onSubmit }: NewCommentProps) {
   const [value, setValue] = useState(``);
 
   const inputValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -48,4 +48,4 @@ export default ({ color, onSubmit }: CommentProps) => {
       </Button>
     </FlexView>
   );
-};
+}

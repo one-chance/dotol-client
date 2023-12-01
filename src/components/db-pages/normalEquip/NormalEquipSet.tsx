@@ -9,7 +9,7 @@ interface NormalEquipSetProps {
   type: string;
 }
 
-export default ({ type }: NormalEquipSetProps) => {
+export default function NormalEquipSet({ type }: NormalEquipSetProps) {
   const isMobile = useResponsive(620);
   const basicUrl = `https://asset.dotols.com/image/equip-set/`;
 
@@ -160,4 +160,4 @@ export default ({ type }: NormalEquipSetProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

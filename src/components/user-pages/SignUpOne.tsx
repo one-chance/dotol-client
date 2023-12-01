@@ -11,7 +11,7 @@ type SignUpProps = {
   setPhase: (_phase: Partial<Phase>) => void;
 };
 
-export default ({ isMobile, setPhase }: SignUpProps) => {
+export default function SignUpOne({ isMobile, setPhase }: SignUpProps) {
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -109,4 +109,4 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       </Button>
     </FlexView>
   );
-};
+}

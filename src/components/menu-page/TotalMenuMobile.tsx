@@ -10,7 +10,7 @@ type MenuProps = {
   onClose: () => void;
 };
 
-export default ({ onClose }: MenuProps) => {
+export default function TotalMenuMobile({ onClose }: MenuProps) {
   const location = useLocation();
 
   return (
@@ -98,4 +98,4 @@ export default ({ onClose }: MenuProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

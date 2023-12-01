@@ -1,6 +1,6 @@
 import { Anchor, FlexView, Text } from '@components/common';
 import { AutoInput } from '@components/costume-pages';
-import { BoardSection, ClothSection } from '@components/home-page';
+import { BoardSection, NewCostumeSection } from '@components/home-page';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/index';
 
@@ -85,7 +85,7 @@ export default function HomePage() {
       </FlexView>
 
       <FlexView gap={20} row={!isMobile}>
-        <ClothSection />
+        <NewCostumeSection />
 
         <BoardSection />
       </FlexView>

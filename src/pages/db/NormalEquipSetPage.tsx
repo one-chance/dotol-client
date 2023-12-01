@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 import { FlexView, Option, Select, Text } from '@components/common';
 import { NormalEquipSet } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
@@ -41,7 +40,7 @@ export default function NormalEquipSetPage() {
     >
       <FlexView content="between" items="center" row>
         <Text size={isMobile ? `large` : `xLarge`} weight="bold">
-          일반장비 - 한벌효과
+          일반장비 한벌효과
         </Text>
 
         <Select

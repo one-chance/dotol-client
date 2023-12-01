@@ -13,14 +13,14 @@ type AccordionProps = {
   children?: ReactNode;
 };
 
-export default ({
+export default function Accordion({
   title,
   content,
   titleCSS,
   contentCSS,
   divider,
   children,
-}: AccordionProps) => {
+}: AccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -61,4 +61,4 @@ export default ({
       </FlexView>
     </FlexView>
   );
-};
+}

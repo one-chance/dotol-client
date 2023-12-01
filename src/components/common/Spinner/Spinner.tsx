@@ -5,7 +5,7 @@ import { keyframes } from '@emotion/react';
 import { FlexView } from '@components/common';
 import { Colors } from '@styles/index';
 
-export default () => {
+export default function Spinner() {
   const spinAnimation = keyframes`
     from {
         transform: rotate(0deg);
@@ -55,4 +55,4 @@ export default () => {
       </svg>
     </FlexView>
   );
-};
+}

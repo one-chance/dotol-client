@@ -67,7 +67,6 @@ a {
   color: unset;
 }
 
-
 input[type='password']:not(:placeholder-shown) {
   font-family: Verdana;
   font-size: 1.25rem;

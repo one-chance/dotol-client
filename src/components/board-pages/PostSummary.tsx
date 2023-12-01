@@ -12,7 +12,12 @@ type PostSummaryProps = {
   isMobile?: boolean;
 };
 
-export default ({ post, page, board, isMobile }: PostSummaryProps) => {
+export default function PostSummary({
+  post,
+  page,
+  board,
+  isMobile,
+}: PostSummaryProps) {
   const [showUserModal, setShowUserModal] = useState(false);
 
   const openUserModal = () => setShowUserModal(true);
@@ -136,4 +141,4 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
   );
 
   return isMobile ? mobile : desktop;
-};
+}

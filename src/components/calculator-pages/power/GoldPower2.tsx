@@ -20,7 +20,7 @@ const ABILITIES = [
   `체력/마력`,
 ];
 
-export default () => {
+export default function GoldPower2() {
   const [goldPower, setGoldPower] = useState(0);
   const [ability, setAbility] = useState<{ [key: string]: string }>({
     one: ABILITIES[0],
@@ -169,4 +169,4 @@ export default () => {
       <Text weight="semiBold">(콘텐츠)부가잠재능력 전투력: {goldPower}</Text>
     </FlexView>
   );
-};
+}

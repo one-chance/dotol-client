@@ -20,7 +20,13 @@ const lastBorder: CSSObject = {
   borderRadius: `0 0 4px 4px`,
 };
 
-export default ({ css, center, values, selected, onSelect }: OptionProps) => {
+export default function Option({
+  css,
+  center,
+  values,
+  selected,
+  onSelect,
+}: OptionProps) {
   const refs = useRef<HTMLDivElement[]>([]);
 
   const optionCSS: CSSObject = {
@@ -79,4 +85,4 @@ export default ({ css, center, values, selected, onSelect }: OptionProps) => {
       ))}
     </>
   );
-};
+}

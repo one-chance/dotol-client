@@ -2,46 +2,46 @@ import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Select, Option, Text } from '@components/common';
 
-export default () => {
-  const INNER_POWER_TYPES = [
-    `내공 종류`,
-    `명중률/명중회피`,
-    `힘/민첩/지력/지혜/건강`,
-    `체력치/마력치`,
-    `방어도`,
-    `방어도무시`,
-    `방어구관통`,
-    `공격력증가`,
-    `마법치명/마력증강`,
-    `마법수준향상`,
-    `피흡/타흡/마흡/직타`,
-    `시향/회향/피흡무시`,
-  ];
+const INNER_POWER_TYPES = [
+  `내공 종류`,
+  `명중률/명중회피`,
+  `힘/민첩/지력/지혜/건강`,
+  `체력치/마력치`,
+  `방어도`,
+  `방어도무시`,
+  `방어구관통`,
+  `공격력증가`,
+  `마법치명/마력증강`,
+  `마법수준향상`,
+  `피흡/타흡/마흡/직타`,
+  `시향/회향/피흡무시`,
+];
 
-  const INNER_POWERS: { [key: string]: { power: number; max: number } } = {
-    '내공 종류': { power: 0, max: 0 },
-    '명중률/명중회피': { power: 1, max: 300 },
-    '힘/민첩/지력/지혜/건강': { power: 1, max: 300 },
-    '체력치/마력치': { power: 1, max: 300 },
-    방어도: { power: 1, max: 300 },
-    방어도무시: { power: 1, max: 300 },
-    방어구관통: { power: 1, max: 300 },
-    공격력증가: { power: 1, max: 300 },
-    '마법치명/마력증강': { power: 1, max: 300 },
-    마법수준향상: { power: 1, max: 300 },
-    '피흡/타흡/마흡/직타': { power: 1, max: 300 },
-    '시향/회향/피흡무시': { power: 1, max: 300 },
-  };
+const INNER_POWERS: { [key: string]: { power: number; max: number } } = {
+  '내공 종류': { power: 0, max: 0 },
+  '명중률/명중회피': { power: 1, max: 300 },
+  '힘/민첩/지력/지혜/건강': { power: 1, max: 300 },
+  '체력치/마력치': { power: 1, max: 300 },
+  방어도: { power: 1, max: 300 },
+  방어도무시: { power: 1, max: 300 },
+  방어구관통: { power: 1, max: 300 },
+  공격력증가: { power: 1, max: 300 },
+  '마법치명/마력증강': { power: 1, max: 300 },
+  마법수준향상: { power: 1, max: 300 },
+  '피흡/타흡/마흡/직타': { power: 1, max: 300 },
+  '시향/회향/피흡무시': { power: 1, max: 300 },
+};
 
-  const BONUS_POWERS = [
-    `등급 효과`,
-    `[고급]등급 효과`,
-    `[희귀]등급 효과`,
-    `[영웅]등급 효과`,
-    `[전설]등급 효과`,
-    `[신화]등급 효과`,
-  ];
+const BONUS_POWERS = [
+  `등급 효과`,
+  `[고급]등급 효과`,
+  `[희귀]등급 효과`,
+  `[영웅]등급 효과`,
+  `[전설]등급 효과`,
+  `[신화]등급 효과`,
+];
 
+export default function InnerPower() {
   const [innerType, setInnerType] = useState({
     one: 0,
     two: 0,
@@ -165,4 +165,4 @@ export default () => {
       <Text weight="semiBold">내공 강화 전투력: {innerPower}</Text>
     </FlexView>
   );
-};
+}

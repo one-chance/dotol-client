@@ -5,18 +5,17 @@ import { useSetRecoilState } from 'recoil';
 
 import { verifyUser } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
+import { Modal } from '@components/modal';
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, userIdState } from '@states/index';
 import { Colors } from '@styles/index';
 import { decodeJWT } from '@utils/index';
 
-import Modal from '../Modal';
-
 type ModalProps = {
   close: () => void;
 };
 
-export default ({ close }: ModalProps) => {
+export default function LoginMOdal({ close }: ModalProps) {
   const isMobile = useResponsive(600);
   const setUserIdState = useSetRecoilState(userIdState);
   const setIsLoggedInState = useSetRecoilState(isLoggedInState);
@@ -179,4 +178,4 @@ export default ({ close }: ModalProps) => {
       </FlexView>
     </Modal>
   );
-};
+}

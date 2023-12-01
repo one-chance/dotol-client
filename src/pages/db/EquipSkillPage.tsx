@@ -53,9 +53,9 @@ export default function EquipSkill() {
       css={{
         maxWidth: `860px`,
         width: `100%`,
-        margin: isMobile ? `0 0 40px 0` : `60px auto`,
+        margin: `0 auto`,
       }}
-      gap={40}
+      gap={20}
     >
       <Text size={isMobile ? `large` : `xLarge`} weight="bold">
         장비 마법

@@ -19,7 +19,7 @@ type TextFieldProps = {
   timer?: number;
 };
 
-export default ({
+export default function TextField({
   label,
   value,
   onKeyDown,
@@ -33,7 +33,7 @@ export default ({
   errorMessage,
   correct,
   timer,
-}: TextFieldProps) => {
+}: TextFieldProps) {
   const [text, setText] = useState(``);
   const [isFocused, setIsFocused] = useState(false);
   const [isEntered, setIsEntered] = useState(value !== ``);
@@ -129,4 +129,4 @@ export default ({
       )}
     </FlexView>
   );
-};
+}

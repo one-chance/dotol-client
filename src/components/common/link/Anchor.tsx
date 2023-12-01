@@ -10,11 +10,11 @@ export type AnchorProps = DetailedHTMLProps<
   underline?: boolean;
 };
 
-export default ({ color, underline, ...props }: AnchorProps) => {
+export default function Anchor({ color, underline, ...props }: AnchorProps) {
   const css: CSSObject = {
     ...(color && { color: `${color}` }),
     ...(underline && { textDecoration: `underline` }),
   };
 
   return jsx(`a`, { css, ...props });
-};
+}

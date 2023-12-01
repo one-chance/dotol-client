@@ -23,7 +23,10 @@ const EQUIP_PARTS = [
 
 const INPUT_WIDTH = 180;
 
-export default ({ isMobile, applyPreview }: LookbookListProps) => {
+export default function LookbookList({
+  isMobile,
+  applyPreview,
+}: LookbookListProps) {
   const [itemList, setItemList] = useState<string[]>([
     ``,
     ``,
@@ -61,7 +64,6 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
         maxWidth: `720px`,
         border: `1px solid lightgray`,
         padding: isMobile ? `20px` : `20px 40px`,
-        margin: isMobile ? `0 4px` : undefined,
       }}
       gap={20}
     >
@@ -118,4 +120,4 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

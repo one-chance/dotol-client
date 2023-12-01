@@ -12,7 +12,7 @@ type PostCommentProps = {
   comments: IComment[];
 };
 
-export default ({ comments }: PostCommentProps) => {
+export default function PostComment({ comments }: PostCommentProps) {
   const [grade, setGrade] = useState(0);
   const setShowLogin = useSetRecoilState(showLoginState);
   const openToast = useSetRecoilState(toastState);
@@ -44,4 +44,4 @@ export default ({ comments }: PostCommentProps) => {
       ))}
     </FlexView>
   );
-};
+}

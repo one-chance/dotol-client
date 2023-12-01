@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 import { FlexView, Option, Select, Text } from '@components/common';
 import { PetEquipList } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
@@ -26,7 +25,7 @@ export default function PetEquipListPgae() {
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" items="center" row>
         <Text size={isMobile ? `large` : `xLarge`} weight="bold">
-          환수장비 - 목록
+          환수장비 목록
         </Text>
 
         <Select label={EQUIP_TYPES[type]} width={isMobile ? 120 : 140}>

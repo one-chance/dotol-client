@@ -1,23 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 import { getSkillAbilityList } from '@apis/index';
-import { FlexView, Text, Select, Option } from '@components/common';
-import { useResponsive } from '@hooks/index';
-
-const JOBS = [
-  `전사`,
-  `도적`,
-  `주술사`,
-  `도사`,
-  `궁사`,
-  `천인`,
-  `마도사`,
-  `영술사`,
-  `차사`,
-  `살수`,
-];
-
-const EQUIP_PARTS = [`목/어깨장식`, `투구`, `무기`, `갑옷`, `망토`];
+import { FlexView, Text } from '@components/common';
 
 type Ability = {
   기술능력: string;
@@ -25,101 +9,68 @@ type Ability = {
   신화: string;
 };
 
-export default () => {
-  const isMobile = useResponsive(500);
-  const [job, setJob] = useState(0);
-  const [parts, setParts] = useState(0);
-  const [data, setData] = useState([[[]]]);
+interface SkillAbilityListProps {
+  job: number;
+  part: number;
+  isMobile: boolean;
+}
 
-  const selectJob = (id: number) => {
-    setJob(id);
-  };
-
-  const selectPart = (id: number) => {
-    setParts(id);
-  };
-
-  useEffect(() => {
-    getSkillAbilityList().then(res => {
-      setData(res);
-    });
-  }, []);
+export default function SkillAbilityList({
+  job,
+  part,
+  isMobile,
+}: SkillAbilityListProps) {
+  const { data: abilityList = [] } = useQuery({
+    queryKey: [`abilityList`],
+    queryFn: () => getSkillAbilityList(),
+  });
 
   return (
-    <FlexView gap={isMobile ? 10 : 20}>
-      <FlexView content="between" gap={10} items="center" row wrap>
-        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
-          기술능력 도감
+    <FlexView
+      css={{
+        borderRight: `1px solid lightgray`,
+        borderLeft: `1px solid lightgray`,
+      }}
+    >
+      <FlexView color="lightgray" css={{ minHeight: `40px` }} center row>
+        <Text
+          css={{
+            width: isMobile ? `180px` : `240px`,
+            paddingLeft: isMobile ? `4px` : `8px`,
+          }}
+          size={isMobile ? `small` : `normal`}
+          weight="semiBold"
+          center
+        >
+          기술능력
         </Text>
 
-        <FlexView gap={isMobile ? 8 : 16} items="center" row>
-          <Select
-            isMobile={isMobile}
-            label={JOBS[job]}
-            width={isMobile ? 80 : 100}
-          >
-            <Option selected={JOBS[job]} values={JOBS} onSelect={selectJob} />
-          </Select>
+        <Text
+          css={{
+            width: isMobile ? `85px` : `120px`,
+          }}
+          size={isMobile ? `small` : `normal`}
+          weight="semiBold"
+          center
+        >
+          전설
+        </Text>
 
-          <Select
-            isMobile={isMobile}
-            label={EQUIP_PARTS[parts]}
-            width={isMobile ? 100 : 120}
-          >
-            <Option
-              selected={EQUIP_PARTS[parts]}
-              values={EQUIP_PARTS}
-              onSelect={selectPart}
-            />
-          </Select>
-        </FlexView>
+        <Text
+          css={{
+            width: isMobile ? `85px` : `120px`,
+          }}
+          size={isMobile ? `small` : `normal`}
+          weight="semiBold"
+          center
+        >
+          신화
+        </Text>
       </FlexView>
 
-      <FlexView
-        css={{
-          margin: `0 4px`,
-          borderRight: `1px solid lightgray`,
-          borderLeft: `1px solid lightgray`,
-        }}
-      >
-        <FlexView color="lightgray" css={{ minHeight: `40px` }} center row>
-          <Text
-            css={{
-              width: isMobile ? `180px` : `240px`,
-              paddingLeft: isMobile ? `4px` : `8px`,
-            }}
-            size={isMobile ? `small` : `normal`}
-            weight="semiBold"
-            center
-          >
-            기술능력
-          </Text>
-
-          <Text
-            css={{
-              width: isMobile ? `85px` : `120px`,
-            }}
-            size={isMobile ? `small` : `normal`}
-            weight="semiBold"
-            center
-          >
-            전설
-          </Text>
-
-          <Text
-            css={{
-              width: isMobile ? `85px` : `120px`,
-            }}
-            size={isMobile ? `small` : `normal`}
-            weight="semiBold"
-            center
-          >
-            신화
-          </Text>
-        </FlexView>
-
-        <FlexView>
-          {data?.[job][parts].map((ability: Ability) => (
+      <FlexView>
+        {abilityList.length > 0 &&
+          abilityList[job][part].map((ability: Ability) => (
             <FlexView
               key={ability.기술능력}
               css={{
@@ -155,8 +106,7 @@ export default () => {
               </Text>
             </FlexView>
           ))}
-        </FlexView>
       </FlexView>
     </FlexView>
   );
-};
+}

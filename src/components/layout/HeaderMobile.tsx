@@ -9,7 +9,7 @@ import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/index';
 import { Colors } from '@styles/index';
 
-export default () => {
+export default function HeaderMobile() {
   const location = useLocation();
   const infoRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -129,4 +129,4 @@ export default () => {
       {showLogin && <LoginModal close={closeLoginModal} />}
     </header>
   );
-};
+}

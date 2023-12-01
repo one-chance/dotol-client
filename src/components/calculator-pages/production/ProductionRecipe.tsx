@@ -17,7 +17,7 @@ type RecipeProps = {
   isMobile?: boolean;
 };
 
-export default ({ isMobile }: RecipeProps) => {
+export default function ProductionRecipe({ isMobile }: RecipeProps) {
   const selectedItem = useRecoilValue(itemState);
 
   const [recipeList, setRecipeList] = useState<Recipe>({});
@@ -86,4 +86,4 @@ export default ({ isMobile }: RecipeProps) => {
       ))}
     </FlexView>
   );
-};
+}

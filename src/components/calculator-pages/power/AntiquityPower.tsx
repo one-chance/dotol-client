@@ -11,7 +11,7 @@ import {
   ANTIQUITY_POWER,
 } from '@constants/index';
 
-export default () => {
+export default function AntiquityPower() {
   const SELECT_WIDTH = 140;
 
   const [equips, setEquips] = useState({
@@ -171,4 +171,4 @@ export default () => {
       <Text weight="bold">신수유물 전투력: {antiquityPower}</Text>
     </FlexView>
   );
-};
+}

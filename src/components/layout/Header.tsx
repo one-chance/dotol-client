@@ -24,7 +24,7 @@ const menus: { [key: string]: string } = {
   board: `게시판`,
 };
 
-export default () => {
+export default function Header() {
   const location = useLocation();
   const infoRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -234,4 +234,4 @@ export default () => {
       </FlexView>
     </header>
   );
-};
+}

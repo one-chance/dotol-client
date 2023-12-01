@@ -39,7 +39,7 @@ export type TextProps = (
   underline?: boolean;
 };
 
-export default ({
+export default function Text({
   size,
   weight,
   color,
@@ -50,12 +50,12 @@ export default ({
   space,
   underline,
   ...props
-}: TextProps) => {
+}: TextProps) {
   const css: CSSObject = {
     backgroundColor: `unset`,
     color: color || `black`,
     lineHeight: 1.25,
-    letterSpacing: space ? `${space}px` : `1px`,
+    letterSpacing: space ? `${space}px` : `normal`,
     fontSize: FontSizes[size || `normal`],
     fontWeight: FontWeights[weight || `regular`],
     ...(start && { textAlign: `left` }),
@@ -69,4 +69,4 @@ export default ({
   };
 
   return jsx(`span`, { css, ...props });
-};
+}

@@ -146,7 +146,7 @@ const PARTS = [
   ],
 ];
 
-export default () => {
+export default function LuxuryList() {
   const isMobile = useResponsive(960);
   const [series, setSeries] = useState(0);
   const basicURL = `https://asset.dotols.com/image/luxury/`;
@@ -217,4 +217,4 @@ export default () => {
       )}
     </FlexView>
   );
-};
+}

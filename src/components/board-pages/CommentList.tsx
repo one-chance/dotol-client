@@ -12,7 +12,7 @@ type CommentProps = {
   comment: IComment;
 };
 
-export default ({ comment }: CommentProps) => {
+export default function CommentList({ comment }: CommentProps) {
   const userId = useRecoilValue(userIdState);
   const [replyMode, setReplyMode] = useState(false);
 
@@ -122,4 +122,4 @@ export default ({ comment }: CommentProps) => {
       ))}
     </FlexView>
   );
-};
+}

@@ -9,7 +9,13 @@ type DividerProps = HTMLAttributes<HTMLHRElement> & {
   round?: boolean;
 };
 
-export default ({ size, margin, color, round, ...props }: DividerProps) => {
+export default function Divdier({
+  size,
+  margin,
+  color,
+  round,
+  ...props
+}: DividerProps) {
   const css: CSSObject = {
     border: `none`,
     borderRadius: round ? `10px` : undefined,
@@ -20,4 +26,4 @@ export default ({ size, margin, color, round, ...props }: DividerProps) => {
   };
 
   return jsx(`hr`, { css, ...props });
-};
+}

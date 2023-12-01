@@ -19,7 +19,7 @@ const EQUIP_PARTS = [
   `세트옷`,
 ];
 
-export default () => {
+export default function NormalEquipPower() {
   const [equips, setEquips] = useState({
     '목/어깨장식': ``,
     투구: ``,
@@ -95,4 +95,4 @@ export default () => {
       <Text weight="semiBold">장비 전투력: {normalEquipPower}</Text>
     </FlexView>
   );
-};
+}

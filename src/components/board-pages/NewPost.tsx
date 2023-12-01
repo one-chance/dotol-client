@@ -34,7 +34,7 @@ const toolbarItems = [
   [`table`, `link`, `image`],
 ];
 
-export default ({ board }: NewPostProps) => {
+export default function NewPost({ board }: NewPostProps) {
   const navigate = useNavigate();
   const isMobile = useResponsive(800);
   const contentRef = useRef<Editor>(null);
@@ -153,4 +153,4 @@ export default ({ board }: NewPostProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

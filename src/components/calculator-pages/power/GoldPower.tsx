@@ -16,7 +16,7 @@ const ABILITIES = [
   `마법수준향상(%)`,
 ];
 
-export default () => {
+export default function GoldPower() {
   const [goldPower, setGoldPower] = useState(0);
   const [ability, setAbility] = useState<Record<string, string>>({
     one: ABILITIES[0],
@@ -146,4 +146,4 @@ export default () => {
       <Text weight="semiBold">(황돋)부가잠재능력 전투력: {goldPower}</Text>
     </FlexView>
   );
-};
+}

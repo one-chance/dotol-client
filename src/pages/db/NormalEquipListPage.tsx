@@ -1,4 +1,3 @@
-
 import { FlexView, Text } from '@components/common';
 import { NormalEquipList } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
@@ -16,7 +15,7 @@ export default function NormalEquipListPage() {
       gap={20}
     >
       <Text size={isMobile ? `large` : `xLarge`} weight="bold">
-        일반장비 - 목록
+        일반장비 목록
       </Text>
 
       <NormalEquipList />

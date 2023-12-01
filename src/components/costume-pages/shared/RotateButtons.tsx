@@ -8,7 +8,11 @@ type RotateButtonProps = {
   onClick: (a: any) => void;
 };
 
-export default ({ selected, color, onClick }: RotateButtonProps) => {
+export default function RotateButton({
+  selected,
+  color,
+  onClick,
+}: RotateButtonProps) {
   const [selectedButton, setSelectedButton] = useState(selected);
 
   const directions = [
@@ -68,4 +72,4 @@ export default ({ selected, color, onClick }: RotateButtonProps) => {
       ))}
     </FlexView>
   );
-};
+}

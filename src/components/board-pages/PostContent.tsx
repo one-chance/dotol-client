@@ -20,7 +20,7 @@ type PostContentProps = {
 
 const basicUrl = `https://dotols.com`;
 
-export default ({ board, post }: PostContentProps) => {
+export default function PostContent({ board, post }: PostContentProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useResponsive(960);
@@ -150,4 +150,4 @@ export default ({ board, post }: PostContentProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

@@ -25,7 +25,7 @@ type Ability = {
   신화: string;
 };
 
-export default () => {
+export default function SkillPower() {
   const [skillPower, setSkillPower] = useState(0);
   const [job, setJob] = useState(0);
   const [parts, setParts] = useState(0);
@@ -148,4 +148,4 @@ export default () => {
       <Text weight="semiBold">기술능력 전투력: {skillPower}</Text>
     </FlexView>
   );
-};
+}
