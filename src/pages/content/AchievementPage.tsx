@@ -41,7 +41,7 @@ export default function AchievementPage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" gap={20} items="center" row wrap>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           업적 정보
         </Text>
 

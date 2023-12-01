@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState, useRef, HTMLAttributes } from 'react';
 
 import { CSSObject } from '@emotion/react';
+
 import { FlexView, Text, Icon } from '@components/common';
 
 type SelectProps = HTMLAttributes<HTMLDivElement> & {
@@ -79,15 +80,15 @@ export default ({
 
   return (
     <FlexView
-      content="start"
       ref={selectRef}
+      content="start"
       css={wrapperCSS}
       onClick={() => {
         if (!disabled) setShowOption(!showOption);
       }}
     >
       <FlexView content="between" css={selectCSS} items="center" row {...props}>
-        <Text small>{label}</Text>
+        <Text size="small">{label}</Text>
         <Icon name={showOption ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 

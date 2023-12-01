@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { Board, IPost } from '@interfaces/board';
-
 import { Button, FlexView, Link, Text } from '@components/common';
-import { Colors } from '@styles/system';
+import { Board, IPost } from '@interfaces/index';
+import { Colors } from '@styles/index';
 import { convertDateFormat } from '@utils/index';
 
 type PostSummaryProps = {
@@ -58,13 +57,13 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
                   textUnderlinePosition: `under`,
                 },
               }}
-              small
+              size="small"
             >
               {post.title}
             </Text>
 
             {post.commentCount !== 0 && (
-              <Text color={Colors.purple} semiBold small>
+              <Text color={Colors.purple} size="small" weight="bold">
                 {`[${post.commentCount}]`}
               </Text>
             )}
@@ -77,15 +76,15 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
         css={{ minWidth: `140px`, padding: `0 8px` }}
         onClick={openUserModal}
       >
-        <Text center small>
+        <Text size="small" center>
           {post.writer.character}
         </Text>
       </Button>
 
-      <Text css={{ minWidth: `80px`, padding: `0 8px` }} center small>
+      <Text css={{ minWidth: `80px`, padding: `0 8px` }} size="small" center>
         {post.recommenders.length}
       </Text>
-      <Text css={{ minWidth: `80px`, padding: `0 8px` }} center small>
+      <Text css={{ minWidth: `80px`, padding: `0 8px` }} size="small" center>
         {convertDateFormat(post.createdAt)}
       </Text>
     </FlexView>
@@ -111,14 +110,14 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
               textOverflow: `ellipsis`,
               wordBreak: `break-all`,
             }}
-            semiBold
-            small
+            size="small"
+            weight="bold"
           >
             {post.title}
           </Text>
 
           {post.commentCount !== 0 && (
-            <Text color={Colors.purple} semiBold small>
+            <Text color={Colors.purple} size="small" weight="bold">
               {`[${post.commentCount}]`}
             </Text>
           )}
@@ -127,11 +126,11 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
 
       <FlexView gap={8} items="center" row>
         <Button aria-label="작성자">
-          <Text xSmall>{post.writer.character}</Text>
+          <Text size="xSmall">{post.writer.character}</Text>
         </Button>
 
-        <Text xSmall>추천{post.recommenders.length}</Text>
-        <Text xSmall>{convertDateFormat(post.createdAt)}</Text>
+        <Text size="xSmall">추천{post.recommenders.length}</Text>
+        <Text size="xSmall">{convertDateFormat(post.createdAt)}</Text>
       </FlexView>
     </FlexView>
   );

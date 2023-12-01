@@ -4,7 +4,7 @@ import { getMyInfo, updateMyInfo } from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { IUser } from '@interfaces/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ProfilePage() {
   const isMobile = useResponsive(400);
@@ -30,12 +30,12 @@ export default function ProfilePage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
-        radius={4}
         border="lightgray"
-        css={{ padding: '20px' }}
+        css={{ padding: `20px` }}
         gap={20}
+        radius={4}
       >
-        <Text large={isMobile} xLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           프로필
         </Text>
 
@@ -43,13 +43,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               아이디
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.userId}
             </Text>
           </FlexView>
@@ -57,13 +57,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               이메일
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.email}
             </Text>
           </FlexView>
@@ -71,13 +71,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               도톨 레벨
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.grade}
             </Text>
           </FlexView>
@@ -85,13 +85,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               도톨 포인트
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.point}
             </Text>
           </FlexView>
@@ -99,13 +99,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               대표 캐릭터
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.mainCharacter}
             </Text>
           </FlexView>
@@ -113,8 +113,8 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               오픈 카톡
             </Text>
@@ -128,7 +128,7 @@ export default function ProfilePage() {
                 onChange={inputOpenTalk}
               />
             ) : (
-              <Text small={isMobile} fill>
+              <Text size={isMobile ? `small` : `normal`} fill>
                 {userInfo?.openTalk}
               </Text>
             )}
@@ -144,7 +144,11 @@ export default function ProfilePage() {
               radius={4}
               onClick={() => setEditMode(false)}
             >
-              <Text color={Colors.purple} small={isMobile} semiBold>
+              <Text
+                color={Colors.purple}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
                 취소
               </Text>
             </Button>
@@ -156,7 +160,11 @@ export default function ProfilePage() {
               radius={4}
               onClick={saveProfile}
             >
-              <Text color={Colors.white} small={isMobile} semiBold>
+              <Text
+                color={Colors.white}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
                 저장
               </Text>
             </Button>
@@ -169,7 +177,11 @@ export default function ProfilePage() {
             radius={4}
             onClick={() => setEditMode(true)}
           >
-            <Text color={Colors.white} small={isMobile} semiBold>
+            <Text
+              color={Colors.white}
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
+            >
               수정하기
             </Text>
           </Button>

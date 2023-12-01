@@ -49,10 +49,10 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{ padding: `20px` }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView
         content="between"
@@ -66,8 +66,8 @@ export default () => {
           <FlexView key={part} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `60px` : `75px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               {part}
             </Text>
@@ -86,7 +86,7 @@ export default () => {
         ))}
       </FlexView>
 
-      <Text semiBold>신체강화 전투력: {bodyPower}</Text>
+      <Text weight="semiBold">신체강화 전투력: {bodyPower}</Text>
     </FlexView>
   );
 };

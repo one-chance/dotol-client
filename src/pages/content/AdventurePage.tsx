@@ -1,10 +1,9 @@
 import { useState } from 'react';
 
-import { AdventureTab } from '@interfaces/content';
-
 import { FlexView, Text, Select, Option } from '@components/common';
 import { AdventureList } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
+import { AdventureTab } from '@interfaces/index';
 
 const LOCATIONS = [
   `환상의섬`,
@@ -34,7 +33,7 @@ export default function AdventurePage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" items="center" row wrap>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           탐험일지 정보
         </Text>
 

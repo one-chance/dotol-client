@@ -6,9 +6,9 @@ import { useRef, useState } from 'react';
 
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor } from '@toast-ui/react-editor';
-import { Board } from '@interfaces/board';
 import ObjectId from 'bson-objectid';
 import { useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import {
   createPost,
@@ -17,9 +17,9 @@ import {
 } from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
-import { useSetRecoilState } from 'recoil';
-import { toastState } from '@states/toast';
+import { Board } from '@interfaces/index';
+import { toastState } from '@states/index';
+import { Colors } from '@styles/index';
 
 type NewPostProps = {
   board: Board;
@@ -70,7 +70,7 @@ export default ({ board }: NewPostProps) => {
     if (blob.size > 1024 * 1024 * 10) {
       openToast({
         open: true,
-        type: 'error',
+        type: `error`,
         message: `이미지는 10MB 이하만 가능합니다.`,
       });
       return;
@@ -97,7 +97,7 @@ export default ({ board }: NewPostProps) => {
 
   return (
     <FlexView gap={20}>
-      <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold">
         게시물 작성
       </Text>
 

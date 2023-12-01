@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getSkillAbilityList } from '@apis/index';
 import { FlexView, Input, Select, Option, Text } from '@components/common';
-import { SKILL_POWER } from '@constants/power';
+import { SKILL_POWER } from '@constants/index';
 
 const JOBS = [
   `전사`,
@@ -105,12 +105,12 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{
         padding: `20px`,
       }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView gap={16} items="center" row>
         <Select label={JOBS[job]} width={120}>
@@ -145,7 +145,7 @@ export default () => {
         onChange={inputSkillValue}
       />
 
-      <Text semiBold>기술능력 전투력: {skillPower}</Text>
+      <Text weight="semiBold">기술능력 전투력: {skillPower}</Text>
     </FlexView>
   );
 };

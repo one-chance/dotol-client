@@ -1,29 +1,30 @@
 import { FlexView, Image, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
+
 export default () => {
   const isMobile = useResponsive(400);
 
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{
         padding: isMobile ? `8px` : `12px`,
         margin: isMobile ? `0 5px` : undefined,
       }}
       fill={!isMobile}
       gap={5}
+      radius={4}
     >
       <FlexView content="between" row>
-        <Text small={isMobile} bold>
+        <Text size={isMobile ? `small` : `normal`} weight="bold">
           11월 신규 치장
         </Text>
       </FlexView>
 
       <FlexView gap={10} fill>
         <FlexView fill>
-          <Text small={!isMobile} xSmall={isMobile} semiBold>
+          <Text size={isMobile ? `xSmall` : `small`} weight="semiBold">
             멋진의상재봉틀 - 레서판다 의상
           </Text>
           <FlexView content="center" items="end" fill row wrap>
@@ -33,7 +34,7 @@ export default () => {
         </FlexView>
 
         <FlexView fill>
-          <Text semiBold small>
+          <Text size="small" weight="semiBold">
             의상수선가위 - 주말오후 의상
           </Text>
           <FlexView center fill row wrap>
@@ -43,7 +44,7 @@ export default () => {
         </FlexView>
 
         <FlexView fill>
-          <Text semiBold small>
+          <Text size="small" weight="semiBold">
             의상수선가위 - 스마트/엘리트교복 & 귀여운판다 의상
           </Text>
           <FlexView center fill row wrap>

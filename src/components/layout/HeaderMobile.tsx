@@ -4,11 +4,10 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
+import { TotalMenuMobile, UserMenuMobile } from '@components/menu-page';
 import { LoginModal } from '@components/modal';
 import { isLoggedInState, showLoginState } from '@states/index';
-import { Colors } from '@styles/system';
-
-import { TotalMenuMobile, UserMenuMobile } from '@components/menu-page';
+import { Colors } from '@styles/index';
 
 export default () => {
   const location = useLocation();
@@ -111,7 +110,10 @@ export default () => {
             css={{ height: `24px` }}
             onClick={isLoggedIn ? openUserMenu : openLoginModal}
           >
-            <Text color={isLoggedIn ? Colors.purple : Colors.black} semiBold>
+            <Text
+              color={isLoggedIn ? Colors.purple : Colors.black}
+              weight="semiBold"
+            >
               {isLoggedIn ? `내 정보` : `로그인`}
             </Text>
           </Button>

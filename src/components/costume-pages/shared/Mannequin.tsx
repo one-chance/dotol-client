@@ -40,7 +40,7 @@ export default ({ equip, character }: AvatarProps) => {
         {character && <Image src={avatar} />}
       </FlexView>
 
-      <Text semiBold>{character || `아이디@서버`}</Text>
+      <Text weight="semiBold">{character || `아이디@서버`}</Text>
     </FlexView>
   );
 };

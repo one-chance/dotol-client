@@ -80,7 +80,7 @@ export default function AntiquityEquipList() {
   return (
     <FlexView gap={20}>
       <FlexView gap={8}>
-        <Text large={!isMobile} semiBold>
+        <Text size={isMobile ? `normal` : `large`} weight="semiBold">
           일반 유물
         </Text>
 
@@ -95,11 +95,10 @@ export default function AntiquityEquipList() {
               <Text
                 key={title}
                 css={titleCSS}
-                xSmall={isMobile}
-                small={!isMobile}
+                size={isMobile ? `xSmall` : `small`}
+                weight="semiBold"
                 center
                 fill
-                semiBold
               >
                 {title}
               </Text>
@@ -120,8 +119,7 @@ export default function AntiquityEquipList() {
               {TITLES[EQUIP_PARTS.indexOf(selectedParts)].map(title => (
                 <Text
                   key={title}
-                  xSmall={isMobile}
-                  small={!isMobile}
+                  size={isMobile ? `xSmall` : `small`}
                   center
                   fill
                 >
@@ -135,7 +133,7 @@ export default function AntiquityEquipList() {
 
       {holyEquipData.length > 1 && (
         <FlexView gap={8}>
-          <Text large={!isMobile} semiBold>
+          <Text size={isMobile ? `normal` : `large`} weight="semiBold">
             신성한 유물
           </Text>
 
@@ -150,11 +148,10 @@ export default function AntiquityEquipList() {
                 <Text
                   key={title}
                   css={titleCSS}
-                  xSmall={isMobile}
-                  small={!isMobile}
+                  size={isMobile ? `xSmall` : `small`}
+                  weight="semiBold"
                   center
                   fill
-                  semiBold
                 >
                   {title}
                 </Text>
@@ -175,8 +172,7 @@ export default function AntiquityEquipList() {
                 {TITLES[EQUIP_PARTS.indexOf(selectedParts)].map(title => (
                   <Text
                     key={title}
-                    xSmall={isMobile}
-                    small={!isMobile}
+                    size={isMobile ? `xSmall` : `small`}
                     center
                     fill
                   >

@@ -12,7 +12,7 @@ import {
 } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { IEquip } from '@interfaces/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const ITEM_TYPES = [
   `장비 종류`,
@@ -224,7 +224,6 @@ export default () => {
           </FlexView>
 
           <FlexView
-            radius={4}
             border="lightgray"
             css={{
               maxHeight: `151px`,
@@ -235,15 +234,16 @@ export default () => {
               '::-webkit-scrollbar': { display: `none` },
             }}
             gap={8}
+            radius={4}
             row
             wrap
           >
             {items?.length === 0 && (
               <FlexView center fill>
-                <Text color="gray" small={isMobile}>
+                <Text color="gray" size={isMobile ? `small` : `normal`}>
                   아이템을 선택하면 빈 슬롯에 자동으로 추가됩니다.
                 </Text>
-                <Text color="gray" small={isMobile}>
+                <Text color="gray" size={isMobile ? `small` : `normal`}>
                   슬롯 버튼을 클릭하면 빈 슬롯으로 변경됩니다.
                 </Text>
               </FlexView>
@@ -255,7 +255,7 @@ export default () => {
                 aria-label="장비"
                 onClick={() => saveToSlot(item.index.toString())}
               >
-                <Text color={Colors.primary} small>
+                <Text color={Colors.primary} size="small">
                   {item.name}
                 </Text>
               </Button>
@@ -265,13 +265,13 @@ export default () => {
 
         <FlexView
           border="lihggray"
-          radius={4}
           content={isMobile ? `start` : `center`}
           css={{
             padding: `8px`,
           }}
           gap={isMobile ? 20 : 10}
           items={isMobile ? `center` : `start`}
+          radius={4}
           row={!isMobile}
         >
           <FlexView css={{ width: `304px` }} gap={10} items="center">

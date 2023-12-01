@@ -1,5 +1,6 @@
-import { showLoginState, toastState } from '@states/index';
 import { useSetRecoilState } from 'recoil';
+
+import { showLoginState, toastState } from '@states/index';
 
 export const useAuthorize = (grade: number) => {
   const setShowLogin = useSetRecoilState(showLoginState);
@@ -7,11 +8,11 @@ export const useAuthorize = (grade: number) => {
 
   if (grade === 0) {
     return setShowLogin(true);
-  } else if (grade === 1) {
+  } if (grade === 1) {
     return setToast({
       open: true,
-      type: 'error',
-      message: '대표 캐릭터를 인증해주세요.',
+      type: `error`,
+      message: `대표 캐릭터를 인증해주세요.`,
     });
   }
 };

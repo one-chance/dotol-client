@@ -1,4 +1,9 @@
-import { registerCharacter } from '@apis/characters';
+import { useState } from 'react';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useSetRecoilState } from 'recoil';
+
+import { registerCharacter } from '@apis/index';
 import {
   Button,
   FlexView,
@@ -8,11 +13,8 @@ import {
   Select,
   Option,
 } from '@components/common';
-import { toastState } from '@states/toast';
-import { Colors } from '@styles/system';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { toastState } from '@states/index';
+import { Colors } from '@styles/index';
 
 interface AuthCharacterProps {
   isMobile: boolean;
@@ -44,7 +46,7 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
       if (res.statusCode === 200) {
         queryClient.invalidateQueries({ queryKey: [`characterList`] });
       } else if (res.statusCode === 400) {
-        setToast({ open: true, message: res.message, type: 'error' });
+        setToast({ open: true, message: res.message, type: `error` });
       }
     },
   });
@@ -52,18 +54,18 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
-      css={{ padding: '20px 10px' }}
+      css={{ padding: `20px 10px` }}
       gap={16}
+      radius={4}
     >
-      <Text bold center xLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         캐릭터 인증
       </Text>
 
-      <Image css={{ width: `328px`, height: '115px' }} src="/auth.png" />
+      <Image css={{ width: `328px`, height: `115px` }} src="/auth.png" />
 
       <FlexView gap={4}>
-        <Text color={Colors.red} small css={{ lineHeight: '150%' }}>
+        <Text color={Colors.red} css={{ lineHeight: `150%` }} size="small">
           1) 인증할 캐릭터의 호패 인사말에 도톨ID 저장하기
           <br />
           2) 아래 캐릭터명과 서버를 입력하고 인증버튼 누르기
@@ -72,7 +74,7 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
         </Text>
       </FlexView>
 
-      <FlexView content="center" items="center" row gap={8}>
+      <FlexView content="center" gap={8} items="center" row>
         <Input
           aria-label="캐릭터명"
           placeholder="캐릭터명"
@@ -82,20 +84,20 @@ export default function AuthCharacter({ isMobile }: AuthCharacterProps) {
           onChange={inputCharacterName}
         />
 
-        <Select label={server} width={80} height={36}>
-          <Option values={SERVERS} selected={server} onSelect={selectServer} />
+        <Select height={36} label={server} width={80}>
+          <Option selected={server} values={SERVERS} onSelect={selectServer} />
         </Select>
       </FlexView>
 
       <Button
-        disabled={name.length === 0}
-        radius={4}
         aria-label="인증"
         color={Colors.primary}
         css={{ height: `36px` }}
+        disabled={name.length === 0}
+        radius={4}
         onClick={() => addCharacter.mutate(`${name}@${server}`)}
       >
-        <Text semiBold color={Colors.white}>
+        <Text color={Colors.white} weight="semiBold">
           인증하기
         </Text>
       </Button>

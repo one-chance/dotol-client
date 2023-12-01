@@ -1,10 +1,10 @@
 import { ReactNode, useEffect } from 'react';
-
 import { createPortal } from 'react-dom';
 
-import { Button, FlexView, Icon } from '@components/common';
 import { CSSObject } from '@emotion/react';
-import { Colors } from '@styles/system';
+
+import { Button, FlexView, Icon } from '@components/common';
+import { Colors } from '@styles/index';
 
 interface ModalProps {
   children: ReactNode;

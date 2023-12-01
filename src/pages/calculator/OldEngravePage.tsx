@@ -9,7 +9,7 @@ import {
   Option,
 } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function OldEngrave() {
   const isMobile = useResponsive(600);
@@ -114,7 +114,7 @@ export default function OldEngrave() {
         gap={isMobile ? 20 : 40}
       >
         <FlexView content="between" items="center" fill row>
-          <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+          <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
             각인 수치 변환
           </Text>
 
@@ -133,19 +133,19 @@ export default function OldEngrave() {
 
         <FlexView gap={isMobile ? 20 : 40} items="center" row={!isMobile}>
           <FlexView gap={12}>
-            <Text large={!isMobile} center>
+            <Text size={isMobile ? `normal` : `large`} center>
               현재 수치(%)
             </Text>
             <FlexView
               border="lightgray"
-              radius={8}
               css={{
                 padding: `20px`,
               }}
               gap={4}
+              radius={8}
             >
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   주작
                 </Text>
                 <Input
@@ -168,7 +168,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   백호
                 </Text>
                 <Input
@@ -191,7 +191,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   청룡
                 </Text>
                 <Input
@@ -214,7 +214,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   현무
                 </Text>
                 <Input
@@ -237,7 +237,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   황룡
                 </Text>
                 <Input
@@ -259,7 +259,7 @@ export default function OldEngrave() {
                   onChange={e => inputEngrave(4, `뒷각`, e)}
                 />
               </FlexView>
-              <Text css={{ marginTop: `10px` }} center semiBold>
+              <Text css={{ marginTop: `10px` }} weight="semiBold" center>
                 합계: {total}%
               </Text>
             </FlexView>
@@ -268,19 +268,19 @@ export default function OldEngrave() {
           <Icon name={isMobile ? `arrowDown` : `arrowRight`} size={32} />
 
           <FlexView gap={12}>
-            <Text large={!isMobile} center>
+            <Text size={isMobile ? `normal` : `large`} center>
               과거 수치(+)
             </Text>
             <FlexView
               border="lightgray"
-              radius={8}
               css={{
                 padding: `20px`,
               }}
               gap={4}
+              radius={8}
             >
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   주작
                 </Text>
                 <Input
@@ -301,7 +301,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   백호
                 </Text>
                 <Input
@@ -322,7 +322,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   청룡
                 </Text>
                 <Input
@@ -343,7 +343,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   현무
                 </Text>
                 <Input
@@ -364,7 +364,7 @@ export default function OldEngrave() {
                 />
               </FlexView>
               <FlexView gap={4} items="center" row>
-                <Text css={{ minWidth: `40px` }} semiBold>
+                <Text css={{ minWidth: `40px` }} weight="semiBold">
                   황룡
                 </Text>
                 <Input
@@ -384,7 +384,7 @@ export default function OldEngrave() {
                   readOnly
                 />
               </FlexView>
-              <Text css={{ marginTop: `10px` }} center semiBold>
+              <Text css={{ marginTop: `10px` }} weight="semiBold" center>
                 합계: {Math.floor(Number(total) / ratio)}
               </Text>
             </FlexView>
@@ -392,7 +392,7 @@ export default function OldEngrave() {
         </FlexView>
       </FlexView>
 
-      <Text color={Colors.red} small={isMobile}>
+      <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
         ● 능력치 종류를 선택해야 수치를 입력할 수 있습니다.
       </Text>
     </FlexView>

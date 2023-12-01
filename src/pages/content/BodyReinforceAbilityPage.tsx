@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+
 import { getBodyReinforceAbilityList } from '@apis/index';
 import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
@@ -39,7 +40,7 @@ export default function BodyReinforceAbilityPage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" gap={10} items="center" row>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           신체강화 능력치
         </Text>
 
@@ -57,24 +58,24 @@ export default function BodyReinforceAbilityPage() {
         >
           <Text
             css={{ minWidth: isMobile ? `58px` : `80px` }}
-            small={isMobile}
-            bold
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             등급
           </Text>
           <Text
             css={{ minWidth: isMobile ? `145px` : `160px` }}
-            small={isMobile}
-            bold
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             선택 능력
           </Text>
           <Text
             css={{ minWidth: isMobile ? `145px` : `360px` }}
-            small={isMobile}
-            bold
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             기본 능력
@@ -95,7 +96,7 @@ export default function BodyReinforceAbilityPage() {
           >
             <Text
               css={{ minWidth: isMobile ? `58px` : `80px` }}
-              small={isMobile}
+              size={isMobile ? `small` : `normal`}
               center
             >
               {data.등급}
@@ -106,7 +107,7 @@ export default function BodyReinforceAbilityPage() {
               gap={isMobile ? 2 : 8}
             >
               {data?.선택능력.map((ability: string) => (
-                <Text key={ability} small={!isMobile} xSmall={isMobile} center>
+                <Text key={ability} size={isMobile ? `xSmall` : `small`} center>
                   {ability}
                 </Text>
               ))}
@@ -123,7 +124,7 @@ export default function BodyReinforceAbilityPage() {
               wrap
             >
               {data.기본능력.map((ability: string) => (
-                <Text key={ability} small={!isMobile} xSmall={isMobile}>
+                <Text key={ability} size={isMobile ? `xSmall` : `small`}>
                   {ability}
                 </Text>
               ))}

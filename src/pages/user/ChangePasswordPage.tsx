@@ -3,10 +3,10 @@ import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { updatePassword } from '@apis/users';
+import { updatePassword } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ChangePasswordPage() {
   const navigate = useNavigate();
@@ -47,11 +47,11 @@ export default function ChangePasswordPage() {
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
         border="lightgray"
-        radius={4}
         css={{ padding: `20px` }}
         gap={20}
+        radius={4}
       >
-        <Text large={isMobile} xLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           비밀번호 변경
         </Text>
 
@@ -87,7 +87,11 @@ export default function ChangePasswordPage() {
           radius={4}
           onClick={changePassword}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
+          >
             변경하기
           </Text>
         </Button>

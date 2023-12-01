@@ -1,5 +1,6 @@
-import { PetEquipRecipe } from '@components/db-pages';
+
 import { FlexView, Text } from '@components/common';
+import { PetEquipRecipe } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
 
 export default function PetEquipRecipePage() {
@@ -7,8 +8,8 @@ export default function PetEquipRecipePage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <Text large={isMobile} xLarge={!isMobile} bold>
-        환수장비 강화재료
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold">
+        환수장비 - 재료
       </Text>
 
       <PetEquipRecipe />

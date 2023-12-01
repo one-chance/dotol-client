@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button, Checkbox, FlexView, Text } from '@components/common';
 import { Privacy, Service } from '@components/terms-page';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type Phase = 1 | 2 | 3 | 4;
 
@@ -21,7 +21,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   return (
     <FlexView gap={isMobile ? 24 : 40}>
-      <Text bold center xxLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         약관 동의
       </Text>
 
@@ -34,7 +34,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
             row
             onClick={() => setAgreeTerms(!agreeTerms)}
           >
-            <Text small={isMobile} semiBold>
+            <Text size={isMobile ? `small` : `normal`} weight="semiBold">
               서비스 이용약관에 동의합니다.
             </Text>
             <Checkbox
@@ -66,7 +66,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
             row
             onClick={() => setAgreePolicy(!agreePolicy)}
           >
-            <Text small={isMobile} semiBold>
+            <Text size={isMobile ? `small` : `normal`} weight="semiBold">
               개인정보 처리방침에 동의합니다.
             </Text>
             <Checkbox
@@ -99,7 +99,11 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         radius={4}
         onClick={nextPhase}
       >
-        <Text color={Colors.white} small={isMobile} semiBold>
+        <Text
+          color={Colors.white}
+          size={isMobile ? `small` : `normal`}
+          weight="semiBold"
+        >
           다음
         </Text>
       </Button>

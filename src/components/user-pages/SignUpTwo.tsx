@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { isDuplicatedEmail, sendOTPCode, verifyOTPCode } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { emailState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type Phase = 1 | 2 | 3 | 4;
 
@@ -105,7 +105,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   return (
     <FlexView gap={isMobile ? 24 : 40}>
-      <Text bold center xxLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         이메일 인증
       </Text>
 
@@ -128,7 +128,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
           radius={4}
           onClick={sendOTP}
         >
-          <Text color={Colors.white} semiBold>
+          <Text color={Colors.white} weight="semiBold">
             OTP 전송
           </Text>
         </Button>
@@ -153,7 +153,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
               radius={4}
               onClick={verifyOTP}
             >
-              <Text color={Colors.white} semiBold>
+              <Text color={Colors.white} weight="semiBold">
                 OTP 인증
               </Text>
             </Button>

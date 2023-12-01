@@ -32,13 +32,13 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{
         minWidth: `300px`,
         padding: `20px`,
       }}
       gap={16}
       items="center"
+      radius={4}
     >
       <Input
         aria-label="레벨"
@@ -47,7 +47,7 @@ export default () => {
         center
         onChange={inputLevel}
       />
-      <Text semiBold>{`레벨 전투력: ${levelPower}`}</Text>
+      <Text weight="semiBold">{`레벨 전투력: ${levelPower}`}</Text>
     </FlexView>
   );
 };

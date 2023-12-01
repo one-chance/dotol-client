@@ -1,7 +1,8 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-import * as Icons from '@assets/icons';
 import { CSSObject } from '@emotion/react';
+
+import * as Icons from '@assets/icons';
 
 export type IconProps = DetailedHTMLProps<
   HTMLAttributes<HTMLSpanElement>,

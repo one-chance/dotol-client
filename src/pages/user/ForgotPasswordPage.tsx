@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { forgotPassword } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ForgotPasswordPage() {
   const isMobile = useResponsive(500);
@@ -44,14 +44,14 @@ export default function ForgotPasswordPage() {
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }}>
       <FlexView
-        radius={4}
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           padding: isMobile ? `20px 10px` : `40px 20px`,
         }}
         gap={isMobile ? 24 : 40}
+        radius={4}
       >
-        <Text large={isMobile} xxLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           비밀번호 찾기
         </Text>
 
@@ -83,13 +83,17 @@ export default function ForgotPasswordPage() {
           radius={4}
           onClick={findPassword}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
+          >
             확인
           </Text>
         </Button>
 
         {isSent && (
-          <Text small={isMobile} center semiBold>
+          <Text size={isMobile ? `small` : `normal`} weight="semiBold" center>
             비밀번호 초기화 메일이 전송되었습니다.
           </Text>
         )}

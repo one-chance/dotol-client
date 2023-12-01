@@ -1,11 +1,12 @@
 import { useState } from 'react';
+
 import { useRecoilValue } from 'recoil';
 
 import { NewComment } from '@components/board-pages';
 import { Button, FlexView, Icon, Text } from '@components/common';
 import { IComment } from '@interfaces/index';
 import { userIdState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type CommentProps = {
   comment: IComment;
@@ -33,24 +34,24 @@ export default ({ comment }: CommentProps) => {
       <FlexView css={{ padding: `12px`, minHeight: `100px` }} gap={8}>
         <FlexView content="between" items="center" row>
           <FlexView gap={8} items="center" row>
-            <Text semiBold small>
+            <Text size="small" weight="bold">
               {comment.writer.character}
             </Text>
-            <Text xSmall>
+            <Text size="xSmall">
               {comment.createdAt.split(`.`)[0].replace(`T`, ` `)}
             </Text>
           </FlexView>
 
           <FlexView content="end" gap={16} items="center" row>
             <Button onClick={() => setReplyMode(!replyMode)}>
-              <Text css={{ lineHeight: 1 }} small>
+              <Text css={{ lineHeight: 1 }} size="small">
                 답글
               </Text>
             </Button>
 
             {userId === comment.writer.userId && (
               <Button onClick={deleteComment}>
-                <Text css={{ lineHeight: 1 }} small>
+                <Text css={{ lineHeight: 1 }} size="small">
                   삭제
                 </Text>
               </Button>
@@ -58,7 +59,11 @@ export default ({ comment }: CommentProps) => {
           </FlexView>
         </FlexView>
 
-        <Text color={comment.isDeleted ? Colors.grey : Colors.black} fill small>
+        <Text
+          color={comment.isDeleted ? Colors.grey : Colors.black}
+          size="small"
+          fill
+        >
           {comment.isDeleted ? `삭제된 댓글입니다.` : comment.content}
         </Text>
       </FlexView>
@@ -90,25 +95,25 @@ export default ({ comment }: CommentProps) => {
           <FlexView gap={8} fill>
             <FlexView content="between" items="center" row>
               <FlexView gap={8} items="center" row>
-                <Text semiBold small>
+                <Text size="small" weight="bold">
                   {reply.writer.character}
                 </Text>
-                <Text xSmall>
+                <Text size="xSmall">
                   {reply.createdAt.split(`.`)[0].replace(`T`, ` `)}
                 </Text>
               </FlexView>
 
               {userId === reply.writer.userId && (
                 <Button onClick={deleteReply}>
-                  <Text small>삭제</Text>
+                  <Text size="small">삭제</Text>
                 </Button>
               )}
             </FlexView>
 
             <Text
               color={reply.isDeleted ? Colors.grey : Colors.black}
+              size="small"
               fill
-              small
             >
               {reply.isDeleted ? `삭제된 댓글입니다.` : reply.content}
             </Text>

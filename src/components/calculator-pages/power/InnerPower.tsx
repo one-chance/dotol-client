@@ -103,10 +103,10 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{ padding: `20px` }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView gap={8} items="center" row>
         <Select label={INNER_POWER_TYPES[innerType.one]} width={200} disabled>
@@ -162,7 +162,7 @@ export default () => {
         <FlexView css={{ width: `80px` }} />
       </FlexView>
 
-      <Text semiBold>내공 강화 전투력: {innerPower}</Text>
+      <Text weight="semiBold">내공 강화 전투력: {innerPower}</Text>
     </FlexView>
   );
 };

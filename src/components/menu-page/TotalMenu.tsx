@@ -1,6 +1,6 @@
 import { Anchor, FlexView } from '@components/common';
-import { TOTAL_MENU } from '@constants/menu';
-import { Colors } from '@styles/system';
+import { TOTAL_MENU } from '@constants/index';
+import { Colors } from '@styles/index';
 
 type MenuProps = {
   onSelect: () => void;

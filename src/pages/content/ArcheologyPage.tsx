@@ -5,7 +5,7 @@ import DATA from '@data/archeology.json';
 import { ArcheologyAccordion } from '@components/accordion';
 import { Button, FlexView, Input, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const TITLES = [`아이템`, `위치`, `사용 방법`, `수량`, `보상`];
 const WIDTHS = [160, 100, 400, 40, 260];
@@ -45,7 +45,7 @@ export default function ArcheologyPage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" gap={20} items="center" row>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           고고학 유물
         </Text>
 
@@ -93,16 +93,16 @@ export default function ArcheologyPage() {
               titleCSS={{ width: `352px` }}
             >
               <FlexView gap={8}>
-                <Text small>사용방법: &nbsp;{item.use}</Text>
+                <Text size="small">사용방법: &nbsp;{item.use}</Text>
                 <FlexView row wrap>
-                  <Text small>보상: &nbsp;</Text>
+                  <Text size="small">보상: &nbsp;</Text>
                   <FlexView gap={8}>
                     {item.rewardList.map(reward => (
                       <FlexView key={reward.name} items="center" row>
-                        <Text css={{ minWidth: `32px` }} small>
+                        <Text css={{ minWidth: `32px` }} size="small">
                           {reward.count}개 /&nbsp;
                         </Text>
-                        <Text small>{reward.name}</Text>
+                        <Text size="small">{reward.name}</Text>
                       </FlexView>
                     ))}
                   </FlexView>
@@ -127,9 +127,9 @@ export default function ArcheologyPage() {
                   width: `${WIDTHS[index]}px`,
                   paddingLeft: index === 0 ? `8px` : 0,
                 }}
-                bold
+                size="small"
+                weight="bold"
                 noDrag
-                small
               >
                 {title}
               </Text>
@@ -148,15 +148,18 @@ export default function ArcheologyPage() {
                 items="center"
                 row
               >
-                <Text css={{ minWidth: `160px`, paddingLeft: `8px` }} small>
+                <Text
+                  css={{ minWidth: `160px`, paddingLeft: `8px` }}
+                  size="small"
+                >
                   {item.item}
                 </Text>
 
-                <Text css={{ minWidth: `100px` }} small>
+                <Text css={{ minWidth: `100px` }} size="small">
                   {item.location}
                 </Text>
 
-                <Text css={{ minWidth: `400px` }} small>
+                <Text css={{ minWidth: `400px` }} size="small">
                   {item.use}
                 </Text>
 
@@ -168,10 +171,10 @@ export default function ArcheologyPage() {
                       items="center"
                       row
                     >
-                      <Text css={{ minWidth: `40px` }} small>
+                      <Text css={{ minWidth: `40px` }} size="small">
                         {reward.count}
                       </Text>
-                      <Text css={{ minWidth: `260px` }} small>
+                      <Text css={{ minWidth: `260px` }} size="small">
                         {reward.name}
                       </Text>
                     </FlexView>

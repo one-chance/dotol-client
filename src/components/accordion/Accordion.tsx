@@ -43,7 +43,7 @@ export default ({
         row
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Text medium>{title}</Text>
+        <Text>{title}</Text>
         <Icon name={isOpen ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 

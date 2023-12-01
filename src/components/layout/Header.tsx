@@ -7,9 +7,9 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { Anchor, Button, FlexView, Text, Icon } from '@components/common';
 import { TotalMenu, UserMenu } from '@components/menu-page';
 import { LoginModal } from '@components/modal';
-import { MAIN_MENU } from '@constants/menu';
+import { MAIN_MENU } from '@constants/index';
 import { isLoggedInState, showLoginState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const btnCSS: CSSObject = {
   width: `90px`,
@@ -136,7 +136,6 @@ export default () => {
                   <Text
                     color={selectedMenu === menu ? Colors.primary : Colors.grey}
                     css={{ fontSize: `18px`, letterSpacing: `=1px` }}
-                    medium
                   >
                     {menu}
                   </Text>
@@ -144,7 +143,7 @@ export default () => {
               ))}
             </FlexView>
 
-            <FlexView items="end" css={{ position: 'relative' }}>
+            <FlexView css={{ position: `relative` }} items="end">
               {isLoggedIn ? (
                 <FlexView content="end" css={{ width: `180px` }} row>
                   <Button
@@ -169,7 +168,6 @@ export default () => {
                     <Text
                       color={showUserMenu ? Colors.white : Colors.purple}
                       css={{ width: `45px`, letterSpacing: `-1px` }}
-                      medium
                     >
                       내 정보
                     </Text>
@@ -216,7 +214,6 @@ export default () => {
                     <Text
                       color={Colors.background}
                       css={{ letterSpacing: `-1px` }}
-                      medium
                     >
                       {isLoggedIn ? `내 정보` : `로그인`}
                     </Text>

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 
-import { FlexView, Button, Icon, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
 import { useLocation, useNavigate } from 'react-router-dom';
+
+import { FlexView, Button, Icon, Text } from '@components/common';
 
 type PaginationProps = {
   count: number;
@@ -57,8 +58,7 @@ export default ({ count, unit }: PaginationProps) => {
 
   useEffect(() => {
     setMaxPage(Math.ceil(count / unit));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [count]);
+  }, [count, unit]);
 
   return (
     <FlexView css={{ height: `36px` }} gap={10} center row>
@@ -80,7 +80,7 @@ export default ({ count, unit }: PaginationProps) => {
               >
                 <Text
                   color={page === pageNumber ? `#242424` : `#878787`}
-                  semiBold={page === pageNumber}
+                  weight={page === pageNumber ? `semiBold` : `regular`}
                 >
                   {pageNumber}
                 </Text>

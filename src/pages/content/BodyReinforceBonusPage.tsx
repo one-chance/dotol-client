@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+
 import { FlexView, Option, Select, Text } from '@components/common';
 import { BonusList } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
@@ -24,8 +26,8 @@ export default function BodyReinforceBonusPage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <FlexView content="between" row items="center">
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+      <FlexView content="between" items="center" row>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           신체강화 보너스
         </Text>
 

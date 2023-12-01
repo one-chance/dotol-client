@@ -1,3 +1,4 @@
+
 import { FlexView } from '@components/common';
 import { SkillAbilityList } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
@@ -12,8 +13,8 @@ export default function SkillAbilityPage() {
         width: `100%`,
         margin: isMobile ? `0 0 40px 0` : `60px auto`,
       }}
-      items="center"
       gap={40}
+      items="center"
     >
       <SkillAbilityList />
     </FlexView>

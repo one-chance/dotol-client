@@ -45,9 +45,7 @@ export default ({
         onClick={() => setIsOpen(!isOpen)}
       >
         <FlexView content="between" items="center" fill row>
-          <Text small={isMobile} medium>
-            {title}
-          </Text>
+          <Text size={isMobile ? `small` : `normal`}>{title}</Text>
           <Text>{subTitle}</Text>
         </FlexView>
 

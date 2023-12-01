@@ -1,4 +1,5 @@
 export * from './button';
+export * from './chip';
 export * from './divider';
 export * from './link';
 export * from './form';

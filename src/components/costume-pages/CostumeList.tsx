@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { getClothesList, getMyInfo } from '@apis/index';
-import { Costume, Mannequin } from '@components/costume-pages';
 import {
   Button,
   FlexView,
@@ -13,11 +13,11 @@ import {
   Select,
   Option,
 } from '@components/common';
+import { Costume, Mannequin } from '@components/costume-pages';
 import { Pagination } from '@components/pagination';
-import { ICostume } from '@interfaces/costumes';
+import { ICostume } from '@interfaces/index';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';
-import { Colors } from '@styles/system';
-import { useQuery } from '@tanstack/react-query';
+import { Colors } from '@styles/index';
 
 const COSTUME_PARTS = [
   `착용 부위`,
@@ -90,7 +90,7 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
       return openToast({
         open: true,
         message: `대표 캐릭터를 인증해주세요.`,
-        type: 'error',
+        type: `error`,
       });
     }
 
@@ -114,7 +114,7 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
       return openToast({
         open: true,
         message: `대표 캐릭터를 인증해주세요.`,
-        type: 'error',
+        type: `error`,
       });
     }
 
@@ -157,18 +157,18 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
     <FlexView
       content="center"
       gap={20}
-      items={isMobile ? 'center' : 'start'}
+      items={isMobile ? `center` : `start`}
       row={!isMobile}
       wrap
     >
-      <FlexView content="center" border="lightgray">
+      <FlexView border="lightgray" content="center">
         <Mannequin character={mainCharacter} equip={selectedItem.name} />
 
         <FlexView css={{ paddingBottom: `20px` }} gap={4}>
-          <Text color={Colors.red} center small>
+          <Text color={Colors.red} size="small" center>
             {COSTUME_PARTS[selectedItem.part]}
           </Text>
-          <Text color={Colors.red} center small>
+          <Text color={Colors.red} size="small" center>
             {selectedItem.name}
           </Text>
         </FlexView>
@@ -178,12 +178,7 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
         <FlexView
           border="lightgray"
           content="between"
-          css={{
-            width: isMobile ? `350px` : `538px`,
-            // minWidth: `350px`,
-            // maxWidth: '538px',
-            // width: '100%',
-          }}
+          css={{ width: isMobile ? `350px` : `538px` }}
           gap={20}
         >
           <FlexView
@@ -236,20 +231,20 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
           </FlexView>
 
           <FlexView
-            row
-            wrap
-            gap={8}
+            content="center"
             css={{
               minHeight: `450px`,
               padding: isMobile ? `0 10px` : `0 20px`,
             }}
-            content="center"
+            gap={8}
+            row
+            wrap
           >
             {itemList?.map(item => (
               <Costume
-                item={item}
                 key={item.index}
                 isSelected={selectedItem.name === item.name}
+                item={item}
                 onSelect={selectItem}
               />
             ))}
@@ -261,7 +256,7 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
         </FlexView>
 
         <FlexView>
-          <Text color={Colors.red} small>
+          <Text color={Colors.red} size="small">
             * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
             <br />* 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
           </Text>

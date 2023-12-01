@@ -1,10 +1,10 @@
 import { ReactNode, useEffect } from 'react';
-
 import { createPortal } from 'react-dom';
 
-import { FlexView, Icon, Button } from '@components/common';
 import { CSSObject } from '@emotion/react';
-import { Colors } from '@styles/system';
+
+import { FlexView, Icon, Button } from '@components/common';
+import { Colors } from '@styles/index';
 
 interface ModalProps {
   width: number;

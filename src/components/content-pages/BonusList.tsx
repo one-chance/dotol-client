@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getBodyReinforceBonusList } from '@apis/index';
 import { FlexView, Text } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type BonusListProps = {
   isMobile: boolean;
@@ -30,24 +30,24 @@ export default ({ isMobile, part }: BonusListProps) => {
         <FlexView color="lightgray" css={{ height: `40px` }} items="center" row>
           <Text
             css={{ width: isMobile ? `40px` : `60px` }}
-            small={isMobile}
-            bold
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             단계
           </Text>
           <Text
             css={{ width: isMobile ? `120px` : `140px` }}
-            small={isMobile}
-            bold
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             능력치
           </Text>
           <Text
             css={{ width: isMobile ? `188px` : `398px` }}
-            small={isMobile}
-            bold
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             목록
@@ -65,14 +65,12 @@ export default ({ isMobile, part }: BonusListProps) => {
             row
           >
             <FlexView css={{ width: isMobile ? `40px` : `60px` }} center>
-              <Text small={!isMobile} xSmall={isMobile}>
-                {info.단계}
-              </Text>
+              <Text size={isMobile ? `xSmall` : `small`}>{info.단계}</Text>
             </FlexView>
 
             <FlexView css={{ width: isMobile ? `120px` : `140px` }} center>
               {info.능력치.map(ability => (
-                <Text key={ability} small={!isMobile} xSmall={isMobile}>
+                <Text key={ability} size={isMobile ? `xSmall` : `small`}>
                   {ability}
                 </Text>
               ))}
@@ -85,7 +83,7 @@ export default ({ isMobile, part }: BonusListProps) => {
               wrap
             >
               {info.목록?.map(equip => (
-                <Text key={equip} small={!isMobile} xSmall={isMobile}>
+                <Text key={equip} size={isMobile ? `xSmall` : `small`}>
                   {equip}
                 </Text>
               ))}
@@ -95,7 +93,7 @@ export default ({ isMobile, part }: BonusListProps) => {
       </FlexView>
 
       {infoList.length > 1 && (
-        <Text color={Colors.red} small>
+        <Text color={Colors.red} size="small">
           ● 선택한 능력 강화에 따라 보너스 능력치가 결정됩니다.
         </Text>
       )}

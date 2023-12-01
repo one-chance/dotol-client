@@ -1,5 +1,5 @@
 import { Button, FlexView, Icon, Text } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type MenuProps = {
   onClose: () => void;

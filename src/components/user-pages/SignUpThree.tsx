@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { createUser, isDuplicatedUserId } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { emailState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type Phase = 1 | 2 | 3 | 4;
 
@@ -70,7 +70,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   return (
     <FlexView gap={isMobile ? 24 : 40}>
-      <Text bold center xxLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         계정 정보 입력
       </Text>
 
@@ -110,7 +110,11 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
         radius={4}
         onClick={nextPhase}
       >
-        <Text color={Colors.white} small={isMobile} semiBold>
+        <Text
+          color={Colors.white}
+          size={isMobile ? `small` : `normal`}
+          weight="semiBold"
+        >
           가입하기
         </Text>
       </Button>

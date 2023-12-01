@@ -21,7 +21,7 @@ export default ({ list }: ListProps) => {
           width: isMobile ? `352px` : `480px`,
         }}
       >
-        <Text bold>업적 종류</Text>
+        <Text weight="bold">업적 종류</Text>
       </FlexView>
 
       <FlexView>
@@ -31,8 +31,12 @@ export default ({ list }: ListProps) => {
             title={mission.name}
             titleCSS={{ width: isMobile ? `352px` : `480px` }}
           >
-            <Text small={isMobile}>점수: {mission.score}</Text>
-            <Text small={isMobile}>조건: {mission.condition}</Text>
+            <Text size={isMobile ? `small` : `normal`}>
+              점수: {mission.score}
+            </Text>
+            <Text size={isMobile ? `small` : `normal`}>
+              조건: {mission.condition}
+            </Text>
           </AchievementAccordion>
         ))}
       </FlexView>

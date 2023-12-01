@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Select, Option, Text } from '@components/common';
-import { GOLD_POWER } from '@constants/power';
+import { GOLD_POWER } from '@constants/index';
 
 const ABILITIES = [
   `황금돋보기 능력치`,
@@ -75,10 +75,10 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{ padding: `20px` }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView gap={10} items="center" row>
         <Select label={ability.one} width={210}>
@@ -143,7 +143,7 @@ export default () => {
         />
       </FlexView>
 
-      <Text semiBold>(황돋)부가잠재능력 전투력: {goldPower}</Text>
+      <Text weight="semiBold">(황돋)부가잠재능력 전투력: {goldPower}</Text>
     </FlexView>
   );
 };

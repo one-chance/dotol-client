@@ -7,19 +7,18 @@ import { useEffect, useRef, useState } from 'react';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { Editor } from '@toast-ui/react-editor';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
 
 import {
   updatePost,
   requestPreSignedPostUrl,
   uploadPreSignedPostUrl,
-} from '@apis/board';
+} from '@apis/index';
 import { Button, FlexView, Input, Text } from '@components/common';
-
 import { useResponsive } from '@hooks/index';
 import { Board, IPost } from '@interfaces/index';
-import { Colors } from '@styles/system';
-import { useSetRecoilState } from 'recoil';
-import { toastState } from '@states/toast';
+import { toastState } from '@states/index';
+import { Colors } from '@styles/index';
 
 const CATEGORES = [
   `freeboard`,
@@ -76,7 +75,7 @@ export default function EditPostPage() {
     if (blob.size > 1024 * 1024 * 10) {
       return openToast({
         open: true,
-        type: 'error',
+        type: `error`,
         message: `이미지는 10MB 이하만 가능합니다.`,
       });
     }

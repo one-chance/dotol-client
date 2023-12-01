@@ -1,5 +1,5 @@
 import { FlexView, Text } from '@components/common';
-import { BODY_REINFORCE_RECIPE } from '@constants/body';
+import { BODY_REINFORCE_RECIPE } from '@constants/index';
 
 type RecipeListProps = {
   isMobile: boolean;
@@ -19,40 +19,40 @@ export default ({ isMobile, part }: RecipeListProps) => {
       >
         <Text
           css={{ width: isMobile ? `58px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           등급
         </Text>
         <Text
           css={{ width: isMobile ? `65px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           강화비약
         </Text>
         <Text
           css={{ width: isMobile ? `80px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           전표
         </Text>
         <Text
           css={{ width: isMobile ? `65px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           누적 비약
         </Text>
         <Text
           css={{ width: isMobile ? `80px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           누적 전표
@@ -73,35 +73,35 @@ export default ({ isMobile, part }: RecipeListProps) => {
         >
           <Text
             css={{ width: isMobile ? `58px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {index + 1}등급
           </Text>
           <Text
             css={{ width: isMobile ? `65px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.강화비약}
           </Text>
           <Text
             css={{ width: isMobile ? `80px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.전표}
           </Text>
           <Text
             css={{ width: isMobile ? `65px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.누적비약}
           </Text>
           <Text
             css={{ width: isMobile ? `80px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.누적전표}

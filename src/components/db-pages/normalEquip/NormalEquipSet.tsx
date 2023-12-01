@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import { Button, FlexView, Image, Text } from '@components/common';
-import { EQUIP_SET_INDEX, EQUIP_SET_LIST } from '@constants/equip';
+import { EQUIP_SET_INDEX, EQUIP_SET_LIST } from '@constants/index';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 interface NormalEquipSetProps {
   type: string;
@@ -42,21 +42,21 @@ export default ({ type }: NormalEquipSetProps) => {
     <FlexView gap={20}>
       <FlexView
         border="lightgray"
-        radius={4}
         css={{
           padding: `10px`,
           minHeight: isMobile ? `74px` : `78px`,
         }}
         gap={isMobile ? 4 : 8}
+        radius={4}
         row
         wrap
       >
         {equipSetList?.length === 0 && (
           <FlexView center fill>
-            <Text color="gray" small={isMobile}>
+            <Text color="gray" size={isMobile ? `small` : `normal`}>
               한벌 효과를 선택하면 빈 슬롯에 자동으로 추가됩니다.
             </Text>
-            <Text color="gray" small={isMobile}>
+            <Text color="gray" size={isMobile ? `small` : `normal`}>
               슬롯 버튼을 클릭하면 빈 슬롯으로 변경됩니다.
             </Text>
           </FlexView>
@@ -71,7 +71,7 @@ export default ({ type }: NormalEquipSetProps) => {
             }}
             onClick={() => saveToSlot(set)}
           >
-            <Text color={Colors.primary} small={isMobile}>
+            <Text color={Colors.primary} size={isMobile ? `small` : `normal`}>
               {set}
             </Text>
           </Button>
@@ -80,13 +80,13 @@ export default ({ type }: NormalEquipSetProps) => {
 
       <FlexView
         border="lightgray"
-        radius={4}
         content={isMobile ? `start` : `center`}
         css={{
           padding: `8px`,
         }}
         gap={isMobile ? 20 : 40}
         items={isMobile ? `center` : `start`}
+        radius={4}
         row={!isMobile}
       >
         <FlexView css={{ width: `245px` }} gap={12} items="center">
@@ -98,7 +98,7 @@ export default ({ type }: NormalEquipSetProps) => {
           >
             <Text
               color={slotItems.one !== -1 ? Colors.red : Colors.purple}
-              small={isMobile}
+              size={isMobile ? `small` : `normal`}
             >
               슬롯1
             </Text>
@@ -121,7 +121,7 @@ export default ({ type }: NormalEquipSetProps) => {
           >
             <Text
               color={slotItems.two !== -1 ? Colors.red : Colors.purple}
-              small={isMobile}
+              size={isMobile ? `small` : `normal`}
             >
               슬롯2
             </Text>
@@ -144,7 +144,7 @@ export default ({ type }: NormalEquipSetProps) => {
           >
             <Text
               color={slotItems.three !== -1 ? Colors.red : Colors.purple}
-              small={isMobile}
+              size={isMobile ? `small` : `normal`}
             >
               슬롯3
             </Text>

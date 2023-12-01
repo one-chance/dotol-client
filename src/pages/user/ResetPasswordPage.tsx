@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { resetPassword } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ResetPasswordPage() {
   const location = useLocation();
@@ -43,14 +43,14 @@ export default function ResetPasswordPage() {
   return (
     <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }}>
       <FlexView
-        radius={4}
         css={{
           border: isMobile ? `none` : `1px solid lightgray`,
           padding: isMobile ? `20px 10px` : `40px 20px`,
         }}
         gap={isMobile ? 24 : 40}
+        radius={4}
       >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           비밀번호 변경
         </Text>
 
@@ -74,7 +74,11 @@ export default function ResetPasswordPage() {
           radius={4}
           onClick={changePassword}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
+          >
             변경하기
           </Text>
         </Button>

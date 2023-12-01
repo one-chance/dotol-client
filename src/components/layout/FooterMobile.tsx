@@ -1,5 +1,5 @@
 import { FlexView, Text, Link } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default () => (
   <footer>
@@ -18,11 +18,11 @@ export default () => (
         css={{ lineHeight: `12.5px` }}
         to="/terms-of-service"
       >
-        <Text color={Colors.white} xSmall>
+        <Text color={Colors.white} size="xSmall">
           이용 약관
         </Text>
       </Link>
-      <Text color={Colors.white} noDrag xSmall>
+      <Text color={Colors.white} size="xSmall" noDrag>
         /
       </Text>
       <Link
@@ -30,7 +30,7 @@ export default () => (
         css={{ lineHeight: `12.5px` }}
         to="/privacy-policy"
       >
-        <Text color={Colors.white} xSmall>
+        <Text color={Colors.white} size="xSmall">
           개인정보 처리방침
         </Text>
       </Link>

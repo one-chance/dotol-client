@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 import { FlexView } from '@components/common';
 import {
   SignUpOne,
@@ -35,11 +36,11 @@ export default function SignUpPage() {
       items="center"
     >
       <FlexView
-        radius={4}
         css={{
           border: isMobile ? 0 : `1px solid lightgray`,
           padding: isMobile ? `10px` : `40px`,
         }}
+        radius={4}
       >
         {PhaseContent[phase]}
       </FlexView>

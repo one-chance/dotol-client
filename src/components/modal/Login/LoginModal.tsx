@@ -7,7 +7,7 @@ import { verifyUser } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, userIdState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 import { decodeJWT } from '@utils/index';
 
 import Modal from '../Modal';
@@ -62,11 +62,11 @@ export default ({ close }: ModalProps) => {
       width={isMobile ? 300 : 440}
     >
       <FlexView
-        radius={4}
         color={Colors.white}
         css={{
           padding: isMobile ? `40px 30px` : `60px 40px`,
         }}
+        radius={4}
       >
         <Text
           css={{
@@ -75,7 +75,7 @@ export default ({ close }: ModalProps) => {
             lineHeight: 1,
             letterSpacing: `-0.96px`,
           }}
-          bold
+          weight="bold"
           center
         >
           dotol
@@ -168,7 +168,11 @@ export default ({ close }: ModalProps) => {
           radius={4}
           onClick={login}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
+          >
             로그인
           </Text>
         </Button>

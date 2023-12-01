@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Button, FlexView, Text, Image } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 import RotateButtons from './RotateButtons';
 
@@ -41,7 +41,7 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
       items="center"
     >
       {count !== -1 && (
-        <Text color="blue" large semiBold>
+        <Text color="blue" size="large" weight="semiBold">
           남은 횟수: {count}
         </Text>
       )}
@@ -62,18 +62,18 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
         )}
       </FlexView>
 
-      <Text semiBold>{character || `아이디@서버`}</Text>
+      <Text weight="semiBold">{character || `아이디@서버`}</Text>
 
       <FlexView gap={16} row>
         <Button
           aria-label="벗기"
           color={isNaked === `y` ? `blue` : `transparent`}
-          radius={4}
           css={{
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
           }}
+          radius={4}
           onClick={() => setIsNaked(`y`)}
         >
           <Text color={isNaked === `y` ? Colors.white : `blue`}>벗기</Text>

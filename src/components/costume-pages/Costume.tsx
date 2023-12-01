@@ -1,6 +1,6 @@
-import { Button, FlexView, Image, Text } from '@components/common';
-import { ICostume } from '@interfaces/Costumes';
-import { Colors } from '@styles/system';
+import { FlexView, Image, Text } from '@components/common';
+import { ICostume } from '@interfaces/index';
+import { Colors } from '@styles/index';
 
 interface CostumeProps {
   item: ICostume;
@@ -42,12 +42,12 @@ export default function Costume({ item, isSelected, onSelect }: CostumeProps) {
         items="center"
         row
       >
-        <Text color={Colors.purple} xSmall>
+        <Text color={Colors.purple} size="xSmall">
           {Gender[item.gender]}
         </Text>
 
         {item.luxury && (
-          <Text color={Colors.red} xSmall>
+          <Text color={Colors.red} size="xSmall">
             명품
           </Text>
         )}
@@ -60,16 +60,15 @@ export default function Costume({ item, isSelected, onSelect }: CostumeProps) {
         }}
         gap={4}
         center
+        onClick={() => onSelect(item)}
       >
-        <Button
-          aria-label="치장 아이템"
-          css={{ userSelect: `text` }}
-          onClick={() => onSelect(item)}
+        <Text
+          color={isSelected ? Colors.red : Colors.primary}
+          size="small"
+          noDrag
         >
-          <Text color={isSelected ? Colors.red : Colors.primary} small start>
-            {item.name}
-          </Text>
-        </Button>
+          {item.name}
+        </Text>
       </FlexView>
     </FlexView>
   );

@@ -8,12 +8,11 @@ import {
   decreaseLookbookCount,
   getMyInfo,
 } from '@apis/index';
-import { Avatar } from '@components/costume-pages';
 import { FlexView, Text } from '@components/common';
-import { LookbookList } from '@components/costume-pages';
+import { Avatar, LookbookList } from '@components/costume-pages';
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function LookbookPage() {
   const isMobile = useResponsive(980);
@@ -46,7 +45,7 @@ export default function LookbookPage() {
       return openToast({
         open: true,
         message: `대표 캐릭터를 인증해주세요.`,
-        type: 'error',
+        type: `error`,
       });
     }
 
@@ -73,7 +72,7 @@ export default function LookbookPage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <Text large={isMobile} xLarge={!isMobile} bold>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold">
         캐릭터 룩북
       </Text>
 
@@ -91,7 +90,7 @@ export default function LookbookPage() {
         <LookbookList applyPreview={equipItem} isMobile={isMobile} />
       </FlexView>
 
-      <Text color={Colors.red} small>
+      <Text color={Colors.red} size="small">
         ● 인게임에서 세트옷을 보이지 않게 해야 합니다.
         <br />● 벗은 상태로 투구를 착용할 수 없는 버그가 있습니다.
       </Text>

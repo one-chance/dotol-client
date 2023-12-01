@@ -1,8 +1,8 @@
 import DATA from '@data/adventure.json';
-import { AdventureTab } from '@interfaces/content';
 
 import { FlexView, Text } from '@components/common';
-import { Colors } from '@styles/system';
+import { AdventureTab } from '@interfaces/index';
+import { Colors } from '@styles/index';
 
 type DETAIL = {
   name: string;
@@ -64,9 +64,9 @@ export default ({ location, tab, isMobile }: ListProps) => {
           >
             <Text
               css={{ paddingLeft: isMobile ? `4px` : `8px` }}
-              small={isMobile}
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
               fill
-              semiBold
             >
               {SUB_TAB[tab][0]} (탐험도 60%)
             </Text>
@@ -83,8 +83,8 @@ export default ({ location, tab, isMobile }: ListProps) => {
                 width: isMobile ? `150px` : `200px`,
                 paddingLeft: isMobile ? `4px` : `8px`,
               }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               {SUB_TAB[tab][0]}
             </Text>
@@ -94,8 +94,8 @@ export default ({ location, tab, isMobile }: ListProps) => {
                 width: isMobile ? `160px` : `200px`,
                 paddingLeft: isMobile ? `4px` : `8px`,
               }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               {SUB_TAB[tab][2]}
             </Text>
@@ -105,8 +105,8 @@ export default ({ location, tab, isMobile }: ListProps) => {
                 width: isMobile ? `44px` : `140px`,
                 paddingLeft: isMobile ? 0 : `4px`,
               }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               {SUB_TAB[tab][1]}
             </Text>
@@ -123,7 +123,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
                     paddingLeft: isMobile ? `4px` : `8px`,
                     lineHeight: `28px`,
                   }}
-                  small={isMobile}
+                  size={isMobile ? `small` : `normal`}
                 >
                   {weapon}
                 </Text>
@@ -138,8 +138,8 @@ export default ({ location, tab, isMobile }: ListProps) => {
             >
               <Text
                 css={{ paddingLeft: isMobile ? `4px` : `8px` }}
-                small={isMobile}
-                semiBold
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
               >
                 탐험일지의상 (탐험도 100%)
               </Text>
@@ -153,7 +153,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
                     paddingLeft: isMobile ? `4px` : `8px`,
                     lineHeight: `28px`,
                   }}
-                  small={isMobile}
+                  size={isMobile ? `small` : `normal`}
                 >
                   {clothes}
                 </Text>
@@ -169,8 +169,8 @@ export default ({ location, tab, isMobile }: ListProps) => {
               >
                 <Text
                   css={{ paddingLeft: isMobile ? `4px` : `8px` }}
-                  small={isMobile}
-                  semiBold
+                  size={isMobile ? `small` : `normal`}
+                  weight="semiBold"
                 >
                   칭호 (탐험도 100%)
                 </Text>
@@ -181,7 +181,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
                   paddingLeft: isMobile ? `4px` : `8px`,
                   lineHeight: `28px`,
                 }}
-                small={isMobile}
+                size={isMobile ? `small` : `normal`}
               >
                 {(selectedData as REWARD).title}
               </Text>
@@ -205,7 +205,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
                     width: isMobile ? `150px` : `200px`,
                     paddingLeft: isMobile ? `4px` : `8px`,
                   }}
-                  small={isMobile}
+                  size={isMobile ? `small` : `normal`}
                 >
                   {item.name}
                 </Text>
@@ -215,7 +215,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
                     width: isMobile ? `160px` : `200px`,
                     paddingLeft: isMobile ? `4px` : `8px`,
                   }}
-                  small={isMobile}
+                  size={isMobile ? `small` : `normal`}
                 >
                   {item.detail}
                 </Text>
@@ -225,7 +225,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
                     width: isMobile ? `44px` : `140px`,
                     paddingLeft: isMobile ? `4px` : `8px`,
                   }}
-                  small={isMobile}
+                  size={isMobile ? `small` : `normal`}
                 >
                   {item.score}
                 </Text>
@@ -237,7 +237,7 @@ export default ({ location, tab, isMobile }: ListProps) => {
 
       <FlexView gap={4} wrap>
         {messages[tab].map(message => (
-          <Text key={message} color={Colors.red} small>
+          <Text key={message} color={Colors.red} size="small">
             ● {message}
           </Text>
         ))}

@@ -13,7 +13,7 @@ import {
 } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { itemState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const SKILLS = [
   `종류`,

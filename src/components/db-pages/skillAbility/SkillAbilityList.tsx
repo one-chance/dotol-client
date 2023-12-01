@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getSkillAbilityList } from '@apis/skill';
+import { getSkillAbilityList } from '@apis/index';
 import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
@@ -47,15 +47,8 @@ export default () => {
 
   return (
     <FlexView gap={isMobile ? 10 : 20}>
-      <FlexView
-        content="between"
-        css={{ padding: isMobile ? `0 10px` : undefined }}
-        gap={10}
-        items="center"
-        row
-        wrap
-      >
-        <Text large={isMobile} xxLarge={!isMobile} bold>
+      <FlexView content="between" gap={10} items="center" row wrap>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           기술능력 도감
         </Text>
 
@@ -95,9 +88,9 @@ export default () => {
               width: isMobile ? `180px` : `240px`,
               paddingLeft: isMobile ? `4px` : `8px`,
             }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
             center
-            semiBold
           >
             기술능력
           </Text>
@@ -106,9 +99,9 @@ export default () => {
             css={{
               width: isMobile ? `85px` : `120px`,
             }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
             center
-            semiBold
           >
             전설
           </Text>
@@ -117,9 +110,9 @@ export default () => {
             css={{
               width: isMobile ? `85px` : `120px`,
             }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
             center
-            semiBold
           >
             신화
           </Text>
@@ -142,20 +135,20 @@ export default () => {
                   width: isMobile ? `180px` : `240px`,
                   paddingLeft: isMobile ? `4px` : `8px`,
                 }}
-                small={isMobile}
+                size={isMobile ? `small` : `normal`}
               >
                 {ability.기술능력}
               </Text>
               <Text
                 css={{ width: isMobile ? `85px` : `120px` }}
-                small={isMobile}
+                size={isMobile ? `small` : `normal`}
                 center
               >
                 {ability.전설}
               </Text>
               <Text
                 css={{ width: isMobile ? `85px` : `120px` }}
-                small={isMobile}
+                size={isMobile ? `small` : `normal`}
                 center
               >
                 {ability.신화}

@@ -1,6 +1,7 @@
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
+
 export default function TipBoardPage() {
   const isMobile = useResponsive(800);
 

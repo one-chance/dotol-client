@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { Button, FlexView, Input, Text } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type LookbookListProps = {
   isMobile?: boolean;
@@ -68,9 +68,7 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
       <FlexView content="between" gap={20} row wrap>
         {EQUIP_PARTS.map((part, index) => (
           <FlexView key={part} items="center" row>
-            <Text css={{ minWidth: `120px` }} medium>
-              {part}
-            </Text>
+            <Text css={{ minWidth: `120px` }}>{part}</Text>
 
             <Input
               aria-label="장비"
@@ -101,9 +99,7 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
           radius={4}
           onClick={initItemList}
         >
-          <Text color={Colors.red} medium>
-            초기화
-          </Text>
+          <Text color={Colors.red}>초기화</Text>
         </Button>
 
         <Button
@@ -117,9 +113,7 @@ export default ({ isMobile, applyPreview }: LookbookListProps) => {
           radius={4}
           onClick={applyLookbook}
         >
-          <Text color={Colors.primary} medium>
-            적용
-          </Text>
+          <Text color={Colors.primary}>적용</Text>
         </Button>
       </FlexView>
     </FlexView>

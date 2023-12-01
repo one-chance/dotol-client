@@ -43,9 +43,7 @@ export default ({ title, titleCSS, divider, children }: AccordionProps) => {
         row
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Text small={isMobile} medium>
-          {title}
-        </Text>
+        <Text size={isMobile ? `small` : `normal`}>{title}</Text>
         <Icon name={isOpen ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 

@@ -47,14 +47,8 @@ export default () => {
 
   return (
     <FlexView gap={20}>
-      <FlexView
-        content="between"
-        css={{ margin: isMobile ? `0 10px` : undefined }}
-        gap={12}
-        items="center"
-        row
-      >
-        <Text large={isMobile} xLarge={!isMobile} bold>
+      <FlexView content="between" gap={12} items="center" row>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           생산 단계업 재료
         </Text>
         <Select label={SKILLS[selectedSkill]} width={100}>
@@ -74,21 +68,17 @@ export default () => {
           row
         >
           <Text
-            css={{
-              width: isMobile ? `60px` : `80px`,
-            }}
-            small={isMobile}
-            bold
+            css={{ width: isMobile ? `60px` : `80px` }}
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             단계
           </Text>
           <Text
-            css={{
-              width: isMobile ? `300px` : `460px`,
-            }}
-            small={isMobile}
-            bold
+            css={{ width: isMobile ? `300px` : `460px` }}
+            size={isMobile ? `small` : `normal`}
+            weight="bold"
             center
           >
             재료
@@ -114,7 +104,7 @@ export default () => {
                 }}
                 center
               >
-                <Text xSmall={isMobile} medium>
+                <Text size={isMobile ? `xSmall` : `normal`}>
                   {GRADES[index]}
                 </Text>
               </FlexView>
@@ -130,7 +120,7 @@ export default () => {
                 wrap
               >
                 {ingredients.map((ingredient: any) => (
-                  <Text key={ingredient} xSmall={isMobile}>
+                  <Text key={ingredient} size={isMobile ? `xSmall` : `normal`}>
                     {ingredient}
                   </Text>
                 ))}

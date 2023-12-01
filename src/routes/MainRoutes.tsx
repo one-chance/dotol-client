@@ -8,8 +8,8 @@ import * as Calculator from '@pages/calculator';
 import * as Costume from '@pages/costume';
 import * as DB from '@pages/db';
 import * as Main from '@pages/main';
-import * as User from '@pages/user';
 import { Auction, TradeBoard } from '@pages/trade';
+import * as User from '@pages/user';
 import { isLoggedInState } from '@states/index';
 
 // 게시판 메뉴
@@ -46,7 +46,7 @@ const withSuspense = (Component: ReactNode) => (
 
 const createRoutes = (pages: PageRoute[]) =>
   pages.map(page => (
-    <Route element={page.element} key={page.path} path={page.path} />
+    <Route key={page.path} element={page.element} path={page.path} />
   ));
 
 export default function MainRoutes() {
@@ -72,27 +72,27 @@ export default function MainRoutes() {
   const contentPages = [
     {
       element: <AchievementPage />,
-      path: '/content/achievement',
+      path: `/content/achievement`,
     },
     {
       element: <AdventurePage />,
-      path: '/content/adventure',
+      path: `/content/adventure`,
     },
     {
       element: <ArcheologyPage />,
-      path: '/content/archeology',
+      path: `/content/archeology`,
     },
     {
       element: <BodyReinforceAbilityPage />,
-      path: '/content/body-reinforce/ability',
+      path: `/content/body-reinforce/ability`,
     },
     {
       element: <BodyReinforceBonusPage />,
-      path: '/content/body-reinforce/bonus',
+      path: `/content/body-reinforce/bonus`,
     },
     {
       element: <BodyReinforceRecipePage />,
-      path: '/content/body-reinforce/recipe',
+      path: `/content/body-reinforce/recipe`,
     },
   ];
 

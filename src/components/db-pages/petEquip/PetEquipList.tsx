@@ -3,7 +3,7 @@ import { CSSObject } from '@emotion/react';
 
 import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const EQUIP_PARTS = [
   `장비`,
@@ -56,8 +56,8 @@ export default ({ type }: PetEquipListProps) => {
             >
               <Text
                 css={{ letterSpacing: isMobile ? -1 : 0 }}
-                small={isMobile}
-                semiBold
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
               >
                 {part}
               </Text>
@@ -91,11 +91,13 @@ export default ({ type }: PetEquipListProps) => {
         </FlexView>
       </FlexView>
 
-      <FlexView css={{ padding: isMobile ? `0 4px` : undefined }}>
-        <Text color={Colors.red} css={{ letterSpacing: -0.5 }} small={isMobile}>
-          * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
-        </Text>
-      </FlexView>
+      <Text
+        color={Colors.red}
+        css={{ letterSpacing: -0.5 }}
+        size={isMobile ? `small` : `normal`}
+      >
+        * 괄호 안의 숫자는 강화석으로 올릴 수 있는 최대치입니다.
+      </Text>
     </FlexView>
   );
 };

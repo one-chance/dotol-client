@@ -71,7 +71,7 @@ export default function AntiquityEquipRecipe({
             />
           </Select>
 
-          <Text small={isMobile}>&nbsp;+&nbsp;</Text>
+          <Text size={isMobile ? `small` : `normal`}>&nbsp;+&nbsp;</Text>
           <Input
             aria-label="제작확률 증가"
             css={{
@@ -86,7 +86,7 @@ export default function AntiquityEquipRecipe({
             onChange={inputExtraPercentage}
           />
 
-          <Text small={isMobile} medium>
+          <Text size={isMobile ? `small` : `normal`}>
             &nbsp;= 최종 성공률: {totalPercentage}%
           </Text>
         </FlexView>
@@ -103,8 +103,8 @@ export default function AntiquityEquipRecipe({
             <Text
               key={title}
               css={{ width: isMobile ? `70px` : `120px` }}
+              weight="semiBold"
               center
-              semiBold
             >
               {title}
             </Text>
@@ -123,19 +123,24 @@ export default function AntiquityEquipRecipe({
             items="center"
             row
           >
-            <Text css={{ whiteSpace: `pre-wrap` }} small={isMobile} center fill>
+            <Text
+              css={{ whiteSpace: `pre-wrap` }}
+              size={isMobile ? `small` : `normal`}
+              center
+              fill
+            >
               {isMobile ? data.장비 : data.장비.replace(`\n`, ``)}
             </Text>
-            <Text small={isMobile} center fill>
+            <Text size={isMobile ? `small` : `normal`} center fill>
               {data.필요레벨}
             </Text>
-            <Text small={isMobile} center fill>
+            <Text size={isMobile ? `small` : `normal`} center fill>
               {data.재료}
             </Text>
-            <Text small={isMobile} center fill>
+            <Text size={isMobile ? `small` : `normal`} center fill>
               {data.금전}
             </Text>
-            <Text small={isMobile} center fill>
+            <Text size={isMobile ? `small` : `normal`} center fill>
               {data.기본확률}
             </Text>
           </FlexView>

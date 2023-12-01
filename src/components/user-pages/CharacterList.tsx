@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { deleteCharacter, updateMainCharacter } from '@apis/characters';
-import { getMyInfo } from '@apis/users';
-import { Button, FlexView, Icon, Text } from '@components/common';
-
-import { Colors } from '@styles/system';
 import { useSetRecoilState } from 'recoil';
-import { toastState } from '@states/toast';
+
+import { deleteCharacter, updateMainCharacter, getMyInfo } from '@apis/index';
+import { Button, FlexView, Icon, Text } from '@components/common';
+import { toastState } from '@states/index';
+import { Colors } from '@styles/index';
 
 interface CharacterListProps {
   isMobile: boolean;
@@ -26,7 +25,7 @@ export default function CharacterList({ isMobile, list }: CharacterListProps) {
         setToast({
           open: true,
           message: `대표 캐릭터가 변경되었습니다.`,
-          type: 'success',
+          type: `success`,
         });
       }
     });
@@ -40,13 +39,13 @@ export default function CharacterList({ isMobile, list }: CharacterListProps) {
         setToast({
           open: true,
           message: `캐릭터가 삭제되었습니다.`,
-          type: 'success',
+          type: `success`,
         });
       } else if (res.statusCode === 400) {
         setToast({
           open: true,
           message: `대표 캐릭터는 삭제할 수 없습니다.`,
-          type: 'error',
+          type: `error`,
         });
       }
     },
@@ -59,38 +58,38 @@ export default function CharacterList({ isMobile, list }: CharacterListProps) {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
-      css={{ minWidth: '350px', padding: '20px' }}
+      css={{ minWidth: `350px`, padding: `20px` }}
       gap={20}
+      radius={4}
     >
-      <Text bold center xLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         캐릭터 목록
       </Text>
 
       {list?.length === 0 ? (
         <FlexView center fill>
-          <Text large>캐릭터를 인증해주세요.</Text>
+          <Text size="large">캐릭터를 인증해주세요.</Text>
         </FlexView>
       ) : (
         list?.map((name: string) => (
           <FlexView key={name} content="between" items="center" row>
             <FlexView gap={4} items="center" row>
-              <Text semiBold>{name}</Text>
+              <Text weight="semiBold">{name}</Text>
               {mainCharacter === name && (
-                <Icon name="crown" size={16} color={Colors.purple} />
+                <Icon color={Colors.purple} name="crown" size={16} />
               )}
             </FlexView>
 
             <FlexView gap={8} items="center" row>
               <Button
-                disabled={mainCharacter === name}
                 aria-label="대표 변경"
                 border="black"
                 css={{ width: `72px`, height: `30px` }}
+                disabled={mainCharacter === name}
                 radius={4}
                 onClick={() => changeMainCharacter(name)}
               >
-                <Text small>대표 변경</Text>
+                <Text size="small">대표 변경</Text>
               </Button>
               <Button
                 aria-label="삭제"
@@ -99,7 +98,7 @@ export default function CharacterList({ isMobile, list }: CharacterListProps) {
                 radius={4}
                 onClick={() => removeCharacter.mutate(name)}
               >
-                <Text color={Colors.red} small>
+                <Text color={Colors.red} size="small">
                   삭제
                 </Text>
               </Button>
