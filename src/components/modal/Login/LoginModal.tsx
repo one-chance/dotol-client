@@ -54,15 +54,13 @@ export default function LoginMOdal({ close }: ModalProps) {
   };
 
   return (
-    <Modal
-      closePortal={close}
-      height={isMobile ? 385 : 445}
-      isLogin={isMobile}
-      width={isMobile ? 300 : 440}
-    >
+    <Modal closePortal={close}>
       <FlexView
         color={Colors.white}
         css={{
+          width: isMobile ? 300 : 440,
+          height: isMobile ? 385 : 445,
+          zIndex: 1000,
           padding: isMobile ? `40px 30px` : `60px 40px`,
         }}
         radius={4}

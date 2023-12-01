@@ -3,58 +3,26 @@ import { createPortal } from 'react-dom';
 
 import { CSSObject } from '@emotion/react';
 
-import { FlexView, Icon, Button } from '@components/common';
-import { Colors } from '@styles/index';
+import { FlexView } from '@components/common';
 
 interface ModalProps {
-  width: number;
-  height: number;
-  close?: boolean;
-  isLogin?: boolean;
   children: ReactNode;
   closePortal: (param: any) => void;
 }
 
-export default function Modal({
-  width,
-  height,
-  close,
-  isLogin,
-  children,
-  closePortal,
-}: ModalProps) {
+export default function Modal({ children, closePortal }: ModalProps) {
   const container = document.getElementById(`root-modal`) as HTMLElement;
 
   const modalCSS: CSSObject = {
-    position: `fixed`,
-    top: 0,
-    left: 0,
-    width: `100%`,
-    height: `100%`,
-    zIndex: 1111,
-    padding: `80px`,
-    margin: `auto 0`,
+    zIndex: 1000,
     overflowY: `auto`,
     scrollbarWidth: `none`,
     '::-webkit-scrollbar': { display: `none` },
   };
 
   const backgoundCSS: CSSObject = {
-    position: `fixed`,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: 1000,
+    zIndex: 999,
     backgroundColor: `#0000004D`,
-  };
-
-  const contentCSS: CSSObject = {
-    width: `${width}px`,
-    height: `${height}px`,
-    backgroundColor: `#FFFFFF`,
-    borderRadius: `4px`,
-    zIndex: 1001,
   };
 
   useEffect(() => {
@@ -67,27 +35,14 @@ export default function Modal({
 
   return container
     ? createPortal(
-        <FlexView
-          content={isLogin ? `start` : `center`}
-          css={modalCSS}
-          items="center"
-        >
+        <FlexView css={modalCSS} items="center" center fixed>
           <FlexView
             css={backgoundCSS}
             role="presentation"
+            fixed
             onClick={closePortal}
           />
-
-          <FlexView css={contentCSS}>
-            {close && (
-              <FlexView css={{ margin: `16px 16px 0 0` }} items="end">
-                <Button aria-label="닫기" onClick={closePortal}>
-                  <Icon color={Colors.black} name="close" size={24} />
-                </Button>
-              </FlexView>
-            )}
-            {children}
-          </FlexView>
+          {children}
         </FlexView>,
         container,
       )

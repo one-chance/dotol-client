@@ -13,7 +13,7 @@ export type FlexViewProps = HTMLAttributes<HTMLDivElement> & {
   border?: string;
   radius?: number;
   content?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-  items?: 'start' | 'end' | 'center';
+  items?: 'start' | 'end' | 'center' | `stretch`;
   color?: string;
 };
 
@@ -30,14 +30,15 @@ const alignItems = {
   start: `flex-start`,
   end: `flex-end`,
   center: `center`,
+  stretch: `stretch`,
 };
 
 const fixedCSS: CSSObject = {
   position: `fixed`,
-  top: `3rem`,
+  top: 0,
   left: 0,
   right: 0,
-  bottom: `3rem`,
+  bottom: 0,
 };
 
 const FlexView = forwardRef<HTMLDivElement, FlexViewProps>(
