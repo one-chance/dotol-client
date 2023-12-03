@@ -78,7 +78,7 @@ export default function LookbookPage() {
 
       <FlexView
         gap={20}
-        items={isMobile ? `center` : undefined}
+        items={isMobile ? `center` : `stretch`}
         row={!isMobile}
       >
         <Avatar

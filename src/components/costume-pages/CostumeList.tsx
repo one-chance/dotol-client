@@ -218,7 +218,7 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
             />
             <Button
               aria-label="검색"
-              color={Colors.purple}
+              color={Colors.primary}
               css={{
                 width: isMobile ? `48px` : `60px`,
                 height: `36px`,
@@ -255,10 +255,12 @@ export default function CostumeList({ isMobile }: CostumeListProps) {
           </FlexView>
         </FlexView>
 
-        <FlexView>
+        <FlexView gap={4}>
           <Text color={Colors.red} size="small">
-            * 아이템 이름을 클릭하면 마네킹에 착용됩니다.
-            <br />* 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
+            ● 아이템 이름을 클릭하면 마네킹에 착용됩니다.
+          </Text>
+          <Text color={Colors.red} size="small">
+            ● 투구는 미리보기가 안되는 넥슨측 버그가 있습니다.
           </Text>
         </FlexView>
       </FlexView>

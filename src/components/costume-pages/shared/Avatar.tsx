@@ -85,8 +85,8 @@ export default function Avatar({ character, count, skin, equip }: AvatarProps) {
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
-            borderRadius: `4px`,
           }}
+          radius={4}
           onClick={() => setIsNaked(`n`)}
         >
           <Text color={isNaked === `n` ? Colors.white : `blue`}>입기</Text>

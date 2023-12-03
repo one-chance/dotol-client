@@ -57,7 +57,7 @@ export default function TanningPage() {
 
       <FlexView
         gap={20}
-        items={isMobile ? `center` : undefined}
+        items={isMobile ? `center` : `stretch`}
         row={!isMobile}
       >
         <Avatar character={mainCharacter} count={-1} skin={skinNumber} />
