@@ -74,15 +74,6 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           캐릭터 관리
         </Link>
 
-        <Link
-          aria-label="회원 탈퇴"
-          css={linkCSS}
-          to="/user/withdrawal"
-          onClick={close}
-        >
-          회원 탈퇴
-        </Link>
-
         <FlexView
           content="center"
           css={{

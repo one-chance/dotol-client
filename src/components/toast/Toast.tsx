@@ -49,7 +49,6 @@ export default function Toast({ type, message, isMobile }: ToastProps) {
           css={{
             zIndex: 99999,
             backgroundColor: bgColor[type],
-            borderRadius: `4px`,
             position: `fixed`,
             left: `50%`,
             padding: `4px 16px`,
@@ -63,6 +62,7 @@ export default function Toast({ type, message, isMobile }: ToastProps) {
             boxShadow: `0px 0px 10px rgba(0, 0, 0, 0.3)`,
             whiteSpace: `nowrap`,
           }}
+          radius={4}
         >
           <Text
             color={Colors.white}

@@ -77,7 +77,7 @@ export default function HeaderMobile() {
         content="between"
         css={{
           padding: `20px 12px 15px 12px`,
-          borderBottom: `1px solid ${Colors.primary20}}`,
+          borderBottom: `1px solid ${Colors.primary20}`,
         }}
         items="center"
         row
@@ -89,15 +89,15 @@ export default function HeaderMobile() {
 
           <Anchor
             aria-label="로고"
+            color={Colors.primary}
             css={{
-              color: Colors.primary,
               fontFamily: `Red Hat Display`,
-              fontSize: `20px`,
-              fontWeight: 700,
-              lineHeight: `24px`,
+              lineHeight: 1,
               letterSpacing: `-0.96px`,
             }}
             href="/"
+            size="large"
+            weight="bold"
           >
             dotol
           </Anchor>

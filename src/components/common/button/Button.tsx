@@ -21,7 +21,7 @@ export default forwardRef<HTMLButtonElement, ButtonProps>(
       alignItems: `center`,
       backgroundColor: `unset`,
       border: border ? `1px solid ${border}` : `none`,
-      borderRadius: radius || 0,
+      borderRadius: radius ? `${radius}px` : 0,
       color: `unset`,
       display: `inline-flex`,
       justifyContent: `center`,

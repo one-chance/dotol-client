@@ -1,6 +1,7 @@
 import { FlexView, Text } from '@components/common';
 import { SCHEDULES } from '@constants/calendar';
 import { useResponsive } from '@hooks/index';
+import { Colors } from '@styles/token';
 
 // myData[11].end가 지나면 다음 년도로 교체해야 함
 export default function CalendarPage() {
@@ -31,7 +32,7 @@ export default function CalendarPage() {
                 }}
               >
                 <Text
-                  color="blue"
+                  color={Colors.primary}
                   css={{ lineHeight: `30px` }}
                   size={isMobile ? `small` : `normal`}
                 >

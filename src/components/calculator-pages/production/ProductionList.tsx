@@ -143,7 +143,7 @@ export default function ProductionList() {
 
         <Button
           aria-label="변경"
-          color="blue"
+          color={Colors.primary}
           css={{
             width: `60px`,
             height: `40px`,

@@ -1,5 +1,4 @@
 export * from './board';
-export * from './body';
 export * from './calendar';
 export * from './equip';
 export * from './menu';

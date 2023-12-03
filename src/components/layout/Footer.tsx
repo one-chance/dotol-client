@@ -11,7 +11,7 @@ export default function Footer() {
         color={Colors.background}
         css={{
           marginTop: `40px`,
-          padding: isMobile ? `10px` : `10px 40px`,
+          padding: isMobile ? `10px 20px` : `20px 40px`,
         }}
         gap={8}
       >

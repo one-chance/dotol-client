@@ -190,7 +190,6 @@ export default function Header() {
                       lineHeight: `42px`,
                       color: Colors.primary,
                       letterSpacing: `-1px`,
-                      fontWeight: 500,
                       borderTopLeftRadius: `4px`,
                       borderBottomLeftRadius: `4px`,
                     }}

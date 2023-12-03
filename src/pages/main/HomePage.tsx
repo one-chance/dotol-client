@@ -18,7 +18,7 @@ export default function HomePage() {
           maxHeight: `200px`,
           overflowY: `auto`,
           padding: isMobile ? `8px` : `12px`,
-          margin: isMobile ? `0 5px` : `0 auto`,
+          margin: `0 auto`,
         }}
         gap={10}
         radius={4}
@@ -36,7 +36,7 @@ export default function HomePage() {
         <Text>
           9~10월은 개인 스케줄 때문에 신규 치장 외엔 업데이트가 없었는데, 이제
           시간이 나서 주기적으로 진행할 예정입니다. 오늘 업데이트는&nbsp;
-          <Anchor href="/db/equip-skill" style={{ color: `red` }}>
+          <Anchor color={Colors.red} href="/db/equip-skill" weight="semiBold">
             기술서 목록
           </Anchor>
           입니다. 예전부터 장비 마법(격마법류, 자동버프류, 기술서류, 마법부여류

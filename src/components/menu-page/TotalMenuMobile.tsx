@@ -71,20 +71,22 @@ export default function TotalMenuMobile({ onClose }: MenuProps) {
                 <FlexView gap={4}>
                   {menus.sub.map(sub => (
                     <Anchor
+                      key={sub.name}
+                      color={
+                        location.pathname === sub.url
+                          ? Colors.primary
+                          : Colors.secondary
+                      }
                       css={{
                         backgroundColor:
                           location.pathname === sub.url
                             ? Colors.primary10
                             : `transparent`,
-                        color:
-                          location.pathname === sub.url
-                            ? Colors.primary
-                            : Colors.secondary,
-                        fontSize: `20px`,
                         paddingLeft: `30px`,
                         lineHeight: `40px`,
                       }}
                       href={sub.url}
+                      size="large"
                       onClick={onClose}
                     >
                       {sub.name}

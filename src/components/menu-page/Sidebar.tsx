@@ -74,15 +74,15 @@ export default function Sidebar() {
     >
       <FlexView center>
         <Anchor
+          color={Colors.white}
           css={{
-            color: Colors.white,
             fontFamily: `Red Hat Display`,
             fontSize: `36px`,
-            fontWeight: 700,
             lineHeight: `40px`,
             letterSpacing: `-0.96px`,
           }}
           href="/"
+          weight="bold"
         >
           dotol
         </Anchor>
@@ -112,20 +112,19 @@ export default function Sidebar() {
         ) : (
           <FlexView css={{ height: `40px` }} gap={8} row>
             <Anchor
-              color={Colors.background}
+              color={Colors.primary}
               css={{
                 flex: 1,
-                borderRadius: `4px`,
                 backgroundColor: Colors.background,
                 display: `flex`,
                 justifyContent: `center`,
                 alignItems: `center`,
               }}
               href="/user/signup"
+              radius={4}
+              weight="semiBold"
             >
-              <Text color={Colors.primary} weight="semiBold">
-                회원가입
-              </Text>
+              회원가입
             </Anchor>
 
             <Button
@@ -158,10 +157,13 @@ export default function Sidebar() {
             </FlexView>
             <FlexView css={{ paddingLeft: `30px` }} gap={10}>
               {menus.sub.map(subMenu => (
-                <Anchor key={subMenu.name} href={subMenu.url}>
-                  <Text color={Colors.secondary} weight="bold">
-                    {subMenu.name}
-                  </Text>
+                <Anchor
+                  key={subMenu.name}
+                  color={Colors.secondary}
+                  href={subMenu.url}
+                  weight="bold"
+                >
+                  {subMenu.name}
                 </Anchor>
               ))}
             </FlexView>
