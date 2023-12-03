@@ -3,9 +3,50 @@
 ## About the Project
 
 https://dotols.com<br/>
-1인 개발하여 2년 3개월째 운영중인 바람의나라 게임 커뮤니티입니다. 게임에서 제공하지 않지만, 유저에겐 필요한 데이터와 기능을 제공합니다. 넥슨과 협업하여 비공개 API를 제공받는 유일한 [공식 팬사이트](https://baram.nexon.com/FanSite/List)입니다.
+1인 개발하여 2년 8개월째 운영중인 바람의나라 게임 커뮤니티입니다. 게임에서 제공하지 않지만, 유저에겐 필요한 데이터와 기능을 제공합니다. 넥슨과 협업하여 비공개 API를 제공받는 유일한 [공식 팬사이트](https://baram.nexon.com/FanSite/List)입니다.
 
 <img src="https://asset.dotols.com/image/termsofservice.png" style="max-width:600px" />
+
+## Stack Share
+
+베이스: React, TypeScirpt
+
+번들러: Vite
+
+컨벤션: EsLint, Prettier
+
+상태관리, Recoil, React-Query
+
+스타일링: Emotion
+
+## Folder Structure
+
+apis: api 호출 및 처리가 정의된 폴더입니다.
+
+assets: 폰트나 아이콘 같은 애셋 파일이 있는 폴더입니다.
+
+components: 재사용 가능한 컴포넌트 파일이 있는 폴더입니다.<br/>
+\- common: 여러 페이지에서 공통적으로 사용되는 컴포넌트<br/>
+\- {feature}-page: 컴포넌트의 추상화 단계에 따라 폴더를 구분하지 않고, Feature 별로 구분하는 방식을 사용합니다.<br/>
+\- modal: Portal로 현재 컴포넌트의 DOM 트리 외부에 렌더링하여 기존 컴포넌트의 레이아웃에 영향을 주지 않습니다.<br/>
+
+constants: 재사용 가능한 상수가 정의된 폴더입니다.
+
+hooks: 커스텀 훅이 정의된 폴더입니다.
+
+interfaces: type이나 interface가 정의된 폴더입니다.
+
+pages: 각 페이지별 컴포넌트가 있는 폴더입니다.
+
+routes: 라우팅 설정 파일이 있는 폴더입니다.
+
+sytles: 스타일링과 관련된 파일이 있는 폴더입니다.
+
+utils: 공통 유틸함수가 정의된 폴더입니다.
+
+## Service Architecture
+
+![architecture](https://github.com/one-chance/dotol-client/assets/36535944/b2db1303-3bb5-4238-ba62-6de6ac034d47)
 
 ## Timeline
 
