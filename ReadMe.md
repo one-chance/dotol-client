@@ -82,14 +82,13 @@ v2 : React(v18), TypeScript(v5), Recoil, React-Query, Emotion, Toast Editor, Vit
 
 ### 백엔드 & 배포
 
-v1 : JavaScript, Node, Express, MongoDB, AWS<br/>
-v2 : TypeScript, Node, Nest, MongoDB, AWS, OCI
+v1 : JavaScript, Node, Express, MongoDB, AWS(EC2)<br/>
+v2 : TypeScript, Node, Nest, MongoDB, AWS(EC2)
 
 - Nest 프레임워크를 사용하면서 의존성 주입과 미들웨어 관리를 쉽게 하였습니다.
 - 덕분에 기존보다 유연하고 확장성이 높은 구조로 서버를 구축할 수 있었습니다.
 - TypeScript를 도입하여 코드의 안정성을 높이고 에러를 최소화 하였습니다.
 - DB는 효율적인 스키마를 새로 설계하고 마이그레이션하여 성능을 개선했습니다.
-- AWS에서 운영하던 서버를 OCI로 이전함으로써 서버 비용을 절감하였습니다.
 
 ## Conclusion
 
