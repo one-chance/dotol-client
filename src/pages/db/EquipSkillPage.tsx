@@ -41,7 +41,7 @@ const skillImgs: { [key: string]: string[] } = {
 };
 
 export default function EquipSkill() {
-  const isMobile = useResponsive(860);
+  const isMobile = useResponsive(740);
   const [skill, setSkill] = useState(``);
 
   const changeSkill = (name: string) => {
@@ -49,20 +49,13 @@ export default function EquipSkill() {
   };
 
   return (
-    <FlexView
-      css={{
-        maxWidth: `860px`,
-        width: `100%`,
-        margin: `0 auto`,
-      }}
-      gap={20}
-    >
+    <FlexView css={{ maxWidth: `720px`, margin: `0 auto` }} gap={20}>
       <Text size={isMobile ? `large` : `xLarge`} weight="bold">
         장비 마법
       </Text>
 
       <FlexView gap={10}>
-        <Text size="large" weight="semiBold">
+        <Text size={isMobile ? `small` : `normal`} weight="semiBold">
           #기술서
         </Text>
         <FlexView
@@ -75,7 +68,10 @@ export default function EquipSkill() {
         >
           {SKILL_BOOKS.map(name => (
             <Button key={name} onClick={() => changeSkill(name)}>
-              <Text color={name === skill ? Colors.red : Colors.black}>
+              <Text
+                color={name === skill ? Colors.red : Colors.black}
+                size={isMobile ? `small` : `normal`}
+              >
                 {name}
               </Text>
             </Button>
