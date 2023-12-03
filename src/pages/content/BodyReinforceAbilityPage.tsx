@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 
-import { getBodyReinforceAbilityList } from '@apis/index';
+import { getBodyReinforceAbilityJSON } from '@apis/index';
 import { FlexView, Text, Select, Option } from '@components/common';
+import { BodyReinforceAbility } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
 
 const PARTS = [
@@ -16,26 +18,18 @@ const PARTS = [
   `망토`,
 ];
 
-type Ability = {
-  등급: string;
-  선택능력: string[];
-  기본능력: string[];
-};
-
 export default function BodyReinforceAbilityPage() {
   const isMobile = useResponsive(610);
   const [part, setPart] = useState(0);
-  const [infoList, setInfoList] = useState<Ability[][]>([[]]);
+
+  const { data: abilityList = [] } = useQuery({
+    queryKey: [`abilityList`],
+    queryFn: () => getBodyReinforceAbilityJSON(),
+  });
 
   const selectPart = (id: number) => {
     setPart(id);
   };
-
-  useEffect(() => {
-    getBodyReinforceAbilityList().then(res => {
-      setInfoList(res);
-    });
-  }, []);
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
@@ -49,89 +43,10 @@ export default function BodyReinforceAbilityPage() {
         </Select>
       </FlexView>
 
-      <FlexView>
-        <FlexView
-          color="lightgray"
-          css={{ minHeight: `40px` }}
-          items="center"
-          row
-        >
-          <Text
-            css={{ minWidth: isMobile ? `58px` : `80px` }}
-            size={isMobile ? `small` : `normal`}
-            weight="bold"
-            center
-          >
-            등급
-          </Text>
-          <Text
-            css={{ minWidth: isMobile ? `145px` : `160px` }}
-            size={isMobile ? `small` : `normal`}
-            weight="bold"
-            center
-          >
-            선택 능력
-          </Text>
-          <Text
-            css={{ minWidth: isMobile ? `145px` : `360px` }}
-            size={isMobile ? `small` : `normal`}
-            weight="bold"
-            center
-          >
-            기본 능력
-          </Text>
-        </FlexView>
-
-        {infoList?.[part].map((data: Ability) => (
-          <FlexView
-            key={data.등급}
-            css={{
-              padding: `4px 0`,
-              borderBottom: `1px solid lightgray`,
-              borderLeft: `1px solid lightgray`,
-              borderRight: `1px solid lightgray`,
-            }}
-            items="center"
-            row
-          >
-            <Text
-              css={{ minWidth: isMobile ? `58px` : `80px` }}
-              size={isMobile ? `small` : `normal`}
-              center
-            >
-              {data.등급}
-            </Text>
-
-            <FlexView
-              css={{ minWidth: isMobile ? `145px` : `160px` }}
-              gap={isMobile ? 2 : 8}
-            >
-              {data?.선택능력.map((ability: string) => (
-                <Text key={ability} size={isMobile ? `xSmall` : `small`} center>
-                  {ability}
-                </Text>
-              ))}
-            </FlexView>
-
-            <FlexView
-              css={{
-                width: isMobile ? `145px` : `360px`,
-                padding: isMobile ? 0 : `0 10px`,
-              }}
-              gap={isMobile ? 2 : 8}
-              items="center"
-              row={!isMobile}
-              wrap
-            >
-              {data.기본능력.map((ability: string) => (
-                <Text key={ability} size={isMobile ? `xSmall` : `small`}>
-                  {ability}
-                </Text>
-              ))}
-            </FlexView>
-          </FlexView>
-        ))}
-      </FlexView>
+      <BodyReinforceAbility
+        isMobile={isMobile}
+        list={abilityList[part]?.ability}
+      />
     </FlexView>
   );
 }

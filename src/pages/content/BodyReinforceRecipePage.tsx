@@ -1,15 +1,22 @@
 import { useState } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 
+import { getBodyReinforceRecipeJSON } from '@apis/content';
 import { FlexView, Option, Select, Text } from '@components/common';
-import { RecipeList } from '@components/content-pages';
+import { BodyReinforceRecipe } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
 
-const PARTS = [`무기 ~ 오른손`, `목/어깨`, `신발, 망토`];
+const PARTS = [`무기 ~ 오른손`, `목/어깨`, `신발 ~ 망토`];
 
 export default function BodyReinforceRecipePage() {
   const isMobile = useResponsive(510);
   const [part, setPart] = useState(0);
+
+  const { data: recipeList = [] } = useQuery({
+    queryKey: [`recipeList`],
+    queryFn: () => getBodyReinforceRecipeJSON(),
+  });
 
   const selectPart = (index: number) => {
     setPart(index);
@@ -27,7 +34,10 @@ export default function BodyReinforceRecipePage() {
         </Select>
       </FlexView>
 
-      <RecipeList isMobile={isMobile} part={part} />
+      <BodyReinforceRecipe
+        isMobile={isMobile}
+        list={recipeList[part]?.recipe}
+      />
     </FlexView>
   );
 }

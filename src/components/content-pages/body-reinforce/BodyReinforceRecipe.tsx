@@ -1,14 +1,21 @@
 import { FlexView, Text } from '@components/common';
-import { BODY_REINFORCE_RECIPE } from '@constants/index';
 
-type RecipeListProps = {
-  isMobile: boolean;
-  part: number;
+type Recipe = {
+  강화비약: string;
+  전표: string;
+  누적비약: string;
+  누적전표: string;
 };
 
-export default function RecipeList({ isMobile, part }: RecipeListProps) {
-  const data = BODY_REINFORCE_RECIPE[part];
+type BodyReinforceRecipeProps = {
+  isMobile: boolean;
+  list: Recipe[];
+};
 
+export default function BodyReinforceRecipe({
+  isMobile,
+  list,
+}: BodyReinforceRecipeProps) {
   return (
     <FlexView>
       <FlexView
@@ -59,7 +66,7 @@ export default function RecipeList({ isMobile, part }: RecipeListProps) {
         </Text>
       </FlexView>
 
-      {data?.map((item, index) => (
+      {list?.map((item, index) => (
         <FlexView
           key={item.강화비약}
           css={{

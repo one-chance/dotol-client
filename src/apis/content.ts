@@ -1,4 +1,4 @@
-export const getAchievementList = async () => {
+export const getAchievementJSON = async () => {
   const res = await fetch(
     `https://asset.dotols.com/data/content/achievement.json`,
   );
@@ -14,7 +14,7 @@ export const getAdventureList = async () => {
   return res.json();
 };
 
-export const getArcheologyList = async () => {
+export const getArcheologyJSON = async () => {
   const res = await fetch(
     `https://asset.dotols.com/data/content/archeology.json`,
   );
@@ -22,17 +22,25 @@ export const getArcheologyList = async () => {
   return res.json();
 };
 
-export const getBodyReinforceBonusList = async () => {
+export const getBodyReinforceAbilityJSON = async () => {
   const res = await fetch(
-    `https://asset.dotols.com/data/content/body-reinforce-bonus.json`,
+    `https://asset.dotols.com/data/content/body-reinforce-ability.json`,
   );
 
   return res.json();
 };
 
-export const getBodyReinforceAbilityList = async () => {
+export const getBodyReinforceRecipeJSON = async () => {
   const res = await fetch(
-    `https://asset.dotols.com/data/content/body-reinforce-ability.json`,
+    `https://asset.dotols.com/data/content/body-reinforce-recipe.json`,
+  );
+
+  return res.json();
+};
+
+export const getBodyReinforceBonusJSON = async () => {
+  const res = await fetch(
+    `https://asset.dotols.com/data/content/body-reinforce-bonus.json`,
   );
 
   return res.json();
