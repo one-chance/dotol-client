@@ -164,7 +164,7 @@ export default function EditPostPage() {
             radius={4}
             onClick={editPost}
           >
-            <Text color="blue">수정</Text>
+            <Text color={Colors.primary}>수정</Text>
           </Button>
         </FlexView>
       </FlexView>

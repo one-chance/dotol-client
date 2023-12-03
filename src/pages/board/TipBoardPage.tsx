@@ -1,7 +1,6 @@
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
-
 export default function TipBoardPage() {
   const isMobile = useResponsive(800);
 
@@ -10,7 +9,7 @@ export default function TipBoardPage() {
       css={{
         maxWidth: `800px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `60px auto`,
+        margin: `0 auto`,
       }}
     >
       <Text>팁 게시판</Text>

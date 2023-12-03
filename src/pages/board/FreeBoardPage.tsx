@@ -76,11 +76,11 @@ export default function FreeBoardPage() {
       css={{
         maxWidth: `720px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `60px auto`,
+        margin: `0 auto`,
       }}
       gap={12}
     >
-      <FlexView content="between" css={{ padding: `0 8px` }} items="center" row>
+      <FlexView content="between" items="center" row>
         <Text size={isMobile ? `normal` : `large`} weight="bold">
           자유 게시판
         </Text>

@@ -70,11 +70,11 @@ export default function FreePostPage() {
       css={{
         maxWidth: `960px`,
         width: `100%`,
-        margin: isMobile ? `0 0 40px auto` : `40px auto`,
+        margin: `0 auto`,
       }}
     >
       {isDeleted && (
-        <FlexView css={{ border: `1px solid lightgray` }} center fill>
+        <FlexView border="lightgray" center fill>
           <Text
             color={Colors.grey}
             size={isMobile ? `large` : `xLarge`}
