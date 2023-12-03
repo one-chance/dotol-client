@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Button, FlexView, Text, Image } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 import RotateButtons from './RotateButtons';
 
@@ -14,7 +14,7 @@ interface AvatarProps {
 
 type Naked = 'n' | 'y';
 
-export default ({ character, count, skin, equip }: AvatarProps) => {
+export default function Avatar({ character, count, skin, equip }: AvatarProps) {
   const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${character}&is=1`;
 
   const [direction, setDirecrtion] = useState(2);
@@ -41,7 +41,7 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
       items="center"
     >
       {count !== -1 && (
-        <Text color="blue" large semiBold>
+        <Text color="blue" size="large" weight="semiBold">
           남은 횟수: {count}
         </Text>
       )}
@@ -62,18 +62,18 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
         )}
       </FlexView>
 
-      <Text semiBold>{character || `아이디@서버`}</Text>
+      <Text weight="semiBold">{character || `아이디@서버`}</Text>
 
       <FlexView gap={16} row>
         <Button
           aria-label="벗기"
           color={isNaked === `y` ? `blue` : `transparent`}
-          radius={4}
           css={{
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
           }}
+          radius={4}
           onClick={() => setIsNaked(`y`)}
         >
           <Text color={isNaked === `y` ? Colors.white : `blue`}>벗기</Text>
@@ -85,8 +85,8 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
             width: `60px`,
             height: `36px`,
             border: `1px solid blue`,
-            borderRadius: `4px`,
           }}
+          radius={4}
           onClick={() => setIsNaked(`n`)}
         >
           <Text color={isNaked === `n` ? Colors.white : `blue`}>입기</Text>
@@ -94,4 +94,4 @@ export default ({ character, count, skin, equip }: AvatarProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

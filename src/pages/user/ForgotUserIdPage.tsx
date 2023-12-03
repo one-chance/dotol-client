@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { forgotUserId } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ForgotUserIdPage() {
   const navigate = useNavigate();
@@ -36,16 +36,17 @@ export default function ForgotUserIdPage() {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }} gap={60}>
+    <FlexView css={{ margin: `0 auto` }} gap={60}>
       <FlexView
-        radius={4}
+        border="lightgray"
         css={{
-          border: isMobile ? `none` : `1px solid lightgray`,
-          padding: isMobile ? `20px 10px` : `40px 20px`,
+          width: isMobile ? `350px` : `440px`,
+          padding: isMobile ? `20px` : `40px`,
         }}
         gap={isMobile ? 24 : 40}
+        radius={4}
       >
-        <Text large={isMobile} xxLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           아이디 찾기
         </Text>
 
@@ -63,38 +64,42 @@ export default function ForgotUserIdPage() {
             <Button
               aria-label="확인"
               color={Colors.purple}
-              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              css={{ height: `40px` }}
               disabled={!isEmailForm}
               radius={4}
               onClick={findUserId}
             >
-              <Text color={Colors.white} small={isMobile} semiBold>
+              <Text
+                color={Colors.white}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
                 확인
               </Text>
             </Button>
           </FlexView>
         ) : (
           <FlexView gap={isMobile ? 24 : 40}>
-            <FlexView>
-              <Text small={isMobile} center>
-                해당 이메일로 가입된 아이디는
+            <Text size={isMobile ? `small` : `normal`} center>
+              가입된 아이디는
+              <Text color={Colors.red} weight="bold">
+                &nbsp;{userId}&nbsp;
               </Text>
-              <Text small={isMobile} center>
-                <Text color={Colors.red} bold>
-                  {userId}
-                </Text>
-                입니다.
-              </Text>
-            </FlexView>
+              입니다.
+            </Text>
 
             <Button
               aria-label="비밀번호 찾기"
               color={Colors.purple}
-              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              css={{ height: `40px` }}
               radius={4}
               onClick={() => navigate(`/user/forgot-password`)}
             >
-              <Text color={Colors.white} small={isMobile} semiBold>
+              <Text
+                color={Colors.white}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
                 비밀번호 찾기
               </Text>
             </Button>

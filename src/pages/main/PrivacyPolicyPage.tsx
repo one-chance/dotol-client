@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+
 import { FlexView } from '@components/common';
 import { Privacy } from '@components/terms-page';
 import { useResponsive } from '@hooks/index';
@@ -16,7 +17,7 @@ export default function PrivacyPolicyPage() {
       css={{
         maxWidth: `960px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `60px auto`,
+        margin: `0 auto`,
       }}
     >
       <Privacy isMobile={isMobile} />

@@ -1,47 +1,47 @@
 import { HTMLAttributes, LabelHTMLAttributes } from 'react';
 
 import { CSSObject, jsx } from '@emotion/react';
-import { fontSizes, fontWeights } from '@styles/system';
+
+import { FontSizes, FontWeights } from '@styles/index';
+
+type Size =
+  | 'xxSmall'
+  | 'xSmall'
+  | 'small'
+  | 'normal'
+  | 'large'
+  | 'xLarge'
+  | 'xxLarge'
+  | 'xxxLarge';
+
+type Weight =
+  | `thin`
+  | 'extraLight'
+  | 'light'
+  | 'regular'
+  | 'medium'
+  | 'semiBold'
+  | 'bold'
+  | 'black';
 
 export type TextProps = (
   | HTMLAttributes<HTMLSpanElement>
   | LabelHTMLAttributes<HTMLLabelElement>
 ) & {
-  xxSmall?: boolean;
-  xSmall?: boolean;
-  small?: boolean;
-  large?: boolean;
-  xLarge?: boolean;
-  xxLarge?: boolean;
-  xxxLarge?: boolean;
-  light?: boolean;
-  medium?: boolean;
-  semiBold?: boolean;
-  bold?: boolean;
-  black?: boolean;
+  size?: Size;
+  weight?: Weight;
   color?: string;
   start?: boolean;
   center?: boolean;
-  end?: boolean;
   fill?: boolean;
   noDrag?: boolean;
   space?: number;
   underline?: boolean;
 };
 
-export default ({
-  xxSmall,
-  xSmall,
-  small,
-  large,
-  xLarge,
-  xxLarge,
-  xxxLarge,
-  light,
-  medium,
-  semiBold,
-  bold,
-  black,
+export default function Text({
+  size,
+  weight,
   color,
   start,
   center,
@@ -50,30 +50,14 @@ export default ({
   space,
   underline,
   ...props
-}: TextProps) => {
+}: TextProps) {
   const css: CSSObject = {
     backgroundColor: `unset`,
     color: color || `black`,
     lineHeight: 1.25,
-    letterSpacing: space ? `${space}px` : `1px`,
-    ...fontSizes[
-      (xxSmall && `xxSmall`) ||
-        (xSmall && `xSmall`) ||
-        (small && `small`) ||
-        (large && `large`) ||
-        (xLarge && `xLarge`) ||
-        (xxLarge && `xxLarge`) ||
-        (xxxLarge && `xxxLarge`) ||
-        `normal`
-    ],
-    ...fontWeights[
-      (light && `light`) ||
-        (medium && `medium`) ||
-        (semiBold && `semiBold`) ||
-        (bold && `bold`) ||
-        (black && `black`) ||
-        `regular`
-    ],
+    letterSpacing: space ? `${space}px` : `normal`,
+    fontSize: FontSizes[size || `normal`],
+    fontWeight: FontWeights[weight || `regular`],
     ...(start && { textAlign: `left` }),
     ...(center && { textAlign: `center` }),
     ...(fill && { flex: 1 }),
@@ -85,4 +69,4 @@ export default ({
   };
 
   return jsx(`span`, { css, ...props });
-};
+}

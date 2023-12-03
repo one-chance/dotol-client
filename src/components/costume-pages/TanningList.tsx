@@ -1,13 +1,16 @@
 import { Button, FlexView, Text } from '@components/common';
-import { SKIN_LIST } from '@constants/tanning';
-import { Colors } from '@styles/system';
+import { SKIN_LIST } from '@constants/index';
+import { Colors } from '@styles/index';
 
 type TanningListProps = {
   skinColor: number;
   selectSkin: (skin: number) => void;
 };
 
-export default ({ skinColor, selectSkin }: TanningListProps) => {
+export default function TanningList({
+  skinColor,
+  selectSkin,
+}: TanningListProps) {
   const changeSkin = (_skin: number) => {
     selectSkin(_skin);
   };
@@ -29,9 +32,7 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
           radius={4}
           onClick={() => changeSkin(-1)}
         >
-          <Text color={Colors.white} medium>
-            초기화
-          </Text>
+          <Text color={Colors.white}>초기화</Text>
         </Button>
 
         {SKIN_LIST.map(skin => (
@@ -57,4 +58,4 @@ export default ({ skinColor, selectSkin }: TanningListProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

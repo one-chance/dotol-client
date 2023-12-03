@@ -4,13 +4,12 @@ import { useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
-import { LoginModal } from '@components/modal';
-import { isLoggedInState, showLoginState } from '@states/index';
-import { Colors } from '@styles/system';
-
 import { TotalMenuMobile, UserMenuMobile } from '@components/menu-page';
+import { LoginMobileModal } from '@components/modal';
+import { isLoggedInState, showLoginState } from '@states/index';
+import { Colors } from '@styles/index';
 
-export default () => {
+export default function HeaderMobile() {
   const location = useLocation();
   const infoRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
@@ -78,7 +77,7 @@ export default () => {
         content="between"
         css={{
           padding: `20px 12px 15px 12px`,
-          borderBottom: `1px solid ${Colors.primary20}}`,
+          borderBottom: `1px solid ${Colors.primary20}`,
         }}
         items="center"
         row
@@ -90,15 +89,15 @@ export default () => {
 
           <Anchor
             aria-label="로고"
+            color={Colors.primary}
             css={{
-              color: Colors.primary,
               fontFamily: `Red Hat Display`,
-              fontSize: `20px`,
-              fontWeight: 700,
-              lineHeight: `24px`,
+              lineHeight: 1,
               letterSpacing: `-0.96px`,
             }}
             href="/"
+            size="large"
+            weight="bold"
           >
             dotol
           </Anchor>
@@ -111,7 +110,10 @@ export default () => {
             css={{ height: `24px` }}
             onClick={isLoggedIn ? openUserMenu : openLoginModal}
           >
-            <Text color={isLoggedIn ? Colors.purple : Colors.black} semiBold>
+            <Text
+              color={isLoggedIn ? Colors.purple : Colors.black}
+              weight="semiBold"
+            >
               {isLoggedIn ? `내 정보` : `로그인`}
             </Text>
           </Button>
@@ -124,7 +126,7 @@ export default () => {
 
       {showTotalMenu && <TotalMenuMobile onClose={closeTotalMenu} />}
 
-      {showLogin && <LoginModal close={closeLoginModal} />}
+      {showLogin && <LoginMobileModal close={closeLoginModal} />}
     </header>
   );
-};
+}

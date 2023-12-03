@@ -1,14 +1,21 @@
 import { FlexView, Text } from '@components/common';
-import { BODY_REINFORCE_RECIPE } from '@constants/body';
 
-type RecipeListProps = {
-  isMobile: boolean;
-  part: number;
+type Recipe = {
+  강화비약: string;
+  전표: string;
+  누적비약: string;
+  누적전표: string;
 };
 
-export default ({ isMobile, part }: RecipeListProps) => {
-  const data = BODY_REINFORCE_RECIPE[part];
+type BodyReinforceRecipeProps = {
+  isMobile: boolean;
+  list: Recipe[];
+};
 
+export default function BodyReinforceRecipe({
+  isMobile,
+  list,
+}: BodyReinforceRecipeProps) {
   return (
     <FlexView>
       <FlexView
@@ -19,47 +26,47 @@ export default ({ isMobile, part }: RecipeListProps) => {
       >
         <Text
           css={{ width: isMobile ? `58px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           등급
         </Text>
         <Text
           css={{ width: isMobile ? `65px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           강화비약
         </Text>
         <Text
           css={{ width: isMobile ? `80px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           전표
         </Text>
         <Text
           css={{ width: isMobile ? `65px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           누적 비약
         </Text>
         <Text
           css={{ width: isMobile ? `80px` : `100px` }}
-          small={isMobile}
-          bold
+          size={isMobile ? `small` : `normal`}
+          weight="bold"
           center
         >
           누적 전표
         </Text>
       </FlexView>
 
-      {data?.map((item, index) => (
+      {list?.map((item, index) => (
         <FlexView
           key={item.강화비약}
           css={{
@@ -73,35 +80,35 @@ export default ({ isMobile, part }: RecipeListProps) => {
         >
           <Text
             css={{ width: isMobile ? `58px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {index + 1}등급
           </Text>
           <Text
             css={{ width: isMobile ? `65px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.강화비약}
           </Text>
           <Text
             css={{ width: isMobile ? `80px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.전표}
           </Text>
           <Text
             css={{ width: isMobile ? `65px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.누적비약}
           </Text>
           <Text
             css={{ width: isMobile ? `80px` : `100px` }}
-            small={isMobile}
+            size={isMobile ? `small` : `normal`}
             center
           >
             {item.누적전표}
@@ -110,4 +117,4 @@ export default ({ isMobile, part }: RecipeListProps) => {
       ))}
     </FlexView>
   );
-};
+}

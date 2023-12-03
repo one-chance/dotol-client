@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 
-import { FlexView } from '@components/common';
 import { keyframes } from '@emotion/react';
-import { Colors } from '@styles/system';
 
-export default () => {
+import { FlexView } from '@components/common';
+import { Colors } from '@styles/index';
+
+export default function Spinner() {
   const spinAnimation = keyframes`
     from {
         transform: rotate(0deg);
@@ -54,4 +55,4 @@ export default () => {
       </svg>
     </FlexView>
   );
-};
+}

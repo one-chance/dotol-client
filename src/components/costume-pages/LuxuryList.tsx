@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button, FlexView, Image, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const NAMES = [
   `마법학교`,
@@ -146,7 +146,7 @@ const PARTS = [
   ],
 ];
 
-export default () => {
+export default function LuxuryList() {
   const isMobile = useResponsive(960);
   const [series, setSeries] = useState(0);
   const basicURL = `https://asset.dotols.com/image/luxury/`;
@@ -156,12 +156,12 @@ export default () => {
   };
 
   return (
-    <FlexView gap={8} css={{ maxWidth: '720px' }}>
+    <FlexView css={{ maxWidth: `720px` }} gap={8}>
       <FlexView
         border="lightgray"
-        radius={4}
         css={{ padding: `10px` }}
         gap={16}
+        radius={4}
         row
         wrap
       >
@@ -173,9 +173,9 @@ export default () => {
           >
             <Text
               key={name}
-              small={isMobile}
-              bold={NAMES[series - 1] === name}
               color={NAMES[series - 1] === name ? Colors.red : Colors.black}
+              size={isMobile ? `small` : `normal`}
+              weight={NAMES[series - 1] === name ? `bold` : `regular`}
             >
               {index + 1}기 {name}
             </Text>
@@ -187,34 +187,34 @@ export default () => {
         <>
           <FlexView radius={4} center>
             <Image
-              src={`${basicURL}${series}.png`}
               css={{
                 maxWidth: isMobile ? `350px` : `fit-content`,
-                borderRadius: '4px',
+                borderRadius: `4px`,
               }}
+              src={`${basicURL}${series}.png`}
             />
           </FlexView>
 
           <FlexView
             border="lightgray"
-            radius={4}
             css={{ padding: `10px` }}
             gap={8}
+            radius={4}
             row
             wrap
           >
             {PARTS[series].map(part => (
-              <Text key={part} small>
+              <Text key={part} size={isMobile ? `small` : `normal`}>
                 {part}
               </Text>
             ))}
           </FlexView>
 
-          <Text small={isMobile} color={Colors.red}>
+          <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
             ● 6부위 전용 이펙트가 적용된 이미지입니다.
           </Text>
         </>
       )}
     </FlexView>
   );
-};
+}

@@ -9,7 +9,7 @@ interface AvatarProps {
   character: string;
 }
 
-export default ({ equip, character }: AvatarProps) => {
+export default function Mannequin({ equip, character }: AvatarProps) {
   const basic = `https://avatar.baram.nexon.com/Profile/AvatarRender.aspx?loginID=${character}&is=1&ed=Y`;
   const [direction, setDirecrtion] = useState(2);
   const [avatar, setAvatar] = useState(basic);
@@ -40,7 +40,7 @@ export default ({ equip, character }: AvatarProps) => {
         {character && <Image src={avatar} />}
       </FlexView>
 
-      <Text semiBold>{character || `아이디@서버`}</Text>
+      <Text weight="semiBold">{character || `아이디@서버`}</Text>
     </FlexView>
   );
-};
+}

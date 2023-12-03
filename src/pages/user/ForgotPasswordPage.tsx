@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { forgotPassword } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ForgotPasswordPage() {
   const isMobile = useResponsive(500);
@@ -42,16 +42,17 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }}>
+    <FlexView css={{ margin: `0 auto` }}>
       <FlexView
-        radius={4}
+        border="lightgray"
         css={{
-          border: isMobile ? `none` : `1px solid lightgray`,
-          padding: isMobile ? `20px 10px` : `40px 20px`,
+          width: isMobile ? `350px` : `440px`,
+          padding: isMobile ? `20px` : `40px`,
         }}
         gap={isMobile ? 24 : 40}
+        radius={4}
       >
-        <Text large={isMobile} xxLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           비밀번호 찾기
         </Text>
 
@@ -78,18 +79,22 @@ export default function ForgotPasswordPage() {
         <Button
           aria-label="확인"
           color={Colors.purple}
-          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          css={{ height: `40px` }}
           disabled={!isEmailForm || userId.length < 6}
           radius={4}
           onClick={findPassword}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
+          >
             확인
           </Text>
         </Button>
 
         {isSent && (
-          <Text small={isMobile} center semiBold>
+          <Text size={isMobile ? `small` : `normal`} weight="semiBold" center>
             비밀번호 초기화 메일이 전송되었습니다.
           </Text>
         )}

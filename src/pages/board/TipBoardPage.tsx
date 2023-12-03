@@ -9,7 +9,7 @@ export default function TipBoardPage() {
       css={{
         maxWidth: `800px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `60px auto`,
+        margin: `0 auto`,
       }}
     >
       <Text>팁 게시판</Text>

@@ -18,10 +18,10 @@ import {
   PET_EQUIP_GLOVES,
   PET_EQUIP_SHIELDS,
   PET_EQUIP_CLOTHES,
-} from '@constants/equip';
-import { PET_EQUIP_POWER } from '@constants/power';
+  PET_EQUIP_POWER,
+} from '@constants/index';
 
-export default () => {
+export default function PetEquipPower() {
   const SELECT_WIDTH = 140;
 
   const [reinforce, setReinforce] = useState<{ [key: string]: number }>({
@@ -131,7 +131,6 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{
         minWidth: `300px`,
         width: `100%`,
@@ -139,6 +138,7 @@ export default () => {
       }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
@@ -183,7 +183,7 @@ export default () => {
                 disabled={equips.weapon === 0}
                 onChange={() => applyReinforce(`weapon`, 1)}
               />
-              <Text small>강화+1</Text>
+              <Text size="small">강화+1</Text>
             </FlexView>
 
             <FlexView gap={4} items="center" row>
@@ -192,7 +192,7 @@ export default () => {
                 disabled={equips.weapon === 0}
                 onChange={() => applyReinforce(`weapon`, 2)}
               />
-              <Text small>강화+2</Text>
+              <Text size="small">강화+2</Text>
             </FlexView>
           </FlexView>
         </FlexView>
@@ -211,13 +211,13 @@ export default () => {
               disabled={equips.helmet === 0}
               onChange={() => applyReinforce(`helmet`, 1)}
             />
-            <Text small>강화+1</Text>
+            <Text size="small">강화+1</Text>
 
             <Checkbox
               disabled={equips.helmet === 0}
               onChange={() => applyReinforce(`helmet`, 2)}
             />
-            <Text small>강화+2</Text>
+            <Text size="small">강화+2</Text>
           </FlexView>
         </FlexView>
 
@@ -235,13 +235,13 @@ export default () => {
               disabled={equips.armor === 0}
               onChange={() => applyReinforce(`armor`, 1)}
             />
-            <Text small>강화+1</Text>
+            <Text size="small">강화+1</Text>
 
             <Checkbox
               disabled={equips.armor === 0}
               onChange={() => applyReinforce(`armor`, 2)}
             />
-            <Text small>강화+2</Text>
+            <Text size="small">강화+2</Text>
           </FlexView>
         </FlexView>
 
@@ -262,13 +262,13 @@ export default () => {
               disabled={equips.leftGlove === 0}
               onChange={() => applyReinforce(`leftGlove`, 1)}
             />
-            <Text small>강화+1</Text>
+            <Text size="small">강화+1</Text>
 
             <Checkbox
               disabled={equips.leftGlove === 0}
               onChange={() => applyReinforce(`leftGlove`, 2)}
             />
-            <Text small>강화+2</Text>
+            <Text size="small">강화+2</Text>
           </FlexView>
         </FlexView>
 
@@ -289,13 +289,13 @@ export default () => {
               disabled={equips.rightGlove === 0}
               onChange={() => applyReinforce(`rightGlove`, 1)}
             />
-            <Text small>강화+1</Text>
+            <Text size="small">강화+1</Text>
 
             <Checkbox
               disabled={equips.rightGlove === 0}
               onChange={() => applyReinforce(`rightGlove`, 2)}
             />
-            <Text small>강화+2</Text>
+            <Text size="small">강화+2</Text>
           </FlexView>
         </FlexView>
 
@@ -313,7 +313,7 @@ export default () => {
               disabled={equips.shield === 0}
               onChange={() => applyReinforce(`shield`, 1)}
             />
-            <Text small>강화+1</Text>
+            <Text size="small">강화+1</Text>
           </FlexView>
         </FlexView>
 
@@ -345,7 +345,7 @@ export default () => {
         </Select>
       </FlexView>
 
-      <Text semiBold>환수장비 전투력: {petEquipPower}</Text>
+      <Text weight="semiBold">환수장비 전투력: {petEquipPower}</Text>
     </FlexView>
   );
-};
+}

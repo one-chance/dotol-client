@@ -1,7 +1,8 @@
 import { HTMLAttributes, ReactNode, forwardRef } from 'react';
 
 import { CSSObject, jsx } from '@emotion/react';
-import { Colors } from '@styles/system';
+
+import { Colors } from '@styles/index';
 
 type CheckboxProps = HTMLAttributes<HTMLInputElement> & {
   size?: number;

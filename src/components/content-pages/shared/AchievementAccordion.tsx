@@ -1,32 +1,31 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
 import { FlexView, Icon, Text } from '@components/common';
+import { useResponsive } from '@hooks/index';
 
 type AccordionProps = {
   title: string;
-  content?: string;
   titleCSS?: CSSObject;
-  contentCSS?: CSSObject;
   divider?: boolean;
-  children?: ReactNode;
+  children: ReactNode;
 };
 
-export default ({
-  title,
-  content,
-  titleCSS,
-  contentCSS,
-  divider,
-  children,
-}: AccordionProps) => {
+export default ({ title, titleCSS, divider, children }: AccordionProps) => {
+  const isMobile = useResponsive(480);
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [title]);
 
   return (
     <FlexView
       css={{
         width: `fit-content`,
+        borderLeft: `1px solid lightgray`,
+        borderRight: `1px solid lightgray`,
         borderBottom: `1px solid lightgray`,
         ...titleCSS,
       }}
@@ -34,30 +33,29 @@ export default ({
       <FlexView
         content="between"
         css={{
-          padding: `10px`,
+          minHeight: `36px`,
+          padding: isMobile ? `4px` : `8px`,
           cursor: `pointer`,
           ...(divider && isOpen && { borderBottom: `1px solid lightgray` }),
         }}
-        gap={40}
+        gap={16}
         items="center"
         row
         onClick={() => setIsOpen(!isOpen)}
       >
-        <Text medium>{title}</Text>
+        <Text size={isMobile ? `small` : `normal`}>{title}</Text>
         <Icon name={isOpen ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 
       <FlexView
         css={{
-          ...contentCSS,
-          padding: isOpen ? `10px` : `0 10px`,
+          padding: isOpen ? `8px` : `0 8px`,
           minHeight: isOpen ? `auto` : 0,
           transition: `0.2s ease-in-out`,
         }}
         wrap
       >
-        {isOpen && children && children}
-        {isOpen && !children && <Text>{content}</Text>}
+        {isOpen && children}
       </FlexView>
     </FlexView>
   );

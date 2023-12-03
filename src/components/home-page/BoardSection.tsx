@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 
 import { CSSObject } from '@emotion/react';
-import { IPost } from '@interfaces/board';
 import { useNavigate } from 'react-router-dom';
 
 import { FlexView, Link, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
+import { IPost } from '@interfaces/index';
 import { convertDateFormat } from '@utils/index';
 
-export default () => {
+export default function BoardSection() {
   const navigate = useNavigate();
   const isMobile = useResponsive(400);
 
@@ -91,18 +91,15 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       content="between"
-      css={{
-        padding: isMobile ? `8px` : `12px`,
-        margin: isMobile ? `0 5px` : undefined,
-      }}
+      css={{ padding: isMobile ? `8px` : `12px` }}
       fill={!isMobile}
+      radius={4}
     >
-      <Text small={isMobile} bold>
+      <Text size={isMobile ? `small` : `normal`} weight="bold">
         게시판 최신글
       </Text>
-      <FlexView fill center>
+      <FlexView center fill>
         <Text>데이터 복구 예정입니다.</Text>
       </FlexView>
       {/* <Link
@@ -128,16 +125,16 @@ export default () => {
             </Link>
 
             <FlexView gap={4} items="center" row>
-              <Text small={!isMobile} xSmall={isMobile}>
+              <Text size={isMobile ? 'xSmall' : 'small}>
                 {post.writer.character}
               </Text>
-              <Text small={!isMobile} xSmall={isMobile}>
+              <Text size={isMobile ? 'xSmall' : 'small}>
                 조회{post.views}
               </Text>
-              <Text small={!isMobile} xSmall={isMobile}>
+              <Text size={isMobile ? 'xSmall' : 'small}>
                 추천{post.recommenders.length}
               </Text>
-              <Text small={!isMobile} xSmall={isMobile}>
+              <Text size={isMobile ? 'xSmall' : 'small}>
                 {convertDateFormat(post.createdAt)}
               </Text>
             </FlexView>
@@ -146,4 +143,4 @@ export default () => {
       </FlexView> */}
     </FlexView>
   );
-};
+}

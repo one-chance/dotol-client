@@ -5,10 +5,9 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { getMyInfo } from '@apis/index';
 import { FlexView, Text } from '@components/common';
 import { Avatar, TanningList } from '@components/costume-pages';
-
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, showLoginState, toastState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function TanningPage() {
   const isMobile = useResponsive(980);
@@ -28,7 +27,7 @@ export default function TanningPage() {
       return openToast({
         open: true,
         message: `대표 캐릭터를 인증해주세요.`,
-        type: 'error',
+        type: `error`,
       });
     }
 
@@ -52,13 +51,13 @@ export default function TanningPage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <Text large={isMobile} xLarge={!isMobile} bold>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold">
         태닝 목록
       </Text>
 
       <FlexView
         gap={20}
-        items={isMobile ? `center` : undefined}
+        items={isMobile ? `center` : `stretch`}
         row={!isMobile}
       >
         <Avatar character={mainCharacter} count={-1} skin={skinNumber} />
@@ -66,7 +65,7 @@ export default function TanningPage() {
         <TanningList selectSkin={changeSkin} skinColor={skinNumber} />
       </FlexView>
 
-      <Text color={Colors.red} small>
+      <Text color={Colors.red} size="small">
         ● 착용 중인 장비를 벗은 상태로 확인해보세요.
       </Text>
     </FlexView>

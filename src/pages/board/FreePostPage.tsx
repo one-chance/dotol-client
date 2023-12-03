@@ -13,7 +13,7 @@ import {
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { IPost } from '@interfaces/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type State = {
   page: number;
@@ -70,12 +70,16 @@ export default function FreePostPage() {
       css={{
         maxWidth: `960px`,
         width: `100%`,
-        margin: isMobile ? `0 0 40px auto` : `40px auto`,
+        margin: `0 auto`,
       }}
     >
       {isDeleted && (
-        <FlexView css={{ border: `1px solid lightgray` }} center fill>
-          <Text color={Colors.grey} large={isMobile} xLarge={!isMobile} bold>
+        <FlexView border="lightgray" center fill>
+          <Text
+            color={Colors.grey}
+            size={isMobile ? `large` : `xLarge`}
+            weight="bold"
+          >
             삭제된 게시물입니다.
           </Text>
         </FlexView>

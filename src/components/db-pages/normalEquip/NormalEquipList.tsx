@@ -4,15 +4,15 @@ import { getEquipByName, getEquipByOption } from '@apis/index';
 import {
   Button,
   FlexView,
-  Image,
   Input,
   Text,
   Select,
   Option,
 } from '@components/common';
+import { ImageSlot } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
 import { IEquip } from '@interfaces/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const ITEM_TYPES = [
   `장비 종류`,
@@ -63,9 +63,8 @@ const JOBS = [
   `차사`,
   `살수`,
 ];
-export default () => {
+export default function NormalEquipList() {
   const isMobile = useResponsive(960);
-  const basicUrl = `https://asset.dotols.com/image/equip/`;
 
   const [searchKeyword, setSearchKeyword] = useState(``);
   const [searchOption, setSearchOption] = useState({
@@ -75,11 +74,8 @@ export default () => {
   });
 
   const [items, setItems] = useState([]);
-  const [slotItems, setSlotItems] = useState<{ [key: string]: string }>({
-    one: ``,
-    two: ``,
-    three: ``,
-  });
+
+  const [slot, setSlot] = useState([``, ``, ``]);
 
   const inputSearchKeyword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchKeyword(e.target.value);
@@ -131,222 +127,146 @@ export default () => {
     setSearchKeyword(``);
   };
 
-  const saveToSlot = (name: string) => {
-    if (slotItems.one === ``) setSlotItems({ ...slotItems, one: name });
-    else if (slotItems.two === ``) setSlotItems({ ...slotItems, two: name });
-    else if (slotItems.three === ``)
-      setSlotItems({ ...slotItems, three: name });
-  };
+  const updateSlot = (index: number, name: string) => {
+    const copy = [...slot];
 
-  const removeFromSlot = (slot: string) => {
-    setSlotItems({ ...slotItems, [slot]: `` });
+    if (index === -1) {
+      const emptyIndex = copy.findIndex(empty => empty === ``);
+      if (emptyIndex !== -1) copy[emptyIndex] = `equip/${name}`;
+    } else {
+      copy[index] = ``;
+    }
+
+    setSlot(copy);
   };
 
   return (
     <FlexView gap={20}>
       <FlexView gap={20}>
-        <FlexView gap={20}>
-          <FlexView content="between" gap={20} items="center" row wrap>
-            <FlexView row>
-              <Input
-                css={{
-                  borderRight: 0,
-                  borderRadius: `4px 0 0 4px`,
-                  textAlign: `center`,
-                }}
-                placeholder="장비 이름"
-                value={searchKeyword || ``}
-                width={200}
-                onChange={inputSearchKeyword}
-                onKeyDown={e => {
-                  if (e.key === `Enter`) searchItemByName();
-                }}
-              />
-              <Button
-                aria-label="검색"
-                color="blue"
-                css={{ width: `60px`, borderRadius: `0 4px 4px 0` }}
-                onClick={searchItemByName}
-              >
-                <Text color={Colors.white}>검색</Text>
-              </Button>
-            </FlexView>
-
-            <FlexView gap={4} items="center" row>
-              <Select
-                height={36}
-                isMobile={isMobile}
-                label={ITEM_TYPES[searchOption.type]}
-                width={isMobile ? 112 : 130}
-              >
-                <Option
-                  selected={ITEM_TYPES[searchOption.type]}
-                  values={ITEM_TYPES}
-                  onSelect={selectItemType}
-                />
-              </Select>
-
-              <Select
-                height={36}
-                isMobile={isMobile}
-                label={ITEM_PARTS[searchOption.part]}
-                width={isMobile ? 112 : 130}
-              >
-                <Option
-                  selected={ITEM_PARTS[searchOption.part]}
-                  values={ITEM_PARTS}
-                  onSelect={selectItemPart}
-                />
-              </Select>
-
-              <Select
-                height={36}
-                isMobile={isMobile}
-                label={JOBS[searchOption.job]}
-                width={isMobile ? 66 : 80}
-              >
-                <Option
-                  selected={JOBS[searchOption.job]}
-                  values={JOBS}
-                  onSelect={selectJob}
-                />
-              </Select>
-
-              <Button
-                aria-label="검색"
-                color="blue"
-                css={{ width: `48px`, height: `36px`, borderRadius: `4px` }}
-                onClick={searchItemByOption}
-              >
-                <Text color={Colors.white}>검색</Text>
-              </Button>
-            </FlexView>
+        <FlexView content="between" gap={20} items="center" row wrap>
+          <FlexView row>
+            <Input
+              css={{
+                borderRight: 0,
+                borderRadius: `4px 0 0 4px`,
+              }}
+              placeholder="장비 이름"
+              value={searchKeyword || ``}
+              width={200}
+              center
+              onChange={inputSearchKeyword}
+              onKeyDown={e => {
+                if (e.key === `Enter`) searchItemByName();
+              }}
+            />
+            <Button
+              aria-label="검색"
+              color={Colors.primary}
+              css={{ width: `60px`, borderRadius: `0 4px 4px 0` }}
+              onClick={searchItemByName}
+            >
+              <Text color={Colors.white}>검색</Text>
+            </Button>
           </FlexView>
 
-          <FlexView
-            radius={4}
-            border="lightgray"
-            css={{
-              maxHeight: `151px`,
-              minHeight: `116px`,
-              overflowY: `auto`,
-              padding: `10px`,
-              alignContent: items.length === 0 ? `center` : `flex-start`,
-              '::-webkit-scrollbar': { display: `none` },
-            }}
-            gap={8}
-            row
-            wrap
-          >
-            {items?.length === 0 && (
-              <FlexView center fill>
-                <Text color="gray" small={isMobile}>
-                  아이템을 선택하면 빈 슬롯에 자동으로 추가됩니다.
-                </Text>
-                <Text color="gray" small={isMobile}>
-                  슬롯 버튼을 클릭하면 빈 슬롯으로 변경됩니다.
-                </Text>
-              </FlexView>
-            )}
+          <FlexView gap={4} items="center" row>
+            <Select
+              height={36}
+              isMobile={isMobile}
+              label={ITEM_TYPES[searchOption.type]}
+              width={isMobile ? 112 : 130}
+            >
+              <Option
+                selected={ITEM_TYPES[searchOption.type]}
+                values={ITEM_TYPES}
+                onSelect={selectItemType}
+              />
+            </Select>
 
-            {items?.map((item: IEquip) => (
-              <Button
-                key={item.index}
-                aria-label="장비"
-                onClick={() => saveToSlot(item.index.toString())}
-              >
-                <Text color={Colors.primary} small>
-                  {item.name}
-                </Text>
-              </Button>
-            ))}
+            <Select
+              height={36}
+              isMobile={isMobile}
+              label={ITEM_PARTS[searchOption.part]}
+              width={isMobile ? 112 : 130}
+            >
+              <Option
+                selected={ITEM_PARTS[searchOption.part]}
+                values={ITEM_PARTS}
+                onSelect={selectItemPart}
+              />
+            </Select>
+
+            <Select
+              height={36}
+              isMobile={isMobile}
+              label={JOBS[searchOption.job]}
+              width={isMobile ? 66 : 80}
+            >
+              <Option
+                selected={JOBS[searchOption.job]}
+                values={JOBS}
+                onSelect={selectJob}
+              />
+            </Select>
+
+            <Button
+              aria-label="검색"
+              color={Colors.primary}
+              css={{ width: `48px`, height: `36px` }}
+              radius={4}
+              onClick={searchItemByOption}
+            >
+              <Text color={Colors.white}>검색</Text>
+            </Button>
           </FlexView>
         </FlexView>
 
         <FlexView
-          border="lihggray"
-          radius={4}
-          content={isMobile ? `start` : `center`}
+          border="lightgray"
           css={{
-            padding: `8px`,
+            maxHeight: `151px`,
+            minHeight: `116px`,
+            overflowY: `auto`,
+            padding: `10px`,
+            alignContent: items.length === 0 ? `center` : `flex-start`,
+            '::-webkit-scrollbar': { display: `none` },
           }}
-          gap={isMobile ? 20 : 10}
-          items={isMobile ? `center` : `start`}
-          row={!isMobile}
+          gap={8}
+          radius={4}
+          row
+          wrap
         >
-          <FlexView css={{ width: `304px` }} gap={10} items="center">
+          {items?.length === 0 && (
+            <FlexView center fill>
+              <Text color="gray" size={isMobile ? `small` : `normal`}>
+                아이템을 선택하면 빈 슬롯에 자동으로 추가됩니다.
+              </Text>
+              <Text color="gray" size={isMobile ? `small` : `normal`}>
+                슬롯 버튼을 클릭하면 빈 슬롯으로 변경됩니다.
+              </Text>
+            </FlexView>
+          )}
+
+          {items?.map((item: IEquip) => (
             <Button
-              aria-label="슬롯1"
-              css={{
-                border: `1px solid`,
-                borderColor: slotItems.one === `` ? `blue` : `red`,
-                width: `60px`,
-                height: `36px`,
-              }}
-              disabled={slotItems.one === ``}
-              radius={4}
-              onClick={() => removeFromSlot(`one`)}
+              key={item.index}
+              aria-label="장비"
+              onClick={() => updateSlot(-1, item.index.toString())}
             >
-              <Text color={slotItems.one === `` ? `blue` : `red`}>슬롯1</Text>
+              <Text color={Colors.primary} size="small">
+                {item.name}
+              </Text>
             </Button>
-
-            {slotItems.one !== `` && (
-              <Image
-                css={{ maxWidth: `304px` }}
-                src={`${basicUrl}${slotItems.one}.png`}
-              />
-            )}
-          </FlexView>
-
-          <FlexView gap={10} items="center" fill>
-            <Button
-              aria-label="슬롯2"
-              css={{
-                border: `1px solid`,
-                borderColor: slotItems.two === `` ? `blue` : `red`,
-                width: `60px`,
-                height: `36px`,
-              }}
-              disabled={slotItems.two === ``}
-              radius={4}
-              onClick={() => removeFromSlot(`two`)}
-            >
-              <Text color={slotItems.two === `` ? `blue` : `red`}>슬롯2</Text>
-            </Button>
-
-            {slotItems.two !== `` && (
-              <Image
-                css={{ maxWidth: `310px` }}
-                src={`${basicUrl}${slotItems.two}.png`}
-              />
-            )}
-          </FlexView>
-
-          <FlexView gap={10} items="center" fill>
-            <Button
-              aria-label="슬롯3"
-              css={{
-                border: `1px solid`,
-                borderColor: slotItems.three === `` ? `blue` : `red`,
-                width: `60px`,
-                height: `36px`,
-              }}
-              disabled={slotItems.three === ``}
-              radius={4}
-              onClick={() => removeFromSlot(`three`)}
-            >
-              <Text color={slotItems.three === `` ? `blue` : `red`}>슬롯3</Text>
-            </Button>
-
-            {slotItems.three !== `` && (
-              <Image
-                css={{ maxWidth: `310px` }}
-                src={`${basicUrl}${slotItems.three}.png`}
-              />
-            )}
-          </FlexView>
+          ))}
         </FlexView>
       </FlexView>
+
+      <ImageSlot
+        isMobile={isMobile}
+        items={slot}
+        width={300}
+        onSelect={updateSlot}
+      />
     </FlexView>
   );
-};
+}

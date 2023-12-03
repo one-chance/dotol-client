@@ -14,7 +14,7 @@ import {
 } from '@components/calculator-pages';
 import { FlexView, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const TYPES = [
   `레벨`,
@@ -77,13 +77,8 @@ export default function PowerPage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <FlexView
-        content="between"
-        css={{ margin: isMobile ? `0 10px` : 0 }}
-        items="center"
-        row
-      >
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+      <FlexView content="between" items="center" row>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           전투력 계산기
         </Text>
 
@@ -102,7 +97,11 @@ export default function PowerPage() {
 
       <FlexView css={{ margin: `0 10px` }} gap={4}>
         {explanations[type].map(text => (
-          <Text key={text} color={Colors.red} small={isMobile}>
+          <Text
+            key={text}
+            color={Colors.red}
+            size={isMobile ? `small` : `normal`}
+          >
             {text}
           </Text>
         ))}

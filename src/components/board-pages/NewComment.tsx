@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
 import { Button, FlexView, Text, TextArea } from '@components/common';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
-type CommentProps = {
+type NewCommentProps = {
   color?: string;
   onSubmit: (e: string) => void;
 };
 
-export default ({ color, onSubmit }: CommentProps) => {
+export default function NewComment({ color, onSubmit }: NewCommentProps) {
   const [value, setValue] = useState(``);
 
   const inputValue = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -38,14 +38,14 @@ export default ({ color, onSubmit }: CommentProps) => {
       <Button
         aria-label="등록"
         color={Colors.purple}
-        radius={4}
         css={{ width: `60px`, height: `80px` }}
+        radius={4}
         onClick={submitValue}
       >
-        <Text color={Colors.white} semiBold small>
+        <Text color={Colors.white} size="small" weight="bold">
           등록
         </Text>
       </Button>
     </FlexView>
   );
-};
+}

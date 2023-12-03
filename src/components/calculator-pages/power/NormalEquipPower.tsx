@@ -19,7 +19,7 @@ const EQUIP_PARTS = [
   `세트옷`,
 ];
 
-export default () => {
+export default function NormalEquipPower() {
   const [equips, setEquips] = useState({
     '목/어깨장식': ``,
     투구: ``,
@@ -70,12 +70,12 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{
         padding: `20px`,
       }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView css={{ width: `300px` }} gap={20} items="center" row wrap>
         {EQUIP_PARTS.map(part => (
@@ -92,7 +92,7 @@ export default () => {
         ))}
       </FlexView>
 
-      <Text semiBold>장비 전투력: {normalEquipPower}</Text>
+      <Text weight="semiBold">장비 전투력: {normalEquipPower}</Text>
     </FlexView>
   );
-};
+}

@@ -1,7 +1,8 @@
 import { useRef, useEffect } from 'react';
 
-import { FlexView, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
+
+import { FlexView, Text } from '@components/common';
 
 type OptionProps = {
   css?: CSSObject;
@@ -19,7 +20,13 @@ const lastBorder: CSSObject = {
   borderRadius: `0 0 4px 4px`,
 };
 
-export default ({ css, center, values, selected, onSelect }: OptionProps) => {
+export default function Option({
+  css,
+  center,
+  values,
+  selected,
+  onSelect,
+}: OptionProps) {
   const refs = useRef<HTMLDivElement[]>([]);
 
   const optionCSS: CSSObject = {
@@ -71,11 +78,11 @@ export default ({ css, center, values, selected, onSelect }: OptionProps) => {
             }
           }}
         >
-          <Text color="#4D4D4D" small>
+          <Text color="#4D4D4D" size="small">
             {option}
           </Text>
         </FlexView>
       ))}
     </>
   );
-};
+}

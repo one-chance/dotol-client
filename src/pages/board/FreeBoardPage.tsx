@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { IPost } from '@interfaces/board';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { getAnnouncementList, getPostList } from '@apis/index';
@@ -13,11 +12,12 @@ import {
   Text,
   Select,
   Option,
+  Pagination,
 } from '@components/common';
-import { Pagination } from '@components/pagination';
-import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/board';
+import { TITLES, SEARCH_TYPES_EN, SEARCH_TYPES_KO } from '@constants/index';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { IPost } from '@interfaces/index';
+import { Colors } from '@styles/index';
 
 const WIDTHS = [`auto`, `140`, `80`, `80`];
 
@@ -76,12 +76,12 @@ export default function FreeBoardPage() {
       css={{
         maxWidth: `720px`,
         width: `100%`,
-        margin: isMobile ? `20px auto` : `60px auto`,
+        margin: `0 auto`,
       }}
       gap={12}
     >
-      <FlexView content="between" css={{ padding: `0 8px` }} items="center" row>
-        <Text large={!isMobile} bold>
+      <FlexView content="between" items="center" row>
+        <Text size={isMobile ? `normal` : `large`} weight="bold">
           자유 게시판
         </Text>
 
@@ -115,9 +115,9 @@ export default function FreeBoardPage() {
                 key={title}
                 css={{ minWidth: `${WIDTHS[index]}px` }}
                 fill={index === 0}
+                size="small"
+                weight="semiBold"
                 center
-                semiBold
-                small
               >
                 {title}
               </Text>
@@ -177,7 +177,7 @@ export default function FreeBoardPage() {
               css={{ width: `60px`, borderRadius: `0 4px 4px 0` }}
               onClick={searchArticle}
             >
-              <Text color="white" semiBold>
+              <Text color="white" weight="semiBold">
                 검색
               </Text>
             </Button>

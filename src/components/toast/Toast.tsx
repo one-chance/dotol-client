@@ -1,12 +1,13 @@
+import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+
 import { keyframes } from '@emotion/react';
+import { useRecoilState } from 'recoil';
 
 import { FlexView, Text } from '@components/common';
-import { Colors } from '@styles/system';
 import { ToastType } from '@interfaces/index';
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-import { toastState } from '@states/toast';
+import { toastState } from '@states/index';
+import { Colors } from '@styles/index';
 
 type ToastProps = {
   type: ToastType;
@@ -48,7 +49,6 @@ export default function Toast({ type, message, isMobile }: ToastProps) {
           css={{
             zIndex: 99999,
             backgroundColor: bgColor[type],
-            borderRadius: `4px`,
             position: `fixed`,
             left: `50%`,
             padding: `4px 16px`,
@@ -62,8 +62,13 @@ export default function Toast({ type, message, isMobile }: ToastProps) {
             boxShadow: `0px 0px 10px rgba(0, 0, 0, 0.3)`,
             whiteSpace: `nowrap`,
           }}
+          radius={4}
         >
-          <Text color={Colors.white} xSmall={isMobile} semiBold small>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `xSmall` : `small`}
+            weight="semiBold"
+          >
             {message}
           </Text>
         </FlexView>,

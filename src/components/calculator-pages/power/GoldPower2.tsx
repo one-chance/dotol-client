@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { FlexView, Input, Select, Option, Text } from '@components/common';
-import { GOLD_POWER2 } from '@constants/power';
+import { GOLD_POWER2 } from '@constants/index';
 
 const ABILITIES = [
   `콘텐츠 능력치`,
@@ -20,7 +20,7 @@ const ABILITIES = [
   `체력/마력`,
 ];
 
-export default () => {
+export default function GoldPower2() {
   const [goldPower, setGoldPower] = useState(0);
   const [ability, setAbility] = useState<{ [key: string]: string }>({
     one: ABILITIES[0],
@@ -98,10 +98,10 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{ padding: `20px` }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView gap={10} items="center" row>
         <Select label={ability.one} width={210}>
@@ -166,7 +166,7 @@ export default () => {
         />
       </FlexView>
 
-      <Text semiBold>(콘텐츠)부가잠재능력 전투력: {goldPower}</Text>
+      <Text weight="semiBold">(콘텐츠)부가잠재능력 전투력: {goldPower}</Text>
     </FlexView>
   );
-};
+}

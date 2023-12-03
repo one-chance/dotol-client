@@ -1,10 +1,10 @@
 import { atom } from 'recoil';
 
 export const toastState = atom({
-  key: 'toastState',
+  key: `toastState`,
   default: {
     open: false,
-    message: '',
-    type: 'error',
+    message: ``,
+    type: `error`,
   },
 });

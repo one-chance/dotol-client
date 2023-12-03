@@ -1,7 +1,8 @@
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-import * as Icons from '@assets/icons';
 import { CSSObject } from '@emotion/react';
+
+import * as Icons from '@assets/icons';
 
 export type IconProps = DetailedHTMLProps<
   HTMLAttributes<HTMLSpanElement>,
@@ -12,7 +13,7 @@ export type IconProps = DetailedHTMLProps<
   size?: number;
 };
 
-export default ({ name, color, size, ...props }: IconProps) => {
+export default function Icon({ name, color, size, ...props }: IconProps) {
   const RenderIcon = () =>
     Icons[name as keyof typeof Icons](color || `#515355`);
 
@@ -29,4 +30,4 @@ export default ({ name, color, size, ...props }: IconProps) => {
       <RenderIcon />
     </span>
   );
-};
+}

@@ -14,8 +14,8 @@ export default function CharacterListPage() {
   });
 
   return (
-    <FlexView css={{ margin: `0 auto` }} gap={20} content="start">
-      <FlexView row wrap gap={20} content="center">
+    <FlexView content="start" css={{ margin: `0 auto` }} gap={20}>
+      <FlexView content="center" gap={20} row wrap>
         <AuthCharacter isMobile={isMobile} />
 
         <CharacterList isMobile={isMobile} list={characterList} />

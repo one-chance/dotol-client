@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { getMyInfo, updateMyInfo } from '@apis/index';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { Button, FlexView, Input, Link, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { IUser } from '@interfaces/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function ProfilePage() {
   const isMobile = useResponsive(400);
@@ -30,12 +30,15 @@ export default function ProfilePage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
-        radius={4}
         border="lightgray"
-        css={{ padding: '20px' }}
+        css={{
+          width: isMobile ? `350px` : `480px`,
+          padding: isMobile ? `20px` : `40px`,
+        }}
         gap={20}
+        radius={4}
       >
-        <Text large={isMobile} xLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           프로필
         </Text>
 
@@ -43,13 +46,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               아이디
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.userId}
             </Text>
           </FlexView>
@@ -57,13 +60,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               이메일
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.email}
             </Text>
           </FlexView>
@@ -71,13 +74,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               도톨 레벨
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.grade}
             </Text>
           </FlexView>
@@ -85,13 +88,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               도톨 포인트
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.point}
             </Text>
           </FlexView>
@@ -99,13 +102,13 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               대표 캐릭터
             </Text>
 
-            <Text small={isMobile} fill>
+            <Text size={isMobile ? `small` : `normal`} fill>
               {userInfo?.mainCharacter}
             </Text>
           </FlexView>
@@ -113,8 +116,8 @@ export default function ProfilePage() {
           <FlexView css={{ height: `40px` }} items="center" row>
             <Text
               css={{ minWidth: isMobile ? `90px` : `120px` }}
-              small={isMobile}
-              semiBold
+              size={isMobile ? `small` : `normal`}
+              weight="semiBold"
             >
               오픈 카톡
             </Text>
@@ -128,7 +131,7 @@ export default function ProfilePage() {
                 onChange={inputOpenTalk}
               />
             ) : (
-              <Text small={isMobile} fill>
+              <Text size={isMobile ? `small` : `normal`} fill>
                 {userInfo?.openTalk}
               </Text>
             )}
@@ -140,11 +143,16 @@ export default function ProfilePage() {
             <Button
               aria-label="취소"
               border={Colors.purple}
-              css={{ width: isMobile ? `150px` : `210px`, height: `40px` }}
+              css={{ height: `40px` }}
               radius={4}
+              flex
               onClick={() => setEditMode(false)}
             >
-              <Text color={Colors.purple} small={isMobile} semiBold>
+              <Text
+                color={Colors.purple}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
                 취소
               </Text>
             </Button>
@@ -152,27 +160,56 @@ export default function ProfilePage() {
             <Button
               aria-label="저장하기"
               color={Colors.purple}
-              css={{ width: isMobile ? `150px` : `210px`, height: `40px` }}
+              css={{ height: `40px` }}
               radius={4}
+              flex
               onClick={saveProfile}
             >
-              <Text color={Colors.white} small={isMobile} semiBold>
+              <Text
+                color={Colors.white}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
                 저장
               </Text>
             </Button>
           </FlexView>
         ) : (
-          <Button
-            aria-label="수정하기"
-            color={Colors.purple}
-            css={{ width: isMobile ? `308px` : `440px`, height: `40px` }}
-            radius={4}
-            onClick={() => setEditMode(true)}
-          >
-            <Text color={Colors.white} small={isMobile} semiBold>
-              수정하기
-            </Text>
-          </Button>
+          <FlexView gap={isMobile ? 8 : 20} items="center" row>
+            <Link
+              aria-label="회원 탈퇴"
+              css={{
+                backgroundColor: Colors.red,
+                color: Colors.white,
+                borderRadius: `4px`,
+                lineHeight: `40px`,
+                flex: 1,
+                fontSize: isMobile ? `small` : `normal`,
+                fontWeight: 600,
+                textAlign: `center`,
+              }}
+              to="/user/withdrawal"
+            >
+              회원 탈퇴
+            </Link>
+
+            <Button
+              aria-label="정보 수정"
+              color={Colors.purple}
+              css={{ height: `40px` }}
+              radius={4}
+              flex
+              onClick={() => setEditMode(true)}
+            >
+              <Text
+                color={Colors.white}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
+                정보 수정
+              </Text>
+            </Button>
+          </FlexView>
         )}
       </FlexView>
     </FlexView>

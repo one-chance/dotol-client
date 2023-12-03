@@ -1,13 +1,13 @@
 import { forwardRef } from 'react';
 
-import { Button, FlexView, Link, Text } from '@components/common';
 import { CSSObject } from '@emotion/react';
-import { Colors } from '@styles/system';
+
+import { Button, FlexView, Link, Text } from '@components/common';
+import { Colors } from '@styles/index';
 
 const linkCSS: CSSObject = {
   lineHeight: `40px`,
   fontSize: `12px`,
-
   ':hover': { backgroundColor: `lightgray` },
 };
 
@@ -23,13 +23,13 @@ export default forwardRef<HTMLDivElement, MenuProps>(
       <FlexView
         ref={ref}
         color={Colors.white}
-        radius={4}
         css={{
           position: `absolute`,
           width: `160px`,
           marginTop: `50px`,
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
+        radius={4}
       >
         <FlexView
           content="between"

@@ -3,24 +3,24 @@ import { ReactNode, useState } from 'react';
 import { CSSObject } from '@emotion/react';
 
 import { FlexView, Icon, Text } from '@components/common';
-import { useResponsive } from '@hooks/index';
 
 type AccordionProps = {
   title: string;
+  content?: string;
   titleCSS?: CSSObject;
-  subTitle: string;
+  contentCSS?: CSSObject;
   divider?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
-export default ({
+export default function Accordion({
   title,
+  content,
   titleCSS,
-  subTitle,
+  contentCSS,
   divider,
   children,
-}: AccordionProps) => {
-  const isMobile = useResponsive(480);
+}: AccordionProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -34,36 +34,31 @@ export default ({
       <FlexView
         content="between"
         css={{
-          minHeight: `36px`,
-          padding: isMobile ? `4px` : `8px`,
+          padding: `10px`,
           cursor: `pointer`,
           ...(divider && isOpen && { borderBottom: `1px solid lightgray` }),
         }}
-        gap={16}
+        gap={40}
         items="center"
         row
         onClick={() => setIsOpen(!isOpen)}
       >
-        <FlexView content="between" items="center" fill row>
-          <Text small={isMobile} medium>
-            {title}
-          </Text>
-          <Text>{subTitle}</Text>
-        </FlexView>
-
+        <Text>{title}</Text>
         <Icon name={isOpen ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 
       <FlexView
         css={{
-          padding: isOpen ? `8px` : `0 8px`,
+          ...contentCSS,
+          padding: isOpen ? `10px` : `0 10px`,
           minHeight: isOpen ? `auto` : 0,
           transition: `0.2s ease-in-out`,
         }}
         wrap
       >
-        {isOpen && children}
+        {isOpen && children && children}
+        {isOpen && !children && <Text>{content}</Text>}
       </FlexView>
     </FlexView>
   );
-};
+}

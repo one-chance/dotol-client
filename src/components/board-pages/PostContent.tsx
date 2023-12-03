@@ -1,4 +1,5 @@
 /* eslint-disable no-alert */
+import '@toast-ui/editor/dist/toastui-editor.css';
 import { useEffect, useState } from 'react';
 
 import { Viewer } from '@toast-ui/react-editor';
@@ -10,8 +11,7 @@ import { Button, FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { Board, IPost } from '@interfaces/index';
 import { showLoginState, toastState, userIdState } from '@states/index';
-import { Colors } from '@styles/system';
-import '@toast-ui/editor/dist/toastui-editor.css';
+import { Colors } from '@styles/index';
 
 type PostContentProps = {
   board: Board;
@@ -20,7 +20,7 @@ type PostContentProps = {
 
 const basicUrl = `https://dotols.com`;
 
-export default ({ board, post }: PostContentProps) => {
+export default function PostContent({ board, post }: PostContentProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const isMobile = useResponsive(960);
@@ -58,7 +58,7 @@ export default ({ board, post }: PostContentProps) => {
       return openToast({
         open: true,
         message: `대표 캐릭터를 인증해주세요.`,
-        type: 'error',
+        type: `error`,
       });
     }
 
@@ -88,7 +88,7 @@ export default ({ board, post }: PostContentProps) => {
         row
       >
         <Button aria-label="url" onClick={copyUrl}>
-          <Text color="gray" xSmall>
+          <Text color="gray" size="xSmall">
             {basicUrl + location.pathname}
           </Text>
         </Button>
@@ -96,13 +96,13 @@ export default ({ board, post }: PostContentProps) => {
         {userId !== post.writer.userId && (
           <FlexView gap={16} items="center" row>
             <Button aria-label="수정" onClick={editPost}>
-              <Text color={Colors.grey} small={!isMobile} xSmall={isMobile}>
+              <Text color={Colors.grey} size={isMobile ? `xSmall` : `small`}>
                 수정
               </Text>
             </Button>
 
             <Button aria-label="삭제" onClick={removePost}>
-              <Text color={Colors.grey} small={!isMobile} xSmall={isMobile}>
+              <Text color={Colors.grey} size={isMobile ? `xSmall` : `small`}>
                 삭제
               </Text>
             </Button>
@@ -141,8 +141,8 @@ export default ({ board, post }: PostContentProps) => {
             color={
               post.recommenders.includes(userId) ? Colors.white : Colors.purple
             }
-            semiBold
-            small
+            size="small"
+            weight="bold"
           >
             추천 {post.recommenders.length}
           </Text>
@@ -150,4 +150,4 @@ export default ({ board, post }: PostContentProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

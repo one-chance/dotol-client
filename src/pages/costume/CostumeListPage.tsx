@@ -1,3 +1,4 @@
+
 import { FlexView, Text } from '@components/common';
 import { CostumeList } from '@components/costume-pages';
 import { useResponsive } from '@hooks/index';
@@ -7,7 +8,7 @@ export default function CostumeListPage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <Text large={isMobile} xLarge={!isMobile} bold>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold">
         치장 목록
       </Text>
 

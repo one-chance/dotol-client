@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-import { IComment } from '@interfaces/board';
 import { useSetRecoilState } from 'recoil';
 
 import { CommentList, NewComment } from '@components/board-pages';
 import { FlexView } from '@components/common';
+import { IComment } from '@interfaces/index';
 import { showLoginState, toastState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type PostCommentProps = {
   comments: IComment[];
 };
 
-export default ({ comments }: PostCommentProps) => {
+export default function PostComment({ comments }: PostCommentProps) {
   const [grade, setGrade] = useState(0);
   const setShowLogin = useSetRecoilState(showLoginState);
   const openToast = useSetRecoilState(toastState);
@@ -25,7 +25,7 @@ export default ({ comments }: PostCommentProps) => {
       return openToast({
         open: true,
         message: `대표 캐릭터를 인증해주세요.`,
-        type: 'error',
+        type: `error`,
       });
     }
 
@@ -44,4 +44,4 @@ export default ({ comments }: PostCommentProps) => {
       ))}
     </FlexView>
   );
-};
+}

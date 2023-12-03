@@ -1,23 +1,19 @@
 import { useState } from 'react';
 
-import { Link } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 
-import { verifyUser } from '@apis/index';
-import { Button, FlexView, Text, TextField } from '@components/common';
-import { useResponsive } from '@hooks/index';
-import { isLoggedInState, userIdState } from '@states/index';
-import { Colors } from '@styles/system';
+import { verifyUser } from '@apis/users';
+import { Button, FlexView, Link, Text, TextField } from '@components/common';
+import { ModalM } from '@components/modal';
+import { isLoggedInState, userIdState } from '@states/loginState';
+import { Colors } from '@styles/token';
 import { decodeJWT } from '@utils/index';
-
-import Modal from '../Modal';
 
 type ModalProps = {
   close: () => void;
 };
 
-export default ({ close }: ModalProps) => {
-  const isMobile = useResponsive(600);
+export default function LoginMobileModal({ close }: ModalProps) {
   const setUserIdState = useSetRecoilState(userIdState);
   const setIsLoggedInState = useSetRecoilState(isLoggedInState);
 
@@ -55,27 +51,23 @@ export default ({ close }: ModalProps) => {
   };
 
   return (
-    <Modal
-      closePortal={close}
-      height={isMobile ? 385 : 445}
-      isLogin={isMobile}
-      width={isMobile ? 300 : 440}
-    >
+    <ModalM closePortal={close}>
       <FlexView
-        radius={4}
-        color={Colors.white}
         css={{
-          padding: isMobile ? `40px 30px` : `60px 40px`,
+          maxWidth: `480px`,
+          width: `100%`,
+          margin: `0 auto`,
+          padding: `0 20px`,
         }}
       >
         <Text
           css={{
             fontFamily: `Red Hat Display`,
-            fontSize: isMobile ? `32px` : `40px`,
             lineHeight: 1,
             letterSpacing: `-0.96px`,
           }}
-          bold
+          size="xxxLarge"
+          weight="bold"
           center
         >
           dotol
@@ -87,9 +79,9 @@ export default ({ close }: ModalProps) => {
               autoComplete="username"
               error={nonExistError}
               errorMessage="! 존재 하지 않는 아이디입니다."
-              isMobile={isMobile}
               label="아이디"
               value={userId}
+              isMobile
               onChange={inputUserId}
             />
 
@@ -97,9 +89,9 @@ export default ({ close }: ModalProps) => {
               autoComplete="current-password"
               error={wrongPasswordError}
               errorMessage="! 비밀번호가 일치하지 않습니다."
-              isMobile={isMobile}
               label="비밀번호"
               value={password}
+              isMobile
               password
               onChange={inputPassword}
               onKeyDown={login}
@@ -111,7 +103,7 @@ export default ({ close }: ModalProps) => {
               aria-label="회원가입"
               css={{
                 color: Colors.primary,
-                fontSize: isMobile ? `14px` : `16px`,
+                fontSize: `14px`,
                 fontWeight: 600,
                 lineHeight: 1,
                 textDecoration: `underline`,
@@ -129,7 +121,7 @@ export default ({ close }: ModalProps) => {
                 css={{
                   color: Colors.primary60,
                   letterSpacing: `-0.96px`,
-                  fontSize: isMobile ? `14px` : `16px`,
+                  fontSize: `14px`,
                   lineHeight: 1,
                 }}
                 to="/user/forgot-userId"
@@ -139,7 +131,7 @@ export default ({ close }: ModalProps) => {
               </Link>
               <Text
                 color={Colors.primary60}
-                css={{ fontSize: isMobile ? `14px` : `16px`, lineHeight: 1 }}
+                css={{ fontSize: `14px`, lineHeight: 1 }}
               >
                 /
               </Text>
@@ -148,7 +140,7 @@ export default ({ close }: ModalProps) => {
                 css={{
                   color: Colors.primary60,
                   letterSpacing: `-0.96px`,
-                  fontSize: isMobile ? `14px` : `16px`,
+                  fontSize: `14px`,
                   lineHeight: 1,
                 }}
                 to="/user/forgot-password"
@@ -163,16 +155,16 @@ export default ({ close }: ModalProps) => {
         <Button
           aria-label="로그인"
           color={Colors.purple}
-          css={{ height: isMobile ? `44px` : `50px` }}
+          css={{ height: `44px` }}
           disabled={userId.length < 6 || password.length < 8}
           radius={4}
           onClick={login}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text color={Colors.white} size="small" weight="semiBold">
             로그인
           </Text>
         </Button>
       </FlexView>
-    </Modal>
+    </ModalM>
   );
-};
+}

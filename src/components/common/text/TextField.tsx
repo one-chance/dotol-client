@@ -1,8 +1,7 @@
 import { useState } from 'react';
 
-import { FlexView, Icon, Input, Text } from '@components/common';
-import { Label } from '@components/common';
-import { Colors } from '@styles/system';
+import { FlexView, Icon, Input, Text, Label } from '@components/common';
+import { Colors } from '@styles/index';
 
 type TextFieldProps = {
   label: string;
@@ -20,7 +19,7 @@ type TextFieldProps = {
   timer?: number;
 };
 
-export default ({
+export default function TextField({
   label,
   value,
   onKeyDown,
@@ -34,7 +33,7 @@ export default ({
   errorMessage,
   correct,
   timer,
-}: TextFieldProps) => {
+}: TextFieldProps) {
   const [text, setText] = useState(``);
   const [isFocused, setIsFocused] = useState(false);
   const [isEntered, setIsEntered] = useState(value !== ``);
@@ -111,7 +110,7 @@ export default ({
           <Text
             color={Colors.red}
             css={{ position: `absolute`, right: 0 }}
-            semiBold
+            weight="semiBold"
           >
             {timer}초
           </Text>
@@ -122,13 +121,12 @@ export default ({
         <Text
           color={Colors.red}
           css={{ marginTop: `8px`, lineHeight: 1, minHeight: 0 }}
-          small={!isMobile}
-          xSmall={isMobile}
-          semiBold
+          size={isMobile ? `xSmall` : `small`}
+          weight="semiBold"
         >
           {errorMessage}
         </Text>
       )}
     </FlexView>
   );
-};
+}

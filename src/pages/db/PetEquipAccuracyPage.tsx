@@ -7,8 +7,8 @@ export default function PetEquipAccuracyPage() {
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <Text large={isMobile} xLarge={!isMobile} bold>
-        환수 명중률 계산기
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold">
+        환수장비 명중률
       </Text>
 
       <PetEquipAccuracy />

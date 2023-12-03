@@ -8,10 +8,10 @@ import {
   ANTIQUITY_HELMETS,
   ANTIQUITY_GLOVES,
   ANTIQUITY_ORBS,
-} from '@constants/equip';
-import { ANTIQUITY_POWER } from '@constants/power';
+  ANTIQUITY_POWER,
+} from '@constants/index';
 
-export default () => {
+export default function AntiquityPower() {
   const SELECT_WIDTH = 140;
 
   const [equips, setEquips] = useState({
@@ -76,7 +76,6 @@ export default () => {
   return (
     <FlexView
       border="lightgray"
-      radius={4}
       css={{
         minWidth: `300px`,
         width: `100%`,
@@ -84,6 +83,7 @@ export default () => {
       }}
       gap={16}
       items="center"
+      radius={4}
     >
       <FlexView gap={16}>
         <FlexView gap={20} center row>
@@ -168,7 +168,7 @@ export default () => {
         </FlexView>
       </FlexView>
 
-      <Text semiBold>신수유물 전투력: {antiquityPower}</Text>
+      <Text weight="bold">신수유물 전투력: {antiquityPower}</Text>
     </FlexView>
   );
-};
+}

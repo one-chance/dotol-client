@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getAchievementList } from '@apis/index';
+import { getAchievementJSON } from '@apis/index';
 import { FlexView, Text, Select, Option } from '@components/common';
 import { AchievementList } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
@@ -33,7 +33,7 @@ export default function AchievementPage() {
   }, [tab, infoList]);
 
   useEffect(() => {
-    getAchievementList().then(data => {
+    getAchievementJSON().then(data => {
       setInfoList(data);
     });
   }, []);
@@ -41,7 +41,7 @@ export default function AchievementPage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" gap={20} items="center" row wrap>
-        <Text xLarge={isMobile} xxLarge={!isMobile} bold>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           업적 정보
         </Text>
 

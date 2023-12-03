@@ -1,4 +1,4 @@
 export { default as Modal } from './Modal';
 export { default as ModalM } from './ModalM';
 
-export * from './Login';
+export * from './loginModal';

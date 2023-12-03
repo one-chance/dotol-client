@@ -8,7 +8,7 @@ import { deleteUser } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { isLoggedInState, userIdState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 export default function WithdrawalPage() {
   const navigate = useNavigate();
@@ -58,19 +58,19 @@ export default function WithdrawalPage() {
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
         border="lightgray"
-        radius={4}
         css={{ padding: `20px` }}
         gap={20}
+        radius={4}
       >
-        <Text large={isMobile} xLarge={!isMobile} bold center>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
           회원 탈퇴
         </Text>
 
         <FlexView gap={8}>
-          <Text color={Colors.red} small={isMobile}>
+          <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
             작성한 게시물, 댓글은 자동으로 삭제되지 않습니다.
           </Text>
-          <Text color={Colors.red} small={isMobile}>
+          <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
             탈퇴하면 계정을 복구할 수 없습니다.
           </Text>
         </FlexView>
@@ -106,7 +106,11 @@ export default function WithdrawalPage() {
           radius={4}
           onClick={withdrawUser}
         >
-          <Text color={Colors.white} small={isMobile} semiBold>
+          <Text
+            color={Colors.white}
+            size={isMobile ? `small` : `normal`}
+            weight="semiBold"
+          >
             탈퇴하기
           </Text>
         </Button>

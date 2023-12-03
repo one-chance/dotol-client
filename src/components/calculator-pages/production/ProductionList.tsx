@@ -13,7 +13,7 @@ import {
 } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { itemState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const SKILLS = [
   `종류`,
@@ -42,7 +42,7 @@ const GRADES = [
   `전설장인`,
 ];
 
-export default () => {
+export default function ProductionList() {
   const isMobile = useResponsive(560);
   const setRecipe = useSetRecoilState(itemState);
 
@@ -60,7 +60,6 @@ export default () => {
 
   const selectGrade = (idx: number) => {
     setGrade(idx);
-
     setSelectedItem(`품목`);
     setRecipe({ name: ``, amount: 0 });
     setQuantity(0);
@@ -144,7 +143,7 @@ export default () => {
 
         <Button
           aria-label="변경"
-          color="blue"
+          color={Colors.primary}
           css={{
             width: `60px`,
             height: `40px`,
@@ -158,4 +157,4 @@ export default () => {
       </FlexView>
     </FlexView>
   );
-};
+}

@@ -39,8 +39,8 @@ export default function NormalEquipSetPage() {
       gap={20}
     >
       <FlexView content="between" items="center" row>
-        <Text large={isMobile} xLarge={!isMobile} bold>
-          한벌 효과
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
+          일반장비 한벌효과
         </Text>
 
         <Select

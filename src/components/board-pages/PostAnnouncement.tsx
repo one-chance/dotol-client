@@ -1,6 +1,6 @@
 import { Button, FlexView, Link, Text } from '@components/common';
 import { Board, IPost } from '@interfaces/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 import { convertDateFormat } from '@utils/index';
 
 type PostSummaryProps = {
@@ -10,7 +10,12 @@ type PostSummaryProps = {
   isMobile?: boolean;
 };
 
-export default ({ post, page, board, isMobile }: PostSummaryProps) => {
+export default function PostAnnouncement({
+  post,
+  page,
+  board,
+  isMobile,
+}: PostSummaryProps) {
   const desktop = (
     <FlexView
       content="between"
@@ -34,7 +39,12 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
           to={`/${board}/${post.index}`}
         >
           <FlexView gap={4} items="center" row>
-            <Text color={Colors.red} css={{ minWidth: `40px` }} semiBold small>
+            <Text
+              color={Colors.red}
+              css={{ minWidth: `40px` }}
+              size="small"
+              weight="bold"
+            >
               [공지]
             </Text>
 
@@ -47,7 +57,7 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
                 textOverflow: `ellipsis`,
                 wordBreak: `break-all`,
               }}
-              small
+              size="small"
             >
               {post.title}
             </Text>
@@ -60,7 +70,7 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
         css={{ minWidth: `140px`, padding: `0 8px`, textAlign: `center` }}
         to="/freeboard?page=1&search=writer,띠용@GM"
       >
-        <Text color={Colors.red} small>
+        <Text color={Colors.red} size="small">
           {post.writer.character}
         </Text>
       </Link>
@@ -68,16 +78,16 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
       <Text
         color={Colors.red}
         css={{ minWidth: `80px`, padding: `0 8px` }}
+        size="small"
         center
-        small
       >
         {post.recommenders.length}
       </Text>
       <Text
         color={Colors.red}
         css={{ minWidth: `80px`, padding: `0 8px` }}
+        size="small"
         center
-        small
       >
         {convertDateFormat(post.createdAt)}
       </Text>
@@ -96,7 +106,12 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
     >
       <Link aria-label="게시물" state={{ page }} to={`/${board}/${post.index}`}>
         <FlexView gap={4} items="center" row>
-          <Text color={Colors.red} css={{ minWidth: `40px` }} semiBold small>
+          <Text
+            color={Colors.red}
+            css={{ minWidth: `40px` }}
+            size="small"
+            weight="bold"
+          >
             [공지]
           </Text>
 
@@ -109,8 +124,8 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
               textOverflow: `ellipsis`,
               wordBreak: `break-all`,
             }}
-            semiBold
-            small
+            size="small"
+            weight="bold"
           >
             {post.title}
           </Text>
@@ -119,15 +134,15 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
 
       <FlexView gap={8} items="center" row>
         <Button aria-label="작성자">
-          <Text color={Colors.red} xSmall>
+          <Text color={Colors.red} size="xSmall">
             {post.writer.character}
           </Text>
         </Button>
 
-        <Text color={Colors.red} xSmall>
+        <Text color={Colors.red} size="xSmall">
           추천{post.recommenders.length}
         </Text>
-        <Text color={Colors.red} xSmall>
+        <Text color={Colors.red} size="xSmall">
           {convertDateFormat(post.createdAt)}
         </Text>
       </FlexView>
@@ -135,4 +150,4 @@ export default ({ post, page, board, isMobile }: PostSummaryProps) => {
   );
 
   return isMobile ? mobile : desktop;
-};
+}

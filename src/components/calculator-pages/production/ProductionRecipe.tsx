@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { getProductionRecipe } from '@apis/index';
-import { Chip } from '@components/chip';
-import { FlexView } from '@components/common';
+import { Chip, FlexView } from '@components/common';
 import { itemState } from '@states/index';
 
 type Recipe = {
@@ -18,7 +17,7 @@ type RecipeProps = {
   isMobile?: boolean;
 };
 
-export default ({ isMobile }: RecipeProps) => {
+export default function ProductionRecipe({ isMobile }: RecipeProps) {
   const selectedItem = useRecoilValue(itemState);
 
   const [recipeList, setRecipeList] = useState<Recipe>({});
@@ -65,7 +64,6 @@ export default ({ isMobile }: RecipeProps) => {
 
   return (
     <FlexView
-      radius={4}
       border="lightgray"
       css={{
         alignContent: `flex-start`,
@@ -74,6 +72,7 @@ export default ({ isMobile }: RecipeProps) => {
         padding: isMobile ? `5px` : `10px`,
       }}
       gap={4}
+      radius={4}
       row
       wrap
     >
@@ -87,4 +86,4 @@ export default ({ isMobile }: RecipeProps) => {
       ))}
     </FlexView>
   );
-};
+}

@@ -1,12 +1,12 @@
 import { Button, FlexView, Text } from '@components/common';
-import { IPost } from '@interfaces/board';
+import { IPost } from '@interfaces/index';
 
 type PostTitleProps = {
   post: IPost;
   isMobile?: boolean;
 };
 
-export default ({ post, isMobile }: PostTitleProps) => {
+export default function PostTitle({ post, isMobile }: PostTitleProps) {
   const desktop = (
     <FlexView
       css={{
@@ -15,30 +15,30 @@ export default ({ post, isMobile }: PostTitleProps) => {
       }}
       gap={12}
     >
-      <Text fill large semiBold>
+      <Text size="large" weight="semiBold" fill>
         {post.title}
       </Text>
 
       <FlexView content="between" items="center" row>
         <FlexView gap={16} items="center" row>
           <Button aria-label="작성자">
-            <Text small>{post.writer.character}</Text>
+            <Text size="small">{post.writer.character}</Text>
           </Button>
 
-          <Text center small>
+          <Text size="small" center>
             조회 {post.views}
           </Text>
 
-          <Text center small>
+          <Text size="small" center>
             댓글 {post.commentCount}
           </Text>
 
-          <Text center small>
+          <Text size="small" center>
             추천 {post.recommenders.length}
           </Text>
         </FlexView>
 
-        <Text small>
+        <Text size="small">
           {post.createdAt.split(`.`)[0].replace(`T`, ` `).substring(0, 16)}
         </Text>
       </FlexView>
@@ -53,22 +53,22 @@ export default ({ post, isMobile }: PostTitleProps) => {
       }}
       gap={8}
     >
-      <Text css={{ fontSize: `18px` }} bold>
+      <Text css={{ fontSize: `18px` }} weight="bold">
         {post.title}
       </Text>
 
       <FlexView gap={12} items="center" row wrap>
         <Button aria-label="작성자">
-          <Text xSmall>{post.writer.character}</Text>
+          <Text size="xSmall">{post.writer.character}</Text>
         </Button>
 
-        <Text xSmall>조회 {post.views}</Text>
+        <Text size="xSmall">조회 {post.views}</Text>
 
-        <Text xSmall>댓글 {post.commentCount}</Text>
+        <Text size="xSmall">댓글 {post.commentCount}</Text>
 
-        <Text xSmall>추천 {post.recommenders.length}</Text>
+        <Text size="xSmall">추천 {post.recommenders.length}</Text>
 
-        <Text xSmall>
+        <Text size="xSmall">
           {post.createdAt.split(`.`)[0].replace(`T`, ` `).substring(0, 16)}
         </Text>
       </FlexView>
@@ -76,4 +76,4 @@ export default ({ post, isMobile }: PostTitleProps) => {
   );
 
   return isMobile ? mobile : desktop;
-};
+}

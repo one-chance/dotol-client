@@ -9,11 +9,11 @@ type TextareaProps = (
   resizable?: boolean;
 };
 
-export default ({ resizable, ...props }: TextareaProps) => {
+export default function TextArea({ resizable, ...props }: TextareaProps) {
   const css: CSSObject = {
     padding: `8px`,
     resize: resizable ? `both` : `none`,
   };
 
   return jsx(`textarea`, { css, ...props });
-};
+}

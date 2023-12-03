@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { createUser, isDuplicatedUserId } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { emailState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type Phase = 1 | 2 | 3 | 4;
 
@@ -14,7 +14,7 @@ type SignUpProps = {
   setPhase: (_phase: Partial<Phase>) => void;
 };
 
-export default ({ isMobile, setPhase }: SignUpProps) => {
+export default function SignUpThree({ isMobile, setPhase }: SignUpProps) {
   const email = useRecoilValue(emailState);
   const [userId, setUserId] = useState(``);
   const [password, setPassword] = useState(``);
@@ -70,7 +70,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   return (
     <FlexView gap={isMobile ? 24 : 40}>
-      <Text bold center xxLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         계정 정보 입력
       </Text>
 
@@ -102,18 +102,19 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       <Button
         aria-label="다음"
         color={Colors.purple}
-        css={{
-          width: isMobile ? `320px` : `440px`,
-          height: `40px`,
-        }}
+        css={{ height: `40px` }}
         disabled={!isUniqueId || !isUserIdForm || !isPasswordForm}
         radius={4}
         onClick={nextPhase}
       >
-        <Text color={Colors.white} small={isMobile} semiBold>
+        <Text
+          color={Colors.white}
+          size={isMobile ? `small` : `normal`}
+          weight="semiBold"
+        >
           가입하기
         </Text>
       </Button>
     </FlexView>
   );
-};
+}

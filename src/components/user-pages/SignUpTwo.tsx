@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import { isDuplicatedEmail, sendOTPCode, verifyOTPCode } from '@apis/index';
 import { Button, FlexView, Text, TextField } from '@components/common';
 import { emailState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 type Phase = 1 | 2 | 3 | 4;
 
@@ -14,7 +14,7 @@ type SignUpProps = {
   setPhase: (_phase: Partial<Phase>) => void;
 };
 
-export default ({ isMobile, setPhase }: SignUpProps) => {
+export default function SighUpTwo({ isMobile, setPhase }: SignUpProps) {
   const setEmailState = useSetRecoilState(emailState);
 
   const [email, setEmail] = useState(``);
@@ -105,7 +105,7 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
   return (
     <FlexView gap={isMobile ? 24 : 40}>
-      <Text bold center xxLarge>
+      <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
         이메일 인증
       </Text>
 
@@ -123,12 +123,12 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
 
         <Button
           color={Colors.purple}
-          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          css={{ height: `40px` }}
           disabled={!isEmailForm || !isUniqueEmail}
           radius={4}
           onClick={sendOTP}
         >
-          <Text color={Colors.white} semiBold>
+          <Text color={Colors.white} weight="semiBold">
             OTP 전송
           </Text>
         </Button>
@@ -148,12 +148,12 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
             />
             <Button
               color={Colors.purple}
-              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              css={{ height: `40px` }}
               disabled={otp.length !== 6}
               radius={4}
               onClick={verifyOTP}
             >
-              <Text color={Colors.white} semiBold>
+              <Text color={Colors.white} weight="semiBold">
                 OTP 인증
               </Text>
             </Button>
@@ -162,4 +162,4 @@ export default ({ isMobile, setPhase }: SignUpProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

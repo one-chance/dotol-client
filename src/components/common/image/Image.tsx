@@ -7,4 +7,6 @@ export type ImageProps = DetailedHTMLProps<
   HTMLImageElement
 >;
 
-export default ({ ...props }: ImageProps) => jsx(`img`, { ...props });
+export default function Image({ ...props }: ImageProps) {
+  return jsx(`img`, { ...props });
+}

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { FlexView, Input, Text, Select, Option } from '@components/common';
 import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const TYPES = [`환수 종류`, `황룡`, `청룡`, `주작`, `백호`, `현무`];
 const TYPES_ACC: { [key: string]: number } = {
@@ -98,7 +98,7 @@ const FACES_ACC: { [key: string]: number } = {
   "문양'진": 20,
 };
 
-export default () => {
+export default function PetEquipAccuracy() {
   const isMobile = useResponsive(580);
   const [accuracy, setAccuracy] = useState(0);
   const [extra, setExtra] = useState(0);
@@ -279,8 +279,12 @@ export default () => {
             onChange={inputExtra}
           />
 
-          <FlexView fill center>
-            <Text color={Colors.primary} large={!isMobile} semiBold>
+          <FlexView center fill>
+            <Text
+              color={Colors.primary}
+              size={isMobile ? `normal` : `large`}
+              weight="semiBold"
+            >
               명중률: {accuracy}
             </Text>
           </FlexView>
@@ -288,13 +292,13 @@ export default () => {
       </FlexView>
 
       <FlexView>
-        <Text color={Colors.red} small>
+        <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
           ● 사신수는 등급별 시동 명중률이 포함됩니다.
         </Text>
-        <Text color={Colors.red} small>
+        <Text color={Colors.red} size={isMobile ? `small` : `normal`}>
           ● 모든 장비는 강화석이 최대로 적용되어 계산됩니다.
         </Text>
       </FlexView>
     </FlexView>
   );
-};
+}

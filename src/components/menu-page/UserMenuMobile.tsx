@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 
 import { FlexView, Link, Text } from '@components/common';
 import { isLoggedInState, userIdState } from '@states/index';
-import { Colors } from '@styles/system';
+import { Colors } from '@styles/index';
 
 const linkCSS: CSSObject = {
   fontSize: `14px`,
@@ -34,7 +34,6 @@ export default forwardRef<HTMLDivElement, MenuProps>(
     return (
       <FlexView
         ref={ref}
-        radius={4}
         color={Colors.primary}
         css={{
           position: `absolute`,
@@ -42,6 +41,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           marginTop: `36px`,
           boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1)`,
         }}
+        radius={4}
       >
         <Link
           aria-label="프로필"
@@ -74,15 +74,6 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           캐릭터 관리
         </Link>
 
-        <Link
-          aria-label="회원 탈퇴"
-          css={linkCSS}
-          to="/user/withdrawal"
-          onClick={close}
-        >
-          회원 탈퇴
-        </Link>
-
         <FlexView
           content="center"
           css={{
@@ -93,7 +84,7 @@ export default forwardRef<HTMLDivElement, MenuProps>(
           }}
           onClick={signout}
         >
-          <Text color={Colors.white} small>
+          <Text color={Colors.white} size="small">
             로그아웃
           </Text>
         </FlexView>

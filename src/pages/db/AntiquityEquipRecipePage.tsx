@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { FlexView, Option, Select, Text } from '@components/common';
 import { AntiquityEquipRecipe } from '@components/db-pages';
 import { useResponsive } from '@hooks/index';
@@ -16,7 +17,7 @@ export default function AntiquityEquipRecipePage() {
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView content="between" items="center" row>
-        <Text large={isMobile} xLarge={!isMobile} bold>
+        <Text size={isMobile ? `large` : `xLarge`} weight="bold">
           신수유물 재료
         </Text>
 

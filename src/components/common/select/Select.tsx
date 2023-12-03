@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState, useRef, HTMLAttributes } from 'react';
 
 import { CSSObject } from '@emotion/react';
+
 import { FlexView, Text, Icon } from '@components/common';
 
 type SelectProps = HTMLAttributes<HTMLDivElement> & {
@@ -14,7 +15,7 @@ type SelectProps = HTMLAttributes<HTMLDivElement> & {
   isMobile?: boolean;
 };
 
-export default ({
+export default function Select({
   label,
   width,
   height,
@@ -24,7 +25,7 @@ export default ({
   square,
   isMobile,
   ...props
-}: SelectProps) => {
+}: SelectProps) {
   const selectRef = useRef<HTMLDivElement>(null);
   const optionListRef = useRef<HTMLDivElement>(null);
   const [showOption, setShowOption] = useState(false);
@@ -79,15 +80,15 @@ export default ({
 
   return (
     <FlexView
-      content="start"
       ref={selectRef}
+      content="start"
       css={wrapperCSS}
       onClick={() => {
         if (!disabled) setShowOption(!showOption);
       }}
     >
       <FlexView content="between" css={selectCSS} items="center" row {...props}>
-        <Text small>{label}</Text>
+        <Text size="small">{label}</Text>
         <Icon name={showOption ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 
@@ -98,4 +99,4 @@ export default ({
       )}
     </FlexView>
   );
-};
+}

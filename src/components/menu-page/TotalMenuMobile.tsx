@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { Anchor, Button, FlexView, Icon, Text } from '@components/common';
-import { SIDE_MENUS } from '@constants/menu';
-import { Colors } from '@styles/system';
+import { SIDE_MENUS } from '@constants/index';
+import { Colors } from '@styles/index';
 
 type MenuProps = {
   onClose: () => void;
 };
 
-export default ({ onClose }: MenuProps) => {
+export default function TotalMenuMobile({ onClose }: MenuProps) {
   const location = useLocation();
 
   return (
@@ -26,7 +26,7 @@ export default ({ onClose }: MenuProps) => {
         row
       >
         <Button aria-label="닫기" onClick={onClose}>
-          <Icon name="close" size={24} color={Colors.secondary} />
+          <Icon color={Colors.secondary} name="close" size={24} />
         </Button>
       </FlexView>
 
@@ -45,21 +45,25 @@ export default ({ onClose }: MenuProps) => {
           return (
             <FlexView key={menus.menu} gap={24}>
               <FlexView
-                row
                 content="between"
+                row
                 onClick={() => setShowSubMenu(!showSubMenu)}
               >
-                <FlexView row gap={12}>
-                  <Icon name={menus.icon} size={24} color={Colors.secondary} />
-                  <Text bold={showSubMenu} xLarge color={Colors.secondary}>
+                <FlexView gap={12} row>
+                  <Icon color={Colors.secondary} name={menus.icon} size={24} />
+                  <Text
+                    color={Colors.secondary}
+                    size="xLarge"
+                    weight={showSubMenu ? `bold` : `regular`}
+                  >
                     {menus.menu}
                   </Text>
                 </FlexView>
 
                 <Icon
+                  color={Colors.secondary}
                   name={showSubMenu ? `arrowUp` : `arrowDown`}
                   size={24}
-                  color={Colors.secondary}
                 />
               </FlexView>
 
@@ -67,20 +71,22 @@ export default ({ onClose }: MenuProps) => {
                 <FlexView gap={4}>
                   {menus.sub.map(sub => (
                     <Anchor
+                      key={sub.name}
+                      color={
+                        location.pathname === sub.url
+                          ? Colors.primary
+                          : Colors.secondary
+                      }
                       css={{
                         backgroundColor:
                           location.pathname === sub.url
                             ? Colors.primary10
                             : `transparent`,
-                        color:
-                          location.pathname === sub.url
-                            ? Colors.primary
-                            : Colors.secondary,
-                        fontSize: `20px`,
                         paddingLeft: `30px`,
                         lineHeight: `40px`,
                       }}
                       href={sub.url}
+                      size="large"
                       onClick={onClose}
                     >
                       {sub.name}
@@ -94,4 +100,4 @@ export default ({ onClose }: MenuProps) => {
       </FlexView>
     </FlexView>
   );
-};
+}

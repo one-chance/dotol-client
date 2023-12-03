@@ -1,29 +1,29 @@
 import { Anchor, FlexView, Text } from '@components/common';
-import { BoardSection, ClothSection } from '@components/home-page';
-import { useResponsive } from '@hooks/index';
-import { Colors } from '@styles/system';
 import { AutoInput } from '@components/costume-pages';
+import { BoardSection, NewCostumeSection } from '@components/home-page';
+import { useResponsive } from '@hooks/index';
+import { Colors } from '@styles/index';
 
 export default function HomePage() {
   const isMobile = useResponsive(980);
 
   return (
     <FlexView css={{ margin: `0 auto` }} gap={20}>
-      <AutoInput />
+      {/* <AutoInput /> */}
 
       <FlexView
         border="lightgray"
-        radius={4}
         css={{
-          maxWidth: '900px',
+          maxWidth: `900px`,
           maxHeight: `200px`,
           overflowY: `auto`,
           padding: isMobile ? `8px` : `12px`,
-          margin: isMobile ? `0 5px` : `0 auto`,
+          margin: `0 auto`,
         }}
         gap={10}
+        radius={4}
       >
-        <Text bold>공지사항 - 개발자 노트 1127(사이드 메뉴)</Text>
+        <Text weight="bold">공지사항 - 개발자 노트 1127(사이드 메뉴)</Text>
         <Text>
           상단 전체 메뉴를 왼쪽 사이드 메뉴로 변경했습니다. 기존 구조에서는 상위
           메뉴만 바로 이동할 수 있고, 그 내부에서 서브 메뉴를 선택하는 탭을
@@ -32,11 +32,11 @@ export default function HomePage() {
           이동하게끔 변경하였습니다.
         </Text>
         <br />
-        <Text bold>공지사항 - 개발자 노트 1029(장비 마법)</Text>
+        <Text weight="bold">공지사항 - 개발자 노트 1029(장비 마법)</Text>
         <Text>
           9~10월은 개인 스케줄 때문에 신규 치장 외엔 업데이트가 없었는데, 이제
           시간이 나서 주기적으로 진행할 예정입니다. 오늘 업데이트는&nbsp;
-          <Anchor href="/db/equip-skill" style={{ color: 'red' }}>
+          <Anchor color={Colors.red} href="/db/equip-skill" weight="semiBold">
             기술서 목록
           </Anchor>
           입니다. 예전부터 장비 마법(격마법류, 자동버프류, 기술서류, 마법부여류
@@ -45,7 +45,7 @@ export default function HomePage() {
           하였습니다.
         </Text>
         <br />
-        <Text bold>공지사항 - 개발자 노트 0813(사이트 리뉴얼)</Text>
+        <Text weight="bold">공지사항 - 개발자 노트 0813(사이트 리뉴얼)</Text>
         <Text>
           먼저 사전고지 없이 며칠 동안 도톨이 문을 닫았던 점 사과 드립니다.
           새로운 버전의 개발이 완료되면 사이트를 교체하려고 했으나 도메인 작업
@@ -85,7 +85,7 @@ export default function HomePage() {
       </FlexView>
 
       <FlexView gap={20} row={!isMobile}>
-        <ClothSection />
+        <NewCostumeSection />
 
         <BoardSection />
       </FlexView>

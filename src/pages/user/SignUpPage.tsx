@@ -27,19 +27,14 @@ export default function SignUpPage() {
   };
 
   return (
-    <FlexView
-      css={{
-        width: isMobile ? `100%` : `960px`,
-        margin: isMobile ? `20px auto` : `60px auto`,
-      }}
-      items="center"
-    >
+    <FlexView css={{ margin: `0 auto` }} items="center">
       <FlexView
-        radius={4}
+        border="lightgray"
         css={{
-          border: isMobile ? 0 : `1px solid lightgray`,
-          padding: isMobile ? `10px` : `40px`,
+          width: isMobile ? `350px` : `440px`,
+          padding: isMobile ? `20px` : `40px`,
         }}
+        radius={4}
       >
         {PhaseContent[phase]}
       </FlexView>
