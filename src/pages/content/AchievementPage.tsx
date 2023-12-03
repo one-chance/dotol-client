@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getAchievementList } from '@apis/index';
+import { getAchievementJSON } from '@apis/index';
 import { FlexView, Text, Select, Option } from '@components/common';
 import { AchievementList } from '@components/content-pages';
 import { useResponsive } from '@hooks/index';
@@ -33,7 +33,7 @@ export default function AchievementPage() {
   }, [tab, infoList]);
 
   useEffect(() => {
-    getAchievementList().then(data => {
+    getAchievementJSON().then(data => {
       setInfoList(data);
     });
   }, []);

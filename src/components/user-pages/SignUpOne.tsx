@@ -47,7 +47,6 @@ export default function SignUpOne({ isMobile, setPhase }: SignUpProps) {
           <FlexView
             color={Colors.primary10}
             css={{
-              width: isMobile ? `320px` : `440px`,
               maxHeight: `150px`,
               overflowY: `auto`,
               padding: `10px`,
@@ -79,7 +78,6 @@ export default function SignUpOne({ isMobile, setPhase }: SignUpProps) {
           <FlexView
             color={Colors.primary10}
             css={{
-              width: isMobile ? `320px` : `440px`,
               maxHeight: `150px`,
               overflowY: `auto`,
               padding: `10px`,
@@ -94,7 +92,7 @@ export default function SignUpOne({ isMobile, setPhase }: SignUpProps) {
       <Button
         aria-label="다음"
         color={Colors.purple}
-        css={{ width: isMobile ? `320px` : `440px`, minHeight: `40px` }}
+        css={{ minHeight: `40px` }}
         disabled={!agreeTerms || !agreePolicy}
         radius={4}
         onClick={nextPhase}

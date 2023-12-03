@@ -32,7 +32,7 @@ export default function SignUpFour({ isMobile }: SignUpProps) {
       <Button
         aria-label="홈"
         color={Colors.purple}
-        css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+        css={{ height: `40px` }}
         radius={4}
         onClick={goLogin}
       >

@@ -41,11 +41,12 @@ export default function ResetPasswordPage() {
   }, []);
 
   return (
-    <FlexView css={{ margin: isMobile ? `20px auto` : `60px auto` }}>
+    <FlexView css={{ margin: `0 auto` }}>
       <FlexView
+        border="lihgtgray"
         css={{
-          border: isMobile ? `none` : `1px solid lightgray`,
-          padding: isMobile ? `20px 10px` : `40px 20px`,
+          width: isMobile ? `350px` : `440px`,
+          padding: isMobile ? `20px` : `40px`,
         }}
         gap={isMobile ? 24 : 40}
         radius={4}
@@ -69,7 +70,7 @@ export default function ResetPasswordPage() {
         <Button
           aria-label="변경하기"
           color={Colors.red}
-          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          css={{ height: `40px` }}
           disabled={!isPasswordForm}
           radius={4}
           onClick={changePassword}

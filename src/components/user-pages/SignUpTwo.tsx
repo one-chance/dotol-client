@@ -123,7 +123,7 @@ export default function SighUpTwo({ isMobile, setPhase }: SignUpProps) {
 
         <Button
           color={Colors.purple}
-          css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+          css={{ height: `40px` }}
           disabled={!isEmailForm || !isUniqueEmail}
           radius={4}
           onClick={sendOTP}
@@ -148,7 +148,7 @@ export default function SighUpTwo({ isMobile, setPhase }: SignUpProps) {
             />
             <Button
               color={Colors.purple}
-              css={{ width: isMobile ? `320px` : `440px`, height: `40px` }}
+              css={{ height: `40px` }}
               disabled={otp.length !== 6}
               radius={4}
               onClick={verifyOTP}

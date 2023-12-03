@@ -102,10 +102,7 @@ export default function SignUpThree({ isMobile, setPhase }: SignUpProps) {
       <Button
         aria-label="다음"
         color={Colors.purple}
-        css={{
-          width: isMobile ? `320px` : `440px`,
-          height: `40px`,
-        }}
+        css={{ height: `40px` }}
         disabled={!isUniqueId || !isUserIdForm || !isPasswordForm}
         radius={4}
         onClick={nextPhase}

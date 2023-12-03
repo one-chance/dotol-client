@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { getMyInfo, updateMyInfo } from '@apis/index';
-import { Button, FlexView, Input, Text } from '@components/common';
+import { Button, FlexView, Input, Link, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 import { IUser } from '@interfaces/index';
 import { Colors } from '@styles/index';
@@ -31,7 +31,10 @@ export default function ProfilePage() {
     <FlexView css={{ margin: `0 auto` }} gap={20}>
       <FlexView
         border="lightgray"
-        css={{ padding: `20px` }}
+        css={{
+          width: isMobile ? `350px` : `480px`,
+          padding: isMobile ? `20px` : `40px`,
+        }}
         gap={20}
         radius={4}
       >
@@ -140,8 +143,9 @@ export default function ProfilePage() {
             <Button
               aria-label="취소"
               border={Colors.purple}
-              css={{ width: isMobile ? `150px` : `210px`, height: `40px` }}
+              css={{ height: `40px` }}
               radius={4}
+              flex
               onClick={() => setEditMode(false)}
             >
               <Text
@@ -156,8 +160,9 @@ export default function ProfilePage() {
             <Button
               aria-label="저장하기"
               color={Colors.purple}
-              css={{ width: isMobile ? `150px` : `210px`, height: `40px` }}
+              css={{ height: `40px` }}
               radius={4}
+              flex
               onClick={saveProfile}
             >
               <Text
@@ -170,21 +175,41 @@ export default function ProfilePage() {
             </Button>
           </FlexView>
         ) : (
-          <Button
-            aria-label="수정하기"
-            color={Colors.purple}
-            css={{ width: isMobile ? `308px` : `440px`, height: `40px` }}
-            radius={4}
-            onClick={() => setEditMode(true)}
-          >
-            <Text
-              color={Colors.white}
-              size={isMobile ? `small` : `normal`}
-              weight="semiBold"
+          <FlexView gap={isMobile ? 8 : 20} items="center" row>
+            <Link
+              aria-label="회원 탈퇴"
+              css={{
+                backgroundColor: Colors.red,
+                color: Colors.white,
+                borderRadius: `4px`,
+                lineHeight: `40px`,
+                flex: 1,
+                fontSize: isMobile ? `small` : `normal`,
+                fontWeight: 600,
+                textAlign: `center`,
+              }}
+              to="/user/withdrawal"
             >
-              수정하기
-            </Text>
-          </Button>
+              회원 탈퇴
+            </Link>
+
+            <Button
+              aria-label="정보 수정"
+              color={Colors.purple}
+              css={{ height: `40px` }}
+              radius={4}
+              flex
+              onClick={() => setEditMode(true)}
+            >
+              <Text
+                color={Colors.white}
+                size={isMobile ? `small` : `normal`}
+                weight="semiBold"
+              >
+                정보 수정
+              </Text>
+            </Button>
+          </FlexView>
         )}
       </FlexView>
     </FlexView>
