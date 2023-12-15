@@ -44,10 +44,6 @@ sytles: 스타일링과 관련된 파일이 있는 폴더입니다.
 
 utils: 공통 유틸함수가 정의된 폴더입니다.
 
-## Service Architecture
-
-![architecture](https://github.com/one-chance/dotol-client/assets/36535944/b2db1303-3bb5-4238-ba62-6de6ac034d47)
-
 ## Timeline
 
 20.12 개발 시작<br />
