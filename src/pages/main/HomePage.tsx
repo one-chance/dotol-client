@@ -23,6 +23,20 @@ export default function HomePage() {
         gap={10}
         radius={4}
       >
+        <Text weight="bold">
+          공지사항 - 개발자 노트 1227(장비마법 - 마법부여)
+        </Text>
+        <Text>
+          <Anchor color={Colors.red} href="/db/equip-skill" weight="semiBold">
+            마법부여
+          </Anchor>
+          &nbsp;형식인 장비 마법 데이터를 추가했습니다. 타계분신, 타계무기,
+          구미호분신, 전우치분신, 이화선인분신, 싸울아비분신에 부여할 수 있는
+          마법입니다. 퀘스트를 완료하여 확정적으로 마법을 부여하거나, 특정
+          아이템을 소모하여 확률적으로 마법을 부여할 수 있습니다. 다른 종류의
+          장비 마법도 언젠가 추가할 예정입니다.
+        </Text>
+        <br />
         <Text weight="bold">공지사항 - 개발자 노트 1127(사이드 메뉴)</Text>
         <Text>
           상단 전체 메뉴를 왼쪽 사이드 메뉴로 변경했습니다. 기존 구조에서는 상위
@@ -32,7 +46,7 @@ export default function HomePage() {
           이동하게끔 변경하였습니다.
         </Text>
         <br />
-        <Text weight="bold">공지사항 - 개발자 노트 1029(장비 마법)</Text>
+        <Text weight="bold">공지사항 - 개발자 노트 1029(기술서 목록)</Text>
         <Text>
           9~10월은 개인 스케줄 때문에 신규 치장 외엔 업데이트가 없었는데, 이제
           시간이 나서 주기적으로 진행할 예정입니다. 오늘 업데이트는&nbsp;
