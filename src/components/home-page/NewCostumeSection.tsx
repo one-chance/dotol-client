@@ -14,28 +14,27 @@ export default function NewCostumeSection() {
     >
       <FlexView content="between" row>
         <Text size={isMobile ? `small` : `normal`} weight="bold">
-          12월 신규 치장
+          1월 신규 치장
         </Text>
       </FlexView>
 
       <FlexView gap={10} fill>
         <FlexView fill>
           <Text size={isMobile ? `xSmall` : `small`} weight="semiBold">
-            멋진의상재봉틀 - 우아한눈꽃 의상
+            멋진의상재봉틀 - 백악산군 의상
           </Text>
           <FlexView content="center" items="end" fill row wrap>
-            <Image alt="이미지1" height={130} src="/1.png" width={120} />
-            <Image alt="이미지2" height={130} src="/2.png" width={120} />
+            <Image alt="이미지1" height={160} src="/1.gif" width={250} />
+            <Image alt="이미지2" height={135} src="/2.gif" width={250} />
           </FlexView>
         </FlexView>
 
         <FlexView fill>
           <Text size="small" weight="semiBold">
-            의상수선가위 - 은하수샛별 의상
+            의상수선가위 - 명문교복 의상
           </Text>
           <FlexView center fill row wrap>
-            <Image alt="이미지3" height={120} src="/3.png" width={120} />
-            <Image alt="이미지4" height={120} src="/4.png" width={120} />
+            <Image alt="이미지3" height={98} src="/3.png" width={218} />
           </FlexView>
         </FlexView>
       </FlexView>
