@@ -27,17 +27,18 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <FlexView css={{ minHeight: `100vh` }} row>
-        {!isMobile && <Sidebar />}
+      {!isMobile && <Sidebar />}
 
-        <FlexView fill>
-          <HeaderRouter />
-          <MainRouter />
-          <FooterRouter />
-          {toast.open && (
-            <Toast message={toast.message} type={toast.type as ToastType} />
-          )}
-        </FlexView>
+      <FlexView
+        css={{ marginLeft: isMobile ? 0 : `280px`, minHeight: `100%` }}
+        fill
+      >
+        <HeaderRouter />
+        <MainRouter />
+        <FooterRouter />
+        {toast.open && (
+          <Toast message={toast.message} type={toast.type as ToastType} />
+        )}
       </FlexView>
     </QueryClientProvider>
   );
