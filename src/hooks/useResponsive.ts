@@ -19,8 +19,8 @@ export const useWindowSize = (): Size => {
       });
     };
 
-    window.addEventListener(`resize`, handleResize);
     handleResize();
+    window.addEventListener(`resize`, handleResize);
 
     return () => {
       window.removeEventListener(`resize`, handleResize);
@@ -30,14 +30,15 @@ export const useWindowSize = (): Size => {
   return windowSize;
 };
 
-export const useResponsive = (breakpoin: number): boolean => {
+export const useResponsive = (breakpoint: number): boolean => {
   const { width } = useWindowSize();
 
-  const [isMobile, setIsMobile] = useState<boolean>(width <= breakpoin);
+  return width <= breakpoint;
+  // const [isMobile, setIsMobile] = useState<boolean>(width <= breakpoint);
 
-  useEffect(() => {
-    setIsMobile(width <= breakpoin);
-  }, [width, breakpoin]);
+  // useEffect(() => {
+  //   setIsMobile(width <= breakpoint);
+  // }, [width, breakpoint]);
 
-  return isMobile;
+  // return isMobile;
 };

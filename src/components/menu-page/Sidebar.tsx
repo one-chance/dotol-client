@@ -65,6 +65,7 @@ export default function Sidebar() {
     <FlexView
       color={Colors.primary}
       css={{
+        position: `fixed`,
         minWidth: `280px`,
         minHeight: `100vh`,
         // zIndex: 9999,
@@ -145,7 +146,15 @@ export default function Sidebar() {
 
       <Divider color={Colors.grey} margin={0} />
 
-      <FlexView gap={30}>
+      <FlexView
+        css={{
+          overflowY: `scroll`,
+          maxHeight: `calc(100vh - 200px)`,
+          scrollbarWidth: `none`,
+          '::-webkit-scrollbar': { display: `none` },
+        }}
+        gap={30}
+      >
         {SIDE_MENUS.map(menus => (
           <FlexView key={menus.menu} gap={12}>
             <FlexView gap={8} row>
@@ -169,17 +178,23 @@ export default function Sidebar() {
             </FlexView>
           </FlexView>
         ))}
-      </FlexView>
 
-      <Divider color={Colors.grey} margin={0} />
-
-      <FlexView gap={8} items="center">
-        <Text color={Colors.secondary} weight="semiBold">
-          Today: {todayVisitor}
-        </Text>
-        <Text color={Colors.secondary} weight="semiBold">
-          Total: {totalVisitor}
-        </Text>
+        <FlexView
+          css={{
+            borderTop: `1px solid ${Colors.grey}`,
+            borderBottom: `1px solid ${Colors.grey}`,
+            padding: `20px 0`,
+          }}
+          gap={8}
+          items="center"
+        >
+          <Text color={Colors.secondary} weight="semiBold">
+            Today: {todayVisitor}
+          </Text>
+          <Text color={Colors.secondary} weight="semiBold">
+            Total: {totalVisitor}
+          </Text>
+        </FlexView>
       </FlexView>
 
       {showLogin && <LoginModal close={closeLoginModal} />}

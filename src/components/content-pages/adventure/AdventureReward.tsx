@@ -25,7 +25,7 @@ export default function AdventureReward({
           css={{ minHeight: `36px`, padding: isMobile ? `0 4px` : `0 8px` }}
         >
           <Text size={isMobile ? `small` : `normal`} weight="bold">
-            탐험일지무기 (탐험도 60%)
+            탐험일지무기
           </Text>
         </FlexView>
 
@@ -47,7 +47,7 @@ export default function AdventureReward({
           css={{ minHeight: `36px`, padding: isMobile ? `0 4px` : `0 8px` }}
         >
           <Text size={isMobile ? `small` : `normal`} weight="bold">
-            탐험일지의상 (탐험도 100%)
+            탐험일지의상
           </Text>
         </FlexView>
 
@@ -69,7 +69,7 @@ export default function AdventureReward({
           css={{ minHeight: `36px`, padding: isMobile ? `0 4px` : `0 8px` }}
         >
           <Text size={isMobile ? `small` : `normal`} weight="bold">
-            칭호 (탐험도 100%)
+            칭호
           </Text>
         </FlexView>
 
