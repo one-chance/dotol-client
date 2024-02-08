@@ -62,7 +62,7 @@ export default function Sidebar() {
   }, [showUserMenu]);
 
   return (
-    <nav style={{ position: `fixed`, top: 0, bottom: 0 }}>
+    <aside style={{ position: `fixed`, top: 0, bottom: 0 }}>
       <FlexView
         color={Colors.primary}
         css={{ minWidth: `280px`, padding: `20px`, height: `100%` }}
@@ -194,6 +194,6 @@ export default function Sidebar() {
 
         {showLogin && <LoginModal close={closeLoginModal} />}
       </FlexView>
-    </nav>
+    </aside>
   );
 }

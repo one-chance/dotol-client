@@ -1,11 +1,8 @@
-import { HTMLAttributes, LabelHTMLAttributes } from 'react';
+import { ComponentProps, HTMLAttributes, LabelHTMLAttributes } from 'react';
 
 import { CSSObject, jsx } from '@emotion/react';
 
-type TextareaProps = (
-  | HTMLAttributes<HTMLTextAreaElement>
-  | LabelHTMLAttributes<HTMLLabelElement>
-) & {
+type TextareaProps = ComponentProps<'textarea'> & {
   resizable?: boolean;
 };
 
