@@ -62,7 +62,9 @@ export default function Sidebar() {
   }, [showUserMenu]);
 
   return (
-    <aside style={{ position: `fixed`, top: 0, bottom: 0 }}>
+    <aside
+    // style={{ position: `fixed`, top: 0, bottom: 0 }}
+    >
       <FlexView
         color={Colors.primary}
         css={{ minWidth: `280px`, padding: `20px`, height: `100%` }}
@@ -142,12 +144,12 @@ export default function Sidebar() {
         <Divider color={Colors.grey} margin={0} />
 
         <FlexView
-          css={{
-            overflowY: `scroll`,
-            maxHeight: `calc(100vh - 161px)`,
-            scrollbarWidth: `none`,
-            '::-webkit-scrollbar': { display: `none` },
-          }}
+          // css={{
+          //   overflowY: `scroll`,
+          //   maxHeight: `calc(100vh - 161px)`,
+          //   scrollbarWidth: `none`,
+          //   '::-webkit-scrollbar': { display: `none` },
+          // }}
           gap={30}
         >
           {SIDE_MENUS.map(menus => (
