@@ -3,7 +3,6 @@ import { SCHEDULES } from '@constants/calendar';
 import { useResponsive } from '@hooks/index';
 import { Colors } from '@styles/token';
 
-// myData[11].end가 지나면 다음 년도로 교체해야 함
 export default function CalendarPage() {
   const isMobile = useResponsive(800);
 
@@ -11,7 +10,7 @@ export default function CalendarPage() {
     <FlexView css={{ maxWidth: `960px`, width: `100%`, margin: `0 auto` }}>
       <FlexView gap={40} center>
         <Text size={isMobile ? `large` : `xLarge`} weight="bold" center>
-          2023 세시마을 일정
+          2024 세시마을 일정
         </Text>
 
         <FlexView css={{ maxWidth: `732px` }} gap={20} row={!isMobile} wrap>
