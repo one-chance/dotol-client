@@ -26,7 +26,7 @@ export default function AntiquityEquipListPage() {
         </Select>
       </FlexView>
 
-      <AntiquityEquipList />
+      <AntiquityEquipList part={part} />
     </FlexView>
   );
 }

@@ -7,6 +7,10 @@ import { CSSObject } from '@emotion/react';
 import { FlexView, Text } from '@components/common';
 import { useResponsive } from '@hooks/index';
 
+type AntiquityEquipListProps = {
+  part: string;
+};
+
 const TITLES = [
   [
     `등급`,
@@ -60,16 +64,16 @@ const TITLES = [
 
 const EQUIP_PARTS = [`무기`, `투구`, `갑옷`, `명경`, `장갑`, `보주`];
 
-export default function AntiquityEquipList() {
+export default function AntiquityEquipList({ part }: AntiquityEquipListProps) {
   const isMobile = useResponsive(620);
-  const [selectedParts, setSelectedParts] = useState(EQUIP_PARTS[0]);
+  // const [selectedParts, setSelectedParts] = useState(EQUIP_PARTS[0]);
 
   const equipData: { [key: string]: string }[] =
-    EQUIP_DATA[EQUIP_PARTS.indexOf(selectedParts)];
+    EQUIP_DATA[EQUIP_PARTS.indexOf(part)];
 
   const holyEquipData: { [key: string]: string }[] =
-    EQUIP_PARTS.indexOf(selectedParts) < 3
-      ? HOLY_EQUIP_DATA[EQUIP_PARTS.indexOf(selectedParts)]
+    EQUIP_PARTS.indexOf(part) < 3
+      ? HOLY_EQUIP_DATA[EQUIP_PARTS.indexOf(part)]
       : [];
 
   const titleCSS: CSSObject = {
@@ -91,7 +95,7 @@ export default function AntiquityEquipList() {
             items="center"
             row
           >
-            {TITLES[EQUIP_PARTS.indexOf(selectedParts)].map(title => (
+            {TITLES[EQUIP_PARTS.indexOf(part)].map(title => (
               <Text
                 key={title}
                 css={titleCSS}
@@ -116,7 +120,7 @@ export default function AntiquityEquipList() {
               items="center"
               row
             >
-              {TITLES[EQUIP_PARTS.indexOf(selectedParts)].map(title => (
+              {TITLES[EQUIP_PARTS.indexOf(part)].map(title => (
                 <Text
                   key={title}
                   size={isMobile ? `xSmall` : `small`}
@@ -144,7 +148,7 @@ export default function AntiquityEquipList() {
               items="center"
               row
             >
-              {TITLES[EQUIP_PARTS.indexOf(selectedParts)].map(title => (
+              {TITLES[EQUIP_PARTS.indexOf(part)].map(title => (
                 <Text
                   key={title}
                   css={titleCSS}
@@ -169,7 +173,7 @@ export default function AntiquityEquipList() {
                 items="center"
                 row
               >
-                {TITLES[EQUIP_PARTS.indexOf(selectedParts)].map(title => (
+                {TITLES[EQUIP_PARTS.indexOf(part)].map(title => (
                   <Text
                     key={title}
                     size={isMobile ? `xSmall` : `small`}

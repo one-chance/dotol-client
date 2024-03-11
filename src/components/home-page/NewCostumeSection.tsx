@@ -24,8 +24,8 @@ export default function NewCostumeSection() {
             멋진의상재봉틀 - 헤리티지 의상
           </Text>
           <FlexView content="center" items="end" fill row wrap>
-            <Image alt="이미지1" height={150} src="/1.png" width={140} />
-            <Image alt="이미지2" height={150} src="/2.png" width={140} />
+            <Image alt="이미지1" height={150} src="/1.gif" width={140} />
+            <Image alt="이미지2" height={150} src="/2.gif" width={140} />
           </FlexView>
         </FlexView>
 
