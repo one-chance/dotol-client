@@ -1,52 +1,59 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import { CSSObject } from '@emotion/react';
 
 import { FlexView, Text } from '@components/common';
 
 type OptionProps = {
-  css?: CSSObject;
-  center?: boolean;
   values: string[];
   selected: string;
   onSelect: (index: number) => void;
-};
-
-const firstBorder: CSSObject = {
-  borderRadius: `4px 4px 0 0`,
-};
-
-const lastBorder: CSSObject = {
-  borderRadius: `0 0 4px 4px`,
+  height?: number;
 };
 
 export default function Option({
-  css,
-  center,
   values,
   selected,
   onSelect,
+  height,
 }: OptionProps) {
   const refs = useRef<HTMLDivElement[]>([]);
+  const [focusedIndex, setFocusedIndex] = useState(values.indexOf(selected));
 
   const optionCSS: CSSObject = {
-    backgroundColor: `white`,
-    minHeight: `32px`,
-    paddingLeft: `8px`,
-    cursor: `pointer`,
+    minHeight: height ? `${height}px` : `32px`,
+    padding: `0 8px`,
     outline: `none`,
     ':hover': {
       backgroundColor: `#F3F4F8`,
     },
-    css,
+    ':focus': {
+      backgroundColor: `#E0E2E6`,
+    },
+    ':first-child': { borderRadius: `4px 4px 0 0` },
+    ':last-child': { borderRadius: `0 0 4px 4px` },
+  };
+
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLDivElement>,
+    index: number,
+  ) => {
+    if (e.key === `Enter`) onSelect(index);
+    else if (e.key === `ArrowDown`) {
+      e.preventDefault();
+      setFocusedIndex(prev => (prev + 1) % refs.current.length);
+    } else if (e.key === `ArrowUp`) {
+      e.preventDefault();
+      setFocusedIndex(
+        prev => (prev - 1 + refs.current.length) % refs.current.length,
+      );
+    }
   };
 
   useEffect(() => {
-    const index = values.indexOf(selected);
-    if (index !== -1) refs.current[index].focus();
-    else refs.current[0].focus();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selected]);
+    refs.current[focusedIndex].focus();
+    // refs.current[focusedIndex].focus();
+  }, [focusedIndex]);
 
   return (
     <>
@@ -55,28 +62,10 @@ export default function Option({
           key={option}
           ref={(e: HTMLDivElement) => (refs.current[idx] = e)}
           content="center"
-          css={{
-            ...optionCSS,
-            ...(idx === 0 && firstBorder),
-            ...(idx === values.length - 1 && lastBorder),
-          }}
-          items={center ? `center` : `start`}
+          css={optionCSS}
           tabIndex={0}
-          onBlur={() => (refs.current[idx].style.backgroundColor = `#FFF`)}
           onClick={() => onSelect(idx)}
-          onFocus={() => (refs.current[idx].style.backgroundColor = `#F3F4F8`)}
-          onKeyDown={e => {
-            if (e.key === `Enter`) onSelect(idx);
-            else if (e.key === `ArrowDown`) {
-              (refs.current[idx].nextElementSibling as HTMLElement)?.focus();
-            } else if (e.key === `ArrowUp`) {
-              (
-                refs.current[idx].previousElementSibling as HTMLElement
-              )?.focus();
-            } else {
-              e.preventDefault();
-            }
-          }}
+          onKeyDown={e => handleKeyDown(e, idx)}
         >
           <Text color="#4D4D4D" size="small">
             {option}

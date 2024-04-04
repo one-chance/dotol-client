@@ -24,7 +24,6 @@ export default function Select({
   error,
   square,
   isMobile,
-  ...props
 }: SelectProps) {
   const selectRef = useRef<HTMLDivElement>(null);
   const optionListRef = useRef<HTMLDivElement>(null);
@@ -55,8 +54,6 @@ export default function Select({
     width: `100%`,
     marginTop: height || `40px`,
     cursor: `pointer`,
-    backgroundColor: `#FFF`,
-    borderRadius: `4px`,
     boxShadow: `0 0 2px rgba(0, 0, 0, 0.3)`,
   };
 
@@ -78,6 +75,10 @@ export default function Select({
     };
   }, []);
 
+  useEffect(() => {
+    setShowOption(false);
+  }, [label]);
+
   return (
     <FlexView
       ref={selectRef}
@@ -87,13 +88,18 @@ export default function Select({
         if (!disabled) setShowOption(!showOption);
       }}
     >
-      <FlexView content="between" css={selectCSS} items="center" row {...props}>
+      <FlexView content="between" css={selectCSS} items="center" row>
         <Text size="small">{label}</Text>
         <Icon name={showOption ? `arrowUp` : `arrowDown`} size={16} />
       </FlexView>
 
       {showOption && (
-        <FlexView ref={optionListRef} css={optionListCSS}>
+        <FlexView
+          ref={optionListRef}
+          color="#FFFFFF"
+          css={optionListCSS}
+          radius={4}
+        >
           {children}
         </FlexView>
       )}

@@ -30,7 +30,10 @@ export default function App() {
       {!isMobile && <Sidebar />}
 
       <FlexView
-        css={{ marginLeft: isMobile ? 0 : `280px`, minHeight: `100%` }}
+        css={{
+          // marginLeft: isMobile ? 0 : `280px`,
+          minHeight: `100%`,
+        }}
         fill
       >
         <HeaderRouter />
