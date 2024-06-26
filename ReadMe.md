@@ -3,7 +3,7 @@
 ## About the Project
 
 https://dotols.com<br/>
-1인 개발하여 2년 8개월째 운영중인 바람의나라 게임 커뮤니티입니다. 게임에서 제공하지 않지만, 유저에겐 필요한 데이터와 기능을 제공합니다. 넥슨과 협업하여 비공개 API를 제공받는 유일한 [공식 팬사이트](https://baram.nexon.com/FanSite/List)입니다.
+2021년부터 운영 중인 바람의나라 게임 커뮤니티입니다. 게임에서 제공하지 않지만, 유저에겐 필요한 데이터와 기능을 제공합니다. 넥슨과 협업하여 비공개 API를 제공받는 [공식 팬사이트](https://baram.nexon.com/FanSite/List)입니다. 개인 프로젝트로 혼자서 개발, 배포, 운영을 담당합니다.
 
 <img src="https://asset.dotols.com/image/termsofservice.png" style="max-width:600px" />
 
@@ -13,9 +13,9 @@ https://dotols.com<br/>
 
 번들러: Vite
 
-컨벤션: EsLint, Prettier
+컨벤션: ESLint, Prettier
 
-상태관리, Recoil, React-Query
+상태관리: Recoil, React-Query
 
 스타일링: Emotion
 
@@ -85,6 +85,10 @@ v2 : TypeScript, Node, Nest, MongoDB, AWS(EC2)
 - 덕분에 기존보다 유연하고 확장성이 높은 구조로 서버를 구축할 수 있었습니다.
 - TypeScript를 도입하여 코드의 안정성을 높이고 에러를 최소화 하였습니다.
 - DB는 효율적인 스키마를 새로 설계하고 마이그레이션하여 성능을 개선했습니다.
+
+## System Architecture
+
+<img src="https://asset.dotols.com/image/architecture.png" />
 
 ## Conclusion
 
